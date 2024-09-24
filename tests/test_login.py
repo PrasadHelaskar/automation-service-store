@@ -14,9 +14,9 @@ def driver():
 def test_login(driver):
     login_page = LoginPage(driver)
     login_page.click_login()
-    login_page.enter_username("prasad@getomnify.com")
+    login_page.enter_username("")
     login_page.click_CONTINUE_BUTTON()
-    login_page.enter_password("123123123")
+    login_page.enter_password("")
     login_page.click_submit()
     time.sleep(10)
     
