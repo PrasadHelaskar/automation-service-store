@@ -3,14 +3,17 @@ from selenium.webdriver.common.by import By
 
 class classpackbooking(BasePage):
     __private_FILTER_CHECKBOX= (By.XPATH,"(//input[@type='checkbox'])[2]")
-    __private_APPLY_BUTTON=(By.CSS_SELECTOR,"div[class='button--ph1--bc4--bw1--oc4--fc1 max-width w-button apply']")
-    i=5 # need to fetch from env file 
-    __private_classpack_select= (By.XPATH, f"(//div[@class='ss-card-primary-button--fc4 '])[{i}]")
+    __private_APPLY_BUTTON=(By.CSS_SELECTOR,"div[class='button--ph1--bc4--bw1--oc4--fc1 max-width w-button apply']") 
     __private_select_proceed= (By.ID, "classpack_proceed_btn")
+    i=6
+    __private_classpack_select= (By.XPATH, f"(//div[@class='ss-card-primary-button--fc4 '])[{i}]")
+    j=5
+    __private_program_select= (By.XPATH, f"(//div[@class='ss-card-primary-button--fc4 '])[{j}]")
     __private_waiver_checkbox=(By.ID, "waiverCheckbox")
     __private_review_proceed =(By.XPATH, "(//span[@id='totalPriceHolder'])[2]")
     __private_COUPONCODE= (By.NAME, "couponcode")
     __private_COUPONCODE_APPLY= (By.ID, "couponApply")
+    __private_HOME_BUTTON= (By.LINK_TEXT, "BOOK ANOTHER")
 
     def click_classpack_checkbox(self):
         self.click(self.__private_FILTER_CHECKBOX)
@@ -20,6 +23,9 @@ class classpackbooking(BasePage):
     
     def click_select_classpack(self):
         self.click(self.__private_classpack_select)
+
+    def click_select_program(self):
+        self.click(self.__private_program_select)
 
     def click_proceed(self):
         self.click(self.__private_select_proceed)
@@ -35,3 +41,6 @@ class classpackbooking(BasePage):
 
     def click_applycoupon(self):
         self.click(self.__private_COUPONCODE_APPLY)
+
+    def click_home(self):
+        self.click(self.__private_HOME_BUTTON)

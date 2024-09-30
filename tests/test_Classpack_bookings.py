@@ -1,24 +1,42 @@
 import time
 from selenium import webdriver
 import pytest
-from tests.conftest import driver
-# from tests.test_login import Testlogin 
-from pages.classpackbookings import classpackbooking 
-
-
+from pages.classpackbookings import classpackbooking
+from tests.login import loginAction
+ 
 class Testclasspack_bookings():
-
+    @pytest.mark.order(2)
     def test_classpackbooking_action(self, driver):
+        lg=loginAction()
+        lg.login_action(driver)
         cpb=classpackbooking(driver)
+        print('classpack booking started')
         cpb.click_classpack_checkbox()
         cpb.click_apply()
         cpb.click_select_classpack()
         cpb.click_proceed()
-        cpb.enter_couponcode("CP2309")
+        cpb.enter_couponcode("SUBRECU")
         cpb.click_applycoupon()
         cpb.click_waiver_box()
         time.sleep(15)
         cpb.click_review_proceed()
         time.sleep(30)
         driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+        cpb.click_home()
 
+    @pytest.mark.order(3)
+    def test_program_action(self, driver):
+        cpb=classpackbooking(driver)
+        print('Program booking Started')
+        cpb.click_classpack_checkbox()
+        cpb.click_apply()
+        cpb.click_select_program()
+        cpb.click_proceed()
+        cpb.enter_couponcode("SUBRECU")
+        cpb.click_applycoupon()
+        cpb.click_waiver_box()
+        time.sleep(15)
+        cpb.click_review_proceed()
+        time.sleep(30)
+        driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+        cpb.click_home()
