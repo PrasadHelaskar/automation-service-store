@@ -7,7 +7,7 @@ class classpackbooking(BasePage):
     __private_select_proceed= (By.ID, "classpack_proceed_btn")
     i=6
     __private_classpack_select= (By.XPATH, f"(//div[@class='ss-card-primary-button--fc4 '])[{i}]")
-    j=5
+    j=3
     __private_program_select= (By.XPATH, f"(//div[@class='ss-card-primary-button--fc4 '])[{j}]")
     __private_waiver_checkbox=(By.ID, "waiverCheckbox")
     __private_review_proceed =(By.XPATH, "(//span[@id='totalPriceHolder'])[2]")

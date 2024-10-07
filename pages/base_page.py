@@ -19,3 +19,11 @@ class BasePage:
         element.clear()
         element.send_keys(text)
 
+    def get_text(self , locator):
+        element= self.find_element(locator)
+        text=element.text()
+        return(text)
+
+    def is_visible(self, locator):
+        element=self.find_element(locator)
+        return(element.is_displayed())

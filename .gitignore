@@ -3,3 +3,5 @@ tests/__pycache__
 tests/.pytest_cache
 .env
 assets/style.css
+Base/__pycache__
+log

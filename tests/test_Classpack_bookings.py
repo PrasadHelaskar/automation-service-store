@@ -3,7 +3,7 @@ from selenium import webdriver
 import pytest
 from pages.classpackbookings import classpackbooking
 from tests.login import loginAction
- 
+
 class Testclasspack_bookings():
     @pytest.mark.order(2)
     def test_classpackbooking_action(self, driver):
@@ -15,7 +15,7 @@ class Testclasspack_bookings():
         cpb.click_apply()
         cpb.click_select_classpack()
         cpb.click_proceed()
-        cpb.enter_couponcode("SUBRECU")
+        cpb.enter_couponcode("FIXRENEW")
         cpb.click_applycoupon()
         cpb.click_waiver_box()
         time.sleep(15)
@@ -23,7 +23,9 @@ class Testclasspack_bookings():
         time.sleep(30)
         driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
         cpb.click_home()
+        assert driver.title == "Expected Title", "Title does not match!"
 
+        
     @pytest.mark.order(3)
     def test_program_action(self, driver):
         cpb=classpackbooking(driver)
@@ -32,7 +34,7 @@ class Testclasspack_bookings():
         cpb.click_apply()
         cpb.click_select_program()
         cpb.click_proceed()
-        cpb.enter_couponcode("SUBRECU")
+        cpb.enter_couponcode("FIXRENEW")
         cpb.click_applycoupon()
         cpb.click_waiver_box()
         time.sleep(15)
