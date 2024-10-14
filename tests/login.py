@@ -1,5 +1,5 @@
 import time
-from Base.API_log import APILOG
+from Base.revised_API_LOG import APILOG
 from pages.login_page import LoginPage
 import pytest
 from dotenv import load_dotenv

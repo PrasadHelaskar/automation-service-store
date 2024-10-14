@@ -2,17 +2,22 @@ import os
 import time
 import logging
 
+from pages.base_page import BasePage
+
 logger = logging.getLogger(__name__)
 
-def setUp(self):
-        self.screenshot_dir = os.path.join(os.getcwd(), "/mnt/k/automation/Automation_scripts/Screenshots")
-        if not os.path.exists(self.screenshot_dir):
-            os.makedirs(self.screenshot_dir)  # Create directory if it doesn't exist
-
-def take_screenshot(self):
-        logger.info('in the take scrennshot methond')
-        timestamp = time.strftime("%Y%m%d-%H%M%S")
-        print('timestamp: ',timestamp)
-        screenshot_file = os.path.join(self.screenshot_dir, f"{timestamp}.png")
-        self.driver.save_screenshot(screenshot_file)
-        print(f"Screenshot saved to: {screenshot_file}")
+class screenshot(BasePage):
+        def take_screenshot(self, driver, classname):
+                screenshot_dir = os.path.join(os.getcwd(), "Screenshots")
+                if not os.path.exists(screenshot_dir):
+                        os.makedirs(screenshot_dir)
+                logger.info('In the take screenshot method at line 12')
+                timestamp = int(time.time())
+                logger.info(f'Timestamp: {timestamp}')
+                screenshot_file = os.path.join(screenshot_dir, f"{classname}_{timestamp}.png")
+                try:
+                        self.driver.save_screenshot(screenshot_file)
+                        logger.info('Screenshot saved successfully.')
+                        logger.info(f"Screenshot saved to: {screenshot_file}")
+                except Exception as e:
+                        logger.error(f"Failed to take screenshot: {str(e)}")

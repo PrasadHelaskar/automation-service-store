@@ -1,41 +1,55 @@
 import logging
-from datetime import datetime
 import os
+from datetime import datetime
 
-class MyLogger:
-    logger = logging.getLogger(__name__)
-    
-    @staticmethod
-    def setup():
-        try:
-            # Get today's date
-            today = datetime.now()
-            month = today.strftime("%m")
-            date = today.strftime("%d")
-            
-            # Define log directory path
-            log_directory = os.path.join("/mnt/k/automation/Automation_scripts/log", month)  # Change this path as needed
-            
-            # Create directory if it doesn't exist
-            if not os.path.exists(log_directory):
-                os.makedirs(log_directory)
-            
-            # Define log file path
-            log_file_path = os.path.join(log_directory, f"{date}.log")
-            
-            # Set up file handler
-            file_handler = logging.FileHandler(log_file_path, mode='a')
-            file_handler.setFormatter(logging.Formatter('%(asctime)s - %(levelname)s - %(message)s'))
+class Logger:
+    def __init__(self, base_log_dir="/mnt/k/automation/Automation_scripts/log", log_level=logging.INFO):
+        # Get today's date
+        today = datetime.now()
+        month = today.strftime("%m")
+        date = today.strftime("%d")
 
-            # Check if a file handler already exists
-            if not any(isinstance(handler, logging.FileHandler) for handler in MyLogger.logger.handlers):
-                MyLogger.logger.addHandler(file_handler)
+        # Define log directory path (by month)
+        log_directory = os.path.join(base_log_dir, month)
 
-            MyLogger.logger.setLevel(logging.DEBUG)  # Set to DEBUG to capture all levels of logs
+        # Create directory if it doesn't exist
+        if not os.path.exists(log_directory):
+            os.makedirs(log_directory)
 
-        except Exception as e:
-            MyLogger.logger.error("Failed to set up logger", exc_info=e)
+        # Define log file path (by date)
+        log_file_path = os.path.join(log_directory, f"{date}.log")
 
-    @staticmethod
-    def get_logger():
-        return MyLogger.logger
+        # Set up logger
+        self.logger = logging.getLogger(__name__)
+        self.logger.setLevel(log_level)
+        
+        # Create file handler to log to the dynamically generated log file
+        file_handler = logging.FileHandler(log_file_path)
+        file_handler.setLevel(log_level)
+        
+        # Create console handler to log to console
+        console_handler = logging.StreamHandler()
+        console_handler.setLevel(log_level)
+        
+        # Create formatter and add it to the handlers
+        formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+        file_handler.setFormatter(formatter)
+        console_handler.setFormatter(formatter)
+        
+        # Add the handlers to the logger
+        self.logger.addHandler(file_handler)
+        self.logger.addHandler(console_handler)
+
+    def get_logger(self):
+        return self.logger
+
+
+# Usage
+# if __name__ == "__main__":
+#     log = Logger().get_logger()
+
+#     log.debug('This is a debug message')
+#     log.info('This is an info message')
+#     log.warning('This is a warning message')
+#     log.error('This is an error message')
+#     log.critical('This is a critical message')
