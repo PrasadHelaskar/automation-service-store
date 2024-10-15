@@ -7,13 +7,13 @@ class partypackage(BasePage):
     party=3
     __praivte_party_selection=(By.XPATH, f"(//div[@class='ss-card--bc3--br2-bw1--oc5 '])[{party}]")
     __private_expand_button=(By.CSS_SELECTOR, "svg[class='cursor-pointer']")
-    package=2
+    package=1
     __private_package_selection=(By.XPATH, f"(//a[@class='ss-primary-button--bc4--bw1--oc4--fc1 width-100 padding-8 bottom-20 w-button'])[{package}]")
     # for the if seen Emty state
     __private_Empty_state={By.CSS_SELECTOR, "div[class='sub-text font-14 fc2 opacity_70']"}
-    __praivte_Next_schedule={By.XPATH, "//div/..//button[@class='discount-button bc4 fc1 w-button']"}
+    __praivte_Next_schedule={By.XPATH, "//button[@class='discount-button bc4 fc1 w-button']"}
     schedule=1
-    __praivte_Schedule={By.XPATH, f"(//div[@class='schedule-top-bar-date-selector--bc3--bw1--fc2 slot width-196 centre '])[{schedule}]"}
+    __praivte_Schedule={By.XPATH, f"(//div[@class='schedule-top-bar-date-selector--bc3--bw1--fc2 slot width-196 centre selected--oc4'])[{schedule}]"}
     __praivte_Select_proceed={By.XPATH, "//div[@class='discount-button fc1 bc4 w-button']"}
     attendee=1
     __private_Attendee_select={By.XPATH, f"(//input[@id='checkbox-3'])[{attendee}]"}
@@ -38,13 +38,16 @@ class partypackage(BasePage):
     def visible_empty_state(self):
         self.is_visible(self.__private_Empty_state)
 
+    def text_empty_state(self):
+        self.get_text(self.__private_Empty_state)
+        
     def click_next_schedule(self):
         self.click(self.__praivte_Next_schedule)
 
     def click_schedule_selection(self):
         self.click(self.__praivte_Schedule)
 
-    def click_scheduel_proceed(self):
+    def click_schedule_proceed(self):
         self.click(self.__praivte_Select_proceed)
 
     def click_attendee_seletion(self):

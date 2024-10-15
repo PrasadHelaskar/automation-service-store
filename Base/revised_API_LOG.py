@@ -13,16 +13,6 @@ class APILOG:
         self.driver = driver
         load_dotenv()
 
-        # Logger setup
-        # log.setLevel(logging.INFO)
-        # handler = logging.StreamHandler()
-        # file_handler = logging.FileHandler('api_log.log')  # Log to a file
-        # formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
-        # handler.setFormatter(formatter)
-        # file_handler.setFormatter(formatter)
-        # log.addHandler(handler)
-        # log.addHandler(file_handler)
-
         try:
             # Enable network tracking using Chrome DevTools Protocol (CDP)
             self.driver.execute_cdp_cmd('Network.enable', {})
@@ -45,30 +35,30 @@ class APILOG:
                     response = message['params']['response']
                 
                         # Log details for any response
-                    log.info(f"Response URL: {response['url']}")
-                    log.info(f"Status Code: {response['status']}")
+                    # log.info(f"Response URL: {response['url']}")
+                    # log.info(f"Status Code: {response['status']}")
                     
                     # Handle different MIME types
                     mime_type = response['mimeType']
-                    request_id = message['params']['requestId']
-                    
+                    # request_url= None or message['params']['url' or None]
+                    # log.info(f"request Url: {request_url}")
+                    request_id = message['params']['requestId' or None] 
                     response_body = self.driver.execute_cdp_cmd('Network.getResponseBody', {'requestId': request_id})
                     
-                    if mime_type == "application/json":
-                        log.info(f"Response Body (JSON): {response_body.get('body', '')}")
+                    # if mime_type == "application/json":
+                    #     log.info(f"Response Body (JSON): {response_body.get('body', '')}")
                     # elif mime_type == "text/html":
                     #     log.info(f"Response Body (HTML): {response_body.get('body', '')}")
-                    elif mime_type == "Script":
-                        log.info(f"Response Body (Script): {response_body.get('body', '')}")
+                    # elif mime_type == "Script":
+                    #     log.info(f"Response Body (Script): {response_body.get('body', '')}")
+                    # elif message['params']['type'] == "Document":
+                    #     log.info(f"Server-rendered page URL: {response['url']}")    
+                    # elif message['params']['type'] == "XHR":
+                    #     log.info(f"XHR API URL: {response['url']}")
                     # else:
                     #     log.info(f"Response Body (Other - {mime_type}): {response_body.get('body', '')}")
-                    elif message['params']['type'] == "Document":
-                        log.info(f"Server-rendered page URL: {response['url']}")
-                        
-                    elif message['params']['type'] == "XHR":
-                        log.info(f"XHR API URL: {response['url']}")
                 else:
-                    log.error(f"No 'response' found in {message['params']}")
+                    log.error("No 'response' found")
 
         except Exception as e:
             log.exception("Error fetching logs.", exc_info=e)
