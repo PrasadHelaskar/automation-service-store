@@ -18,7 +18,7 @@ class signup(BasePage):
     __private_DOB_FIELD=(By.CSS_SELECTOR, "input[class='display-flex ss-auth-input--bc3--fc2--oc2 font-size-16 w-input']")  #2times
     i=os.getenv("date")
     __private_DATE=(By.XPATH, f"(//button[@class='rdp-button_reset rdp-button rdp-day'])[{i}]")
-    # __private_Year_dp=(By.)
+    # __private_Year_dp=(By.)p  
 
     def click_signup(self):
         self.click(self.__private_SIGNUP_BUTTON)

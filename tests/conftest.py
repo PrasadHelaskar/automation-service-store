@@ -37,6 +37,7 @@ def driver():
     chrome_options.set_capability('goog:loggingPrefs', logging_prefs)
     driver = webdriver.Chrome(options=chrome_options)
     driver.execute_cdp_cmd('Network.enable', {}) 
+    driver.execute_cdp_cmd("Debugger.setSkipAllPauses", {"skip": True})
     # driver.get(os.getenv("url"))  
     driver.maximize_window()
     driver.implicitly_wait(10)

@@ -8,7 +8,7 @@ log = Logger().get_logger()
 class BasePage:
     def __init__(self, driver):
         self.driver = driver
-        self.wait = WebDriverWait(driver, 60)
+        self.wait = WebDriverWait(driver, 30)
 
     def find_element(self, locator):
         return self.wait.until(EC.visibility_of_element_located(locator))
@@ -29,7 +29,8 @@ class BasePage:
         return element_text
 
     def is_visible(self, locator):
+        # log.info("Basepage method")
         element=self.find_element(locator)
-        op=element.is_displayed
-        log.info(op)
-        return(op)
+        op=element.is_displayed()
+        log.info(str(op))
+        return str(op)

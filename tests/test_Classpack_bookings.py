@@ -1,5 +1,4 @@
 import time
-from selenium import webdriver
 import pytest
 from pages.classpackbookings import classpackbooking
 from tests.login import loginAction
