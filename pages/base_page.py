@@ -24,7 +24,7 @@ class BasePage:
 
     def get_text(self, locator):
         element= self.find_element(locator)
-        element_text=str(element.text)
+        element_text=element.text
         log.info(element_text)
         return element_text
 
