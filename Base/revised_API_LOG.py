@@ -42,9 +42,15 @@ class APILOG:
                     mime_type = response['mimeType']
                     # request_url= None or message['params']['url' or None]
                     # log.info(f"request Url: {request_url}")
-                    request_id = message['params']['requestId' or None] 
-                    response_body = self.driver.execute_cdp_cmd('Network.getResponseBody', {'requestId': request_id})
-                    
+                    request_id = message['params'].get('requestId')
+                    if request_id:
+                        try:
+                            response_body = self.driver.execute_cdp_cmd('Network.getResponseBody', {'requestId': request_id})
+                        except Exception as e:
+                            print(f"Error retrieving response body: {e}")
+                            response_body = None
+                    else:
+                        print("No valid requestId found.")                    
                     # if mime_type == "application/json":
                     #     log.info(f"Response Body (JSON): {response_body.get('body', '')}")
                     # elif mime_type == "text/html":

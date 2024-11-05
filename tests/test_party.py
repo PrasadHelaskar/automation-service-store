@@ -11,7 +11,7 @@ log = Logger().get_logger()
 class Testparty_bookings():
     @pytest.mark.order(3)
     def test_party(self, driver):
-        try:
+        # try:
             pb=partypackage(driver)
             lg=loginAction()
             driver.implicitly_wait(30)
@@ -23,9 +23,9 @@ class Testparty_bookings():
             # driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
             pb.click_package()
             time.sleep(10)        
-            log.info(pb.text_empty_state())
+            # log.info(pb.text_empty_state())
             if pb.visible_empty_state():
-                time.sleep(5)
+                time.sleep(15)
                 log.info('in if block')
                 pb.click_next_schedule()
                 time.sleep(5)
@@ -43,6 +43,7 @@ class Testparty_bookings():
             # assert driver.title == "Expected", "Title does not match!"
             dynamic_cookie = driver.get_cookie("session")
             assert dynamic_cookie == lg.static_cookie
-        except Exception as e:
-            log.info("Execption Occured: ",e)
+        # except Exception as e:
+        #     log.error("failed !!!")
+        #     traceback.print_exc()
             # log.warn(traceback.format_exc())
