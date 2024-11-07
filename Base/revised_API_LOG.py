@@ -51,18 +51,18 @@ class APILOG:
                             response_body = None
                     else:
                         print("No valid requestId found.")                    
-                    # if mime_type == "application/json":
-                    #     log.info(f"Response Body (JSON): {response_body.get('body', '')}")
-                    # elif mime_type == "text/html":
-                    #     log.info(f"Response Body (HTML): {response_body.get('body', '')}")
-                    # elif mime_type == "Script":
-                    #     log.info(f"Response Body (Script): {response_body.get('body', '')}")
-                    # elif message['params']['type'] == "Document":
-                    #     log.info(f"Server-rendered page URL: {response['url']}")    
-                    # elif message['params']['type'] == "XHR":
-                    #     log.info(f"XHR API URL: {response['url']}")
-                    # else:
-                    #     log.info(f"Response Body (Other - {mime_type}): {response_body.get('body', '')}")                    
+                    if mime_type == "application/json":
+                        log.info(f"Response Body (JSON): {response_body.get('body', '')}")
+                    elif mime_type == "text/html":
+                        log.info(f"Response Body (HTML): {response_body.get('body', '')}")
+                    elif mime_type == "Script":
+                        log.info(f"Response Body (Script): {response_body.get('body', '')}")
+                    elif message['params']['type'] == "Document":
+                        log.info(f"Server-rendered page URL: {response['url']}")    
+                    elif message['params']['type'] == "XHR":
+                        log.info(f"XHR API URL: {response['url']}")
+                    else:
+                        log.info(f"Response Body (Other - {mime_type}): {response_body.get('body', '')}")                    
 
         except Exception as e:
             log.exception("Error fetching logs.", exc_info=e)

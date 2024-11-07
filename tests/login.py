@@ -27,9 +27,20 @@ class loginAction():
     def Store_cookie(self, driver):
         global static_cookie
         time.sleep(10)
-        cookie = driver.get_cookie('omnify-tokenz')
+        cookie = driver.get_cookie('omnify-token')
+        # log.info(cookie)
         if cookie:
             static_cookie = cookie['value']
-            log.info(f"Stored cookie value: {static_cookie}")
+            static_cookie_name = cookie['name']
+            log.info(f"Stored cookie name: {static_cookie_name}")
         else:
             log.warning("Cookie not found!")
+
+    def authenticatte_cookie(self, driver):
+        cookie = driver.get_cookie('omnify-token')
+        if cookie:
+            cookie = cookie['value']
+            if(cookie['value']==static_cookie['value']):
+                log.log("Cookie authenticated")        
+        else:
+            log.warning("Cookie not found! \n authenticated failed")

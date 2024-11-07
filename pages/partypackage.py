@@ -7,13 +7,13 @@ log = Logger().get_logger()
 class partypackage(BasePage):
     __private_party_page=(By.CSS_SELECTOR, "a[href='/party?b=t']")
     party=1
-    __praivte_party_selection=(By.XPATH, f"(//div[@class='ss-card-title--fc2--lc2 word-break-break-word'])[{party}]")
+    __praivte_party_selection=(By.XPATH, f"(//button[@class='card-header-alignment'])[{party}]")
     __private_expand_button=(By.CSS_SELECTOR, "svg[class='cursor-pointer']")
     package=1
     __private_package_selection=(By.XPATH, f"//div/..//div/..//div/..//a[@class='ss-primary-button--bc4--bw1--oc4--fc1 width-100 padding-8 bottom-20 w-button'][{package}]")
     # for the if seen Emty state
-    __private_Empty_state={By.XPATH, "s//div[@class='sub-text font-14 fc2 opacity_70']"}
-    __priavte_Next_schedule={By.XPATH, "//div[@class='empty-state-text-holder']/..//button[@class='discount-button bc4 fc1 w-button']"}
+    __private_Empty_state={By.XPATH, "//div[@class='sub-text font-14 fc2 opacity_70']"}
+    __priavte_Next_schedule={By.XPATH, "//button[@class='discount-button bc4 fc1 w-button']"}
     schedule=1
     __praivte_Schedule={By.XPATH, f"(//div[@class='select-time-holder'])[{schedule}]"}
     __praivte_Select_proceed={By.XPATH, "//div[@class='discount-button fc1 bc4 w-button']"}

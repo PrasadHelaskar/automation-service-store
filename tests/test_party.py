@@ -41,8 +41,7 @@ class Testparty_bookings():
             driver.execute_script("window.debugger = function() {};")
             pb.click_home()
             # assert driver.title == "Expected", "Title does not match!"
-            dynamic_cookie = driver.get_cookie("session")
-            assert dynamic_cookie == lg.static_cookie
+            lg.authenticatte_cookie(driver)
         # except Exception as e:
         #     log.error("failed !!!")
         #     traceback.print_exc()

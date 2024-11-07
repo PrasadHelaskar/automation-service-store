@@ -9,7 +9,7 @@ from Base.random_select import select_random
 
 
 logger = logging.getLogger(__name__)
-
+@pytest.mark.parametrize('driver',['chrome'])
 class Testsign_up():
     @pytest.mark.order(1)
     def test_sign_up(self, driver):
@@ -32,4 +32,4 @@ class Testsign_up():
             sg.click_date()
             sg.click_dobfield()
         sg.click_submit()
-        time.sleep(10)
+        time.sleep(60)
