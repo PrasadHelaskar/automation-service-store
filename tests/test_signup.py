@@ -9,13 +9,13 @@ from Base.random_select import select_random
 
 
 logger = logging.getLogger(__name__)
-@pytest.mark.parametrize('driver',['chrome'])
 class Testsign_up():
     @pytest.mark.order(1)
     def test_sign_up(self, driver):
         load_dotenv()
         sr=select_random()
-        apilogger = APILOG(driver)
+        # apilogger = APILOG(driver)
+        driver.get(os.getenv('url'))
         sg=signup(driver)
         sg.click_signup()
         sg.enter_email(os.getenv('email'))
