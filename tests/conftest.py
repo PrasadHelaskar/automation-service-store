@@ -60,6 +60,7 @@ def driver(request):
     selenium_endpoint = "http://{}:{}@hub.lambdatest.com/wd/hub".format(username, access_key)
     chrome_options = webdriver.ChromeOptions()
     chrome_options.binary_location = "/opt/google/chrome/google-chrome"
+<<<<<<< Updated upstream
     option = {
         "platform": "Windows 10",
         "version": "latest",
@@ -76,6 +77,8 @@ def driver(request):
         options=chrome_options
     )
     load_dotenv()
+=======
+>>>>>>> Stashed changes
     # chrome_options.add_experimental_option("w3c", False) 
     # chrome_options.add_argument("--auto-open-devtools-for-tabs") 
     # chrome_options.add_argument('--headless')
@@ -90,3 +93,34 @@ def driver(request):
     driver.get(os.getenv("logouturl"))
     time.sleep(10)
     driver.quit()
+
+# @pytest.fixture(scope="session")
+# def driver():
+#     global driver
+#     username="developersgetomnify"
+#     access_key="iURTRLu6LkS0JYvWjvHvUd98204bgdCvasF6EQ3LOLInXtSqeN"
+#     remote_url="http://{}:{}@hub.lambdatest.com/wd/hub".format(username, access_key)
+    
+#     chrome_options = Options()
+#     chrome_options.set_capability("browserName", "Chrome")
+#     chrome_options.set_capability("browserVersion", "latest")
+#     chrome_options.set_capability("LT:Options", {
+#         "video": True,
+#         "platformName": "Windows 10",
+#         "network": True,
+#         "build": "test",
+#         "project": "lambda integration",
+#         "name": "test",
+#         "selenium_version": "4.0.0",
+#         "w3c": True
+#     })
+
+#     driver=webdriver.Remote(
+#         command_executor=remote_url,
+#         options=chrome_options
+#     )
+
+#     yield driver
+#     driver.get(os.getenv("logouturl"))
+#     time.sleep(10)
+#     driver.quit()
