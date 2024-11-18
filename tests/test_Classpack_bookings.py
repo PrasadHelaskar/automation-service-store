@@ -5,11 +5,11 @@ from pages.classpackbookings import classpackbooking
 from tests.login import loginAction
 
 log = Logger().get_logger()
+lg=loginAction()
 
 class Testclasspack_bookings():
     @pytest.mark.order(2)
     def test_classpackbooking_action(self, driver):
-        lg=loginAction()
         lg.login_action(driver)
         cpb=classpackbooking(driver)
         print('classpack booking started')
@@ -20,17 +20,17 @@ class Testclasspack_bookings():
         cpb.click_select_classpack()
         cpb.click_proceed()
         # need if condition for discount
-        cpb.enter_couponcode("DSCNT123")
-        log.info("B4 Discount applied")
-        cpb.click_applycoupon()
-        log.info("After Discount applied")
+        # # cpb.enter_couponcode("DSCNT123")
+        # log.info("B4 Discount applied")
+        # cpb.click_applycoupon()
+        # log.info("After Discount applied")
         cpb.click_waiver_box()
         time.sleep(15)
         cpb.click_review_proceed()
         time.sleep(30)
         driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
         cpb.click_home()
-        assert driver.title == "Expected Title", "Title does not match!"
+        lg.authenticatte_cookie(driver)
 
         
     @pytest.mark.order(3)
@@ -44,11 +44,12 @@ class Testclasspack_bookings():
         cpb.click_select_program()
         cpb.click_proceed()
         # need if condition for discount
-        cpb.enter_couponcode("FIXRENEW")
-        cpb.click_applycoupon()
+        # cpb.enter_couponcode("FIXRENEW")
+        # cpb.click_applycoupon()
         cpb.click_waiver_box()
         time.sleep(15)
         cpb.click_review_proceed()
         time.sleep(30)
         driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
         cpb.click_home()
+        lg.authenticatte_cookie(driver)

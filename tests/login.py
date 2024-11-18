@@ -40,8 +40,8 @@ class loginAction():
     def authenticatte_cookie(self, driver):
         cookie = driver.get_cookie('omnify-token')
         if cookie:
-            cookie = cookie['value']
-            if(cookie['value']==static_cookie['value']):
-                log.log("Cookie authenticated")        
+            cookie_value = cookie['value']
+            if(cookie_value==static_cookie):
+                log.info("Cookie authenticated")        
         else:
             log.warning("Cookie not found! \n authenticated failed")

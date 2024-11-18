@@ -5,9 +5,9 @@ class classpackbooking(BasePage):
     __private_FILTER_CHECKBOX= (By.XPATH,"(//input[@type='checkbox'])[2]")
     __private_APPLY_BUTTON=(By.CSS_SELECTOR,"div[class='button--ph1--bc4--bw1--oc4--fc1 max-width w-button apply']") 
     __private_select_proceed= (By.ID, "classpack_proceed_btn")
-    i=4
+    i=3
     __private_classpack_select= (By.XPATH, f"(//a[@class='primary-button-card bc4 fc1'])[{i}]")
-    j=1
+    j=4
     __private_program_select= (By.XPATH, f"(//a[@class='primary-button-card bc4 fc1'])[{j}]")
     __private_waiver_checkbox=(By.ID, "waiverCheckbox")
     __private_review_proceed =(By.XPATH, "(//span[@id='totalPriceHolder'])[2]")

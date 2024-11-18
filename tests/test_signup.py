@@ -32,4 +32,3 @@ class Testsign_up():
             sg.click_date()
             sg.click_dobfield()
         sg.click_submit()
-        time.sleep(60)

@@ -32,5 +32,5 @@ class BasePage:
         # log.info("Basepage method")
         element=self.find_element(locator)
         op=element.is_displayed()
-        log.info(str(op))
+        # log.info(str(op))
         return str(op)

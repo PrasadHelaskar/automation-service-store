@@ -3,8 +3,8 @@ from dotenv import load_dotenv
 import pytest
 from selenium import webdriver
 import os
-from Base.Screenshot import screenshot
-from selenium.webdriver.chrome.options import Options   
+from selenium.webdriver.chrome.options import Options
+from Base.Screenshot import screenshot   
 
 @pytest.fixture(autouse=True)
 def log_on_failure(request):
@@ -23,7 +23,8 @@ def pytest_runtest_makereport(item, call):
 
 
 # @pytest.fixture (scope="session")
-# def test_driver():
+# def driver():
+#     global driver
 #     logging_prefs = {
 #         'browser': 'ALL',          # Log JavaScript errors/warnings
 #         'performance': 'ALL'       # Log network requests (using CDP)
@@ -46,34 +47,34 @@ def pytest_runtest_makereport(item, call):
 #     time.sleep(10)
 #     driver.quit()
 
-
-# @pytest.fixture(scope="session")
-# def driver():
-#     global driver
-#     username="developersgetomnify"
-#     access_key="iURTRLu6LkS0JYvWjvHvUd98204bgdCvasF6EQ3LOLInXtSqeN"
-#     remote_url="http://{}:{}@hub.lambdatest.com/wd/hub".format(username, access_key)
+# # lambda test fixture 
+@pytest.fixture(scope="session")
+def driver():
+    global driver
+    username="developersgetomnify"
+    access_key="iURTRLu6LkS0JYvWjvHvUd98204bgdCvasF6EQ3LOLInXtSqeN"
+    remote_url="http://{}:{}@hub.lambdatest.com/wd/hub".format(username, access_key)
     
-#     chrome_options = Options()
-#     chrome_options.set_capability("browserName", "Chrome")
-#     chrome_options.set_capability("browserVersion", "latest")
-#     chrome_options.set_capability("LT:Options", {
-#         "video": True,
-#         "platformName": "Windows 10",
-#         "network": True,
-#         "build": "test",
-#         "project": "lambda integration",
-#         "name": "test",
-#         "selenium_version": "4.0.0",
-#         "w3c": True
-#     })
+    chrome_options = Options()
+    chrome_options.set_capability("browserName", "Chrome")
+    chrome_options.set_capability("browserVersion", "latest")
+    chrome_options.set_capability("LT:Options", {
+        "video": True,
+        "platformName": "Windows 10",
+        "network": True,
+        "build": "test",
+        "project": "lambda integration",
+        "name": "test",
+        "selenium_version": "4.0.0",
+        "w3c": True
+    })
 
-#     driver=webdriver.Remote(
-#         command_executor=remote_url,
-#         options=chrome_options
-#     )
+    driver=webdriver.Remote(
+        command_executor=remote_url,
+        options=chrome_options
+    )
 
-#     yield driver
-#     driver.get(os.getenv("logouturl"))
-#     time.sleep(10)
-#     driver.quit()
+    yield driver
+    driver.get(os.getenv("logouturl"))
+    time.sleep(10)
+    driver.quit()

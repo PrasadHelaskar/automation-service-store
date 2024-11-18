@@ -45,9 +45,12 @@ class signup(BasePage):
         self.send_keys(self.__private_CONFIRM_PASSWORD, confirepassword)
     
     def check_header(self):
-        value=self.is_visible(self.__private_HEADER)
-        print(value)
-        return(value)
+        try:    
+            value=self.is_visible(self.__private_HEADER)
+            print(value)
+            return(value)
+        except:
+            return False
     
     def click_dobfield(self):
         self.click(self.__private_DOB_FIELD)
