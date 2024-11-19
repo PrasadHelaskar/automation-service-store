@@ -14,7 +14,7 @@ class Testparty_bookings():
         # try:
             pb=partypackage(driver)
             lg=loginAction()
-            driver.implicitly_wait(30)
+            driver.implicitly_wait(10)
             lg.login_action(driver)
             pb.click_party_tab()
             time.sleep(5)
@@ -37,7 +37,6 @@ class Testparty_bookings():
             pb.click_review_proceed()
             driver.execute_script("window.debugger = function() {};")
             pb.click_home()
-            # assert driver.title == "Expected", "Title does not match!"
             lg.authenticatte_cookie(driver)
         # except Exception as e:
         #     log.error("failed !!!")
