@@ -1,13 +1,14 @@
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
-import logging
 
+from Base.logfile import Logger
 
+log = Logger().get_logger()
 class BasePage:
     def __init__(self, driver):
         self.driver = driver
-        self.wait = WebDriverWait(driver, 60)
+        self.wait = WebDriverWait(driver, 30)
 
     def find_element(self, locator):
         return self.wait.until(EC.visibility_of_element_located(locator))
@@ -23,10 +24,13 @@ class BasePage:
 
     def get_text(self, locator):
         element= self.find_element(locator)
-        element_text=str(element.text())
-        logging(element_text)
-        return(element_text)
+        element_text=element.text
+        log.info(element_text)
+        return element_text
 
     def is_visible(self, locator):
+        # log.info("Basepage method")
         element=self.find_element(locator)
-        return(element.is_displayed())
+        op=element.is_displayed()
+        log.info(str(op))
+        return str(op)

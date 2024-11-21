@@ -1,5 +1,4 @@
 import time
-from selenium import webdriver
 import pytest
 from pages.classpackbookings import classpackbooking
 from tests.login import loginAction
@@ -7,8 +6,8 @@ from tests.login import loginAction
 class Testclasspack_bookings():
     @pytest.mark.order(2)
     def test_classpackbooking_action(self, driver):
-        # lg=loginAction()
-        # lg.login_action(driver)
+        lg=loginAction()
+        lg.login_action(driver)
         cpb=classpackbooking(driver)
         print('classpack booking started')
         cpb.click_classpack_checkbox()

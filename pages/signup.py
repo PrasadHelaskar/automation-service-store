@@ -5,7 +5,7 @@ import os
 
 class signup(BasePage):
     load_dotenv()
-    __private_SIGNUP_BUTTON=(By.CSS_SELECTOR, "button[class='button--ph1--bc4--bw1--oc4--fc1 w-button']")
+    __private_SIGNUP_BUTTON=(By.XPATH, "//button[@class=' button--ph1--bc4--bw1--oc4--fc1 w-button']")
     __private_EMAIL_FIELD=(By.NAME, "email")
     __private_CONTINUE_BUTTON=(By.CSS_SELECTOR, "button[class='ss-auth-primary-button--bc4--fc1 w-button']")
     __private_FIRST_FIELD=(By.NAME, "firstname")
@@ -18,6 +18,7 @@ class signup(BasePage):
     __private_DOB_FIELD=(By.CSS_SELECTOR, "input[class='display-flex ss-auth-input--bc3--fc2--oc2 font-size-16 w-input']")  #2times
     i=os.getenv("date")
     __private_DATE=(By.XPATH, f"(//button[@class='rdp-button_reset rdp-button rdp-day'])[{i}]")
+    # __private_Year_dp=(By.)p  
 
     def click_signup(self):
         self.click(self.__private_SIGNUP_BUTTON)

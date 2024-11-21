@@ -1,4 +1,5 @@
 import time
+import traceback
 from selenium import webdriver
 import pytest
 from Base.logfile import Logger
@@ -10,28 +11,39 @@ log = Logger().get_logger()
 class Testparty_bookings():
     @pytest.mark.order(3)
     def test_party(self, driver):
-        driver.implicitly_wait(10)
-        pb=partypackage(driver)
-        lg=loginAction()
-        lg.login_action(driver)
-        pb.click_party_tab()
-        pb.click_party_select()
-        pb.click_expand()
-        time.sleep(10)
-        driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-        pb.click_package()
-        # log.info(pb.text_empty_state())
-        if(pb.visible_empty_state):
-            log.info("in if block")
+        # try:
+            pb=partypackage(driver)
+            lg=loginAction()
+            driver.implicitly_wait(30)
+            lg.login_action(driver)
+            pb.click_party_tab()
             time.sleep(10)
-            pb.click_next_schedule()
-        pb.click_schedule_selection()
-        pb.click_scheduel_proceed()
-        pb.click_attendee_seletion()
-        time.sleep(10)
-        pb.click_attendee_peoceed()
-        pb.click_addon_proceed()
-        pb.click_waiverbox()
-        pb.click_review_proceed()
-        pb.click_home()
-        assert driver.title == "Expected", "Title does not match!"
+            pb.click_party_select()
+            pb.click_expand()
+            # driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+            pb.click_package()
+            time.sleep(10)        
+            # log.info(pb.text_empty_state())
+            if pb.visible_empty_state():
+                time.sleep(15)
+                log.info('in if block')
+                pb.click_next_schedule()
+                time.sleep(5)
+            pb.click_schedule_selection()
+            pb.click_schedule_proceed()
+            pb.click_attendee_seletion()
+            time.sleep(5)
+            pb.click_attendee_peoceed()
+            time.sleep(5)
+            pb.click_addon_proceed()
+            pb.click_waiverbox()
+            pb.click_review_proceed()
+            driver.execute_script("window.debugger = function() {};")
+            pb.click_home()
+            # assert driver.title == "Expected", "Title does not match!"
+            dynamic_cookie = driver.get_cookie("session")
+            assert dynamic_cookie == lg.static_cookie
+        # except Exception as e:
+        #     log.error("failed !!!")
+        #     traceback.print_exc()
+            # log.warn(traceback.format_exc())
