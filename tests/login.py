@@ -37,7 +37,7 @@ class loginAction():
         else:
             log.warning("Cookie not found!")
 
-    def authenticatte_cookie(self, driver):
+    def authenticate_cookie(self, driver):
         cookie = driver.get_cookie('omnify-token')
         if cookie:
             cookie_value = cookie['value']

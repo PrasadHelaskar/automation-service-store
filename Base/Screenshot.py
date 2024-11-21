@@ -2,7 +2,7 @@ import os
 import time
 import logging
 
-from pages.base_page import BasePage
+from tests.base_page import BasePage
 
 logger = logging.getLogger(__name__)
 

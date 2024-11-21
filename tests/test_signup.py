@@ -2,10 +2,12 @@ import pytest
 from Base.revised_API_LOG import APILOG
 from pages.signup import signup
 from dotenv import load_dotenv
+from selenium.webdriver.common.by import By
 import os
 import time
 import logging
 from Base.random_select import select_random
+from selenium.webdriver.support.ui import Select
 
 
 logger = logging.getLogger(__name__)
@@ -29,6 +31,16 @@ class Testsign_up():
         logger.info(str(sg.check_header))
         if (sg.check_header()):
             sg.click_dobfield()
+            time.sleep(5)
+            month_dropdown = driver.find_element(By.NAME, "months")
+            select_month = Select(month_dropdown)
+            month=sr.random_month()
+            select_month.select_by_visible_text(month)
+            year_dropdown = driver.find_element(By.NAME, "years")
+            select_year = Select(year_dropdown)
+            year=sr.rendom_year()
+            select_year.select_by_visible_text(year)
             sg.click_date()
             sg.click_dobfield()
         sg.click_submit()
+        time.sleep(20)

@@ -3,6 +3,7 @@ import traceback
 from selenium import webdriver
 import pytest
 from Base.logfile import Logger
+from Base.stripe_popup import stripe_action
 from pages.partypackage import partypackage
 from tests.login import loginAction
 
@@ -20,10 +21,9 @@ class Testparty_bookings():
             time.sleep(5)
             pb.click_party_select()
             pb.click_expand()
+            time.sleep(10)
             driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
             pb.click_package()        
-            # log.info(pb.text_empty_state())
-            log.info(pb.visible_empty_state())
             if pb.visible_empty_state():
                 log.info('in if block')
                 pb.click_next_schedule()
@@ -35,9 +35,12 @@ class Testparty_bookings():
                 pb.click_addon_proceed()
             pb.click_waiverbox()
             pb.click_review_proceed()
+            stripe_action().stripe_data_enty(driver)
             driver.execute_script("window.debugger = function() {};")
+            time.sleep(20)
             pb.click_home()
-            lg.authenticatte_cookie(driver)
+            lg.authenticate_cookie(driver)
+            log.info("Praty booking Compleated")
         # except Exception as e:
         #     log.error("failed !!!")
         #     traceback.print_exc()

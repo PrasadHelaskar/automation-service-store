@@ -34,9 +34,7 @@ from dotenv import load_dotenv
 def driver():
     global driver
     load_dotenv()
-    
-    # Check if running locally or on LambdaTest
-    is_lambda_test = os.getenv("IS_REMOTE", "0").lower() == "1"
+    is_lambda_test = os.getenv("IS_REMOTE", "0") == "1"
     
     if is_lambda_test:
         # LambdaTest setup
@@ -71,6 +69,7 @@ def driver():
         chrome_options = webdriver.ChromeOptions()
         chrome_options.binary_location = "/opt/google/chrome/google-chrome"
         chrome_options.set_capability('goog:loggingPrefs', logging_prefs)
+        # chrome_options.add_argument("--headless")
         
         driver = webdriver.Chrome(options=chrome_options)
         driver.execute_cdp_cmd('Network.enable', {})

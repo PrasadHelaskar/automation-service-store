@@ -1,12 +1,12 @@
 from Base.logfile import Logger
-from pages.base_page import BasePage
+from tests.base_page import BasePage
 from selenium.webdriver.common.by import By
 
 log = Logger().get_logger()
 
 class partypackage(BasePage):
     __private_party_page=(By.CSS_SELECTOR, "a[href='/party?b=t']")
-    party=2
+    party=1
     __praivte_party_selection=(By.XPATH, f"(//div[@class='ss-card-details top-align'])[{party}]")
     __private_expand_button=(By.CSS_SELECTOR, "svg[class='cursor-pointer']")
     package=1
@@ -23,7 +23,8 @@ class partypackage(BasePage):
     __private_addonpage=(By.XPATH,"//div[@class='add-on-section bc4_a bw1t bottom-120']")
     __private_Addon_Proceed=(By.XPATH, "//button[@class='discount-button fc1 bc4 w-button shrink']")
     __private_Waiver_Checkbox=(By.ID, "checkbox-3")
-    __private_Review_Proceed=(By.CSS_SELECTOR, "div[class='discount-button fc1 bc4 w-button one']")
+    __private_Review_Proceed_cardno=(By.CSS_SELECTOR,"div[class='stripeModal']")
+    __private_Review_Proceed_card=(By.CSS_SELECTOR,"div[class='discount-button fc1 bc4 w-button one']")
     __private_HOME_BUTTON= (By.LINK_TEXT, "BOOK ANOTHER")
 
     def click_party_tab(self):
@@ -79,7 +80,13 @@ class partypackage(BasePage):
         self.click(self.__private_Waiver_Checkbox)
 
     def click_review_proceed(self):
-        self.click(self.__private_Review_Proceed)
+        try:    
+            value=self.is_visible(self.__private_Review_Proceed_cardno)
+        except:
+            value=False
+        log.info(value)
+        locator=(self.__private_Review_Proceed_cardno) if value else (self.__private_Review_Proceed_card)
+        self.click(locator)
 
     def click_home(self):
         self.click(self.__private_HOME_BUTTON)
