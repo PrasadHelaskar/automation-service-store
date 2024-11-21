@@ -13,15 +13,19 @@ class Logger:
         log_file_path = os.path.join(log_directory, f"{date}.log")
         self.logger = logging.getLogger(__name__)
         self.logger.setLevel(log_level)
-        file_handler = logging.FileHandler(log_file_path)
-        file_handler.setLevel(log_level)
-        console_handler = logging.StreamHandler()
-        console_handler.setLevel(log_level)
-        formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-        file_handler.setFormatter(formatter)
-        console_handler.setFormatter(formatter)
-        self.logger.addHandler(file_handler)
-        self.logger.addHandler(console_handler)
+        if not self.logger.handlers:
+            file_handler = logging.FileHandler(log_file_path)
+            file_handler.setLevel(log_level)
+            console_handler = logging.StreamHandler()
+            console_handler.setLevel(log_level)
+
+            formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+            file_handler.setFormatter(formatter)
+            console_handler.setFormatter(formatter)
+
+            # Add handlers
+            self.logger.addHandler(file_handler)
+            self.logger.addHandler(console_handler)
 
     def get_logger(self):
         return self.logger

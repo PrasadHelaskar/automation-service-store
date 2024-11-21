@@ -50,7 +50,8 @@ class APILOG:
                             print(f"Error retrieving response body: {e}")
                             response_body = None
                     else:
-                        print("No valid requestId found.")                    
+                        print("No valid requestId found.")    
+
                     # if mime_type == "application/json":
                     #     log.info(f"Response Body (JSON): {response_body.get('body', '')}")
                     # elif mime_type == "text/html":

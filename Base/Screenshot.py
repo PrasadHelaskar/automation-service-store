@@ -2,12 +2,12 @@ import os
 import time
 import logging
 
-from pages.base_page import BasePage
+from tests.base_page import BasePage
 
 logger = logging.getLogger(__name__)
 
 class screenshot(BasePage):
-        def take_screenshot(self, driver, classname):
+        def take_screenshot(self, classname):
                 screenshot_dir = os.path.join(os.getcwd(), "Screenshots")
                 if not os.path.exists(screenshot_dir):
                         os.makedirs(screenshot_dir)

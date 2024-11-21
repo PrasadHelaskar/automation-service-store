@@ -13,3 +13,15 @@ class select_random():
 
         last_name=random.choice(last_names)
         return(str(last_name))
+    
+    def random_month(self):
+        months = ["January", "February", "March", "April", "May", "June","July", "August", "September", "October", "November", "December"]
+
+        month=random.choice(months)
+        return(str(month))
+    
+    def rendom_year(self):
+        years = [2024, 2023, 2022, 2021, 2020, 2019, 2018, 2017, 2016, 2015, 2014, 2013, 2012, 2011, 2010, 2009, 2008, 2007, 2006, 2005]
+
+        year=random.choice(years)
+        return(str(year))

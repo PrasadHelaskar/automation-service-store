@@ -10,27 +10,28 @@ class BasePage:
         self.driver = driver
         self.wait = WebDriverWait(driver, 30)
 
-    def find_element(self, locator):
-        return self.wait.until(EC.visibility_of_element_located(locator))
+    def find_element_wait(self,locator):
+        op=self.wait.until(EC.visibility_of_element_located(locator))
+        return op
 
     def click(self, locator):
-        element = self.find_element(locator)
+        element = self.find_element_wait(locator)
         element.click()
 
     def send_keys(self, locator, text):
-        element = self.find_element(locator)
+        element = self.find_element_wait(locator)
         element.clear()
         element.send_keys(text)
 
     def get_text(self, locator):
-        element= self.find_element(locator)
+        element= self.find_element_wait(locator)
         element_text=element.text
         log.info(element_text)
         return element_text
 
     def is_visible(self, locator):
         # log.info("Basepage method")
-        element=self.find_element(locator)
+        element=self.find_element_wait(locator)
         op=element.is_displayed()
-        log.info(str(op))
+        # log.info(str(op))
         return str(op)
