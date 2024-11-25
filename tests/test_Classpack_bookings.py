@@ -1,6 +1,7 @@
 import time
 import pytest
 from Base.logfile import Logger
+from Base.stripe_popup import stripe_action
 from pages.classpackbookings import classpackbooking
 from tests.login import loginAction
 
@@ -19,37 +20,44 @@ class Testclasspack_bookings():
         driver.execute_script("window.scrollBy(0, 300);")
         cpb.click_select_classpack()
         cpb.click_proceed()
+        if (cpb.visible_attendee_moddel()):
+            time.sleep(10)
+            cpb.click_attendee_box()
+            cpb.click_attendee_proceed()
         # need if condition for discount
-        # # cpb.enter_couponcode("DSCNT123")
-        # log.info("B4 Discount applied")
+        # cpb.enter_couponcode("DSCNT123")
         # cpb.click_applycoupon()
-        # log.info("After Discount applied")
         cpb.click_waiver_box()
-        time.sleep(15)
         cpb.click_review_proceed()
         time.sleep(30)
         driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+        stripe_action().stripe_data_enty(driver)
         cpb.click_home()
-        lg.authenticatte_cookie(driver)
+        lg.authenticate_cookie(driver)
 
         
     @pytest.mark.order(3)
     def test_program_action(self, driver):
-        cpb=classpackbooking(driver)
+        pb=classpackbooking(driver)
         print('Program booking Started')
-        cpb.click_classpack_checkbox()
-        cpb.click_apply()
+        pb.click_classpack_checkbox()
+        pb.click_apply()
         time.sleep(20)
         driver.execute_script("window.scrollBy(0, 300);")
-        cpb.click_select_program()
-        cpb.click_proceed()
+        pb.click_select_program()
+        pb.click_proceed()
+        if (pb.visible_attendee_moddel()):
+            time.sleep(10)
+            pb.click_attendee_box()
+            pb.click_attendee_proceed()
         # need if condition for discount
         # cpb.enter_couponcode("FIXRENEW")
         # cpb.click_applycoupon()
-        cpb.click_waiver_box()
+        pb.click_waiver_box()
         time.sleep(15)
-        cpb.click_review_proceed()
+        pb.click_review_proceed()
         time.sleep(30)
         driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-        cpb.click_home()
-        lg.authenticatte_cookie(driver)
+        stripe_action().stripe_data_enty(driver)
+        pb.click_home()
+        lg.authenticate_cookie(driver)

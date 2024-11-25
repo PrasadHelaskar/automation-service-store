@@ -25,8 +25,8 @@ class Testsign_up():
         sg.enter_firstname(sr.first_name())
         sg.enter_lastname(sr.last_name())
         sg.click_submit()
-        sg.enetr_password(os.getenv('password'))
-        sg.enetr_confirmpassword(os.getenv('password'))
+        sg.enter_password(os.getenv('password'))
+        sg.enter_confirmpassword(os.getenv('password'))
         sg.click_submit()
         logger.info(str(sg.check_header))
         if (sg.check_header()):

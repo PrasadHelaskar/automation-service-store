@@ -37,10 +37,10 @@ class signup(BasePage):
     def click_submit(self):
         self.click(self.__private_SUBMIT)
     
-    def enetr_password(self, password):
+    def enter_password(self, password):
         self.send_keys(self.__private_PASSWORD, password)
     
-    def enetr_confirmpassword(self, confirepassword):
+    def enter_confirmpassword(self, confirepassword):
         self.send_keys(self.__private_CONFIRM_PASSWORD, confirepassword)
     
     def check_header(self):
