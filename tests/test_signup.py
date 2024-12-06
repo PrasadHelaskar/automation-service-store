@@ -24,12 +24,7 @@ class Testsign_up():
         sg.click_continuebutton()
         sg.enter_firstname(sr.first_name())
         sg.enter_lastname(sr.last_name())
-        sg.click_submit()
-        sg.enter_password(os.getenv('password'))
-        sg.enter_confirmpassword(os.getenv('password'))
-        sg.click_submit()
-        logger.info(str(sg.check_header))
-        if (sg.check_header()):
+        if (sg.check_custom_field()):
             sg.click_dobfield()
             time.sleep(5)
             month_dropdown = driver.find_element(By.NAME, "months")
@@ -43,4 +38,7 @@ class Testsign_up():
             sg.click_date()
             sg.click_dobfield()
         sg.click_submit()
-        time.sleep(20)
+        sg.enter_password(os.getenv('password'))
+        sg.enter_confirmpassword(os.getenv('password'))
+        sg.click_submit()
+        time.sleep(5)

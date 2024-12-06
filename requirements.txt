@@ -1,0 +1,5 @@
+pytest==8.3.3
+pytest-html==4.1.1
+python-dotenv==1.0.1
+python3-xlib==0.15
+selenium==4.25.0

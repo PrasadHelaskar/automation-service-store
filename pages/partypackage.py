@@ -7,7 +7,7 @@ log = Logger().get_logger()
 class partypackage(BasePage):
     __private_party_page=(By.CSS_SELECTOR, "a[href='/party?b=t']")
     party=1
-    __praivte_party_selection=(By.XPATH, f"(//div[@class='ss-card-details top-align'])[{party}]")
+    __praivte_party_selection=(By.XPATH, f"(//div[@class='ss-card--bc3--br2-bw1--oc5 '])[{party}]")
     __private_expand_button=(By.CSS_SELECTOR, "svg[class='cursor-pointer']")
     package=1
     __private_package_selection=(By.XPATH, f"//div/..//div/..//div/..//a[@class='ss-primary-button--bc4--bw1--oc4--fc1 width-100 padding-8 bottom-20 w-button'][{package}]")

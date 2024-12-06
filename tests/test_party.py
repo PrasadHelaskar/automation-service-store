@@ -15,7 +15,6 @@ class Testparty_bookings():
         # try:
             pb=partypackage(driver)
             lg=loginAction()
-            driver.implicitly_wait(10)
             lg.login_action(driver)
             pb.click_party_tab()
             time.sleep(5)
@@ -36,8 +35,8 @@ class Testparty_bookings():
             pb.click_waiverbox()
             pb.click_review_proceed()
             stripe_action().stripe_data_enty(driver)
-            driver.execute_script("window.debugger = function() {};")
-            time.sleep(20)
+            # driver.execute_script("window.debugger = function() {};")
+            time.sleep(30)
             pb.click_home()
             lg.authenticate_cookie(driver)
             log.info("Praty booking Compleated")

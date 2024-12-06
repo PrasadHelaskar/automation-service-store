@@ -7,7 +7,7 @@ class classpackbooking(BasePage):
     __private_select_proceed= (By.ID, "classpack_proceed_btn")
     i=1
     __private_classpack_select= (By.XPATH, f"(//a[@class='primary-button-card bc4 fc1'])[{i}]")
-    j=2
+    j=1
     __private_program_select= (By.XPATH, f"(//a[@class='primary-button-card bc4 fc1'])[{j}]")
     __private_attendee_model=(By.CSS_SELECTOR, "h4[class='h5-regular modal-title ']")
     attendee=1
@@ -18,6 +18,7 @@ class classpackbooking(BasePage):
     __private_COUPONCODE= (By.NAME,"couponcode")
     __private_COUPONCODE_APPLY= (By.ID, "couponApply")
     __private_HOME_BUTTON= (By.LINK_TEXT, "BOOK ANOTHER")
+    __private_Addon_proceed=(By.ID,"proceed-btn")
 
     def click_classpack_checkbox(self):
         self.click(self.__private_FILTER_CHECKBOX)
@@ -61,3 +62,6 @@ class classpackbooking(BasePage):
 
     def click_attendee_proceed(self):
         self.click(self.__private_attendee_proceed)
+
+    def click_addon_proceed(self):
+        self.click(self.__private_Addon_proceed)

@@ -14,7 +14,7 @@ class signup(BasePage):
     __private_PASSWORD=(By.ID, "password")
     __private_CONFIRM_PASSWORD=(By.ID, "confirm_password")
     #custom fields
-    __private_HEADER=(By.XPATH, "//div[@class='ss-auth-stepper-item ']")
+    __private_CUSTOM_FIELD=(By.CSS_SELECTOR, "label[for='Date of Birth']")
     __private_DOB_FIELD=(By.CSS_SELECTOR, "input[class='display-flex ss-auth-input--bc3--fc2--oc2 font-size-16 w-input']")  #2times
     i=os.getenv("date")
     __private_DATE=(By.XPATH, f"(//button[@class='rdp-button_reset rdp-button rdp-day'])[{i}]")
@@ -43,10 +43,9 @@ class signup(BasePage):
     def enter_confirmpassword(self, confirepassword):
         self.send_keys(self.__private_CONFIRM_PASSWORD, confirepassword)
     
-    def check_header(self):
+    def check_custom_field(self):
         try:    
-            value=self.is_visible(self.__private_HEADER)
-            print(value)
+            value=self.is_visible(self.__private_CUSTOM_FIELD)
             return(value)
         except:
             return False
