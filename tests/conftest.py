@@ -49,7 +49,10 @@ def driver():
             "video": True,
             "platformName": "MacOS Sequoia",
             "resolution": "1024x768",
+            "build": "Service_store",
             "project": "DEMO",
+            "console": "error",
+            "network": True,
             "tunnel": True,
             "w3c": True,
             "plugin": "python-pytest"
@@ -62,8 +65,8 @@ def driver():
     else:
         # Local setup
         logging_prefs = {
-            'browser': 'ALL',          # Log JavaScript errors/warnings
-            'performance': 'ALL'       # Log network requests (using CDP)
+            'browser': 'ALL',
+            'performance': 'ALL'       
         }
         
         chrome_options = webdriver.ChromeOptions()
@@ -80,5 +83,5 @@ def driver():
     
     # Common teardown for both setups
     driver.get(os.getenv("logouturl"))
-    time.sleep(10)
+    time.sleep(5)
     driver.quit()
