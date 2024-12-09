@@ -9,7 +9,7 @@ log = Logger().get_logger()
 lg=loginAction()
 
 class Testclasspack_bookings():
-    @pytest.mark.order(2)
+    @pytest.mark.order(3)
     def test_classpackbooking_action(self, driver):
         lg.login_action(driver)
         cpb=classpackbooking(driver)
@@ -38,7 +38,7 @@ class Testclasspack_bookings():
         lg.authenticate_cookie(driver)
 
         
-    # @pytest.mark.order(3)
+    # @pytest.mark.order(4)
     # def test_program_action(self, driver):
     #     pb=classpackbooking(driver)
     #     print('Program booking Started')

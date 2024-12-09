@@ -10,7 +10,7 @@ from tests.login import loginAction
 log = Logger().get_logger()
 
 class Testparty_bookings():
-    @pytest.mark.order(3)
+    @pytest.mark.order(2)
     def test_party(self, driver):
         # try:
             pb=partypackage(driver)

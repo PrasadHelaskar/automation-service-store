@@ -33,7 +33,7 @@ class Testsign_up():
             select_month.select_by_visible_text(month)
             year_dropdown = driver.find_element(By.NAME, "years")
             select_year = Select(year_dropdown)
-            year=sr.rendom_year()
+            year=sr.random_year()
             select_year.select_by_visible_text(year)
             sg.click_date()
             sg.click_dobfield()

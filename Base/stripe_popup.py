@@ -17,7 +17,6 @@ class stripe_action():
                 log.warning(frame_element is not None)
                 if frame_element:
                     driver.switch_to.frame(frame_element)
-                    log.info("After switch")
                 else:
                     log.error("Frame element not found, cannot switch")
                 sp.enter_card_number()

@@ -14,8 +14,8 @@ class loginAction():
     @pytest.mark.order(1)
     def login_action(self,driver):
         load_dotenv()
-        # apilog=APILOG(driver)
-        driver.get(os.getenv("url"))
+        apilog=APILOG(driver)
+        # driver.get(os.getenv("url"))
         login_page = LoginPage(driver)
         login_page.click_login()
         login_page.enter_username(os.getenv("email"))

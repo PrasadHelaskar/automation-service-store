@@ -1,5 +1,7 @@
+from Base.logfile import Logger
 import random
 
+log = Logger().get_logger()
 class select_random():
     def first_name(self):
         first_names = ["John", "Alice", "Michael", "Emma", "David", "Sophia", "James", "Isabella","Robert", "Mia", "William", "Olivia", "Thomas", "Ava", "Charles", "Emily","Daniel", "Grace", "Matthew", "Lily"]
@@ -20,8 +22,13 @@ class select_random():
         month=random.choice(months)
         return(str(month))
     
-    def rendom_year(self):
+    def random_year(self):
         years = [2024, 2023, 2022, 2021, 2020, 2019, 2018, 2017, 2016, 2015, 2014, 2013, 2012, 2011, 2010, 2009, 2008, 2007, 2006, 2005]
 
         year=random.choice(years)
         return(str(year))
+    
+    def random_number(self, i):
+        number=random.randint(1, i)
+        # log.info(number)
+        return number  
