@@ -72,6 +72,7 @@ def driver():
         chrome_options = webdriver.ChromeOptions()
         chrome_options.binary_location = "/opt/google/chrome/google-chrome"
         chrome_options.set_capability('goog:loggingPrefs', logging_prefs)
+        # chrome_options.add_argument("--auto-open-devtools-for-tabs")
         # chrome_options.add_argument("--headless")
         
         driver = webdriver.Chrome(options=chrome_options)
@@ -83,5 +84,5 @@ def driver():
     
     # Common teardown for both setups
     driver.get(os.getenv("logouturl"))
-    time.sleep(5)
+    time.sleep(10)
     driver.quit()

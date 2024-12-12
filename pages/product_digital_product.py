@@ -2,12 +2,12 @@ from Base.logfile import Logger
 from tests.base_page import BasePage
 from selenium.webdriver.common.by import By
 
-log = Logger().get_logger()
 
-class productElements(BasePage):
-# General item
+log=Logger().get_logger()
+
+class digitalproductelement(BasePage):
     __private_product_page=(By.CSS_SELECTOR, "a[href='/products?b=t']")
-    __private_general_item_checkbox=(By.XPATH, "(//input[@type='checkbox'])[1]")
+    __private_digital_product_checkbox=(By.XPATH, "(//input[@type='checkbox'])[2]")
     __private_Submit_button=(By.CSS_SELECTOR, "div[class='button--ph1--bc4--bw1--oc4--fc1 max-width w-button apply']")
     service_number=1
     __private_select_service=(By.XPATH , f"(//a[@class='primary-button-card bc4 fc1'])[{service_number}]")
@@ -23,8 +23,8 @@ class productElements(BasePage):
     def click_product_page(self):
         self.click(self.__private_product_page)
 
-    def click_GI_filter(self):
-        self.click(self.__private_general_item_checkbox)
+    def click_PD_filter(self):
+        self.click(self.__private_digital_product_checkbox)
 
     def click_submit(self):
         self.click(self.__private_Submit_button)

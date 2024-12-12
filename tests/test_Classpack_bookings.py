@@ -4,6 +4,8 @@ from Base.logfile import Logger
 from Base.stripe_popup import stripe_action
 from pages.classpackbookings import classpackbooking
 from tests.login import loginAction
+from selenium.webdriver.common.action_chains import ActionChains
+from selenium.webdriver.common.keys import Keys
 
 log = Logger().get_logger()
 lg=loginAction()
@@ -32,7 +34,8 @@ class Testclasspack_bookings():
         cpb.click_waiver_box()
         cpb.click_review_proceed()
         stripe_action().stripe_data_enty(driver)
-        time.sleep(15)
+        time.sleep(10)
+        driver.execute_script("""document.dispatchEvent(new KeyboardEvent('keydown', { key: 'F8', code: 'F8', keyCode: 119, which: 119, bubbles: true, cancelable: true }));""")
         driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
         cpb.click_home()
         lg.authenticate_cookie(driver)

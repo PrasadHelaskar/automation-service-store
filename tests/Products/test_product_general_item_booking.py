@@ -2,7 +2,7 @@ import time
 import pytest
 from Base.logfile import Logger
 from Base.stripe_popup import stripe_action
-from pages.product_Gneneral_item_booking import productElements
+from pages.product_General_item_booking import productElements
 from tests.login import loginAction
 from Base.random_select import select_random
 
@@ -12,7 +12,7 @@ class Testproduct_booking():
     @pytest.mark.order(5)
     def test_general_itam(self,driver):
         pe=productElements(driver)
-        loginAction().login_action(driver)
+        # loginAction().login_action(driver)
         pe.click_product_page()
         time.sleep(5)
         pe.click_GI_filter()
@@ -34,6 +34,6 @@ class Testproduct_booking():
         pe.click_waiver_checkbox()
         pe.click_review_proceed()
         stripe_action().stripe_data_enty(driver)
-        time.sleep(15)
+        time.sleep(10)
         pe.click_home()
         loginAction().authenticate_cookie(driver)

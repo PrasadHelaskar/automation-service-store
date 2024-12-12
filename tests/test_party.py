@@ -22,7 +22,8 @@ class Testparty_bookings():
             pb.click_expand()
             time.sleep(10)
             driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-            pb.click_package()        
+            pb.click_package()
+            time.sleep(10)        
             if pb.visible_empty_state():
                 log.info('in if block')
                 pb.click_next_schedule()
@@ -33,10 +34,11 @@ class Testparty_bookings():
             if pb.visible_addon_page():
                 pb.click_addon_proceed()
             pb.click_waiverbox()
+            log.info("In review page: ")
+            lg.get_all_cookies(driver)
             pb.click_review_proceed()
             stripe_action().stripe_data_enty(driver)
-            # driver.execute_script("window.debugger = function() {};")
-            time.sleep(30)
+            driver.execute_script("window.debugger = function() {};")
             pb.click_home()
             lg.authenticate_cookie(driver)
             log.info("Praty booking Compleated")

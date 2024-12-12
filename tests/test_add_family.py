@@ -1,0 +1,40 @@
+import time
+import pytest
+from Base.logfile import Logger
+from pages.addfamily_Client_profile import addfamily
+from tests.login import loginAction
+from Base.random_select import select_random
+
+log=Logger().get_logger()
+
+class Testadd_family():
+    @pytest.mark.order(7)
+    def test_add_family_client(self, driver):
+        loginAction().login_action(driver)
+        af=addfamily(driver)
+        af.click_profile()
+        af.click_profile_page()
+        af.click_family()
+        af.click_add_family_btn()
+        fn=select_random().first_name()
+        af.type_first_name(fn)
+        ln=select_random().last_name()
+        af.type_last_name(ln)
+        af.type_dob(23)
+        af.type_dob(7)
+        af.type_dob(2004)
+        af.click_submit_button()
+        time.sleep(15)
+        script = """return document.getElementsByClassName('body-text-1-medium family-details-textblock1').length;"""
+        i= driver.execute_script(script)
+        log.info("element count="+str(i))
+        value=True if (af.get_added_name(i)==(fn+" "+ln)) else False
+        log.info("Completed the family addition Process")
+        if value:
+            af.click_back_button()
+            log.info("Back to home with adding the family member")
+        else:
+            log.info("failed in adding the family member")
+
+
+        

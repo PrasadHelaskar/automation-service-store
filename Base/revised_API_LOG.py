@@ -62,8 +62,7 @@ class APILOG:
                     elif message['params']['type'] == "XHR":
                         log.info(f"XHR API URL: {response['url']}")
                     else:
-                        log.info(f"Response Body (Other - {mime_type}): {response_body.get('body', '')}" or None)                    
-
+                        log.info(f"Response Body (Other - {mime_type}): {response_body.get('body', '')}" or None)
         except Exception as e:
             log.exception("Error fetching logs.", exc_info=e)
 
