@@ -35,3 +35,7 @@ class BasePage:
         op=element.is_displayed()
         # log.info(str(op))
         return str(op)
+    
+    def clear_element(self, locator):
+        element=self.find_element_wait(locator)
+        element.clear()

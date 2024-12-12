@@ -10,6 +10,7 @@ import os
 log = Logger().get_logger()
 
 static_cookie= None
+cookies= None
 class loginAction():
     @pytest.mark.order(1)
     def login_action(self,driver):
@@ -22,7 +23,6 @@ class loginAction():
         login_page.click_CONTINUE_BUTTON()
         login_page.enter_password(os.getenv("password"))
         login_page.click_submit()
-        time.sleep(10)
         self.Store_cookie(driver)
 
     def Store_cookie(self, driver):
@@ -45,3 +45,27 @@ class loginAction():
                 log.info("Cookie authenticated")        
         else:
             log.warning("Cookie not found! \n authenticated failed")
+
+    def check_cookies(self,driver):
+        cookie_order_number = driver.get_cookie('order_number')
+        cookie_invoice_number = driver.get_cookie('invoice_number')
+
+        if cookie_order_number and cookie_invoice_number:
+            log.info("cookie_order_number"+ cookie_order_number)
+            log.info("cookie_invoice_number"+ cookie_invoice_number)
+        else:
+            log.warning("Cookie not found! \n cookie_order_number \n cookie_invoice_number")
+
+    def get_all_cookies(self,driver):
+        global cookies
+        cookies=driver.get_cookies()
+
+        for cookie in cookies:
+            log.info(str(cookie['name']) + ": " + str(cookie['value']))
+
+
+    def set_all_cookies(self, driver):
+        log.info(cookies)
+        for cookie in cookies:
+            driver.add_cookie(cookie)
+            log.info("cookie added : "+str(cookie['name']))

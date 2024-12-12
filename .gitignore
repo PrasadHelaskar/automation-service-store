@@ -1,10 +1,12 @@
 pages/__pycache__
 tests/__pycache__
+tests/Products/__pycache__
+Base/__pycache__
 tests/.pytest_cache
 .env
-assets/style.css
-Base/__pycache__
+assets
 log
 Screenshots
 extra
 tunnal
+tests/claude.py

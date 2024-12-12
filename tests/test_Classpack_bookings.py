@@ -4,12 +4,14 @@ from Base.logfile import Logger
 from Base.stripe_popup import stripe_action
 from pages.classpackbookings import classpackbooking
 from tests.login import loginAction
+from selenium.webdriver.common.action_chains import ActionChains
+from selenium.webdriver.common.keys import Keys
 
 log = Logger().get_logger()
 lg=loginAction()
 
 class Testclasspack_bookings():
-    @pytest.mark.order(2)
+    @pytest.mark.order(3)
     def test_classpackbooking_action(self, driver):
         lg.login_action(driver)
         cpb=classpackbooking(driver)
@@ -32,13 +34,14 @@ class Testclasspack_bookings():
         cpb.click_waiver_box()
         cpb.click_review_proceed()
         stripe_action().stripe_data_enty(driver)
-        time.sleep(15)
+        time.sleep(10)
+        driver.execute_script("""document.dispatchEvent(new KeyboardEvent('keydown', { key: 'F8', code: 'F8', keyCode: 119, which: 119, bubbles: true, cancelable: true }));""")
         driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
         cpb.click_home()
         lg.authenticate_cookie(driver)
 
         
-    # @pytest.mark.order(3)
+    # @pytest.mark.order(4)
     # def test_program_action(self, driver):
     #     pb=classpackbooking(driver)
     #     print('Program booking Started')

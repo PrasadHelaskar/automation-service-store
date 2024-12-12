@@ -7,10 +7,10 @@ class classpackbooking(BasePage):
     __private_select_proceed= (By.ID, "classpack_proceed_btn")
     i=1
     __private_classpack_select= (By.XPATH, f"(//a[@class='primary-button-card bc4 fc1'])[{i}]")
-    j=1
+    j=3
     __private_program_select= (By.XPATH, f"(//a[@class='primary-button-card bc4 fc1'])[{j}]")
     __private_attendee_model=(By.CSS_SELECTOR, "h4[class='h5-regular modal-title ']")
-    attendee=1
+    attendee=2
     __private_attendee_select=(By.XPATH, f"(//input[@name='attendees-id-list'])[{attendee}]")
     __private_attendee_proceed=(By.XPATH, "(//div[@class='fc3 booking-footer-button-text-left attendee-form-done button-text-medium-regular'])[2]")
     __private_waiver_checkbox=(By.ID, "waiverCheckbox")
