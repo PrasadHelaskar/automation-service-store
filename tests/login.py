@@ -23,6 +23,8 @@ class loginAction():
         login_page.click_CONTINUE_BUTTON()
         login_page.enter_password(os.getenv("password"))
         login_page.click_submit()
+        if login_page.is_visible_model():
+            login_page.click_skip()
         self.Store_cookie(driver)
 
     def Store_cookie(self, driver):

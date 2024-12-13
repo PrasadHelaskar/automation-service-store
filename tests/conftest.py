@@ -84,5 +84,5 @@ def driver():
     
     # Common teardown for both setups
     driver.get(os.getenv("logouturl"))
-    time.sleep(10)
+    time.sleep(5)
     driver.quit()
