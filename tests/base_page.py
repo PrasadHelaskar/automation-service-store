@@ -26,7 +26,7 @@ class BasePage:
     def get_text(self, locator):
         element= self.find_element_wait(locator)
         element_text=element.text
-        log.info(element_text)
+        # log.info(element_text)
         return element_text
 
     def is_visible(self, locator):
