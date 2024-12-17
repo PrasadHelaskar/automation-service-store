@@ -20,9 +20,9 @@ class Testadd_family():
         af.type_first_name(fn)
         ln=select_random().last_name()
         af.type_last_name(ln)
-        af.type_dob(23)
-        af.type_dob(7)
-        af.type_dob(2004)
+        af.type_dob(10)
+        af.type_dob(5)
+        af.type_dob(2020)
         af.click_submit_button()
         time.sleep(15)
         script = """return document.getElementsByClassName('body-text-1-medium family-details-textblock1').length;"""
