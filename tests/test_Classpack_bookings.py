@@ -23,8 +23,9 @@ class Testclasspack_bookings():
         cpb.click_select_classpack()
         cpb.click_proceed()
         if (cpb.visible_attendee_moddel()):
-            time.sleep(10)
+            time.sleep(5)
             cpb.click_attendee_box()
+            time.sleep(2)
             cpb.click_attendee_proceed()
         # cpb.enter_couponcode("DSCNT123")
         # cpb.click_applycoupon()

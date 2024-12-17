@@ -23,11 +23,13 @@ class loginAction():
         login_page.click_CONTINUE_BUTTON()
         login_page.enter_password(os.getenv("password"))
         login_page.click_submit()
+        if login_page.is_visible_model():
+            login_page.click_skip()
         self.Store_cookie(driver)
 
     def Store_cookie(self, driver):
         global static_cookie
-        time.sleep(10)
+        time.sleep(2)
         cookie = driver.get_cookie('omnify-token')
         # log.info(cookie)
         if cookie:

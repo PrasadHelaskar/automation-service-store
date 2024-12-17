@@ -17,10 +17,11 @@ class partypackage(BasePage):
     schedule=1
     __praivte_Schedule=(By.XPATH, f"(//div[@class='select-time-holder'])[{schedule}]")
     __praivte_Select_proceed=(By.XPATH, "//div[@class='discount-button fc1 bc4 w-button']")
-    attendee=2
+    attendee=3
     __private_Attendee_select=(By.XPATH, f"(//input[@class='w-checkbox-input attendee-checkbox'])[{attendee}]")
     __private_Attendee_Proceed=(By.XPATH, "//div[@class='discount-button bc4 align-right _50 w-button']")
     __private_addonpage=(By.XPATH,"//div[@class='add-on-section bc4_a bw1t bottom-120']")
+    __private_additional_attendee=(By.XPATH, "(//button[@class='add-section fc4 oc4 justify-centre'])[1]") 
     __private_Addon_Proceed=(By.XPATH, "//button[@class='discount-button fc1 bc4 w-button shrink']")
     __private_Waiver_Checkbox=(By.ID, "checkbox-3")
     __private_Review_Proceed_cardno=(By.CSS_SELECTOR,"div[class='stripeModal']")
@@ -72,6 +73,9 @@ class partypackage(BasePage):
             return op
         except:
             return False
+
+    def click_additional_attendee(self):
+        self.click(self.__private_additional_attendee)
 
     def click_addon_proceed(self):
         self.click(self.__private_Addon_Proceed)

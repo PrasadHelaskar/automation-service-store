@@ -8,15 +8,20 @@ log = Logger().get_logger()
 
 class stripe_action():
     def stripe_data_enty(self, driver):
-        time.sleep(10)
+        time.sleep(5)
         sp=stripepopup(driver)
+        # log.warning("check_heading return :"+str(sp.check_heading()))
         if sp.check_heading():
             # try:
                 time.sleep(10)
-                frame_element = driver.find_element(By.XPATH,"//*[@id=\"email-form-2\"]/div[1]/div/iframe")
-                log.warning(frame_element is not None)
-                if frame_element:
-                    driver.switch_to.frame(frame_element)
+                try:    
+                    value=driver.find_element(By.XPATH,"//*[@id=\"email-form-2\"]/div[1]/div/iframe").is_displayed()
+                except:
+                    value=False
+                locator=(driver.find_element(By.XPATH,"//*[@id=\"email-form-2\"]/div[1]/div/iframe")) if value else (driver.find_element(By.XPATH,"//iframe[@title='Secure card payment input frame']"))
+                log.warning("Is locator valid: "+str(locator is not None))
+                if locator:
+                    driver.switch_to.frame(locator)
                 else:
                     log.error("Frame element not found, cannot switch")
                 sp.enter_card_number()
