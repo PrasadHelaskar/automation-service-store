@@ -39,7 +39,6 @@ class Testclasspack_bookings():
         cpb.click_review_proceed()
         stripe_action().stripe_data_enty(driver)
         time.sleep(10)
-        driver.execute_script("""document.dispatchEvent(new KeyboardEvent('keydown', { key: 'F8', code: 'F8', keyCode: 119, which: 119, bubbles: true, cancelable: true }));""")
         driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
         cpb.click_home()
         lg.authenticate_cookie(driver)
