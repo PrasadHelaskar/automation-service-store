@@ -9,7 +9,7 @@ from Base.random_select import select_random
 log = Logger().get_logger()
 
 class Testproduct_booking():
-    @pytest.mark.order(5)
+    @pytest.mark.order(9)
     def test_digital_product(self,driver):
         pd=digitalproductelement(driver)
         loginAction().login_action(driver)

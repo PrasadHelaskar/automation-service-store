@@ -1,6 +1,8 @@
 from tests.base_page import BasePage
 from selenium.webdriver.common.by import By
+from Base.logfile import Logger
 
+log=Logger().get_logger()
 class LoginPage(BasePage):
     __private_LOGIN=(By.XPATH,"(//button[@class=' secondary-button--fc4--bw1 w-button'])[1]")
     __private_CONTINUE_BUTTON=(By.CSS_SELECTOR,"button[type='submit']")
@@ -21,6 +23,14 @@ class LoginPage(BasePage):
 
     def click_login(self):
         self.click(self.__private_LOGIN)
+
+    def login_button_visible(self):
+        try:
+            op=self.is_visible(self.__private_LOGIN)
+            return op
+        except:
+            log.info("User is already logged in")
+            return False
 
     def click_CONTINUE_BUTTON(self):
         self.click(self.__private_CONTINUE_BUTTON)

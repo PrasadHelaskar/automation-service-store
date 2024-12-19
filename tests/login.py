@@ -12,20 +12,21 @@ log = Logger().get_logger()
 static_cookie= None
 cookies= None
 class loginAction():
-    @pytest.mark.order(1)
+    @pytest.mark.order()
     def login_action(self,driver):
         load_dotenv()
         # apilog=APILOG(driver)
         driver.get(os.getenv("url"))
         login_page = LoginPage(driver)
-        login_page.click_login()
-        login_page.enter_username(os.getenv("email"))
-        login_page.click_CONTINUE_BUTTON()
-        login_page.enter_password(os.getenv("password"))
-        login_page.click_submit()
-        if login_page.is_visible_model():
-            login_page.click_skip()
-        self.Store_cookie(driver)
+        if login_page.login_button_visible():
+            login_page.click_login()
+            login_page.enter_username(os.getenv("email"))
+            login_page.click_CONTINUE_BUTTON()
+            login_page.enter_password(os.getenv("password"))
+            login_page.click_submit()
+            if login_page.is_visible_model():
+                login_page.click_skip()
+            self.Store_cookie(driver)
 
     def Store_cookie(self, driver):
         global static_cookie
@@ -63,11 +64,13 @@ class loginAction():
         cookies=driver.get_cookies()
 
         for cookie in cookies:
-            log.info(str(cookie['name']) + ": " + str(cookie['value']))
+            # log.info(str(cookie['name']) + ": " + str(cookie['value']))
+            pass
 
 
     def set_all_cookies(self, driver):
         log.info(cookies)
         for cookie in cookies:
-            driver.add_cookie(cookie)
-            log.info("cookie added : "+str(cookie['name']))
+            # driver.add_cookie(cookie)
+            # log.info("cookie added : "+str(cookie['name']))
+            pass

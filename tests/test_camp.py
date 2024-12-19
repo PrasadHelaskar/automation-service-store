@@ -11,7 +11,7 @@ from Base.random_select import select_random
 log=Logger().get_logger()
 
 class TestCamp_booking():
-    @pytest.mark.order(9)
+    @pytest.mark.order(6)
     def test_camp_booking(self, driver):    
         cmp=camp_booking(driver)
         loginAction().login_action(driver)

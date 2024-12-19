@@ -41,4 +41,4 @@ class Testsign_up():
         sg.enter_password(os.getenv('password'))
         sg.enter_confirmpassword(os.getenv('password'))
         sg.click_submit()
-        time.sleep(5)
+        time.sleep(10)

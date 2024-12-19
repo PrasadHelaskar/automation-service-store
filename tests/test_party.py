@@ -10,7 +10,7 @@ from tests.login import loginAction
 log = Logger().get_logger()
 
 class Testparty_bookings():
-    @pytest.mark.order(2)
+    @pytest.mark.order(5)
     def test_party(self, driver):
         # try:
             pb=partypackage(driver)
@@ -32,8 +32,10 @@ class Testparty_bookings():
             pb.click_attendee_seletion()
             pb.click_attendee_proceed()
             if pb.visible_addon_page():
-                time.sleep(5)
-                pb.click_additional_attendee()
+                script="""return document.getElementsByClassName('add-section fc4 oc4 justify-centre').length"""
+                count=driver.execute_script(script)
+                log.info(f"recived count="+str(count))
+                pb.click_additiona_attendee()
                 pb.click_addon_proceed()
             pb.click_waiverbox()
             pb.click_review_proceed()

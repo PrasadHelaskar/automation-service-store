@@ -9,10 +9,10 @@ from Base.random_select import select_random
 log = Logger().get_logger()
 
 class Testproduct_booking():
-    @pytest.mark.order(5)
+    @pytest.mark.order(7)
     def test_general_itam(self,driver):
         pe=productElements(driver)
-        # loginAction().login_action(driver)
+        loginAction().login_action(driver)
         pe.click_product_page()
         time.sleep(5)
         pe.click_GI_filter()
