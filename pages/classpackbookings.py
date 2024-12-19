@@ -10,8 +10,10 @@ class classpackbooking(BasePage):
     j=3
     __private_program_select= (By.XPATH, f"(//a[@class='primary-button-card bc4 fc1'])[{j}]")
     __private_attendee_model=(By.CSS_SELECTOR, "h4[class='h5-regular modal-title ']")
-    attendee=6
-    __private_attendee_select=(By.XPATH, f"(//input[@name='attendees-id-list'])[{attendee}]")
+    def attendee_xpath(self,count):
+        xpath=f"(//input[@name='attendees-id-list'])[{count}]"
+        __private_attendee_select=(By.XPATH,xpath)
+        return __private_attendee_select
     __private_attendee_proceed=(By.XPATH, "//a[@class='booking-footer-button small w-inline-block w-clearfix next-btn-classpack-modal bc4']")
     __private_waiver_checkbox=(By.ID, "waiverCheckbox")
     __private_review_proceed =(By.XPATH, "(//span[@id='totalPriceHolder'])[2]")
@@ -57,8 +59,8 @@ class classpackbooking(BasePage):
         except:
             return False
     
-    def click_attendee_box(self):
-        self.click(self.__private_attendee_select)
+    def click_attendee_box(self,i):
+        self.click(self.attendee_xpath(i))
 
     def click_attendee_proceed(self):
         self.click(self.__private_attendee_proceed)
