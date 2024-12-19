@@ -10,3 +10,5 @@ Screenshots
 extra
 tunnal
 tests/claude.py
+pytest_run.sh
+On_Fail_Screenshots
