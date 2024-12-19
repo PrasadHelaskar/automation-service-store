@@ -8,9 +8,9 @@ log = Logger().get_logger()
 
 class stripe_action():
     def stripe_data_enty(self, driver):
-        time.sleep(10)
+        time.sleep(5)
         sp=stripepopup(driver)
-        log.warning("check_heading return :"+str(sp.check_heading()))
+        # log.warning("check_heading return :"+str(sp.check_heading()))
         if sp.check_heading():
             # try:
                 time.sleep(10)

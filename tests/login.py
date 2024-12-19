@@ -29,7 +29,7 @@ class loginAction():
 
     def Store_cookie(self, driver):
         global static_cookie
-        time.sleep(10)
+        time.sleep(2)
         cookie = driver.get_cookie('omnify-token')
         # log.info(cookie)
         if cookie:

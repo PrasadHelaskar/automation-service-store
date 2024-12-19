@@ -30,11 +30,13 @@ class BasePage:
         return element_text
 
     def is_visible(self, locator):
-        # log.info("Basepage method")
-        element=self.find_element_wait(locator)
-        op=element.is_displayed()
-        # log.info(str(op))
-        return str(op)
+        try:
+            element=self.find_element_wait(locator)
+            op=element.is_displayed()
+            log.info(f"Base page > is_visible > {op}")
+            return str(op)
+        except:
+            return False
     
     def clear_element(self, locator):
         element=self.find_element_wait(locator)

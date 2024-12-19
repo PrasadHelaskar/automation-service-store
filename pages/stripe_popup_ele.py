@@ -26,6 +26,7 @@ class stripepopup(BasePage):
     #         return False
 
     def check_heading(self):
+        log.info("Check Heading Method")
         try:
             value=self.is_visible(self.__private__heading_new)
             log.warning("Using new value: "+str(value))
@@ -51,7 +52,7 @@ class stripepopup(BasePage):
     def click_confirm(self):
         try:
             value=self.is_visible(self.__priavte__Confirm_button_new)
-            log.warning("Using new value: "+str(value))
+#             log.warning("Using new value: "+str(value))
             locator=(self.__priavte__Confirm_button_new) if value else (self.__priavte__Confirm_button)
             log.warning("locator is none? : "+str(locator is None))
             self.click(locator)
