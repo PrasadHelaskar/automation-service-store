@@ -4,7 +4,8 @@ import pytest
 from selenium import webdriver
 import os
 from selenium.webdriver.chrome.options import Options
-from Base.Screenshot import screenshot   
+from threading import Thread
+from Base.Screenshot import screenshot
 
 @pytest.fixture(autouse=True)
 def log_on_failure(request):
@@ -12,7 +13,7 @@ def log_on_failure(request):
     yield
     item = request.node
     if item.rep_call.failed:
-        sco.take_screenshot(item.name)
+        sco.take_screenshot_fail(item.name)
 
 @pytest.hookimpl(hookwrapper=True, tryfirst=True)
 def pytest_runtest_makereport(item, call):    
@@ -20,15 +21,6 @@ def pytest_runtest_makereport(item, call):
     rep = outcome.get_result()
     setattr(item, "rep_" + rep.when, rep)
     return rep
-
-
-import pytest
-import time
-import os
-from selenium import webdriver
-from selenium.webdriver.chrome.service import Service
-from selenium.webdriver.chrome.options import Options
-from dotenv import load_dotenv
 
 @pytest.fixture(scope="session")
 def driver():
@@ -75,14 +67,40 @@ def driver():
         # chrome_options.add_argument("--auto-open-devtools-for-tabs")
         # chrome_options.add_argument("--headless")
         
+        
         driver = webdriver.Chrome(options=chrome_options)
         driver.execute_cdp_cmd('Network.enable', {})
         driver.execute_cdp_cmd("Debugger.setSkipAllPauses", {"skip": True})
+        driver.execute_cdp_cmd("Page.setLifecycleEventsEnabled",{"enabled": True})
+        driver.execute_cdp_cmd("Page.enable", {})
         driver.maximize_window()
-    
+            
     yield driver
     
     # Common teardown for both setups
     driver.get(os.getenv("logouturl"))
     time.sleep(5)
     driver.quit()
+
+capture_screenshot=int(os.getenv("running_screenshots", "0") == "1")
+if capture_screenshot==1:
+    @pytest.fixture(autouse=True, scope="function")
+    def track_url_and_screenshot(driver, request):
+        sco = screenshot(driver)  # Initialize the screenshot object
+        previous_url = driver.current_url  # Track the initial URL
+
+        def monitor_url_change():
+            nonlocal previous_url
+            while True:
+                current_url = driver.current_url
+                if current_url != previous_url:
+                    time.sleep(2)
+                    sco.take_screenshot(request) 
+                    previous_url = current_url
+
+                time.sleep(1)  # Poll every 0.5 seconds (adjust as needed)
+
+        monitor_thread = Thread(target=monitor_url_change, daemon=True)
+        monitor_thread.start()
+        yield
+        monitor_thread.join(timeout=1)

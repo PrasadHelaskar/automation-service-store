@@ -12,6 +12,7 @@ class Testadd_family():
     def test_add_family_client(self, driver):
         loginAction().login_action(driver)
         af=addfamily(driver)
+        time.sleep(5)
         af.click_profile()
         af.click_profile_page()
         af.click_family()

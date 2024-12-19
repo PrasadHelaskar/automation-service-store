@@ -1,11 +1,11 @@
 import time
 import pytest
 from Base.logfile import Logger
+from Base.random_select import select_random
 from Base.stripe_popup import stripe_action
 from pages.classpackbookings import classpackbooking
 from tests.login import loginAction
-from selenium.webdriver.common.action_chains import ActionChains
-from selenium.webdriver.common.keys import Keys
+
 
 log = Logger().get_logger()
 lg=loginAction()
@@ -23,8 +23,12 @@ class Testclasspack_bookings():
         cpb.click_select_classpack()
         cpb.click_proceed()
         if (cpb.visible_attendee_moddel()):
-            time.sleep(10)
-            cpb.click_attendee_box()
+            time.sleep(5)
+            script="""return document.getElementsByName('attendees-id-list').length"""
+            recived_count=driver.execute_script(script)
+            attendee=select_random().random_number(recived_count)
+            cpb.click_attendee_box(attendee)
+            time.sleep(2)
             cpb.click_attendee_proceed()
         # cpb.enter_couponcode("DSCNT123")
         # cpb.click_applycoupon()
@@ -41,30 +45,33 @@ class Testclasspack_bookings():
         lg.authenticate_cookie(driver)
 
         
-    # @pytest.mark.order(4)
-    # def test_program_action(self, driver):
-    #     pb=classpackbooking(driver)
-    #     print('Program booking Started')
-    #     pb.click_classpack_checkbox()
-    #     pb.click_apply()
-    #     time.sleep(20)
-    #     driver.execute_script("window.scrollBy(0, 300);")
-    #     pb.click_select_program()
-    #     pb.click_proceed()
-    #     if (pb.visible_attendee_moddel()):
-    #         time.sleep(10)
-    #         pb.click_attendee_box()
-    #         pb.click_attendee_proceed()
-    #     # cpb.enter_couponcode("FIXRENEW")
-    #     # cpb.click_applycoupon()
-    #     time.sleep(5)
-    #     if(driver.title=="Addons"):
-    #         cpb.click_addon_proceed()
-    #     pb.click_waiver_box()
-    #     time.sleep(15)
-    #     pb.click_review_proceed()
-    #     time.sleep(30)
-    #     driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-    #     stripe_action().stripe_data_enty(driver)
-    #     pb.click_home()
-    #     lg.authenticate_cookie(driver)
+    @pytest.mark.order(4)
+    def test_program_action(self, driver):
+        pb=classpackbooking(driver)
+        print('Program booking Started')
+        pb.click_classpack_checkbox()
+        pb.click_apply()
+        time.sleep(20)
+        driver.execute_script("window.scrollBy(0, 300);")
+        pb.click_select_program()
+        pb.click_proceed()
+        if (pb.visible_attendee_moddel()):
+            time.sleep(10)
+            script="""return document.getElementsByName('attendees-id-list').length"""
+            recived_count=driver.execute_script(script)
+            attendee=select_random().random_number(recived_count)
+            pb.click_attendee_box(attendee)
+            pb.click_attendee_proceed()
+        # cpb.enter_couponcode("FIXRENEW")
+        # cpb.click_applycoupon()
+        time.sleep(5)
+        if(driver.title=="Addons"):
+            pb.click_addon_proceed()
+        pb.click_waiver_box()
+        time.sleep(15)
+        pb.click_review_proceed()
+        time.sleep(30)
+        driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+        stripe_action().stripe_data_enty(driver)
+        pb.click_home()
+        lg.authenticate_cookie(driver)
