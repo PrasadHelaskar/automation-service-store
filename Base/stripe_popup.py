@@ -29,6 +29,7 @@ class stripe_action():
                 sp.enter_cvv_number()
                 sp.enter_zip_field()
                 driver.switch_to.default_content()
+                log.warning("after switch")
                 sp.click_confirm()
             # except Exception as e:
             #     log.info("Card frame not found please check")
