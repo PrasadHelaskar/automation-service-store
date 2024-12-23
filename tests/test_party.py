@@ -1,6 +1,4 @@
 import time
-import traceback
-from selenium import webdriver
 import pytest
 from Base.logfile import Logger
 from Base.stripe_popup import stripe_action
@@ -13,6 +11,7 @@ class Testparty_bookings():
     @pytest.mark.order(5)
     def test_party(self, driver):
         # try:
+            driver.implicitly_wait(30)
             pb=partypackage(driver)
             lg=loginAction()
             lg.login_action(driver)

@@ -11,6 +11,7 @@ log = Logger().get_logger()
 class Testproduct_booking():
     @pytest.mark.order(9)
     def test_digital_product(self,driver):
+        driver.implicitly_wait(30)
         pd=digitalproductelement(driver)
         loginAction().login_action(driver)
         pd.click_product_page()
@@ -18,7 +19,7 @@ class Testproduct_booking():
         pd.click_PD_filter()
         pd.click_submit()
         pd.click_service()
-        time.sleep(10)
+        time.sleep(5)
         script = """return document.querySelectorAll('.add-section.fc4.oc4.justify-centre').length;"""
         i= driver.execute_script(script)
         log.info("element count="+str(i))
@@ -30,6 +31,7 @@ class Testproduct_booking():
                 time.sleep(2)
             except:
                 log.info("the Count Exceeded Then Visible UI Elements")
+                break
         pd.click_checkout_proceed()
         pd.click_waiver_checkbox()
         pd.click_review_proceed()

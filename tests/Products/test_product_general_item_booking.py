@@ -11,6 +11,7 @@ log = Logger().get_logger()
 class Testproduct_booking():
     @pytest.mark.order(7)
     def test_general_itam(self,driver):
+        driver.implicitly_wait(30)
         pe=productElements(driver)
         loginAction().login_action(driver)
         pe.click_product_page()
@@ -18,7 +19,7 @@ class Testproduct_booking():
         pe.click_GI_filter()
         pe.click_submit()
         pe.click_service()
-        time.sleep(10)
+        time.sleep(5)
         script = """return document.querySelectorAll('.add-section.fc4.oc4.justify-centre').length;"""
         i= driver.execute_script(script)
         log.info("element count="+str(i))
@@ -30,6 +31,7 @@ class Testproduct_booking():
                 time.sleep(2)
             except:
                 log.info("the Count Exceeded Then Visible UI Elements")
+                break
         pe.click_checkout_proceed()
         pe.click_waiver_checkbox()
         pe.click_review_proceed()

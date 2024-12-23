@@ -17,7 +17,7 @@ class partypackage(BasePage):
     schedule=1
     __praivte_Schedule=(By.XPATH, f"(//div[@class='select-time-holder'])[{schedule}]")
     __praivte_Select_proceed=(By.XPATH, "//div[@class='discount-button fc1 bc4 w-button']")
-    attendee=3
+    attendee=2
     __private_Attendee_select=(By.XPATH, f"(//input[@class='w-checkbox-input attendee-checkbox'])[{attendee}]")
     __private_additional_attendee=(By.XPATH, "(//button[@class='add-section fc4 oc4 justify-centre'])[1]")
     __private_Attendee_Proceed=(By.XPATH, "//div[@class='discount-button bc4 align-right _50 w-button']")

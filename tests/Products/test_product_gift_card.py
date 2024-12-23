@@ -11,6 +11,7 @@ log = Logger().get_logger()
 class Testgift_booking():
     @pytest.mark.order(8)
     def test_gift_crad(self, driver):
+        driver.implicitly_wait(30)
         gc=giftcardbooking(driver)
         loginAction().login_action(driver)
         gc.click_gift_card_page()

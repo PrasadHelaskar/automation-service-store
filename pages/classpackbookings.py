@@ -22,6 +22,9 @@ class classpackbooking(BasePage):
     __private_HOME_BUTTON= (By.LINK_TEXT, "BOOK ANOTHER")
     __private_Addon_proceed=(By.ID,"proceed-btn")
 
+    __private_credit_booking_class=(By.NAME, "checkbox-13")
+    __private_confirm_booking=(By.ID, "checkoutButton")
+
     def click_classpack_checkbox(self):
         self.click(self.__private_FILTER_CHECKBOX)
 
@@ -67,3 +70,9 @@ class classpackbooking(BasePage):
 
     def click_addon_proceed(self):
         self.click(self.__private_Addon_proceed)
+
+    def click_credit_booking_class(self):
+        self.click(self.__private_credit_booking_class)
+
+    def click_confirm_booking(self):
+        self.click(self.__private_confirm_booking)

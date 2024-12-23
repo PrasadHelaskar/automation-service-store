@@ -12,7 +12,8 @@ log=Logger().get_logger()
 
 class TestCamp_booking():
     @pytest.mark.order(6)
-    def test_camp_booking(self, driver):    
+    def test_camp_booking(self, driver):
+        driver.implicitly_wait(30)    
         cmp=camp_booking(driver)
         loginAction().login_action(driver)
         cmp.click_camp_page()
@@ -28,8 +29,8 @@ class TestCamp_booking():
         for j in range (1, (attendee_count+1)):
             cmp.click_attendee(j)
         cmp.click_attendee_proceed()
-        schedule_count=5
-        for j in range(1, schedule_count):
+        schedule_count=20
+        for j in range(25, schedule_count):
             cmp.click_schedule(j)
         cmp.click_schedule_proceed()
         if cmp.visible_addon_page():

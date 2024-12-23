@@ -22,6 +22,7 @@ class stripe_action():
                 log.warning("Is locator valid: "+str(locator is not None))
                 if locator:
                     driver.switch_to.frame(locator)
+                    log.warning("Switched")
                 else:
                     log.error("Frame element not found, cannot switch")
                 sp.enter_card_number()
@@ -29,7 +30,7 @@ class stripe_action():
                 sp.enter_cvv_number()
                 sp.enter_zip_field()
                 driver.switch_to.default_content()
-                log.warning("after switch")
+                log.warning("Switched")
                 sp.click_confirm()
             # except Exception as e:
             #     log.info("Card frame not found please check")

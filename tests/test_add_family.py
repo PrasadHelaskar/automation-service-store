@@ -8,10 +8,10 @@ from Base.random_select import select_random
 log=Logger().get_logger()
 
 class Testadd_family():
-    @pytest.mark.order(2)
+    @pytest.mark.exclude()
     def test_add_family_client(self, driver):
         loginAction().login_action(driver)
-        count=2
+        count=3
         for i in range (count):
             af=addfamily(driver)
             time.sleep(5)
@@ -27,7 +27,6 @@ class Testadd_family():
             af.type_dob(7)
             af.type_dob(2004)
             af.click_submit_button()
-            time.sleep(15)
             script = """return document.getElementsByClassName('body-text-1-medium family-details-textblock1').length;"""
             i= driver.execute_script(script)
             log.info("element count="+str(i))

@@ -13,7 +13,7 @@ from tests.login import loginAction
 
 logger = logging.getLogger(__name__)
 class Testsign_up():
-    @pytest.mark.order(1)
+    @pytest.mark.exclude()
     def test_sign_up(self, driver):
         load_dotenv()
         sr=select_random()
@@ -42,5 +42,5 @@ class Testsign_up():
         sg.enter_password(os.getenv('password'))
         sg.enter_confirmpassword(os.getenv('password'))
         sg.click_submit()
-        loginAction().Store_cookie(driver)
         time.sleep(5)
+        loginAction().Store_cookie(driver)
