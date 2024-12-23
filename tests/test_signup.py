@@ -13,7 +13,7 @@ from tests.login import loginAction
 
 logger = logging.getLogger(__name__)
 class Testsign_up():
-    @pytest.mark.exclude()
+    @pytest.mark.skip(reason="Not required for full run")
     def test_sign_up(self, driver):
         load_dotenv()
         sr=select_random()
@@ -25,6 +25,7 @@ class Testsign_up():
         sg.click_continuebutton()
         sg.enter_firstname(sr.first_name())
         sg.enter_lastname(sr.last_name())
+
         if (sg.check_custom_field()):
             sg.click_dobfield()
             time.sleep(5)
@@ -38,6 +39,7 @@ class Testsign_up():
             select_year.select_by_visible_text(year)
             sg.click_date()
             sg.click_dobfield()
+            
         sg.click_submit()
         sg.enter_password(os.getenv('password'))
         sg.enter_confirmpassword(os.getenv('password'))

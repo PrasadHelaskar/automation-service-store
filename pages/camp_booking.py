@@ -6,18 +6,23 @@ log=Logger().get_logger()
 
 class camp_booking(BasePage):
     __private_camp_page=(By.CSS_SELECTOR ,"a[href='/camps?b=t']")
-    service=1
-    __private_camp_selection=(By.XPATH, f"(//a[@class='primary-button-card bc4 fc1'])[{service}]")
+    def service_select(self, service):
+        xpath=f"(//a[@class='primary-button-card bc4 fc1'])[{service}]"
+        __private_camp_selection=(By.XPATH, xpath)
+        return __private_camp_selection
+    
     __private_add_attendee=(By.ID, "addCampAttendeeBtn")
     def select_attendee(self , i):
         xpath=f"(//div[@class='checkbox w-checkbox'])[{i}]"
         __private_attendee_select=(By.XPATH, xpath)
         return __private_attendee_select
+    
     __private_attendee_proced=(By.XPATH, "(//div[@class='fc3 booking-footer-button-text-left attendee-form-done button-text-medium-regular'])[1]")
     def select_schedule(self, i):
         xpath=f"(//input[@class='w-checkbox-input class-schedule-check'])[{i}]"
         __private_schedule_select=(By.XPATH, xpath)
         return __private_schedule_select
+    
     __private_schedule_proceed=(By.ID,"class_go_next_btn")
     __private_addonpage=(By.XPATH,"//div[@class='add-on-section bc4_a bw1t bottom-120']")
     __private_Addon_Proceed=(By.XPATH, "//button[@class='discount-button bc4 shrink w-button']")
@@ -30,8 +35,8 @@ class camp_booking(BasePage):
     def click_camp_page(self):
         self.click(self.__private_camp_page)
 
-    def click_camp_selection(self):
-        self.click(self.__private_camp_selection)
+    def click_camp_selection(self, service_index):
+        self.click(self.service_select(service_index))
 
     def click_add_attendee(self):
         self.click(self.__private_add_attendee)

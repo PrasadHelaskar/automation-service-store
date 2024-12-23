@@ -13,6 +13,7 @@ class giftcardbooking(BasePage):
             selector=f"(//div[@class='schedule-top-bar-date-selector--bc3--bw1--fc2 slot pading-18 semi-bold '])[{count}]"
             __private__select_amount_custom=(By.XPATH, selector)
             return __private__select_amount_custom
+    
     __private_enter_amount=(By.ID, "customAmount")
     __private_enter_recipient_name=(By.CSS_SELECTOR, "input[placeholder='Enter recipient’s name']")
     __private_enter_recipient_email=(By.CSS_SELECTOR, "input[placeholder='Enter recipient’s email']")

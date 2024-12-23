@@ -34,6 +34,7 @@ class loginAction():
         time.sleep(2)
         cookie = driver.get_cookie('omnify-token')
         # log.info(cookie)
+
         if cookie:
             static_cookie = cookie['value']
             static_cookie_name = cookie['name']
@@ -43,6 +44,7 @@ class loginAction():
 
     def authenticate_cookie(self, driver):
         cookie = driver.get_cookie('omnify-token')
+
         if cookie:
             cookie_value = cookie['value']
             if(cookie_value==static_cookie):
@@ -71,6 +73,7 @@ class loginAction():
 
     def set_all_cookies(self, driver):
         log.info(cookies)
+        
         for cookie in cookies:
             # driver.add_cookie(cookie)
             # log.info("cookie added : "+str(cookie['name']))

@@ -8,10 +8,11 @@ from Base.random_select import select_random
 log=Logger().get_logger()
 
 class Testadd_family():
-    @pytest.mark.exclude()
+    @pytest.mark.skip(reason="Not required for full run")
     def test_add_family_client(self, driver):
         loginAction().login_action(driver)
         count=3
+
         for i in range (count):
             af=addfamily(driver)
             time.sleep(5)
@@ -30,8 +31,10 @@ class Testadd_family():
             script = """return document.getElementsByClassName('body-text-1-medium family-details-textblock1').length;"""
             i= driver.execute_script(script)
             log.info("element count="+str(i))
+
             value=True if (af.get_added_name(i)==(fn+" "+ln)) else False
             log.info("Completed the family addition Process")
+
             if value:
                 af.click_back_button()
                 log.info("Back to home with adding the family member")

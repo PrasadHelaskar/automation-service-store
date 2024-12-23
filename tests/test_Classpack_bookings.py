@@ -1,5 +1,6 @@
 import time
 import pytest
+from Base import random_select
 from Base.logfile import Logger
 from Base.random_select import select_random
 from Base.stripe_popup import stripe_action
@@ -19,28 +20,43 @@ class Testclasspack_bookings():
         print('classpack booking started')
         cpb.click_classpack_checkbox()
         cpb.click_apply()
-        time.sleep(5)
-        driver.execute_script("window.scrollBy(0, 300);")
-        cpb.click_select_classpack()
+        time.sleep(7)
+
+        script="""return document.getElementsByClassName('primary-button-card bc4 fc1').length;"""
+        i=driver.execute_script(script)
+        log.info("Total services available: "+str(i))
+        service_index=select_random().random_number(i)
+        cpb.click_select_service(service_index)
         cpb.click_proceed()
+
         if (cpb.visible_attendee_moddel()):
             time.sleep(2)
             script="""return document.getElementsByName('attendees-id-list').length"""
             recived_count=driver.execute_script(script)
             attendee=select_random().random_number(recived_count)
             cpb.click_attendee_box(attendee)
+            log.info("Attendee selected: "+str(attendee))
             cpb.click_attendee_proceed()
+
         # cpb.enter_couponcode("DSCNT123")
         # cpb.click_applycoupon()
+        time.sleep(2)
+        log.info("Addons page visible="+str(driver.title or "None"))
+
         if(driver.title=="Addons"):
             cpb.click_addon_proceed()
+
+        time.sleep(2)
         cpb.click_waiver_box()
         cpb.click_review_proceed()
         stripe_action().stripe_data_enty(driver)
         time.sleep(10)
-        cpb.click_credit_booking_class()
-        cpb.click_confirm_booking()
-        time.sleep(10)
+
+        if(driver.title=="Classpacks"):
+            cpb.click_credit_booking_class()
+            cpb.click_confirm_booking()
+            time.sleep(10)
+
         driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
         cpb.click_home()
         lg.authenticate_cookie(driver)
@@ -54,21 +70,32 @@ class Testclasspack_bookings():
         print('Program booking Started')
         pb.click_classpack_checkbox()
         pb.click_apply()
-        time.sleep(5)
-        driver.execute_script("window.scrollBy(0, 300);")
-        pb.click_select_program()
+        time.sleep(7)
+
+        script="""return document.getElementsByClassName('primary-button-card bc4 fc1').length;"""
+        i=driver.execute_script(script)
+        log.info("Total services available: "+str(i))
+        service_index=select_random().random_number(i)
+        pb.click_select_service(service_index)
+
         pb.click_proceed()
+
         if (pb.visible_attendee_moddel()):
             time.sleep(2)
             script="""return document.getElementsByName('attendees-id-list').length"""
             recived_count=driver.execute_script(script)
             attendee=select_random().random_number(recived_count)
             pb.click_attendee_box(attendee)
+            log.info("Attendee selected: "+str(attendee))
             pb.click_attendee_proceed()
+
         # cpb.enter_couponcode("FIXRENEW")
         # cpb.click_applycoupon()
+        time.sleep(2)
+        log.info("Addons page visible="+str(driver.title or "None"))
         if(driver.title=="Addons"):
             pb.click_addon_proceed()
+
         pb.click_waiver_box()
         pb.click_review_proceed()
         driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")

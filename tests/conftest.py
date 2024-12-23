@@ -12,6 +12,7 @@ def log_on_failure(request):
     sco=screenshot(driver)
     yield
     item = request.node
+    
     if item.rep_call.failed:
         sco.take_screenshot_fail(item.name)
 
@@ -85,6 +86,7 @@ def driver():
     driver.quit()
 
 capture_screenshot=int(os.getenv("running_screenshots", "0") == "1")
+
 if capture_screenshot==1:
     @pytest.fixture(autouse=True, scope="function")
     def track_url_and_screenshot(driver, request):
@@ -95,6 +97,7 @@ if capture_screenshot==1:
             nonlocal previous_url
             while True:
                 current_url = driver.current_url
+
                 if current_url != previous_url:
                     time.sleep(2)
                     sco.take_screenshot(request) 

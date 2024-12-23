@@ -25,6 +25,7 @@ class Testproduct_booking():
         log.info("element count="+str(i))
         count=select_random().random_number(i)
         log.info("Loop limit="+str(count))
+
         for j in range(count):
             try:
                 pe.click_pricing_option()
@@ -32,6 +33,7 @@ class Testproduct_booking():
             except:
                 log.info("the Count Exceeded Then Visible UI Elements")
                 break
+            
         pe.click_checkout_proceed()
         pe.click_waiver_checkbox()
         pe.click_review_proceed()
