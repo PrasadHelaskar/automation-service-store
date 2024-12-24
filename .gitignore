@@ -11,9 +11,9 @@ extra
 tunnal
 tests/claude.py
 pytest_run.sh
-report.html
 On_Fail_Screenshots
 .dockerignore
 compose.yaml
 Dockerfile
 README.Docker.md
+report.html
