@@ -5,6 +5,8 @@ class classpackbooking(BasePage):
     __private_FILTER_CHECKBOX= (By.XPATH,"(//input[@type='checkbox'])[2]")
     __private_APPLY_BUTTON=(By.CSS_SELECTOR,"div[class='button--ph1--bc4--bw1--oc4--fc1 max-width w-button apply']") 
     __private_select_proceed= (By.ID, "classpack_proceed_btn")
+    __private_classpack_page=(By.CSS_SELECTOR,"a[href='/classpacks?b=t']")
+    __private_program_page=(By.CSS_SELECTOR,"a[href='/programs?b=t']")
 
     def select_service(self,i):
         xpath=f"(//a[@class='primary-button-card bc4 fc1'])[{i}]"
@@ -27,7 +29,13 @@ class classpackbooking(BasePage):
     __private_Addon_proceed=(By.ID,"proceed-btn")
 
     __private_credit_booking_class=(By.NAME, "checkbox-13")
-    __private_confirm_booking=(By.ID, "checkoutButton")
+    __private_confirm_booking=(By.XPATH, "//button[@class='cta-sec-button pri bc4 fc1 w-button']")
+
+    def click_classpack_page(self):
+        self.click(self.__private_classpack_page)
+
+    def click_program_page(self):
+        self.click(self.__private_program_page) 
 
     def click_classpack_checkbox(self):
         self.click(self.__private_FILTER_CHECKBOX)

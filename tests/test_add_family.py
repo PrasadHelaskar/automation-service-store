@@ -8,10 +8,12 @@ from Base.random_select import select_random
 log=Logger().get_logger()
 
 class Testadd_family():
-    @pytest.mark.skip(reason="Not required for full run")
+    # @pytest.mark.skip(reason="Not required for full run")
+    @pytest.mark.sign_up
+    @pytest.mark.order(2)
     def test_add_family_client(self, driver):
         loginAction().login_action(driver)
-        count=3
+        count=5
 
         for i in range (count):
             af=addfamily(driver)

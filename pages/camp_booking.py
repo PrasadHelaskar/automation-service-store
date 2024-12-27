@@ -48,7 +48,10 @@ class camp_booking(BasePage):
         self.click(self.__private_attendee_proced)
 
     def click_schedule(self,i):
-        self.click(self.select_schedule(i))
+        try:
+            self.click(self.select_schedule(i))
+        except:
+            log.error("Schedule is not available")
 
     def click_schedule_proceed(self):
         self.click(self.__private_schedule_proceed)

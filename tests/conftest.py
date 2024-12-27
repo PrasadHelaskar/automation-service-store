@@ -6,6 +6,11 @@ import os
 from selenium.webdriver.chrome.options import Options
 from threading import Thread
 from Base.Screenshot import screenshot
+from Base.logfile import Logger
+from selenium.webdriver.remote.remote_connection import RemoteConnection
+
+log=Logger().get_logger()
+RemoteConnection.maxsize = 3
 
 @pytest.fixture(autouse=True)
 def log_on_failure(request):
@@ -85,11 +90,10 @@ def driver():
     time.sleep(5)
     driver.quit()
 
-capture_screenshot=int(os.getenv("running_screenshots", "0") == "1")
 
-if capture_screenshot==1:
-    @pytest.fixture(autouse=True, scope="function")
-    def track_url_and_screenshot(driver, request):
+@pytest.fixture(autouse=True, scope="function")
+def track_url_and_screenshot(driver, request):
+    if os.getenv("running_screenshots", "0") == "1":    
         sco = screenshot(driver)  # Initialize the screenshot object
         previous_url = driver.current_url  # Track the initial URL
 
@@ -102,10 +106,12 @@ if capture_screenshot==1:
                     time.sleep(2)
                     sco.take_screenshot(request) 
                     previous_url = current_url
-
-                time.sleep(1)  # Poll every 0.5 seconds (adjust as needed)
+                    log.info(f"URL changed Captured screenshot for {current_url}")
+                time.sleep(0.5)  # Poll every 0.5 seconds (adjust as needed)
 
         monitor_thread = Thread(target=monitor_url_change, daemon=True)
         monitor_thread.start()
         yield
         monitor_thread.join(timeout=1)
+    else:
+        yield

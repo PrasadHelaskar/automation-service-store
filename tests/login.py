@@ -15,8 +15,8 @@ class loginAction():
     @pytest.mark.order()
     def login_action(self,driver):
         load_dotenv()
-        # apilog=APILOG(driver)
-        driver.get(os.getenv("url"))
+        apilog=APILOG(driver)
+        # driver.get(os.getenv("url"))
         login_page = LoginPage(driver)
         time.sleep(3)
         if login_page.login_button_visible():

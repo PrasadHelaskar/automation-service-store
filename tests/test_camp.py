@@ -1,3 +1,4 @@
+import os
 import time
 import traceback
 from selenium import webdriver
@@ -7,6 +8,7 @@ from Base.stripe_popup import stripe_action
 from pages.camp_booking import camp_booking
 from tests.login import loginAction
 from Base.random_select import select_random
+from Base.update_env import update_env
 
 log=Logger().get_logger()
 
@@ -36,10 +38,12 @@ class TestCamp_booking():
 
         cmp.click_attendee_proceed()
 
-        schedule_count=35
+        schedule_count=int(os.getenv("schedule_count"))
+        log.info("schedule count="+str(schedule_count))
         for j in range(schedule_count, (schedule_count+5)):
             cmp.click_schedule(j)
-            
+        update_env("schedule_count",str(schedule_count+5))
+
         cmp.click_schedule_proceed()
 
         if cmp.visible_addon_page():
@@ -49,6 +53,7 @@ class TestCamp_booking():
         cmp.click_waiverbox()
         cmp.click_review_proceed()
         stripe_action().stripe_data_enty(driver)
+        time.sleep(7)
         driver.execute_script("window.debugger = function() {};")
         cmp.click_home()
         loginAction().authenticate_cookie(driver)

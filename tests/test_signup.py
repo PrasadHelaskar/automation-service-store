@@ -13,7 +13,9 @@ from tests.login import loginAction
 
 logger = logging.getLogger(__name__)
 class Testsign_up():
-    @pytest.mark.skip(reason="Not required for full run")
+    # @pytest.mark.skip(reason="Not required for full run")
+    @pytest.mark.sign_up
+    @pytest.mark.order(1)
     def test_sign_up(self, driver):
         load_dotenv()
         sr=select_random()

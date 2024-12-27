@@ -26,6 +26,5 @@ class screenshot(BasePage):
                 screenshot_name = os.path.join(screenshot_dir, f"{request.node.name}_url_change_{int(time.time())}.png")
                 try:
                         self.driver.save_screenshot(screenshot_name)
-                        logger.info(f"Screenshot saved to: {screenshot_name}")
                 except Exception as e:
                         logger.error(f"Failed to take screenshot: {str(e)}")    
