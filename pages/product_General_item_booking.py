@@ -11,9 +11,11 @@ class productElements(BasePage):
     __private_Submit_button=(By.CSS_SELECTOR, "div[class='button--ph1--bc4--bw1--oc4--fc1 max-width w-button apply']")
     service_number=3
     __private_select_service=(By.XPATH , f"(//a[@class='primary-button-card bc4 fc1'])[{service_number}]")
+    
     def pricing_option(self,i):
         __private_pricing_option=(By.XPATH ,f"(//button[@class='add-section fc4 oc4 justify-centre'])[{i}]")
         return __private_pricing_option
+    
     __private_proceed_button_checkout=(By.CSS_SELECTOR, "button[class='discount-button fc1 bc4 w-button step1']")
     __private_review_checkbox=(By.NAME, "checkbox-3")
     __private_Review_Proceed_cardno=(By.CSS_SELECTOR,"div[class='stripeModal']")

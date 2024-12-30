@@ -14,6 +14,7 @@ class digitalproductelement(BasePage):
     def pricing_option(self,i):
         __private_pricing_option=(By.XPATH ,f"(//button[@class='add-section fc4 oc4 justify-centre'])[{i}]")
         return __private_pricing_option
+    
     __private_proceed_button_checkout=(By.CSS_SELECTOR, "button[class='discount-button fc1 bc4 w-button step1']")
     __private_review_checkbox=(By.NAME, "checkbox-3")
     __private_Review_Proceed_cardno=(By.CSS_SELECTOR,"div[class='stripeModal']")
@@ -46,6 +47,7 @@ class digitalproductelement(BasePage):
             value=self.is_visible(self.__private_Review_Proceed_cardno)
         except:
             value=False
+            
         log.info(value)
         locator=(self.__private_Review_Proceed_cardno) if value else (self.__private_Review_Proceed_card)
         self.click(locator)

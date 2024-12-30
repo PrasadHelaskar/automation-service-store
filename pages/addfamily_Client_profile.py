@@ -18,6 +18,7 @@ class addfamily(BasePage):
         xpath=f"(//div[@class='body-text-1-medium family-details-textblock1'])[{i}]"
         __private__added_name=(By.XPATH, xpath)
         return __private__added_name
+    
     __private__back_to_home=(By.CSS_SELECTOR , "a[class='top-most-link w-inline-block']")
 
     def click_profile(self):

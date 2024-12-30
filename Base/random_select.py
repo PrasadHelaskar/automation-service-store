@@ -4,14 +4,16 @@ import random
 log = Logger().get_logger()
 class select_random():
     def first_name(self):
-        first_names = ["John", "Alice", "Michael", "Emma", "David", "Sophia", "James", "Isabella","Robert", "Mia", "William", "Olivia", "Thomas", "Ava", "Charles", "Emily","Daniel", "Grace", "Matthew", "Lily"]
+        first_names = ["John", "Alice", "Michael", "Emma", "David", "Sophia", "James", "Isabella", "Robert", "Mia", "William", "Olivia", "Thomas", "Ava", "Charles", "Emily", "Daniel", "Grace", "Matthew", "Lily", "Christopher", "Hannah", "Joseph", "Chloe", "Anthony", "Madison", "Andrew", "Ella", "Joshua", "Abigail", "Ethan", "Samantha", "Benjamin", "Natalie", "Alexander", "Zoe", "Jacob", "Elizabeth", "Ryan", "Victoria"]
+
 
         first_name=random.choice(first_names)
         return(str(first_name))
     
 
     def last_name(self):
-        last_names=["Smith", "Johnson", "Brown", "Williams", "Jones", "Garcia", "Miller", "Davis","Martinez", "Hernandez", "Lopez", "Gonzalez", "Wilson", "Anderson", "Thomas", "Taylor", "Moore", "Jackson", "Martin", "Lee"]
+        last_names = ["Smith", "Johnson", "Brown", "Williams", "Jones", "Garcia", "Miller", "Davis", "Martinez", "Hernandez", "Lopez", "Gonzalez", "Wilson", "Anderson", "Thomas", "Taylor", "Moore", "Jackson", "Martin", "Lee", "Clark", "Lewis", "Young", "Hall", "Allen", "Scott", "Wright", "King", "Green", "Adams", "Baker", "Nelson", "Hill", "Ramirez", "Campbell", "Mitchell", "Roberts", "Carter", "Phillips", "Evans"]
+
 
         last_name=random.choice(last_names)
         return(str(last_name))

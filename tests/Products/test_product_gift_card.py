@@ -9,10 +9,11 @@ from Base.random_select import select_random
 log = Logger().get_logger()
 
 class Testgift_booking():
-    @pytest.mark.order(6)
+    @pytest.mark.order(8)
     def test_gift_crad(self, driver):
+        driver.implicitly_wait(30)
         gc=giftcardbooking(driver)
-        # loginAction().login_action(driver)
+        loginAction().login_action(driver)
         gc.click_gift_card_page()
         time.sleep(5)
         gc.click_select_gift_card()

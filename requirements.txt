@@ -3,3 +3,4 @@ pytest-html==4.1.1
 python-dotenv==1.0.1
 python3-xlib==0.15
 selenium==4.25.0
+gunicorn==20.1.0
