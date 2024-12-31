@@ -5,28 +5,31 @@ from Base.db import Omnify_connect
 
 log=Logger().get_logger()
 class apply_discount():
-    def fetch_discount():
+    def fetch_discount(self):
         try:
-            data=Omnify_connect().fetch_data(""""select code from discounts 
+            data=Omnify_connect().fetch_data("""select code from discounts 
                                                 where 
                                                     business_id="25877" and 
                                                     isDeleted=0 and 
                                                     isDisabled=0 and 
                                                     isExpired=0 and 
-                                                    discount_for not like "gift_cards" and 
-                                                    is_subscription_discount=1;""")
+                                                    discount_for not in ("gift_cards", "camps");""")
+            # log.info(f"Fetched data: {data}")
             if data:
                 coupon_codes=[code[0] for code in data]
-            return coupon_codes
+                return coupon_codes
+            else:
+                log.error("No data fetched")
+                return False
         
         except Exception as e:
             log.error(f"An error occurred: {e}")
             return False
         
-    def test_discount():
-        discount=discount_elemnts()
+    def test_discount(self,driver):
+        discount=discount_elemnts(driver)
         coupon_codes=apply_discount().fetch_discount()
-
+        log.info(f"Fetched coupon codes: {coupon_codes}")
         if coupon_codes:
 
             for code in coupon_codes:

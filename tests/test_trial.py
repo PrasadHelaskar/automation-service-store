@@ -1,6 +1,5 @@
 import time
 import pytest
-from Base import random_select
 from Base.logfile import Logger
 from Base.random_select import select_random
 from Base.stripe_popup import stripe_action
@@ -49,7 +48,7 @@ class TesttrialBooking():
             tb.click_addon_proceed()
 
         time.sleep(2)
-        apply_discount().test_discount()
+        apply_discount().test_discount(driver)
         tb.click_waiver_box()
         tb.click_review_proceed()
         stripe_action().stripe_data_enty(driver)

@@ -6,6 +6,7 @@ from Base.random_select import select_random
 from Base.stripe_popup import stripe_action
 from pages.classpackbookings import classpackbooking
 from tests.login import loginAction
+from Base.discount import apply_discount
 
 
 log = Logger().get_logger()
@@ -50,6 +51,7 @@ class Testclasspack_bookings():
             cpb.click_addon_proceed()
 
         time.sleep(2)
+        apply_discount().test_discount(driver)
         cpb.click_waiver_box()
         cpb.click_review_proceed()
         stripe_action().stripe_data_enty(driver)
@@ -102,6 +104,7 @@ class Testclasspack_bookings():
         if(driver.title=="Addons"):
             pb.click_addon_proceed()
 
+        apply_discount().test_discount(driver)
         pb.click_waiver_box()
         pb.click_review_proceed()
         driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
