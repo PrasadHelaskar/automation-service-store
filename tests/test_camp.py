@@ -8,6 +8,7 @@ from Base.stripe_popup import stripe_action
 from pages.camp_booking import camp_booking
 from tests.login import loginAction
 from Base.random_select import select_random
+from Base.discount import apply_discount
 from Base.update_env import update_env
 
 log=Logger().get_logger()
@@ -42,7 +43,6 @@ class TestCamp_booking():
         log.info("schedule count="+str(schedule_count))
         for j in range(schedule_count, (schedule_count+5)):
             cmp.click_schedule(j)
-        update_env("schedule_count",str(schedule_count+5))
 
         cmp.click_schedule_proceed()
 
@@ -50,11 +50,14 @@ class TestCamp_booking():
             cmp.click_addon_proceed()
             
         time.sleep(2)
+        apply_discount().test_discount(driver)
         cmp.click_waiverbox()
         cmp.click_review_proceed()
+        loginAction().order_invoice_cookies(driver)
         stripe_action().stripe_data_enty(driver)
         time.sleep(7)
         driver.execute_script("window.debugger = function() {};")
         cmp.click_home()
         loginAction().authenticate_cookie(driver)
+        update_env("schedule_count",str(schedule_count+5))
         log.info("Camp booking Compleated")        

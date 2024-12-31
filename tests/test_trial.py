@@ -8,13 +8,12 @@ from tests.login import loginAction
 from Base.discount import apply_discount
 
 log = Logger().get_logger()
-lg=loginAction()
 
 class TesttrialBooking():
     @pytest.mark.order(10)
     def test_trial(self,driver):
         driver.implicitly_wait(30)        
-        lg.login_action(driver)
+        loginAction().login_action(driver)
         tb=trialkbooking(driver)
         print('Trial booking started')
 
@@ -51,9 +50,10 @@ class TesttrialBooking():
         apply_discount().test_discount(driver)
         tb.click_waiver_box()
         tb.click_review_proceed()
+        loginAction().order_invoice_cookies(driver)
         stripe_action().stripe_data_enty(driver)
         time.sleep(10)
 
         driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
         tb.click_home()
-        lg.authenticate_cookie(driver)
+        loginAction().authenticate_cookie(driver)

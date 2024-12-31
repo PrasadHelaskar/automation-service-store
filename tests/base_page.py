@@ -33,7 +33,7 @@ class BasePage:
         try:
             element=self.find_element_wait(locator)
             op=element.is_displayed()
-            log.info(f"Base page > is_visible > {op}")
+            # log.info(f"Base page > is_visible > {op}")
             return str(op)
         except:
             return False

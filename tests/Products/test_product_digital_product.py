@@ -37,7 +37,9 @@ class Testproduct_booking():
         pd.click_checkout_proceed()
         pd.click_waiver_checkbox()
         pd.click_review_proceed()
+        loginAction().order_invoice_cookies(driver)
         stripe_action().stripe_data_enty(driver)
         time.sleep(10)
         pd.click_home()
         loginAction().authenticate_cookie(driver)
+        

@@ -54,6 +54,7 @@ class Testclasspack_bookings():
         apply_discount().test_discount(driver)
         cpb.click_waiver_box()
         cpb.click_review_proceed()
+        loginAction().order_invoice_cookies(driver)
         stripe_action().stripe_data_enty(driver)
         time.sleep(10)
 

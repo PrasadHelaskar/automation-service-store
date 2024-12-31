@@ -28,6 +28,7 @@ class Testgift_booking():
         gc.click_checkout_proceed()
         gc.click_waiverbox()
         gc.click_review_proceed()
+        loginAction().order_invoice_cookies(driver)
         stripe_action().stripe_data_enty(driver)
         time.sleep(10)
         gc.click_home()
