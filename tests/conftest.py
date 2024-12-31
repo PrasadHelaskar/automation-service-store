@@ -7,10 +7,8 @@ from selenium.webdriver.chrome.options import Options
 from threading import Thread
 from Base.Screenshot import screenshot
 from Base.logfile import Logger
-from selenium.webdriver.remote.remote_connection import RemoteConnection
 
 log=Logger().get_logger()
-RemoteConnection.maxsize = 3
 
 @pytest.fixture(autouse=True)
 def log_on_failure(request):

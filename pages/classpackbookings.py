@@ -22,7 +22,8 @@ class classpackbooking(BasePage):
     
     __private_attendee_proceed=(By.XPATH, "//a[@class='booking-footer-button small w-inline-block w-clearfix next-btn-classpack-modal bc4']")
     __private_waiver_checkbox=(By.ID, "waiverCheckbox")
-    __private_review_proceed =(By.XPATH, "(//span[@id='totalPriceHolder'])[2]")
+    __private_Review_Proceed_cardno=(By.ID,"submitFinalReviewFormBtn")
+    __private_Review_Proceed_card=(By.ID,"submitFinalReviewFormBtn")
     __private_COUPONCODE= (By.NAME,"couponcode")
     __private_COUPONCODE_APPLY= (By.ID, "couponApply")
     __private_HOME_BUTTON= (By.LINK_TEXT, "BOOK ANOTHER")
@@ -53,7 +54,12 @@ class classpackbooking(BasePage):
         self.click(self.__private_waiver_checkbox)
 
     def click_review_proceed(self):
-        self.click(self.__private_review_proceed) 
+        try:    
+            value=self.is_visible(self.__private_Review_Proceed_cardno)
+        except:
+            value=False
+        locator=(self.__private_Review_Proceed_cardno) if value else (self.__private_Review_Proceed_card)
+        self.click(locator)
     
     def enter_couponcode(self,code):
         self.send_keys(self.__private_COUPONCODE,code)

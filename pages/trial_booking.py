@@ -1,0 +1,74 @@
+from tests.base_page import BasePage
+from selenium.webdriver.common.by import By
+
+
+class trialkbooking(BasePage):
+    __private_program_page=(By.CSS_SELECTOR,"a[href='/programs?b=t']")
+    def select_service(self,i):
+        xpath=f"(//a[@class='secondary-button-card bw1 oc4 fc4'])[{i}]"
+        __private_select_service=(By.XPATH,xpath)
+        return __private_select_service
+    
+    __private_select_proceed= (By.ID, "classpack_proceed_btn")
+    __private_attendee_model=(By.CSS_SELECTOR, "div[class='booking-footer-button-text-right move-next fc3 button-text-medium-regular']")
+    
+    def attendee_xpath(self,count):
+        xpath=f"(//input[@name='attendees-id-list'])[{count}]"
+        __private_attendee_select=(By.XPATH,xpath)
+        return __private_attendee_select
+    
+    __private_attendee_proceed=(By.XPATH, "//a[@class='booking-footer-button small w-inline-block w-clearfix next-btn-classpack-modal bc4']")
+    __private_Addon_proceed=(By.ID,"proceed-btn")
+    __private_waiver_checkbox=(By.ID, "waiverCheckbox")
+    __private_Review_Proceed_cardno=(By.CSS_SELECTOR,"div[class='review-pay-div']")
+    __private_Review_Proceed_card=(By.CSS_SELECTOR,"div[class='fc3 booking-footer-button-text-right body-text-2-medium']")
+    __private_HOME_BUTTON= (By.LINK_TEXT, "BOOK ANOTHER")
+
+    #Warning model
+    __private_warning_model=(By.XPATH,"(//div[@class='conflict-modal booking-restriction-modal'])[3]")
+
+    def click_program_page(self):
+        self.click(self.__private_program_page) 
+
+    def click_select_service(self,i):
+        self.click(self.select_service(i))
+
+    def click_proceed(self):
+        self.click(self.__private_select_proceed)
+
+    def visible_attendee_moddel(self):
+        try:
+            op=self.is_visible(self.__private_attendee_model)
+            return op
+        except:
+            return False
+    
+    def click_attendee_box(self,i):
+        self.click(self.attendee_xpath(i))
+
+    def click_attendee_proceed(self):
+        self.click(self.__private_attendee_proceed)
+
+    def click_addon_proceed(self):
+        self.click(self.__private_Addon_proceed)
+
+    def visible_warning_model(self):
+        try:
+            op=self.is_visible(self.__private_warning_model)
+            return op
+        except:
+            return False
+
+    def click_waiver_box(self):
+        self.click(self.__private_waiver_checkbox)
+
+    def click_review_proceed(self):
+        try:    
+            value=self.is_visible(self.__private_Review_Proceed_cardno)
+        except:
+            value=False
+        locator=(self.__private_Review_Proceed_cardno) if value else (self.__private_Review_Proceed_card)
+        self.click(locator)
+
+    def click_home(self):
+        self.click(self.__private_HOME_BUTTON)
