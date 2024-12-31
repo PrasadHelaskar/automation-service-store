@@ -13,7 +13,7 @@ class Testadd_family():
     @pytest.mark.order(2)
     def test_add_family_client(self, driver):
         loginAction().login_action(driver)
-        count=5
+        count=4
 
         for i in range (count):
             af=addfamily(driver)
@@ -28,7 +28,8 @@ class Testadd_family():
             af.type_last_name(ln)
             af.type_dob(23)
             af.type_dob(7)
-            af.type_dob(2004)
+            yr=select_random().random_year()
+            af.type_dob(yr)
             af.click_submit_button()
             script = """return document.getElementsByClassName('body-text-1-medium family-details-textblock1').length;"""
             i= driver.execute_script(script)

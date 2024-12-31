@@ -52,13 +52,13 @@ class loginAction():
         else:
             log.warning("Cookie not found! \n authenticated failed")
 
-    def check_cookies(self,driver):
+    def order_invoice_cookies(self,driver):
         cookie_order_number = driver.get_cookie('order_number')
         cookie_invoice_number = driver.get_cookie('invoice_number')
 
         if cookie_order_number and cookie_invoice_number:
-            log.info("cookie_order_number"+ cookie_order_number)
-            log.info("cookie_invoice_number"+ cookie_invoice_number)
+            log.info("cookie_order_number: "+ str(cookie_order_number['value']))
+            log.info("cookie_invoice_number: "+ str(cookie_invoice_number['value']))
         else:
             log.warning("Cookie not found! \n cookie_order_number \n cookie_invoice_number")
 

@@ -42,6 +42,7 @@ class Testparty_bookings():
                 
             pb.click_waiverbox()
             pb.click_review_proceed()
+            loginAction().order_invoice_cookies(driver)
             stripe_action().stripe_data_enty(driver)
             driver.execute_script("window.debugger = function() {};")
             pb.click_home()

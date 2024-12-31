@@ -14,7 +14,7 @@ class discount_elemnts(BasePage):
 
     def visible_code_box(self):
         try:
-            self.is_visible(self.__private_COUPONCODE)
-            return True
+            op=self.is_visible(self.__private_COUPONCODE)
+            return op
         except:
             return False
