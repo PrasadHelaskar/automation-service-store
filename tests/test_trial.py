@@ -32,6 +32,7 @@ class TesttrialBooking():
             time.sleep(2)
             script="""return document.getElementsByName('attendees-id-list').length"""
             recived_count=driver.execute_script(script)
+            log.info("Attendee count: "+str(recived_count))
             attendee=select_random().random_number(recived_count)
             tb.click_attendee_box(attendee)
             log.info("Attendee selected index: "+str(attendee))

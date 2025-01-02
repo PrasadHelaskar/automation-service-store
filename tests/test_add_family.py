@@ -13,7 +13,7 @@ class Testadd_family():
     @pytest.mark.order(2)
     def test_add_family_client(self, driver):
         loginAction().login_action(driver)
-        count=4
+        count=8
 
         for i in range (count):
             af=addfamily(driver)
@@ -34,7 +34,7 @@ class Testadd_family():
             script = """return document.getElementsByClassName('body-text-1-medium family-details-textblock1').length;"""
             i= driver.execute_script(script)
             log.info("element count="+str(i))
-
+            driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
             value=True if (af.get_added_name(i)==(fn+" "+ln)) else False
             log.info("Completed the family addition Process")
 
