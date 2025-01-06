@@ -27,7 +27,7 @@ class classpackbooking(BasePage):
     __private_COUPONCODE= (By.NAME,"couponcode")
     __private_COUPONCODE_APPLY= (By.ID, "couponApply")
     __private_HOME_BUTTON= (By.LINK_TEXT, "BOOK ANOTHER")
-    __private_Addon_proceed=(By.ID,"proceed-btn")
+
 
     __private_credit_booking_class=(By.NAME, "checkbox-13")
     __private_confirm_booking=(By.XPATH, "//button[@class='cta-sec-button pri bc4 fc1 w-button']")
@@ -82,9 +82,6 @@ class classpackbooking(BasePage):
 
     def click_attendee_proceed(self):
         self.click(self.__private_attendee_proceed)
-
-    def click_addon_proceed(self):
-        self.click(self.__private_Addon_proceed)
 
     def click_credit_booking_class(self):
         self.click(self.__private_credit_booking_class)

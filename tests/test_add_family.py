@@ -34,6 +34,7 @@ class Testadd_family():
             script = """return document.getElementsByClassName('body-text-1-medium family-details-textblock1').length;"""
             i= driver.execute_script(script)
             log.info("element count="+str(i))
+            time.sleep(2)
             driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
             value=True if (af.get_added_name(i)==(fn+" "+ln)) else False
             log.info("Completed the family addition Process")
