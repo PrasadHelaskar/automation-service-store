@@ -51,8 +51,9 @@ class TesttrialBooking():
                 tb.click_attendee_proceed()
                 if(tb.visible_warning_model()==False):
                     break
-            assert False, "Warning model not closed"
-    
+            if(tb.visible_warning_model()):
+                assert False ,"Warning model not closed"
+
         time.sleep(2)
 
         if(driver.title=="Addons"):
