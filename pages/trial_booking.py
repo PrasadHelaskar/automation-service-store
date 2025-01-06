@@ -18,6 +18,7 @@ class trialkbooking(BasePage):
         return __private_attendee_select
     
     __private_attendee_proceed=(By.XPATH, "//a[@class='booking-footer-button small w-inline-block w-clearfix next-btn-classpack-modal bc4']")
+    __priavte_cross_button=(By.ID,"close_age_modal")
     __private_Addon_proceed=(By.ID,"proceed-btn")
     __private_waiver_checkbox=(By.ID, "waiverCheckbox")
     __private_Review_Proceed_cardno=(By.CSS_SELECTOR,"div[class='review-pay-div']")
@@ -48,6 +49,9 @@ class trialkbooking(BasePage):
 
     def click_attendee_proceed(self):
         self.click(self.__private_attendee_proceed)
+
+    def click_cross_button(self):
+        self.click(self.__priavte_cross_button)
 
     def click_addon_proceed(self):
         self.click(self.__private_Addon_proceed)

@@ -6,6 +6,7 @@ from Base.stripe_popup import stripe_action
 from pages.trial_booking import trialkbooking
 from tests.login import loginAction
 from Base.discount import apply_discount
+from tests.add_on import add_on_test 
 
 log = Logger().get_logger()
 
@@ -40,12 +41,23 @@ class TesttrialBooking():
 
         if (tb.visible_warning_model()):
             time.sleep(2)
-            assert False, "Warning model is visible"
+            for i in range(3):    
+                tb.click_cross_button()
+                tb.click_proceed()
+                log.info("Warning model closed for attendee index: "+str(attendee))
+                attendee=select_random().random_number(recived_count)
+                tb.click_attendee_box(attendee)
+                log.info("Next attendee selected index: "+str(attendee))
+                tb.click_attendee_proceed()
+                if(tb.visible_warning_model()==False):
+                    break
+            if(tb.visible_warning_model()):
+                assert False ,"Warning model not closed"
 
         time.sleep(2)
 
         if(driver.title=="Addons"):
-            tb.click_addon_proceed()
+            add_on_test().add_on_page(driver)
 
         time.sleep(2)
         apply_discount().test_discount(driver)

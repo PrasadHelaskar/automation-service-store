@@ -3,6 +3,7 @@ from Base.logfile import Logger
 from pages.discount_element import discount_elemnts
 from Base.db import Omnify_connect
 from Base.random_select import select_random
+import json
 
 log=Logger().get_logger()
 class apply_discount():
@@ -14,7 +15,8 @@ class apply_discount():
                                                     isDeleted=0 and 
                                                     isDisabled=0 and 
                                                     isExpired=0 and 
-                                                    discount_for not in ("gift_cards", "camps");""")
+                                                    is_refund_discount=0 and
+                                                    discount_for not in ("gift_cards");""")
             # log.info(f"Fetched data: {data}")
             if data:
                 coupon_codes=[code for code in data]
@@ -29,8 +31,15 @@ class apply_discount():
     def test_discount(self,driver):
         discount=discount_elemnts(driver)
         coupon_codes=apply_discount().fetch_discount()
-        
-        log.info(f"Fetched coupon codes: {coupon_codes}")
+        json_data=[
+            {
+                "Name":coupon_code[0], 
+                "Code":coupon_code[1]
+            } 
+            for coupon_code in coupon_codes
+        ]
+        couponcode_output=json.dumps(json_data, indent=2)
+        log.info(f"Fetched coupon codes: {couponcode_output}")
         if coupon_codes:
             if discount.visible_code_box():
                 index=len(coupon_codes)

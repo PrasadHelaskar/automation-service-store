@@ -10,6 +10,7 @@ from tests.login import loginAction
 from Base.random_select import select_random
 from Base.discount import apply_discount
 from Base.update_env import update_env
+from tests.add_on import add_on_test
 
 log=Logger().get_logger()
 
@@ -21,14 +22,14 @@ class TestCamp_booking():
         loginAction().login_action(driver)
         cmp.click_camp_page()
         time.sleep(5)
-        script = """return document.getElementsByClassName('primary-button-card bc4 fc1').length;"""
+        script = "return document.getElementsByClassName('primary-button-card bc4 fc1').length;"
         i= driver.execute_script(script)
         log.info("element count="+str(i))
         service_index=select_random().random_number(i)
         cmp.click_camp_selection(service_index)
         cmp.click_add_attendee()
         time.sleep(2)
-        script = """return document.getElementsByClassName('w-checkbox-input waitlist-checkbox').length;"""
+        script = "return document.getElementsByClassName('w-checkbox-input waitlist-checkbox').length;"
         i= driver.execute_script(script)
         log.info("element count="+str(i))
         attendee_count=select_random().random_number(i)
@@ -47,7 +48,7 @@ class TestCamp_booking():
         cmp.click_schedule_proceed()
 
         if cmp.visible_addon_page():
-            cmp.click_addon_proceed()
+            add_on_test().add_on_page(driver)
             
         time.sleep(2)
         apply_discount().test_discount(driver)

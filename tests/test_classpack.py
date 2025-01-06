@@ -7,6 +7,7 @@ from Base.stripe_popup import stripe_action
 from pages.classpackbookings import classpackbooking
 from tests.login import loginAction
 from Base.discount import apply_discount
+from tests.add_on import add_on_test
 
 
 log = Logger().get_logger()
@@ -48,7 +49,7 @@ class Testclasspack_bookings():
         time.sleep(2)
         # log.info("Addons page visible="+str(driver.title or "None"))
         if(driver.title=="Addons"):
-            cpb.click_addon_proceed()
+            add_on_test().add_on_page(driver)
 
         time.sleep(2)
         apply_discount().test_discount(driver)
@@ -103,7 +104,7 @@ class Testclasspack_bookings():
         time.sleep(2)
         # log.info("Addons page visible="+str(driver.title or "None"))
         if(driver.title=="Addons"):
-            pb.click_addon_proceed()
+            add_on_test().add_on_page(driver)
 
         apply_discount().test_discount(driver)
         pb.click_waiver_box()
