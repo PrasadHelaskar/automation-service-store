@@ -52,3 +52,9 @@ class addfamily(BasePage):
 
     def click_back_button(self):
         self.click(self.__private__back_to_home)
+
+    __private__family_div=(By.CSS_SELECTOR,"div[class='profile-details']")
+    
+    def scroll_div(self):
+        element=self.find_element_wait(self.__private__family_div)
+        return element
