@@ -35,7 +35,8 @@ class Testadd_family():
             i= driver.execute_script(script)
             log.info("element count="+str(i))
             time.sleep(2)
-            driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+            div=af.scroll_div()
+            driver.execute_script("arguments[0].scrollTop = arguments[0].scrollHeight;",div)
             value=True if (af.get_added_name(i)==(fn+" "+ln)) else False
             log.info("Completed the family addition Process")
 
