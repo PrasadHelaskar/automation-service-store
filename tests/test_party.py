@@ -41,6 +41,8 @@ class Test_party_bookings():
                 pb.click_addon_proceed()
                 
             pb.click_waiverbox()
+            log.info("In review page: ")
+            lg.get_all_cookies(driver)
             pb.click_review_proceed()
             loginAction().order_invoice_cookies(driver)
             stripe_action().stripe_data_enty(driver)

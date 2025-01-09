@@ -33,6 +33,7 @@ class Test_service_cancelation():
         script="return document.getElementsByClassName('view-details-button schedule_details').length;"
         reviced_count=driver.execute_script(script)
         seleted_service=select_random().random_number(reviced_count)
+        log.info("Seleted Service Count: "+str(seleted_service))
 
         script_label="return document.getElementsByClassName('label label-danger').length"
         recived_lebel_count=driver.execute_script(script_label)
@@ -40,9 +41,9 @@ class Test_service_cancelation():
 
         service=cb.view_details(seleted_service)
         service_name=str(service.get_attribute("data-service_name"))
-        log.info(f"Selected Service Name"+service_name)
+        log.info(f"Selected Service Name: "+service_name)
         service_type=str(service.get_attribute("data-service_type"))
-        log.info("Selected Service typr"+service_type)
+        log.info("Selected Service type: "+service_type)
         cb.click_view_details(seleted_service)  
 
         cb.click_cancel_everyone()
