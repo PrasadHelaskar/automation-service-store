@@ -31,6 +31,7 @@ def driver():
     global driver
     load_dotenv()
     is_lambda_test = os.getenv("IS_REMOTE", "0") == "1"
+    log.info("test")
     
     if is_lambda_test:
         # LambdaTest setup
