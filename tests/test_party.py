@@ -7,7 +7,7 @@ from tests.login import loginAction
 
 log = Logger().get_logger()
 
-class Testparty_bookings():
+class Test_party_bookings():
     @pytest.mark.order(5)
     def test_party(self, driver):
         # try:

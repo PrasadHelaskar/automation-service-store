@@ -10,7 +10,7 @@ from tests.add_on import add_on_test
 
 log = Logger().get_logger()
 
-class TesttrialBooking():
+class Test_trialBooking():
     @pytest.mark.order(10)
     def test_trial(self,driver):
         driver.implicitly_wait(30)        

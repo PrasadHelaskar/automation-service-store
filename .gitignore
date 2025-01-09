@@ -17,3 +17,4 @@ compose.yaml
 Dockerfile
 README.Docker.md
 report.html
+test.py

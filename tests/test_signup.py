@@ -12,15 +12,15 @@ from tests.login import loginAction
 
 
 logger = logging.getLogger(__name__)
-class Testsign_up():
+class Test_sign_up():
     # @pytest.mark.skip(reason="Not required for full run")
     @pytest.mark.sign_up
     @pytest.mark.order(1)
     def test_sign_up(self, driver):
         load_dotenv()
         sr=select_random()
-        # apilogger = APILOG(driver)
-        driver.get(os.getenv('url'))
+        apilogger = APILOG(driver)
+        # driver.get(os.getenv('url'))
         sg=signup(driver)
         sg.click_signup()
         sg.enter_email(os.getenv('email'))

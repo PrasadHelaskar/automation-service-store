@@ -13,7 +13,7 @@ from tests.add_on import add_on_test
 log = Logger().get_logger()
 lg=loginAction()
 
-class Testclasspack_bookings():
+class Test_classpack_bookings():
     @pytest.mark.order(3)
     def test_classpackbooking_action(self, driver):
         driver.implicitly_wait(30)        

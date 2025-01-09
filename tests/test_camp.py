@@ -14,7 +14,7 @@ from tests.add_on import add_on_test
 
 log=Logger().get_logger()
 
-class TestCamp_booking():
+class Test_Camp_booking():
     @pytest.mark.order(6)
     def test_camp_booking(self, driver):
         driver.implicitly_wait(30)    
