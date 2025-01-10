@@ -41,8 +41,9 @@ class Test_add_family():
             log.info("Completed the family addition Process")
 
             if value:
-                af.click_back_button()
-                log.info("Back to home with adding the family member")
+                # af.click_back_button()
+                # log.info("Back to home with adding the family member")
+                pass
             else:
                 log.info("failed in adding the family member")
 

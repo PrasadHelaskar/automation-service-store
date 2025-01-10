@@ -59,7 +59,7 @@ class Testclasspack_bookings():
         # cpb.click_applycoupon()
         time.sleep(5)
         if(driver.title=="Addons"):
-            cpb.click_addon_proceed()
+            pb.click_addon_proceed()
         pb.click_waiver_box()
         time.sleep(15)
         pb.click_review_proceed()

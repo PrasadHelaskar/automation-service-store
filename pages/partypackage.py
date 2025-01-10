@@ -6,19 +6,35 @@ log = Logger().get_logger()
 
 class partypackage(BasePage):
     __private_party_page=(By.CSS_SELECTOR, "a[href='/party?b=t']")
-    party=1
-    __praivte_party_selection=(By.XPATH, f"(//div[@class='ss-card--bc3--br2-bw1--oc5 '])[{party}]")
+    
+    def select_party(self,index):
+        xpath=f"(//div[@class='ss-card--bc3--br2-bw1--oc5 '])[{index}]"
+        __praivte_party_selection=(By.XPATH, xpath)
+        return __praivte_party_selection
+    
     __private_expand_button=(By.CSS_SELECTOR, "svg[class='cursor-pointer']")
-    package=1
-    __private_package_selection=(By.XPATH, f"//div/..//div/..//div/..//a[@class='ss-primary-button--bc4--bw1--oc4--fc1 width-100 padding-8 bottom-20 w-button'][{package}]")
+    
+    def select_package(self, index):
+        xpath=f"//div/..//div/..//div/..//a[@class='ss-primary-button--bc4--bw1--oc4--fc1 width-100 padding-8 bottom-20 w-button'][{index}]"
+        __private_package_selection=(By.XPATH, xpath)
+        return __private_package_selection
     # for the if seen Emty state
+
     __private_Empty_state=(By.XPATH, "//div[@class='empty-state-text-holder']")
     __priavte_Next_schedule=(By.XPATH, "//button[@class='discount-button bc4 fc1 w-button']")
-    schedule=1
-    __praivte_Schedule=(By.XPATH, f"(//div[@class='select-time-holder'])[{schedule}]")
+    
+    def select_schedule(self, index):
+        xpath=f"(//div[@class='select-time-holder'])[{index}]"
+        __praivte_Schedule=(By.XPATH, xpath)
+        return __praivte_Schedule
+    
     __praivte_Select_proceed=(By.XPATH, "//div[@class='discount-button fc1 bc4 w-button']")
-    attendee=3
-    __private_Attendee_select=(By.XPATH, f"(//input[@class='w-checkbox-input attendee-checkbox'])[{attendee}]")
+    
+    def select_attendee(self,index):
+        xpath= f"(//input[@class='w-checkbox-input attendee-checkbox'])[{index}]"
+        __private_Attendee_select=(By.XPATH, xpath)
+        return __private_Attendee_select
+    
     __private_additional_attendee=(By.XPATH, "(//button[@class='add-section fc4 oc4 justify-centre'])[1]")
     __private_Attendee_Proceed=(By.XPATH, "//div[@class='discount-button bc4 align-right _50 w-button']")
     __private_addonpage=(By.XPATH,"//div[@class='add-on-section bc4_a bw1t bottom-120']")
@@ -32,14 +48,14 @@ class partypackage(BasePage):
     def click_party_tab(self):
         self.click(self.__private_party_page)
 
-    def click_party_select(self):
-        self.click(self.__praivte_party_selection)
+    def click_party_select(self,index):
+        self.click(self.select_party(index))
 
     def click_expand(self):
         self.click(self.__private_expand_button)
     
-    def click_package(self):
-        self.click(self.__private_package_selection)
+    def click_package(self,index):
+        self.click(self.select_package(index))
 
     def visible_empty_state(self):
         try:
@@ -55,14 +71,14 @@ class partypackage(BasePage):
     def click_next_schedule(self):
         self.click(self.__priavte_Next_schedule)
 
-    def click_schedule_selection(self):
-        self.click(self.__praivte_Schedule)
+    def click_schedule_selection(self, index):
+        self.click(self.select_schedule(index))
 
     def click_schedule_proceed(self):
         self.click(self.__praivte_Select_proceed)
 
-    def click_attendee_seletion(self):
-        self.click(self.__private_Attendee_select)
+    def click_attendee_seletion(self, index):
+        self.click(self.select_attendee(index))
 
     def click_attendee_proceed(self):
         self.click(self.__private_Attendee_Proceed)

@@ -7,7 +7,7 @@ log=Logger().get_logger()
 class cancelation_booking(BasePage):
     __private__profile=(By.XPATH, "(//div[@class='profile-wrapper'])[1]")
     __private__profile_page=(By.XPATH, "(//a[@class='profile-dropdown-list-holder'])[1]")
-    __private_empty_div=(By.CSS_SELECTOR,"div[class='w-tab-content']")
+    __private_empty_div=(By.CSS_SELECTOR,"div[class='fc2 schedule-status']")
     __priavte_family_dropdown=(By.ID, "w-dropdown-toggle-2")
     
     def femily_members(self,i):
@@ -34,7 +34,8 @@ class cancelation_booking(BasePage):
         return __private_cancelled_label
 
     def is_visible_empty_state(self):
-        self.is_visible(self.__private_empty_div)
+        op=self.is_visible(self.__private_empty_div)
+        return op
 
     def click_profile(self):
         self.click(self.__private__profile)
