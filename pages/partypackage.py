@@ -15,7 +15,7 @@ class partypackage(BasePage):
     __private_expand_button=(By.CSS_SELECTOR, "svg[class='cursor-pointer']")
     
     def select_package(self, index):
-        xpath=f"//div/..//div/..//div/..//a[@class='ss-primary-button--bc4--bw1--oc4--fc1 width-100 padding-8 bottom-20 w-button'][{index}]"
+        xpath=f"(//div/..//div/..//div/..//a[@class='ss-primary-button--bc4--bw1--oc4--fc1 width-100 padding-8 bottom-20 w-button'])[{index}]"
         __private_package_selection=(By.XPATH, xpath)
         return __private_package_selection
     # for the if seen Emty state
@@ -29,13 +29,14 @@ class partypackage(BasePage):
         return __praivte_Schedule
     
     __praivte_Select_proceed=(By.XPATH, "//div[@class='discount-button fc1 bc4 w-button']")
+    __private_attendee_model=(By.CSS_SELECTOR, "div[class='gs-modal bc3']")
     
     def select_attendee(self,index):
         xpath= f"(//input[@class='w-checkbox-input attendee-checkbox'])[{index}]"
         __private_Attendee_select=(By.XPATH, xpath)
         return __private_Attendee_select
     
-    __private_additional_attendee=(By.XPATH, "(//button[@class='add-section fc4 oc4 justify-centre'])[1]")
+    __private_additional_attendee=(By.XPATH, "(//button[@class='add-section fc4 oc4 justify-centre'])[1]") 
     __private_Attendee_Proceed=(By.XPATH, "//div[@class='discount-button bc4 align-right _50 w-button']")
     __private_addonpage=(By.XPATH,"//div[@class='add-on-section bc4_a bw1t bottom-120']")
     __private_additional_attendee=(By.XPATH, "(//button[@class='add-section fc4 oc4 justify-centre'])[1]") 
@@ -77,6 +78,13 @@ class partypackage(BasePage):
     def click_schedule_proceed(self):
         self.click(self.__praivte_Select_proceed)
 
+    def visible_attendee_model(self):
+        try:
+            op=self.is_visible(self.__private_attendee_model)
+            return op
+        except:
+            return False
+
     def click_attendee_seletion(self, index):
         self.click(self.select_attendee(index))
 
@@ -93,9 +101,6 @@ class partypackage(BasePage):
             return op
         except:
             return False
-
-    def click_additional_attendee(self):
-        self.click(self.__private_additional_attendee)
 
     def click_addon_proceed(self):
         self.click(self.__private_Addon_Proceed)

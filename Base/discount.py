@@ -16,7 +16,9 @@ class apply_discount():
                                                     isDisabled=0 and 
                                                     isExpired=0 and 
                                                     is_refund_discount=0 and
-                                                    discount_for not in ("gift_cards");""")
+                                                    discount_for not in ("gift_cards","camps") and 
+                                                    is_renewal_discount=0 and 
+                                                    expiry is not null;""")
             # log.info(f"Fetched data: {data}")
             if data:
                 coupon_codes=[code for code in data]
@@ -39,7 +41,7 @@ class apply_discount():
             for coupon_code in coupon_codes
         ]
         couponcode_output=json.dumps(json_data, indent=2)
-        log.info(f"Fetched coupon codes: {couponcode_output}")
+        log.info(f"Fetched coupon codes:\n{couponcode_output}")
         if coupon_codes:
             if discount.visible_code_box():
                 index=len(coupon_codes)
@@ -54,6 +56,7 @@ class apply_discount():
                         break           
                     else:
                         log.error(f"Discount code {coupon_codes[selected_index][0]} not applied")
+
             else:
                 log.error("Discount Box is not visible")
             
