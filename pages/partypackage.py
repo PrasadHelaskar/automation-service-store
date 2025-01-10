@@ -24,7 +24,7 @@ class partypackage(BasePage):
     __priavte_Next_schedule=(By.XPATH, "//button[@class='discount-button bc4 fc1 w-button']")
     
     def select_schedule(self, index):
-        xpath=f"(//div[@class='select-time-holder'])[{index}]"
+        xpath=f"(//div[@class='schedule-top-bar-date-selector--bc3--bw1--fc2 slot width-196 centre '])[{index}]"
         __praivte_Schedule=(By.XPATH, xpath)
         return __praivte_Schedule
     
@@ -36,9 +36,8 @@ class partypackage(BasePage):
         __private_Attendee_select=(By.XPATH, xpath)
         return __private_Attendee_select
     
-    __private_additional_attendee=(By.XPATH, "(//button[@class='add-section fc4 oc4 justify-centre'])[1]") 
     __private_Attendee_Proceed=(By.XPATH, "//div[@class='discount-button bc4 align-right _50 w-button']")
-    __private_addonpage=(By.XPATH,"//div[@class='add-on-section bc4_a bw1t bottom-120']")
+    __private_addonpage=(By.XPATH,"//div[@class='add-on-section bc4_a bw1t bottom-120']") 
     __private_additional_attendee=(By.XPATH, "(//button[@class='add-section fc4 oc4 justify-centre'])[1]") 
     __private_Addon_Proceed=(By.XPATH, "//button[@class='discount-button fc1 bc4 w-button shrink']")
     __private_Waiver_Checkbox=(By.ID, "checkbox-3")

@@ -62,7 +62,9 @@ class Test_party_bookings():
                 script="""return document.getElementsByClassName('add-section fc4 oc4 justify-centre').length"""
                 count=driver.execute_script(script)
                 log.info(f"Recived Count: "+str(count))
-                pb.click_additiona_attendee()
+                for i in range(1,(count+1)):
+                    time.sleep(5)
+                    pb.click_additiona_attendee()
                 pb.click_addon_proceed()
                 
             apply_discount().test_discount(driver)
