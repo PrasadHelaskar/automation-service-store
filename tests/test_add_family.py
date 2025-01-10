@@ -7,7 +7,7 @@ from Base.random_select import select_random
 
 log=Logger().get_logger()
 
-class Testadd_family():
+class Test_add_family():
     # @pytest.mark.skip(reason="Not required for full run")
     @pytest.mark.sign_up
     @pytest.mark.order(2)
@@ -41,8 +41,9 @@ class Testadd_family():
             log.info("Completed the family addition Process")
 
             if value:
-                af.click_back_button()
-                log.info("Back to home with adding the family member")
+                # af.click_back_button()
+                # log.info("Back to home with adding the family member")
+                pass
             else:
                 log.info("failed in adding the family member")
 
