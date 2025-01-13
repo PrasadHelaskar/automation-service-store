@@ -6,6 +6,7 @@ from pages.partypackage import partypackage
 from tests.login import loginAction
 from Base.random_select import select_random
 from Base.discount import apply_discount
+from Base.waiver_vima import *
 
 log = Logger().get_logger()
 
@@ -65,15 +66,16 @@ class Test_party_bookings():
                 for i in range(1,(count+1)):
                     time.sleep(5)
                     pb.click_additiona_attendee()
+                    if i==3:
+                        pass
                 pb.click_addon_proceed()
                 
+            waiver_vima_action().waiver(driver)
             apply_discount().test_discount(driver)
-            pb.click_waiverbox()
             lg.get_all_cookies(driver)
             pb.click_review_proceed()
             loginAction().order_invoice_cookies(driver)
             stripe_action().stripe_data_enty(driver)
-            driver.execute_script("window.debugger = function() {};")
             pb.click_home()
             lg.authenticate_cookie(driver)
             log.info("Praty booking Compleated")

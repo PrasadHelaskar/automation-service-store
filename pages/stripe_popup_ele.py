@@ -38,16 +38,16 @@ class stripepopup(BasePage):
             return False
 
     def enter_card_number(self):
-        self.send_keys(self.__private__card_number_field , os.getenv("card_number"))
+        self.send_keys(self.__private__card_number_field , os.getenv("CARD_NUMBER"))
 
     def enter_expiry_date(self):
-        self.send_keys(self.__private__expiry_date_field, os.getenv("expiry_date"))
+        self.send_keys(self.__private__expiry_date_field, os.getenv("EXPIRY_DATE"))
 
     def enter_cvv_number(self):
-        self.send_keys(self.__private__cvv_field, os.getenv("cvv_number"))
+        self.send_keys(self.__private__cvv_field, os.getenv("CVV_NUMBER"))
 
     def enter_zip_field(self):
-        self.send_keys(self.__private__zip_field, os.getenv("zip_code"))
+        self.send_keys(self.__private__zip_field, os.getenv("ZIP_CODE"))
 
     def click_confirm(self):
         log.info("Click Confirm Method")

@@ -40,7 +40,7 @@ class Test_Camp_booking():
 
         cmp.click_attendee_proceed()
 
-        schedule_count=int(os.getenv("schedule_count"))
+        schedule_count=int(os.getenv("SCHEDULE_COUNT"))
         log.info("schedule count="+str(schedule_count))
         for j in range(schedule_count, (schedule_count+5)):
             cmp.click_schedule(j)

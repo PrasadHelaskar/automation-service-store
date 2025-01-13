@@ -16,7 +16,7 @@ class signup(BasePage):
     #custom fields
     __private_CUSTOM_FIELD=(By.CSS_SELECTOR, "label[for='Date of Birth']")
     __private_DOB_FIELD=(By.CSS_SELECTOR, "input[class='display-flex ss-auth-input--bc3--fc2--oc2 font-size-16 w-input']")  #2times
-    i=os.getenv("date")
+    i=os.getenv("DATE")
     __private_DATE=(By.XPATH, f"(//button[@class='rdp-button_reset rdp-button rdp-day'])[{i}]")
 
     def click_signup(self):

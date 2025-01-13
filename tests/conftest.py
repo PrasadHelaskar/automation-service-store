@@ -34,8 +34,8 @@ def driver():
     
     if is_lambda_test:
         # LambdaTest setup
-        username = os.getenv("username")
-        access_key = os.getenv("access_key")
+        username = os.getenv("USERNAME")
+        access_key = os.getenv("ACCESS_KEY")
         remote_url = f"http://{username}:{access_key}@hub.lambdatest.com/wd/hub"
         
         chrome_options = Options()
@@ -84,14 +84,14 @@ def driver():
     yield driver
     
     # Common teardown for both setups
-    driver.get(os.getenv("logouturl"))
+    driver.get(os.getenv("LOGOUTURL"))
     time.sleep(5)
     driver.quit()
 
 
 @pytest.fixture(autouse=True, scope="function")
 def track_url_and_screenshot(driver, request):
-    if os.getenv("running_screenshots", "0") == "1":    
+    if os.getenv("RUNNING_SCREENSHOTS", "0") == "1":    
         sco = screenshot(driver)  # Initialize the screenshot object
         previous_url = driver.current_url  # Track the initial URL
 

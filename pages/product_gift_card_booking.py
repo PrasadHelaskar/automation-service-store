@@ -18,7 +18,7 @@ class giftcardbooking(BasePage):
     __private_enter_recipient_name=(By.CSS_SELECTOR, "input[placeholder='Enter recipient’s name']")
     __private_enter_recipient_email=(By.CSS_SELECTOR, "input[placeholder='Enter recipient’s email']")
     __private_giftcard_checkout=(By.CSS_SELECTOR, "button[class='discount-button fc1 bc4 w-button step1']")
-    __private_review_checkbox=(By.NAME, "checkbox-3")
+
     __private_Review_Proceed_cardno=(By.CSS_SELECTOR,"div[class='stripeModal']")
     __private_Review_Proceed_card=(By.CSS_SELECTOR,"div[class='discount-button fc1 bc4 w-button one']")
     __private_HOME_BUTTON= (By.LINK_TEXT, "BOOK ANOTHER") 
@@ -43,9 +43,6 @@ class giftcardbooking(BasePage):
 
     def click_checkout_proceed(self):
         self.click(self.__private_giftcard_checkout)
-
-    def click_waiverbox(self):
-        self.click(self.__private_review_checkbox)
 
     def click_review_proceed(self):
         try:    
