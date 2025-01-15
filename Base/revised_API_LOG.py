@@ -16,7 +16,7 @@ class APILOG:
         try:
             # Enable network tracking using Chrome DevTools Protocol (CDP)
             self.driver.execute_cdp_cmd('Network.enable', {})
-            self.driver.get(os.getenv("url"))  # Navigate to the page
+            self.driver.get(os.getenv("URL"))  # Navigate to the page
 
             # Sleep to allow network requests to happen
             time.sleep(5)  # Adjust the time according to the network activity

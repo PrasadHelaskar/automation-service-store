@@ -14,7 +14,7 @@ from tests.add_on import add_on_test
 
 log=Logger().get_logger()
 
-class TestCamp_booking():
+class Test_Camp_booking():
     @pytest.mark.order(6)
     def test_camp_booking(self, driver):
         driver.implicitly_wait(30)    
@@ -40,7 +40,7 @@ class TestCamp_booking():
 
         cmp.click_attendee_proceed()
 
-        schedule_count=int(os.getenv("schedule_count"))
+        schedule_count=int(os.getenv("SCHEDULE_COUNT"))
         log.info("schedule count="+str(schedule_count))
         for j in range(schedule_count, (schedule_count+5)):
             cmp.click_schedule(j)

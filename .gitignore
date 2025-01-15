@@ -16,4 +16,5 @@ On_Fail_Screenshots
 compose.yaml
 Dockerfile
 README.Docker.md
+test.py
 report.html

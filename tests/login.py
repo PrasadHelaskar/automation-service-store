@@ -16,14 +16,14 @@ class loginAction():
     def login_action(self,driver):
         load_dotenv()
         # apilog=APILOG(driver)
-        driver.get(os.getenv("url"))
+        driver.get(os.getenv("URL"))
         login_page = LoginPage(driver)
         time.sleep(3)
         if login_page.login_button_visible():
             login_page.click_login()
-            login_page.enter_username(os.getenv("email"))
+            login_page.enter_username(os.getenv("EMAIL"))
             login_page.click_CONTINUE_BUTTON()
-            login_page.enter_password(os.getenv("password"))
+            login_page.enter_password(os.getenv("PASSWORD"))
             login_page.click_submit()
             if login_page.is_visible_model():
                 login_page.click_skip()
