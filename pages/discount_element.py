@@ -7,6 +7,8 @@ class discount_elemnts(BasePage):
     __private_COUPONCODE_APPLY= (By.ID, "couponApply")
     __private_COUPONCODE_new= (By.NAME,"field-2")
     __private_COUPONCODE_APPLY_new= (By.XPATH, "(//button[@class='discount-button fc1 bc4 shrink w-button'])[1]")
+    __private_review_page_div=(By.CSS_SELECTOR, "div[class='review-section']")
+
 
     def enter_coupon_code(self,code):
         try:
@@ -31,5 +33,12 @@ class discount_elemnts(BasePage):
             locator=(self.__private_COUPONCODE_new) if value else (self.__private_COUPONCODE)
             op=self.is_visible(locator)
             return op
+        except:
+            return False
+        
+    def scroll_div(self):
+        try:
+            element=self.find_element_wait(self.__private_review_page_div)
+            return element
         except:
             return False

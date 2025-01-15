@@ -9,7 +9,7 @@ from pages.camp_booking import camp_booking
 from tests.login import loginAction
 from Base.random_select import select_random
 from Base.discount import apply_discount
-from Base.update_env import update_env
+from Base.update_json import *
 from tests.add_on import add_on_test
 
 log=Logger().get_logger()
@@ -40,7 +40,7 @@ class Test_Camp_booking():
 
         cmp.click_attendee_proceed()
 
-        schedule_count=int(os.getenv("SCHEDULE_COUNT"))
+        schedule_count=int(json_read("SCHEDULE_COUNT"))
         log.info("schedule count="+str(schedule_count))
         for j in range(schedule_count, (schedule_count+5)):
             cmp.click_schedule(j)
@@ -60,5 +60,5 @@ class Test_Camp_booking():
         driver.execute_script("window.debugger = function() {};")
         cmp.click_home()
         loginAction().authenticate_cookie(driver)
-        update_env("schedule_count",str(schedule_count+5))
+        json_update("SCHEDULE_COUNT",str(schedule_count+5))
         log.info("Camp booking Compleated")        

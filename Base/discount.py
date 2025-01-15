@@ -40,6 +40,7 @@ class apply_discount():
             } 
             for coupon_code in coupon_codes
         ]
+        div=discount.scroll_div()
         couponcode_output=json.dumps(json_data, indent=2)
         log.info(f"Fetched coupon codes:\n{couponcode_output}")
         if coupon_codes:
@@ -48,17 +49,22 @@ class apply_discount():
                 for i in range(1, index):
                     selected_index=select_random().random_number((index-1))
                     discount.enter_coupon_code(coupon_codes[selected_index][1])
+                    time.sleep(2)
+                    driver.execute_script("arguments[0].scrollTop = 100;",div)
                     discount.click_coupon_apply()
                     time.sleep(5)
                 
                     if not (discount.visible_code_box()):
                         log.info(f"Discount code {coupon_codes[selected_index][0]} applied successfully")
+                        driver.execute_script("arguments[0].scrollTop = arguments[0].scrollHeight;",div)
                         break           
                     else:
                         log.error(f"Discount code {coupon_codes[selected_index][0]} not applied")
-
+                driver.execute_script("arguments[0].scrollTop = arguments[0].scrollHeight;",div)
             else:
                 log.error("Discount Box is not visible")
+                driver.execute_script("arguments[0].scrollTop = arguments[0].scrollHeight;",div)
             
         else:
             log.error("No coupon code fetched")
+            driver.execute_script("arguments[0].scrollTop = arguments[0].scrollHeight;",div)
