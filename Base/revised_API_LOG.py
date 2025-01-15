@@ -17,6 +17,7 @@ class APILOG:
             # Enable network tracking using Chrome DevTools Protocol (CDP)
             self.driver.execute_cdp_cmd('Network.enable', {})
             self.driver.get(os.getenv("URL"))  # Navigate to the page
+            log.info("In API LOG Constructor try block and network enabled"+str(os.getenv("URL")))
 
             # Sleep to allow network requests to happen
             time.sleep(5)  # Adjust the time according to the network activity
@@ -61,18 +62,18 @@ class APILOG:
                     if request_id:
                         try:
                             response_body = self.driver.execute_cdp_cmd('Network.getResponseBody', {'requestId': request_id})
-                            # if mime_type == "application/json":
-                            #     log.info(f"Response Body (JSON): {response_body.get('body', '')}")
-                            # elif mime_type == "text/html":
-                            #     log.info(f"Response Body (HTML): {response_body.get('body', '')}")
-                            # elif mime_type == "Script":
-                            #     log.info(f"Response Body (Script): {response_body.get('body', '')}")
+                            if mime_type == "application/json":
+                                log.info(f"Response Body (JSON): {response_body.get('body', '')}")
+                            elif mime_type == "text/html":
+                                log.info(f"Response Body (HTML): {response_body.get('body', '')}")
+                            elif mime_type == "Script":
+                                log.info(f"Response Body (Script): {response_body.get('body', '')}")
                             # elif message['params']['type'] == "Document":
                             #     log.info(f"Server-rendered page URL: {response['url']}")    
-                            # elif message['params']['type'] == "XHR":
-                            #     log.info(f"XHR API URL: {response['url']}")
-                            # else:
-                            #     log.info(f"Response Body (Other - {mime_type}): {response_body.get('body', '')}" or None)
+                            elif message['params']['type'] == "XHR":
+                                log.info(f"XHR API URL: {response['url']}")
+                            else:
+                                log.info(f"Response Body (Other - {mime_type}): {response_body.get('body', '')}" or None)
                         except Exception as e:
                             print(f"Error retrieving response body: {e}")
                     else:

@@ -5,13 +5,10 @@ from dotenv import load_dotenv
 from selenium.webdriver.common.by import By
 import os
 import time
-import logging
 from Base.random_select import select_random
 from selenium.webdriver.support.ui import Select
 from tests.login import loginAction
 
-
-logger = logging.getLogger(__name__)
 class Test_sign_up():
     # @pytest.mark.skip(reason="Not required for full run")
     @pytest.mark.sign_up
@@ -19,8 +16,8 @@ class Test_sign_up():
     def test_sign_up(self, driver):
         load_dotenv()
         sr=select_random()
-        apilogger = APILOG(driver)
-        # driver.get(os.getenv('url'))
+        # apilogger = APILOG(driver)
+        driver.get(os.getenv('URL'))
         sg=signup(driver)
         sg.click_signup()
         sg.enter_email(os.getenv('EMAIL'))

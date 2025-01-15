@@ -1,4 +1,5 @@
 import time
+from typing import Generator
 from dotenv import load_dotenv
 import pytest
 from selenium import webdriver
@@ -7,6 +8,7 @@ from selenium.webdriver.chrome.options import Options
 from threading import Thread
 from Base.Screenshot import screenshot
 from Base.logfile import Logger
+from Base.api_interception import *
 
 log=Logger().get_logger()
 
@@ -31,6 +33,7 @@ def driver():
     global driver
     load_dotenv()
     is_lambda_test = os.getenv("IS_REMOTE", "0") == "1"
+    api_interception_enable=os.getenv("NETWORK_INTERCEPTION", "0") == "1"
     
     if is_lambda_test:
         # LambdaTest setup
@@ -80,7 +83,15 @@ def driver():
         driver.maximize_window()
 
         driver.implicitly_wait(30)
+        
+        if (api_interception_enable):
+            log.info("API Interception Enabled")
+            driver.execute_cdp_cmd("Fetch.enable", {
+                "patterns": [{"urlPattern": "*", "resourceType": "XHR", "requestStage": "Request"}]
+            })         
             
+        intercepter().intreception_handler(driver)
+
     yield driver
     
     # Common teardown for both setups

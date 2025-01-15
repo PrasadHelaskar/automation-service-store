@@ -1,7 +1,7 @@
+import os
 import mysql.connector
 from mysql.connector import Error
 from dotenv import load_dotenv
-import os
 from Base.logfile import Logger
 
 log=Logger().get_logger()
@@ -31,7 +31,7 @@ class Omnify_connect():
         try:
             connection=self.omnify_connection()
             
-            if connection.is_connected():
+            if connection and connection.is_connected():
                 cursor = connection.cursor()
                 cursor.execute(query)
                 record = cursor.fetchall()
@@ -49,7 +49,7 @@ class Omnify_connect():
     def update_data(self,query):
         try:
             connection=self.omnify_connection()
-            if connection.is_connected():
+            if connection and connection.is_connected():
                 cursor = connection.cursor()
                 cursor.execute(query)
                 connection.commit()
@@ -67,7 +67,7 @@ class Omnify_connect():
     def delete_data(self,query):
         try:
             connection=self.omnify_connection()
-            if connection.is_connected():
+            if connection and connection.is_connected():
                 cursor = connection.cursor()
                 cursor.execute(query)
                 connection.commit()
