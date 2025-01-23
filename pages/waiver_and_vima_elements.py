@@ -27,7 +27,6 @@ class waiver_vima(BasePage):
             locator=(self.__private_waiver_box) if value else (self.__private_waiver_vima_box)
             op=self.is_visible(locator)
             return op
-        
         except Exception as e:
             log.warning(str(e))
             return False
@@ -58,7 +57,7 @@ class waiver_vima(BasePage):
             self.click(locator)
         else :
             self.click(self.__private_accept_waiver_new)
-
+        
     def click_waiver(self):
         try:
             value=self.is_visible(self.__private_review_checkbox)
