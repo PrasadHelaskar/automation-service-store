@@ -1,12 +1,12 @@
 import time
 import pytest
-from Base.logfile import Logger
-from Base.stripe_popup import stripe_action
+from base.logfile import Logger
+from base.stripe_popup import stripe_action
 from pages.partypackage import partypackage
 from tests.login import loginAction
-from Base.random_select import select_random
-from Base.discount import apply_discount
-from Base.waiver_vima import *
+from base.random_select import select_random
+from base.discount import apply_discount
+from base.waiver_vima import *
 
 log = Logger().get_logger()
 
@@ -39,7 +39,7 @@ class Test_party_bookings():
             time.sleep(5)    
 
             if pb.visible_empty_state():
-                log.info('in if block')
+                log.info('test_party > Empty State > If block')
                 pb.click_next_schedule()
             time.sleep(10)
             script="return document.getElementsByClassName('schedule-top-bar-date-selector--bc3--bw1--fc2 slot width-196 centre ').length"

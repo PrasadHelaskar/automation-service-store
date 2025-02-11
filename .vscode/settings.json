@@ -1,4 +1,5 @@
 {
     "python.analysis.extraPaths": [
-    ]
+    ],
+    "debugpy.showPythonInlineValues": true
 }

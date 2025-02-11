@@ -1,4 +1,4 @@
-from Base.logfile import Logger
+from base.logfile import Logger
 import random
 
 log = Logger().get_logger()

@@ -1,12 +1,13 @@
 import time
 import pytest
-from Base.logfile import Logger
-from Base.random_select import select_random
-from Base.stripe_popup import stripe_action
+from base.logfile import Logger
+from base.random_select import select_random
+from base.stripe_popup import stripe_action
 from pages.trial_booking import trialkbooking
 from tests.login import loginAction
-from Base.discount import apply_discount
+from base.discount import apply_discount
 from tests.add_on import add_on_test 
+from base.waiver_vima import *
 
 log = Logger().get_logger()
 
@@ -60,8 +61,8 @@ class Test_trialBooking():
             add_on_test().add_on_page(driver)
 
         time.sleep(2)
+        waiver_vima_action().waiver_vima(driver)
         apply_discount().test_discount(driver)
-        tb.click_waiver_box()
         tb.click_review_proceed()
         loginAction().order_invoice_cookies(driver)
         stripe_action().stripe_data_enty(driver)

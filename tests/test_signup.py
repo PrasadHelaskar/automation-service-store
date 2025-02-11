@@ -1,11 +1,11 @@
 import pytest
-from Base.revised_API_LOG import APILOG
+from base.revised_API_LOG import APILOG
 from pages.signup import signup
 from dotenv import load_dotenv
 from selenium.webdriver.common.by import By
 import os
 import time
-from Base.random_select import select_random
+from base.random_select import select_random
 from selenium.webdriver.support.ui import Select
 from tests.login import loginAction
 

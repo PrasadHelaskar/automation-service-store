@@ -1,30 +1,40 @@
 import time
-from Base.logfile import Logger
+import keyboard as key
+from base.logfile import Logger
 from pages.stripe_popup_ele import stripepopup
 from selenium.webdriver.common.by import By
+from base.key_listener import *
 
 
 log = Logger().get_logger()
 
 class stripe_action():
     def stripe_data_enty(self, driver):
-        time.sleep(5)
+        time.sleep(10)
         sp=stripepopup(driver)
+        sp.get_payable()
         # log.warning("check_heading return :"+str(sp.check_heading()))
+        
         if sp.check_heading():
             # try:
                 time.sleep(10)
+        
                 try:    
                     value=driver.find_element(By.XPATH,"//*[@id=\"email-form-2\"]/div[1]/div/iframe").is_displayed()
-                except:
+        
+                except Exception:
                     value=False
+        
                 locator=(driver.find_element(By.XPATH,"//*[@id=\"email-form-2\"]/div[1]/div/iframe")) if value else (driver.find_element(By.XPATH,"//iframe[@title='Secure card payment input frame']"))
-                log.info("Is locator valid: "+str(locator is not None))
+                log.info("Is locator valid: %s",str(locator is not None))
+        
                 if locator:
                     driver.switch_to.frame(locator)
                     log.info("Switched")
+        
                 else:
                     log.error("Frame element not found, cannot switch")
+        
                 sp.enter_card_number()
                 sp.enter_expiry_date()
                 sp.enter_cvv_number()
@@ -32,6 +42,13 @@ class stripe_action():
                 driver.switch_to.default_content()
                 log.info("Switched")
                 sp.click_confirm()
+                
+                key_listener().key_listener()
+
+                time.sleep(5)
+                key.press_and_release('F8')
+                
+                
             # except Exception as e:
             #     log.info("Card frame not found please check")
             #     log.info(f"Execption Details: {e}")

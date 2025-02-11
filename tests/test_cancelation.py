@@ -1,10 +1,10 @@
 import os
 import time
 import pytest
-from Base.logfile import Logger
+from base.logfile import Logger
 from pages.cancelation_element import cancelation_booking
 from tests.login import loginAction
-from Base.random_select import select_random
+from base.random_select import select_random
 
 log=Logger().get_logger()
 

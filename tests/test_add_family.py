@@ -1,9 +1,9 @@
 import time
 import pytest
-from Base.logfile import Logger
+from base.logfile import Logger
 from pages.addfamily_Client_profile import addfamily
 from tests.login import loginAction
-from Base.random_select import select_random
+from base.random_select import select_random
 
 log=Logger().get_logger()
 
@@ -13,14 +13,15 @@ class Test_add_family():
     @pytest.mark.order(2)
     def test_add_family_client(self, driver):
         loginAction().login_action(driver)
+        time.sleep(5)
         count=8
-
+        af=addfamily(driver)
+        af.click_profile()
+        af.click_profile_page()
+        af.click_family()
         for i in range (count):
-            af=addfamily(driver)
             time.sleep(5)
-            af.click_profile()
-            af.click_profile_page()
-            af.click_family()
+            start_time=time.time()
             af.click_add_family_btn()
             fn=select_random().first_name()
             af.type_first_name(fn)
@@ -39,12 +40,13 @@ class Test_add_family():
             driver.execute_script("arguments[0].scrollTop = arguments[0].scrollHeight;",div)
             value=True if (af.get_added_name(i)==(fn+" "+ln)) else False
             log.info("Completed the family addition Process")
-
-            if value:
-                af.click_back_button()
-                log.info("Back to home with adding the family member")
-            else:
-                log.info("failed in adding the family member")
+            end_time=time.time()
+            log.info("Execution time: "+str(end_time-start_time))
+            # if value:
+            #     af.click_back_button()
+            #     log.info("Back to home with adding the family member")
+            # else:
+            #     log.info("failed in adding the family member")
 
 
         

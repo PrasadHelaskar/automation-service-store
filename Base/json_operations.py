@@ -1,19 +1,20 @@
-from Base.logfile import Logger
 import json
+from base.logfile import Logger
 
 
 log=Logger().get_logger()
-__private_json_path="data.json" 
+__private_json_path="data.json"
 
 def json_read(key):
+    """For reading the json file"""
     with open (__private_json_path, 'r') as json_file:
         data= json.load(json_file)
-        log.info("Request Data: \n"+str(data[key]))
+        # log.info("Request Data: \n"+str(data[key]))
         return data[key] 
 
 
 def json_update(key,value):
-
+    """For updaing the json file"""
     with open(__private_json_path, 'r') as json_file:
         data = json.load(json_file)
 
@@ -22,5 +23,4 @@ def json_update(key,value):
     with open(__private_json_path, 'w') as json_file:
         json.dump(data, json_file, indent=4)
 
-        log.info("Updateed data: \n"+str(data))
-
+        log.info("Updated data: %s",str(data))

@@ -1,10 +1,10 @@
 import time
 import pytest
-from Base.logfile import Logger
-from Base.stripe_popup import stripe_action
+from base.logfile import Logger
+from base.stripe_popup import stripe_action
 from pages.product_General_item_booking import productElements
 from tests.login import loginAction
-from Base.random_select import select_random
+from base.random_select import select_random
 
 log = Logger().get_logger()
 

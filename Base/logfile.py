@@ -5,9 +5,11 @@ from datetime import datetime
 class Logger:
     def __init__(self, base_log_dir="/mnt/k/automation/Automation_scripts/log", log_level=logging.INFO):
         today = datetime.now()
+        year = today.strftime("%Y")
         month = today.strftime("%m")
         date = today.strftime("%d")
-        log_directory = os.path.join(base_log_dir, month)
+        year_directory = os.path.join(base_log_dir, year)
+        log_directory = os.path.join(year_directory, month)
         if not os.path.exists(log_directory):
             os.makedirs(log_directory)
         log_file_path = os.path.join(log_directory, f"{date}.log")

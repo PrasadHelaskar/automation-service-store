@@ -1,6 +1,6 @@
 import time
-from Base.logfile import Logger
-from Base.revised_API_LOG import APILOG
+from base.logfile import Logger
+from base.revised_API_LOG import APILOG
 from pages.login_page import LoginPage
 import pytest
 from dotenv import load_dotenv

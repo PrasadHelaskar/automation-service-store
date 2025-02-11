@@ -3,7 +3,7 @@ import logging
 import json
 import os
 from dotenv import load_dotenv
-from Base.logfile import Logger
+from base.logfile import Logger
 import time
 
 log = Logger().get_logger()

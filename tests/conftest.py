@@ -1,14 +1,13 @@
 import time
-from typing import Generator
 from dotenv import load_dotenv
 import pytest
 from selenium import webdriver
 import os
 from selenium.webdriver.chrome.options import Options
 from threading import Thread
-from Base.Screenshot import screenshot
-from Base.logfile import Logger
-from Base.api_interception import *
+from base.Screenshot import screenshot
+from base.logfile import Logger
+from base.api_interception import *
 
 log=Logger().get_logger()
 
@@ -90,7 +89,7 @@ def driver():
                 "patterns": [{"urlPattern": "*", "resourceType": "XHR", "requestStage": "Request"}]
             })         
             
-        intercepter().intreception_handler(driver)
+            intercepter().intreception_handler(driver)
 
     yield driver
     

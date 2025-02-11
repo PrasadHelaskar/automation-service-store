@@ -1,7 +1,7 @@
 import time
-from Base.logfile import Logger
+from base.logfile import Logger
 from pages.add_on_element import add_on
-from Base.random_select import select_random
+from base.random_select import select_random
 
 log=Logger().get_logger()
 
@@ -13,7 +13,7 @@ class add_on_test():
         try:
             script_General_item="return document.querySelectorAll('#select_general_service').length;"
             recived_general_item=driver.execute_script(script_General_item)
-            log.info("General item count="+str(recived_general_item))
+            log.info("General item count: "+str(recived_general_item))
             selected_count=select_random().random_number(recived_general_item)
             log.info("General_item selected_count: "+str(selected_count))
             for i in range(1, selected_count):
@@ -29,7 +29,7 @@ class add_on_test():
         try:
             script_classpack="return document.querySelectorAll('#select_classpack').length;"
             recived_classpack=driver.execute_script(script_classpack)
-            log.info("Classpack count="+str(recived_classpack))
+            log.info("Classpack count: "+str(recived_classpack))
             selected_count=select_random().random_number(recived_classpack)
             log.info("classpack selected_count: "+str(selected_count))
             for i in range(1, selected_count):

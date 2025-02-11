@@ -28,6 +28,8 @@ class classpackbooking(BasePage):
     __private_COUPONCODE_APPLY= (By.ID, "couponApply")
     __private_HOME_BUTTON= (By.LINK_TEXT, "BOOK ANOTHER")
 
+    __repeat_booking_model=(By.CSS_SELECTOR, "div[class='modal-wrapper']")
+    __repeat_booking_model_confirm=(By.ID,"re-buy-classpack")
 
     __private_credit_booking_class=(By.NAME, "checkbox-13")
     __private_confirm_booking=(By.XPATH, "//button[@class='cta-sec-button pri bc4 fc1 w-button']")
@@ -88,3 +90,14 @@ class classpackbooking(BasePage):
 
     def click_confirm_booking(self):
         self.click(self.__private_confirm_booking)
+
+    def is_repeat_booking_visible(self):
+        try:
+            value=self.is_visible(self.__repeat_booking_model)
+            return value
+        except:
+            return False
+
+    
+    def click_buy_again(self):
+        self.click(self.__repeat_booking_model_confirm)

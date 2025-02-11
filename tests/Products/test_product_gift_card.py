@@ -1,11 +1,11 @@
 import time
 import pytest
-from Base.logfile import Logger
-from Base.stripe_popup import stripe_action
+from base.logfile import Logger
+from base.stripe_popup import stripe_action
 from pages.product_gift_card_booking import giftcardbooking
 from tests.login import loginAction
-from Base.random_select import select_random
-from Base.waiver_vima import *
+from base.random_select import select_random
+from base.waiver_vima import *
 
 log = Logger().get_logger()
 
@@ -23,7 +23,7 @@ class Testgift_booking():
         count=driver.execute_script(script)
         log.info("Recived element count: "+str(count))
         gc.click_select_amount_type(count)
-        gc.enter_amount("100")
+        gc.enter_amount("5")
         gc.enter_name(select_random().first_name())
         gc.enter_email("prasad+giftcard@getomnify.com")
         gc.click_checkout_proceed()

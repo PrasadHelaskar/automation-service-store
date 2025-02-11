@@ -1,5 +1,5 @@
 from dotenv import load_dotenv
-from Base.update_json import json_read
+from base.json_operations import json_read
 from tests.base_page import BasePage
 from selenium.webdriver.common.by import By
 import os

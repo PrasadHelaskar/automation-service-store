@@ -1,12 +1,11 @@
 import json
-
-from Base.logfile import *
+from base.logfile import *
 
 log=Logger().get_logger()
 
 class intercepter():
     api_interception_enable=os.getenv("NETWORK_INTERCEPTION", "0") == "1"
-
+    # driver=webdriver.Chrome()
     def intreception_handler(self,driver):
          while True:
                 log.info("Intreception Handler")

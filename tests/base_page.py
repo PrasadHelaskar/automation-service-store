@@ -2,13 +2,13 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 
-from Base.logfile import Logger
+from base.logfile import Logger
 
 log = Logger().get_logger()
 class BasePage:
     def __init__(self, driver):
         self.driver = driver
-        self.wait = WebDriverWait(driver,15)
+        self.wait = WebDriverWait(driver,timeout=5)
 
     def find_element_wait(self,locator):
         op=self.wait.until(EC.visibility_of_element_located(locator))

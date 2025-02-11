@@ -1,4 +1,4 @@
-from Base.logfile import Logger
+from base.logfile import Logger
 from tests.base_page import BasePage
 from selenium.webdriver.common.by import By
 
@@ -112,7 +112,7 @@ class partypackage(BasePage):
             value=self.is_visible(self.__private_Review_Proceed_cardno)
         except:
             value=False
-        log.info(value)
+        log.info("click_review_proceed > "+str(value))
         locator=(self.__private_Review_Proceed_cardno) if value else (self.__private_Review_Proceed_card)
         self.click(locator)
 
