@@ -1,5 +1,9 @@
 import json
+<<<<<<< HEAD
 from base.logfile import *
+=======
+from Base.logfile import *
+>>>>>>> 88234d9 (Changes for the Waiver and vima)
 
 log=Logger().get_logger()
 

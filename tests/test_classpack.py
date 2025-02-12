@@ -15,25 +15,22 @@ log = Logger().get_logger()
 lg=loginAction()
 
 class Test_classpack_bookings():
-    # """This is for the subscription booking: Classpack/Program"""
-    # @pytest.mark.order(3)
-    # def test_classpackbooking_action(self, driver):
-    # """This is for the classpack booking"""
-    #     driver.implicitly_wait(30)        
-    #     lg.login_action(driver)
-    #     cpb=classpackbooking(driver)
-    #     print('classpack booking started')
+    @pytest.mark.order(3)
+    def test_classpackbooking_action(self, driver):
+        driver.implicitly_wait(30)        
+        lg.login_action(driver)
+        cpb=classpackbooking(driver)
+        print('classpack booking started')
         
-    #     # filter the classpacks
-    #     # cpb.click_classpack_checkbox()
-    #     # cpb.click_apply()
-    #     cpb.click_classpack_page()
-    #     time.sleep(2)
+        # filter the classpacks
+        # cpb.click_classpack_checkbox()
+        # cpb.click_apply()
+        cpb.click_classpack_page()
+        time.sleep(2)
 
     #     script="""return document.getElementsByClassName('primary-button-card bc4 fc1').length;"""
     #     i=driver.execute_script(script)
     #     log.info("Total services available: "+str(i))
-
     #     if i in range(1,10):
     #         service_index=select_random().random_number(i)
     #     else:
@@ -77,7 +74,6 @@ class Test_classpack_bookings():
     #     cpb.click_home()
     #     lg.authenticate_cookie(driver)
     #     log.info("Tha classpack booking Execution Completed")
-
         
     @pytest.mark.order(4)
     def test_program_action(self, driver):
@@ -95,7 +91,6 @@ class Test_classpack_bookings():
 
         script="""return document.getElementsByClassName('primary-button-card bc4 fc1').length;"""
         i=driver.execute_script(script)
-        log.info("Total services available: %s",str(i))
 
         if i in range(1,10):
             service_index=select_random().random_number(i)
@@ -103,18 +98,12 @@ class Test_classpack_bookings():
             service_index=select_random().random_number(10)
 
         log.info("Service selected index: %s",str(service_index))
-        pb.click_select_service(service_index)
-        pb.click_proceed()
-        
-        if (pb.visible_attendee_moddel()):
-            time.sleep(2)
-            script="""return document.getElementsByName('attendees-id-list').length"""
-            recived_count=driver.execute_script(script)
-            attendee=select_random().random_number(recived_count)
-            pb.click_attendee_box(attendee)
-            log.info("Attendee selected index: %s",str(attendee))
-            pb.click_attendee_proceed()
-            self.repeat_booking(driver)
+        recived_count=driver.execute_script(script)
+        attendee=select_random().random_number(recived_count)
+        pb.click_attendee_box(attendee)
+        log.info("Attendee selected index: %s",str(attendee))
+        pb.click_attendee_proceed()
+        self.repeat_booking(driver)
 
         # cpb.enter_couponcode("FIXRENEW")
         # cpb.click_applycoupon()

@@ -14,6 +14,7 @@ class stripe_action():
         sp=stripepopup(driver)
         sp.get_payable()
         # log.warning("check_heading return :"+str(sp.check_heading()))
+        kl=key_listener()
         
         if sp.check_heading():
             # try:
@@ -43,10 +44,12 @@ class stripe_action():
                 log.info("Switched")
                 sp.click_confirm()
                 
-                key_listener().key_listener()
+                kl.key_listener_start()
 
                 time.sleep(5)
                 key.press_and_release('F8')
+
+                kl.key_listener_stop()
                 
                 
             # except Exception as e:

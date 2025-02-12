@@ -44,9 +44,10 @@ class discount_elemnts(BasePage):
             element=self.find_element_wait(self.__private_review_page_div)
             return element
         except:
-            return False
+            return False    
         
     def element_coupon_apply(self):
+        """discoutn apply"""
         try:
             value=self.is_visible(self.__private_COUPONCODE_APPLY_new)
             locator=(self.__private_COUPONCODE_APPLY_new) if value else (self.__private_COUPONCODE_APPLY)
