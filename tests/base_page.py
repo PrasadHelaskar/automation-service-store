@@ -8,7 +8,7 @@ log = Logger().get_logger()
 class BasePage:
     def __init__(self, driver):
         self.driver = driver
-        self.wait = WebDriverWait(driver,timeout=10)
+        self.wait = WebDriverWait(driver,timeout=5)
 
     def find_element_wait(self,locator):
         op=self.wait.until(EC.visibility_of_element_located(locator))
