@@ -14,7 +14,10 @@ class stripe_action():
         sp=stripepopup(driver)
         sp.get_payable()
         # log.warning("check_heading return :"+str(sp.check_heading()))
+<<<<<<< HEAD
         kl=key_listener()
+=======
+>>>>>>> 3561356 (the discount removal)
         
         if sp.check_heading():
             # try:
@@ -23,11 +26,19 @@ class stripe_action():
                 try:    
                     value=driver.find_element(By.XPATH,"//*[@id=\"email-form-2\"]/div[1]/div/iframe").is_displayed()
         
+<<<<<<< HEAD
                 except Exception:
                     value=False
         
                 locator=(driver.find_element(By.XPATH,"//*[@id=\"email-form-2\"]/div[1]/div/iframe")) if value else (driver.find_element(By.XPATH,"//iframe[@title='Secure card payment input frame']"))
                 log.info("Is locator valid: %s",str(locator is not None))
+=======
+                except:
+                    value=False
+        
+                locator=(driver.find_element(By.XPATH,"//*[@id=\"email-form-2\"]/div[1]/div/iframe")) if value else (driver.find_element(By.XPATH,"//iframe[@title='Secure card payment input frame']"))
+                log.info("Is locator valid: "+str(locator is not None))
+>>>>>>> 3561356 (the discount removal)
         
                 if locator:
                     driver.switch_to.frame(locator)
