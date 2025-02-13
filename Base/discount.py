@@ -14,7 +14,6 @@ log=Logger().get_logger()
 
 class apply_discount():
     def fetch_discount(self):
-
         """Used for the fetching the data from the DB"""
         business_id=json_read("BUSINESS_ID")
         try:
@@ -30,6 +29,7 @@ class apply_discount():
             # log.info(f"Fetched data: {data}")
             if data:
                 coupon_codes=[code for code in data]
+                log.info(coupon_codes)
                 return coupon_codes
             
             else:
@@ -55,7 +55,7 @@ class apply_discount():
 
             couponcode_output=json.dumps(json_data, indent=2)
             log.info(f"Fetched coupon codes:\n{couponcode_output}")
-            self.remove_discount(driver)
+            # self.remove_discount(driver)
            
             if coupon_codes:
                 
@@ -103,18 +103,18 @@ class apply_discount():
                 
             driver.execute_script("arguments[0].scrollTop = arguments[0].scrollHeight;",discount.scroll_div())
         
-        except Exception as e:
-            log.error("An error occurred > test_discount: %s",str(e))
+        except Exception:
+            log.error("An error occurred > test_discount")
             return 
         
     remove_count=0
     def remove_discount(self,driver):                        
-        remove_count=1
         discount=discount_elemnts(driver)
-
-        if(remove_count==1):
+        count=self.remove_count
+        
+        if(count<=1):
             discount.click_remove_discount()
-            log.info("The Removed Count: "+str(remove_count))
+            log.info("The Removed Count: %s",str(count))
 
         else:
             pass

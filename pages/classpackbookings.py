@@ -60,6 +60,7 @@ class classpackbooking(BasePage):
             value=self.is_visible(self.__private_Review_Proceed_cardno)
         except:
             value=False
+        
         locator=(self.__private_Review_Proceed_cardno) if value else (self.__private_Review_Proceed_card)
         self.click(locator)
     
