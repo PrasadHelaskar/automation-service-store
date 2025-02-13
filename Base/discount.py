@@ -1,6 +1,8 @@
 import time
 import json
 from base.logfile import Logger
+from pages.discount_element import discount_elemnts
+from pages.toaster import * 
 from base.db import Omnify_connect
 from base.random_select import select_random
 from base.json_operations import *
@@ -26,7 +28,7 @@ class apply_discount():
                                                         and discount_for not in ("gift_cards","camps") 
                                                         and is_renewal_discount=1
                                                         and expiry is not null;""")
-            # log.info(f"Fetched data: {data}")
+
             if data:
                 coupon_codes=[code for code in data]
                 log.info(coupon_codes)
@@ -52,7 +54,6 @@ class apply_discount():
                 } 
                 for coupon_code in coupon_codes
             ]
-
             couponcode_output=json.dumps(json_data, indent=2)
             log.info(f"Fetched coupon codes:\n{couponcode_output}")
             # self.remove_discount(driver)

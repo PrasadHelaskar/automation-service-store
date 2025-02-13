@@ -76,3 +76,5 @@ class discount_elemnts(BasePage):
             return self.find_element_wait(locator)
         except Exception as e:
             log.error("Exception Occured > element_coupon_apply: %s",str(e))
+        except:
+            log.error("Exception Occured in > click_remove_discount: "+ str(e))

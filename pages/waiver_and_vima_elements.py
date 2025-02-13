@@ -51,6 +51,19 @@ class waiver_vima(BasePage):
         except Exception:
             self.click(self.__private_accept_waiver_new)
         
+        log.info("In click_accept_waiver method") 
+        try:    
+            value=self.is_visible(self.__private_accept_waiver)
+        except:
+            value=False
+        
+        locator=(self.__private_accept_waiver) if value else (self.__private_waiver_vima_accept)
+        
+        if (locator):
+            self.click(locator)
+        else :
+            self.click(self.__private_accept_waiver_new)
+        
     def click_waiver(self):
         try:
             value=self.is_visible(self.__private_review_checkbox)
