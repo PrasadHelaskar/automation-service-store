@@ -23,12 +23,14 @@ class waiver_vima(BasePage):
         try:
             try:        
                 value=self.is_visible(self.__private_waiver_box)
-            except:
+        
+            except Exception:
                 value=False
             
             locator=(self.__private_waiver_box) if value else (self.__private_waiver_vima_box)
             op=self.is_visible(locator)
             return op
+        
         except Exception as e:
             log.warning(str(e))
             return False
@@ -37,14 +39,16 @@ class waiver_vima(BasePage):
         log.info("In click_accept_waiver method") 
         try:    
             value=self.is_visible(self.__private_accept_waiver)
-        except:
+        
+        except Exception:
             value=False
         
         locator=(self.__private_accept_waiver) if value else (self.__private_waiver_vima_accept)
-        
         try:
-            self.click(locator)   
-        except:
+            if (locator):
+                self.click(locator)
+        
+        except Exception:
             self.click(self.__private_accept_waiver_new)
         
         log.info("In click_accept_waiver method") 
@@ -63,15 +67,17 @@ class waiver_vima(BasePage):
     def click_waiver(self):
         try:
             value=self.is_visible(self.__private_review_checkbox)
-        except:
-            value-=False
+        
+        except Exception:
+            value=False
 
         locator=(self.__private_review_checkbox) if value else (self.__private_accept_waiver_new)
         
         self.click(locator)
         try:
             value=self.is_visible(self.__private_review_checkbox)
-        except:
+        
+        except Exception:
             value=False
 
         locator=(self.__private_review_checkbox) if value else (self.__private_review_checkbox_new)
@@ -86,8 +92,9 @@ class waiver_vima(BasePage):
         
         try:    
             value=self.is_visible(self.__private_accept_waiver)
-            log.info("get_waiver_button_text > try block >"+str(value))
-        except:
+            log.info("get_waiver_button_text > try block > %s",str(value))
+        
+        except Exception:
             value=False
         
         locator=(self.__private_accept_waiver) if value else (self.__private_waiver_vima_accept)
@@ -95,6 +102,7 @@ class waiver_vima(BasePage):
         try:
             text=self.get_text(locator)
             return text
-        except:
+        
+        except Exception:
             text=self.get_text(self.__private_accept_waiver_new)
             return text

@@ -8,6 +8,9 @@ from base.random_select import select_random
 from base.json_operations import *
 from pages.discount_element import discount_elemnts
 from pages.toaster import * 
+from pages.discount_element import discount_elemnts
+from pages.toaster import * 
+
 
 log=Logger().get_logger()
 
@@ -17,8 +20,7 @@ class apply_discount():
         business_id=json_read("BUSINESS_ID")
         try:
             data=Omnify_connect().fetch_data(f"""select name,code from discounts 
-                                                where business_id="{business_id}" 
-                                                    where business_id="{business_id}"
+                                                    where business_id="{business_id}" 
                                                         and isDeleted=0 
                                                         and isDisabled=0 
                                                         and isExpired=0 
@@ -26,8 +28,10 @@ class apply_discount():
                                                         and discount_for not in ("gift_cards","camps") 
                                                         and is_renewal_discount=1
                                                         and expiry is not null;""")
+
             if data:
                 coupon_codes=[code for code in data]
+                log.info(coupon_codes)
                 return coupon_codes
             
             else:
@@ -38,11 +42,11 @@ class apply_discount():
             return False
         
     def test_discount(self,driver):
-        """Execution of discount apply"""
         try:
             discount=discount_elemnts(driver)
             coupon_codes=apply_discount().fetch_discount()
-            # log.info("is coupon_codes empty? >"+str(coupon_codes is not None))            
+            # log.info("is coupon_codes empty? >"+str(coupon_codes is not None))
+
             json_data=[
                 {
                     "Name":coupon_code[0], 
@@ -52,7 +56,7 @@ class apply_discount():
             ]
             couponcode_output=json.dumps(json_data, indent=2)
             log.info(f"Fetched coupon codes:\n{couponcode_output}")
-            self.remove_discount(driver)
+            # self.remove_discount(driver)
            
             if coupon_codes:
                 
@@ -100,15 +104,19 @@ class apply_discount():
                 
             driver.execute_script("arguments[0].scrollTop = arguments[0].scrollHeight;",discount.scroll_div())
         
-        except Exception as e:
-            log.error("An error occurred > test_discount: %s",str(e))
+        except Exception as ex:
+            log.error("An error occurred > test_discount: %s",str(ex))
             return 
         
     remove_count=0
     def remove_discount(self,driver):                        
-        if(remove_count==1):
-            discount.click_remove_discount()
-            log.info("The Removed Count: "+str(remove_count))
-
+        discount=discount_elemnts(driver)
+        count=self.remove_count
+        if(discount.is_remove_visible() and count<=1):
+                discount.click_remove_discount()
+                log.info("The Removed Count: %s",str(count))
         else:
-            pass
+            if count >1:
+                log.info("The Count is Exceeded hence Not removed")
+            else:
+                log.info("The Discount Auto_apply is not working")

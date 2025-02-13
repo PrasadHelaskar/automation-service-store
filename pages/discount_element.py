@@ -24,7 +24,7 @@ class discount_elemnts(BasePage):
             self.clear_element(locator)
             self.send_keys(locator,code)
         except Exception as e:
-            log.error("Exception Occured > enter_coupon_code: "+ str(e))
+            log.error("Exception Occured > enter_coupon_code: %s",str(e))
     
     def click_coupon_apply(self):
         try:
@@ -32,7 +32,7 @@ class discount_elemnts(BasePage):
             locator=(self.__private_COUPONCODE_APPLY_new) if value else (self.__private_COUPONCODE_APPLY)
             self.click(locator)
         except Exception as e:
-            log.error("Exception Occured > click_coupon_apply: "+ str(e))
+            log.error("Exception Occured > click_coupon_apply: %s",str(e))
     
     def visible_code_box(self):
         try:
@@ -40,14 +40,16 @@ class discount_elemnts(BasePage):
             locator=(self.__private_COUPONCODE) if value else (self.__private_COUPONCODE_new)
             op=self.is_visible(locator)
             return op
-        except:
+        except Exception as e:
+            log.error("Exception Occured > visible_code_box: %s",str(e))
             return False
         
     def scroll_div(self):
         try:
             element=self.find_element_wait(self.__private_review_page_div)
             return element
-        except:
+        except Exception as e:
+            log.error("Exception Occured > scroll_div: %s",str(e))
             return False    
         
     def element_coupon_apply(self):
@@ -57,12 +59,22 @@ class discount_elemnts(BasePage):
             locator=(self.__private_COUPONCODE_APPLY_new) if value else (self.__private_COUPONCODE_APPLY)
             return self.find_element_wait(locator)
         except Exception as e:
-            log.error("Exception Occured > element_coupon_apply: "+ str(e))
+            log.error("Exception Occured > element_coupon_apply: %s",str(e))
 
     def click_remove_discount(self):
         try:
             value=self.is_visible(self.__private_remove_discount)
             locator=(self.__private_remove_discount) if value else (self.__private_remove_discount_new)
             return self.click(locator)
+        except Exception as e:
+            log.error("Exception Occured in > click_remove_discount: %s",str(e))
+
+    def is_remove_visible(self):
+        try:
+            value=self.is_visible(self.__private_remove_discount_new)
+            locator=(self.__private_remove_discount_new) if value else (self.__private_remove_discount)
+            return self.find_element_wait(locator)
+        except Exception as e:
+            log.error("Exception Occured > element_coupon_apply: %s",str(e))
         except:
             log.error("Exception Occured in > click_remove_discount: "+ str(e))
