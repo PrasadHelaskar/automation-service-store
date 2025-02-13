@@ -31,7 +31,7 @@ class waiver_vima(BasePage):
             op=self.is_visible(locator)
             return op
         
-        except Exception:
+        except Exception as e:
             log.warning(str(e))
             return False
         

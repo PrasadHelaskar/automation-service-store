@@ -103,18 +103,19 @@ class apply_discount():
                 
             driver.execute_script("arguments[0].scrollTop = arguments[0].scrollHeight;",discount.scroll_div())
         
-        except Exception:
-            log.error("An error occurred > test_discount")
+        except Exception as ex:
+            log.error("An error occurred > test_discount: %s",str(ex))
             return 
         
     remove_count=0
     def remove_discount(self,driver):                        
         discount=discount_elemnts(driver)
         count=self.remove_count
-        
-        if(count<=1):
-            discount.click_remove_discount()
-            log.info("The Removed Count: %s",str(count))
-
+        if(discount.is_remove_visible() and count<=1):
+                discount.click_remove_discount()
+                log.info("The Removed Count: %s",str(count))
         else:
-            pass
+            if count >1:
+                log.info("The Count is Exceeded hence Not removed")
+            else:
+                log.info("The Discount Auto_apply is not working")
