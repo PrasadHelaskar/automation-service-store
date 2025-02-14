@@ -46,19 +46,6 @@ class apply_discount():
             discount=discount_elemnts(driver)
             coupon_codes=self.fetch_discount()
             # log.info("is coupon_codes empty? >"+str(coupon_codes is not None))
-
-<<<<<<< HEAD
-            json_data=[
-                {
-                    "Name":coupon_code[0], 
-                    "Code":coupon_code[1]
-                } 
-                for coupon_code in coupon_codes
-            ]
-            couponcode_output=json.dumps(json_data, indent=2)
-            log.info(f"Fetched coupon codes:\n{couponcode_output}")
-            # self.remove_discount(driver)
-=======
             # json_data=[
             #     {
             #         "Name":coupon_code[0], 
@@ -69,9 +56,7 @@ class apply_discount():
 
             # couponcode_output=json.dumps(json_data, indent=2)
             # log.info(f"Fetched coupon codes:\n{couponcode_output}")
-            self.remove_discount(driver)
->>>>>>> d8ed3f4 (Update discount handling logic, enhance logging, and modify schedule count in data.json)
-           
+            self.remove_discount(driver)           
             if (coupon_codes and discount.visible_code_box()):
                 index=len(coupon_codes)
 
@@ -116,7 +101,6 @@ class apply_discount():
         
         except Exception as ex:
             log.error("An error occurred > test_discount: %s",str(ex))
-            return 
         
     def remove_discount(self,driver):
         """To remove the applied discount"""                        
