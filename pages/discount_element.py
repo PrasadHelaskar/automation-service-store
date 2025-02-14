@@ -11,8 +11,7 @@ class discount_elemnts(BasePage):
     __private_COUPONCODE_new= (By.NAME,"field-2")
     __private_COUPONCODE_APPLY_new= (By.XPATH, "(//button[@class='discount-button fc1 bc4 shrink w-button'])[1]")
     __private_review_page_div=(By.CSS_SELECTOR, "div[class='review-section']")
-    __private_remove_discount_new=(By.CSS_SELECTOR,"svg[class='lucide lucide-trash2']")
-    __private_remove_discount=(By.ID,"removeDiscount1")
+    __private_review_page_div_new=(By.CSS_SELECTOR, "div[class='attendee-list w-list-unstyled ']")
     __private_remove_discount_new=(By.CSS_SELECTOR,"svg[class='lucide lucide-trash2']")
     __private_remove_discount=(By.ID,"removeDiscount1")
 
@@ -46,7 +45,9 @@ class discount_elemnts(BasePage):
         
     def scroll_div(self):
         try:
-            element=self.find_element_wait(self.__private_review_page_div)
+            value=self.is_visible(self.__private_review_page_div_new)
+            locator=(self.__private_review_page_div_new) if value else (self.__private_review_page_div)
+            element=self.find_element_wait(locator)
             return element
         except Exception as e:
             log.error("Exception Occured > scroll_div: %s",str(e))
@@ -73,8 +74,9 @@ class discount_elemnts(BasePage):
         try:
             value=self.is_visible(self.__private_remove_discount_new)
             locator=(self.__private_remove_discount_new) if value else (self.__private_remove_discount)
-            return self.find_element_wait(locator)
+            is_visible=self.is_visible(locator)
+            return is_visible
+        
         except Exception as e:
-            log.error("Exception Occured > element_coupon_apply: %s",str(e))
-        except:
-            log.error("Exception Occured in > click_remove_discount: "+ str(e))
+            log.error("Exception Occured > is_remove_visible: %s",str(e))
+            return False
