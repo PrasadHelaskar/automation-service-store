@@ -8,6 +8,9 @@ from base.random_select import select_random
 from base.json_operations import *
 from pages.discount_element import discount_elemnts
 from pages.toaster import * 
+from pages.discount_element import discount_elemnts
+from pages.toaster import * 
+
 
 
 log=Logger().get_logger()
@@ -72,7 +75,6 @@ class apply_discount():
                     discount.click_coupon_apply()
                     time.sleep(2)
                     self.remove_discount(driver)
-                        
                     if not (discount.visible_code_box()):
                         log.info("Discount code %s applied successfully",coupon_codes[selected_index][0])  
                         break           
