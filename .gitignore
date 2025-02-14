@@ -23,3 +23,4 @@ pytest-ini
 export_py.sh
 __pycache__/test.cpython-310-pytest-8.3.3.pyc
 base/key_listener.py
+Automation_scripts/data.json
