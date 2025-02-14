@@ -35,11 +35,7 @@ class Omnify_connect():
                 cursor = connection.cursor()
                 cursor.execute(query)
                 record = cursor.fetchall()
-<<<<<<< HEAD
-                # log.info("Record fetched successfully ")
-=======
                 log.info("Record fetched successfully ")
->>>>>>> b103956 (toaster)
                 return record
         
         except Exception as e:
@@ -48,11 +44,7 @@ class Omnify_connect():
         finally:
             if connection and (connection.is_connected()):
                 connection.close()
-<<<<<<< HEAD
-                # log.info("MySQL connection is closed")
-=======
                 log.info("MySQL connection is closed")
->>>>>>> b103956 (toaster)
 
     def update_data(self,query):
         try:
