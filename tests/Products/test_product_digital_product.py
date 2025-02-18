@@ -30,7 +30,7 @@ class Testproduct_booking():
             try:
                 pd.click_pricing_option()
                 time.sleep(2)
-            except:
+            except Exception as e:
                 log.info("the Count Exceeded Then Visible UI Elements")
                 break
             

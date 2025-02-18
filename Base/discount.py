@@ -6,10 +6,6 @@ from pages.toaster import *
 from base.db import Omnify_connect
 from base.random_select import select_random
 from base.json_operations import *
-from pages.discount_element import discount_elemnts
-from pages.toaster import * 
-from pages.discount_element import discount_elemnts
-from pages.toaster import * 
 
 
 
@@ -63,10 +59,10 @@ class apply_discount():
             if (coupon_codes and discount.visible_code_box()):
                 index=len(coupon_codes)
 
-                for i in range(1, 3):
+                for i in range(1, 2):
                     start_time=time.time()
                     div=discount.scroll_div()
-                    selected_index=select_random().random_number((index-1))
+                    selected_index=select_random().random_index_unique((index))
                     discount.enter_coupon_code(coupon_codes[selected_index][1])
                     scroll_script="""const div = arguments[0];
                                     const apply_button = arguments[1];
@@ -74,7 +70,7 @@ class apply_discount():
                     driver.execute_script(scroll_script,div,discount.element_coupon_apply())
                     discount.click_coupon_apply()
                     time.sleep(2)
-                    self.remove_discount(driver)
+                    # self.remove_discount(driver)
                     if not (discount.visible_code_box()):
                         log.info("Discount code %s applied successfully",coupon_codes[selected_index][0])  
                         break           

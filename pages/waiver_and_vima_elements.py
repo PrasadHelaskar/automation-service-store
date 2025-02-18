@@ -15,9 +15,7 @@ class waiver_vima(BasePage):
     __private_accept_waiver_new=(By.XPATH,"//button[@class='discount-button fc1 bc4 align-right _50 w-button']")
     __private_review_checkbox=(By.NAME, "checkbox-3")
     __private_review_checkbox_new=(By.ID,"waiverCheckbox")
-    __private_review_checkbox=(By.NAME, "checkbox-3")
-    __private_review_checkbox_new=(By.ID,"waiverCheckbox")
-
+    
     def check_waiver_box(self):
         log.info("In check_waiver_box method")
         try:
@@ -51,29 +49,7 @@ class waiver_vima(BasePage):
         except Exception:
             self.click(self.__private_accept_waiver_new)
         
-        log.info("In click_accept_waiver method") 
-        try:    
-            value=self.is_visible(self.__private_accept_waiver)
-        except:
-            value=False
-        
-        locator=(self.__private_accept_waiver) if value else (self.__private_waiver_vima_accept)
-        
-        if (locator):
-            self.click(locator)
-        else :
-            self.click(self.__private_accept_waiver_new)
-        
     def click_waiver(self):
-        try:
-            value=self.is_visible(self.__private_review_checkbox)
-        
-        except Exception:
-            value=False
-
-        locator=(self.__private_review_checkbox) if value else (self.__private_accept_waiver_new)
-        
-        self.click(locator)
         try:
             value=self.is_visible(self.__private_review_checkbox)
         
