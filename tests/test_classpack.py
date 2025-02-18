@@ -1,6 +1,5 @@
 import time
 import pytest
-from base import random_select
 from base.logfile import Logger
 from base.random_select import select_random
 from base.stripe_popup import stripe_action
@@ -96,7 +95,7 @@ class Test_classpack():
 
         script="""return document.getElementsByClassName('primary-button-card bc4 fc1').length;"""
         i=driver.execute_script(script)
-        log.info("Total services available: "+str(i))
+        log.info("Total services available: %s",str(i))
 
         if i in range(1,10):
             service_index=select_random().random_number(i)

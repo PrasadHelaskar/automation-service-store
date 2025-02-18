@@ -33,4 +33,8 @@ class select_random():
     def random_number(self, i):
         number=random.randint(1, i)
         # log.info(number)
-        return number  
+        return number 
+
+    def random_index_unique(self,i):
+        number=random.sample(range(i),1)[0] 
+        return number
