@@ -12,7 +12,7 @@ class stripe_action():
     def stripe_data_enty(self, driver):
         time.sleep(10)
         sp=stripepopup(driver)
-        sp.get_payable()
+        # sp.get_payable()
         # log.warning("check_heading return :"+str(sp.check_heading()))
         # kl=key_listener()
         
@@ -43,16 +43,16 @@ class stripe_action():
                 driver.switch_to.default_content()
                 log.info("Switched")
                 sp.click_confirm()
-
-                # kl.key_listener_start()
-
-                # time.sleep(5)
-                # key.press_and_release('f8')
-
-                # kl.key_listener_stop()
-                
-                
+            
             # except Exception as e:
             #     log.info("Card frame not found please check")
             #     log.info(f"Execption Details: {e}")
+        
+
+        # kl.key_listener_start()
+
+        # time.sleep(5)
+        # key.press_and_release('f8')
+
+        # kl.key_listener_stop()
 

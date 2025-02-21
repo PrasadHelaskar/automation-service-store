@@ -1,5 +1,4 @@
 import os
-import time
 from base.logfile import Logger
 from tests.base_page import BasePage
 from selenium.webdriver.common.by import By
@@ -33,10 +32,12 @@ class stripepopup(BasePage):
             value=self.is_visible(self.__private__heading_new)
             # log.warning("Using new value: "+str(value))
             locator=(self.__private__heading_new) if value else (self.__private__heading)
-            log.warning("locator is none? : "+str(locator is None))
+            log.warning("locator is none? : %s",str(locator is None))
             op=self.is_visible(locator)
             return op
-        except:
+        
+        except Exception as e:
+            log.info("Check Heading Method Exception: %s",e)
             return False
 
     def enter_card_number(self):
@@ -55,19 +56,21 @@ class stripepopup(BasePage):
         log.info("Click Confirm Method")
         try:
             value=self.is_visible(self.__private__Confirm_button_new)
-#             log.warning("Using new value: "+str(value))
             locator=(self.__private__Confirm_button_new) if value else (self.__private__Confirm_button)
+            log.warning("Using new value: %s",str(value))
             self.click(locator)
-        except:
-            log.warning("Unable to locate both values")
+        
+        except Exception as e:
+            log.warning("Unable to locate both values: %s",e)
 
     def get_payable(self):
         log.info("Get Payable Method")
         try:
             value=self.is_visible(self.__private__payable_new)
-            log.warning("Using new value: "+str(value))
+            log.warning("Using new value: %s",str(value))
             locator=(self.__private__payable_new) if value else (self.__private__payable)
             payable=self.get_text(locator)
-            log.info("Total payable for Service: "+payable)
-        except:
-            log.warning("Unable to locate both values")
+            log.info("Total payable for Service: %s",payable)
+        
+        except Exception as e:
+            log.warning("Unable to locate both values: %s",e)

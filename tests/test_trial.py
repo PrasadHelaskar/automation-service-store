@@ -20,13 +20,13 @@ class Test_trialBooking():
         print('Trial booking started')
 
         tb.click_program_page()
-        time.sleep(2)
+        time.sleep(5)
 
         script="""return document.getElementsByClassName('secondary-button-card bw1 oc4 fc4').length;"""
         i=driver.execute_script(script)
-        log.info("Total services available: "+str(i))
+        log.info("Total services available: %s",str(i))
         service_index=select_random().random_number(i)
-        log.info("Service selected index: "+str(service_index))
+        log.info("Service selected index: %s",str(service_index))
         tb.click_select_service(service_index)        
         tb.click_proceed()
 
@@ -34,10 +34,10 @@ class Test_trialBooking():
             time.sleep(2)
             script="""return document.getElementsByName('attendees-id-list').length"""
             recived_count=driver.execute_script(script)
-            log.info("Attendee count: "+str(recived_count))
+            log.info("Attendee count: %s",str(recived_count))
             attendee=select_random().random_number(recived_count)
             tb.click_attendee_box(attendee)
-            log.info("Attendee selected index: "+str(attendee))
+            log.info("Attendee selected index: %s",str(attendee))
             tb.click_attendee_proceed()
 
         if (tb.visible_warning_model()):
@@ -45,12 +45,12 @@ class Test_trialBooking():
             for i in range(3):    
                 tb.click_cross_button()
                 tb.click_proceed()
-                log.info("Warning model closed for attendee index: "+str(attendee))
+                log.info("Warning model closed for attendee index: %s",str(attendee))
                 attendee=select_random().random_number(recived_count)
                 tb.click_attendee_box(attendee)
-                log.info("Next attendee selected index: "+str(attendee))
+                log.info("Next attendee selected index: %s",str(attendee))
                 tb.click_attendee_proceed()
-                if(tb.visible_warning_model()==False):
+                if(tb.visible_warning_model() is False):
                     break
             if(tb.visible_warning_model()):
                 assert False ,"Warning model not closed"
@@ -63,6 +63,7 @@ class Test_trialBooking():
         time.sleep(2)
         waiver_vima_action().waiver_vima(driver)
         apply_discount().test_discount(driver)
+        time.sleep(2)
         tb.click_review_proceed()
         loginAction().order_invoice_cookies(driver)
         stripe_action().stripe_data_enty(driver)

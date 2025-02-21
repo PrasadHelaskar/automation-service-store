@@ -2,9 +2,10 @@ import time
 import pytest
 from base.logfile import Logger
 from base.stripe_popup import stripe_action
+from base.random_select import select_random
+from base.waiver_vima import *
 from pages.product_digital_product import digitalproductelement
 from tests.login import loginAction
-from base.random_select import select_random
 
 log = Logger().get_logger()
 
@@ -35,11 +36,11 @@ class Testproduct_booking():
                 break
             
         pd.click_checkout_proceed()
-        pd.click_waiver_checkbox()
+        waiver_vima_action().waiver(driver)
         pd.click_review_proceed()
         loginAction().order_invoice_cookies(driver)
         stripe_action().stripe_data_enty(driver)
-        time.sleep(10)
+        time.sleep(5)
         pd.click_home()
         loginAction().authenticate_cookie(driver)
         

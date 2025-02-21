@@ -1,6 +1,8 @@
 from tests.base_page import BasePage
 from selenium.webdriver.common.by import By
+from base.logfile import Logger
 
+log=Logger().get_logger()
 
 class trialkbooking(BasePage):
     __private_program_page=(By.CSS_SELECTOR,"a[href='/programs?b=t']")
@@ -21,8 +23,8 @@ class trialkbooking(BasePage):
     __priavte_cross_button=(By.ID,"close_age_modal")
     __private_Addon_proceed=(By.ID,"proceed-btn")
     __private_waiver_checkbox=(By.ID, "waiverCheckbox")
-    __private_Review_Proceed_cardno=(By.CSS_SELECTOR,"div[class='review-pay-div']")
-    __private_Review_Proceed_card=(By.CSS_SELECTOR,"div[class='fc3 booking-footer-button-text-right body-text-2-medium']")
+    __private_Review_Proceed_cardno=(By.XPATH,"//span[@id='totalPriceHolder' and @class='fc3 confirm-text']")
+    __private_Review_Proceed_card=(By.ID,"submitFinalReviewFormBtn")
     __private_HOME_BUTTON= (By.LINK_TEXT, "BOOK ANOTHER")
 
     #Warning model
@@ -71,7 +73,10 @@ class trialkbooking(BasePage):
             value=self.is_visible(self.__private_Review_Proceed_cardno)
         except:
             value=False
+        
+        log.info("click_review_proceed value: %s",value)
         locator=(self.__private_Review_Proceed_cardno) if value else (self.__private_Review_Proceed_card)
+        log.info("click_review_proceed locator: %s",locator)
         self.click(locator)
 
     def click_home(self):

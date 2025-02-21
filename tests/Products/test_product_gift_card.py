@@ -32,6 +32,6 @@ class Testgift_booking():
         gc.click_review_proceed()
         loginAction().order_invoice_cookies(driver)
         stripe_action().stripe_data_enty(driver)
-        time.sleep(10)
+        time.sleep(5)
         gc.click_home()
         loginAction().authenticate_cookie(driver)
