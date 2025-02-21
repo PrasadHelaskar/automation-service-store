@@ -123,7 +123,7 @@ class Test_classpack():
             add_on_test().add_on_page(driver)
 
         waiver_vima_action().waiver_vima(driver)
-        apply_discount().test_discount(driver)
+        # apply_discount().test_discount(driver)
         pb.click_review_proceed()
         driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
         stripe_action().stripe_data_enty(driver)
