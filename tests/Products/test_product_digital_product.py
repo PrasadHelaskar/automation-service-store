@@ -19,8 +19,9 @@ class Testproduct_booking():
         time.sleep(10)
         pd.click_PD_filter()
         pd.click_submit()
-        pd.click_service()
         time.sleep(5)
+        pd.click_service()
+        time.sleep(2)
         script = """return document.querySelectorAll('.add-section.fc4.oc4.justify-centre').length;"""
         i= driver.execute_script(script)
         log.info("element count="+str(i))

@@ -5,7 +5,7 @@ from selenium.webdriver.common.by import By
 log = Logger().get_logger()
 
 class productElements(BasePage):
-# General item
+    '''the ELemnets for the General item booking flow'''
     __private_product_page=(By.CSS_SELECTOR, "a[href='/products?b=t']")
     __private_general_item_checkbox=(By.XPATH, "(//input[@type='checkbox'])[1]")
     __private_Submit_button=(By.CSS_SELECTOR, "div[class='button--ph1--bc4--bw1--oc4--fc1 max-width w-button apply']")
@@ -13,6 +13,7 @@ class productElements(BasePage):
     __private_select_service=(By.XPATH , f"(//a[@class='primary-button-card bc4 fc1'])[{service_number}]")
     
     def pricing_option(self,i):
+        '''Selection of the pricing option'''
         __private_pricing_option=(By.XPATH ,f"(//button[@class='add-section fc4 oc4 justify-centre'])[{i}]")
         return __private_pricing_option
     

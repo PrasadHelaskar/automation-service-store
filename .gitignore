@@ -24,3 +24,8 @@ export_py.sh
 __pycache__/test.cpython-310-pytest-8.3.3.pyc
 base/key_listener.py
 Automation_scripts/data.json
+tests/line_count.py
+chrome-linux64.zip
+chrome-linux64
+chrome_driver_match.py
+google-chrome-stable_current_amd64.deb

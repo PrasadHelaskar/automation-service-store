@@ -16,8 +16,8 @@ class cancelation_booking(BasePage):
         return __private_family_member
 
     def services_View_Details(self,i):
-        xpath=f"(//a[@class='view-details-button schedule_details'])[{i}]"
-        __private_selected_service=(By.XPATH,xpath)
+        service_id=f"viewScheduleDetails{i}"
+        __private_selected_service=(By.ID,service_id)
         return __private_selected_service
     
     def service_card(self,i):
@@ -51,6 +51,7 @@ class cancelation_booking(BasePage):
 
     def view_details(self,count):
         element=self.find_element_wait(self.services_View_Details(count))
+        # log.info("view_details: %s",element)
         return element
     
     def view_card(self,count):

@@ -124,6 +124,7 @@ class Test_classpack():
 
         waiver_vima_action().waiver_vima(driver)
         # apply_discount().test_discount(driver)
+        lg.order_invoice_cookies(driver)
         pb.click_review_proceed()
         driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
         stripe_action().stripe_data_enty(driver)

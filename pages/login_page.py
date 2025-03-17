@@ -9,8 +9,8 @@ class LoginPage(BasePage):
     __private_USERNAME_FIELD = (By.ID, "login-email")
     __private_PASSWORD_FIELD = (By.ID, "login-password")
     __private_LOGIN_BUTTON = (By.CSS_SELECTOR, "button[class='ss-auth-primary-button--bc4--fc1 w-button']")
-    __private_card_model=(By.ID, "radix-:r0:")
-    __private_skip_button=(By.CSS_SELECTOR, "button[class='ss-auth-label--fc2 centre']")
+    __private_card_model=(By.XPATH, "//div[@class='gs-modal bc3']")
+    __private_skip_button=(By.ID, "default-close")
 
     def enter_username(self, username):
         self.send_keys(self.__private_USERNAME_FIELD, username)
