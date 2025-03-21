@@ -1,5 +1,9 @@
 {
     "DATE": 15,
-    "SCHEDULE_COUNT": "60",
-    "BUSINESS_ID": "25877"
+    "SCHEDULE_COUNT": "6",
+    "BUSINESS_ID": "25877",
+    "COOKIES": [
+        "order_number",
+        "invoice_number"
+    ]
 }

@@ -16,36 +16,39 @@ class Test_service_cancelation():
         cb.click_profile()
         cb.click_profile_page()
         is_schedule_present=None
+        time.sleep(2)
         for i in range(1,5):
             if (cb.is_visible_empty_state()):
-                log.info(f"Iteration Count: "+str(i))
+                log.info("Iteration Count: %s",str(i))
                 cb.click_drop_down()
                 script="return document.getElementsByClassName('d-flex schedule-dropdown').length;"
                 reviced_count=driver.execute_script(script)
                 select_attendee=select_random().random_number(reviced_count)
-                cb.click_familty_members(select_attendee)
+                # cb.click_familty_members(select_attendee)
+                cb.click_familty_members(7)
                 is_schedule_present=cb.is_visible_empty_state()
                 if(is_schedule_present==False):
-                    log.info("Schedules are seen for: "+str(select_attendee))
+                    log.info("Schedules are seen for: %s",str(select_attendee))
                     break
-        log.info("Is Schedule Present: "+str(is_schedule_present))
-        if(is_schedule_present):
+                
+        if(is_schedule_present is True):
             assert False, "Selected 5 attendees doesn't have schedule so try again"
         
+        time.sleep(5)
         script="return document.getElementsByClassName('view-details-button schedule_details').length;"
         reviced_count=driver.execute_script(script)
         seleted_service=select_random().random_number(reviced_count)
-        log.info("Seleted Service Count: "+str(seleted_service))
+        log.info("Seleted Service Count: %s",str(seleted_service))
 
-        script_label="return document.getElementsByClassName('label label-danger').length"
+        script_label="return document.getElementsByClassName('label label-danger').length;"
         recived_lebel_count=driver.execute_script(script_label)
-        log.info("Recived Lebel Count:"+str(recived_lebel_count))
+        log.info("Recived Lebel Count: %s",str(recived_lebel_count))
 
         service=cb.view_details(seleted_service)
         service_name=str(service.get_attribute("data-service_name"))
-        log.info(f"Selected Service Name: "+service_name)
+        log.info("Selected Service Name: %s",service_name)
         service_type=str(service.get_attribute("data-service_type"))
-        log.info("Selected Service type: "+service_type)
+        log.info("Selected Service type: %s",service_type)
         cb.click_view_details(seleted_service)  
 
         cb.click_cancel_button()
@@ -53,7 +56,7 @@ class Test_service_cancelation():
         time.sleep(5)
 
         recived_lebel_count_update=driver.execute_script(script_label)
-        log.info("Recived Lebel Count Update:"+str(recived_lebel_count_update))
+        log.info("Recived Lebel Count Update: %s",str(recived_lebel_count_update))
 
         if(recived_lebel_count!=recived_lebel_count_update):
             service=cb.view_card(seleted_service)

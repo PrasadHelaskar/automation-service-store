@@ -4,6 +4,7 @@ import pytest
 from selenium import webdriver
 import os
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service
 from threading import Thread
 from base.Screenshot import screenshot
 from base.logfile import Logger
@@ -68,11 +69,13 @@ def driver():
         }
         
         chrome_options = webdriver.ChromeOptions()
-        chrome_options.binary_location = "/opt/google/chrome/google-chrome"
+        # chrome_options.binary_location = "/mnt/k/automation/Automation_scripts/chrome-linux64/chrome"
+        chrome_options.binary_location = "/usr/bin/google-chrome"
         chrome_options.set_capability('goog:loggingPrefs', logging_prefs)
+        chrome_options.add_argument("--no-sandbox")
+        chrome_options.add_argument("--disable-dev-shm-usage")
         # chrome_options.add_argument("--auto-open-devtools-for-tabs")
         # chrome_options.add_argument("--headless")
-        
         
         driver = webdriver.Chrome(options=chrome_options)
         driver.execute_cdp_cmd('Network.enable', {})
@@ -80,6 +83,7 @@ def driver():
         driver.execute_cdp_cmd("Page.setLifecycleEventsEnabled",{"enabled": True})
         driver.execute_cdp_cmd("Page.enable", {})
         driver.maximize_window()
+
 
         driver.implicitly_wait(30)
         

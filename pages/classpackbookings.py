@@ -1,6 +1,8 @@
 from tests.base_page import BasePage
 from selenium.webdriver.common.by import By
+from base.logfile import Logger
 
+log = Logger().get_logger()
 class classpackbooking(BasePage):
     __private_FILTER_CHECKBOX= (By.XPATH,"(//input[@type='checkbox'])[2]")
     __private_APPLY_BUTTON=(By.CSS_SELECTOR,"div[class='button--ph1--bc4--bw1--oc4--fc1 max-width w-button apply']") 
@@ -12,6 +14,16 @@ class classpackbooking(BasePage):
         xpath=f"(//a[@class='primary-button-card bc4 fc1'])[{i}]"
         __private_select_service=(By.XPATH,xpath)
         return __private_select_service
+
+    def select_service_name(self,i):
+        xpath=f"(//div[@class='ss-card-title--fc2--lc2 font-18'])[{i}]"
+        __private_select_service_name=(By.XPATH,xpath)
+        return __private_select_service_name
+    
+    def select_start_date(self,i):
+        xpath=f"(//input[@name='cp-radio-button'])[{i}]"
+        __private_select_start_date=(By.XPATH,xpath)
+        return __private_select_start_date
     
     __private_attendee_model=(By.CSS_SELECTOR, "h4[class='h5-regular modal-title ']")
     
@@ -47,7 +59,12 @@ class classpackbooking(BasePage):
         self.click(self.__private_APPLY_BUTTON)
     
     def click_select_service(self,i):
+        name=self.get_text(self.select_service_name(i))
+        log.info("Service Name: %s",name)
         self.click(self.select_service(i))
+
+    def click_start_date(self,i):
+        self.click(self.select_start_date(i))
 
     def click_proceed(self):
         self.click(self.__private_select_proceed)

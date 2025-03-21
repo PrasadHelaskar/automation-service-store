@@ -103,8 +103,16 @@ class Test_classpack():
             service_index=select_random().random_number(10)
 
         pb.click_select_service(service_index)
-        pb.click_proceed()
         log.info("Service selected index: %s",str(service_index))
+
+        time.sleep(2)
+        script="""return document.getElementsByName("cp-radio-button").length;"""
+        recived_count=driver.execute_script(script)
+        index=select_random().random_number(recived_count)
+        log.info("Selected schedule index: %s",index)
+        pb.click_start_date(index)
+
+        pb.click_proceed()
         time.sleep(3)
         
         script="""return document.getElementsByClassName("w-checkbox-input waitlist-checkbox").length;"""
@@ -124,6 +132,7 @@ class Test_classpack():
 
         waiver_vima_action().waiver_vima(driver)
         # apply_discount().test_discount(driver)
+        lg.order_invoice_cookies(driver)
         pb.click_review_proceed()
         driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
         stripe_action().stripe_data_enty(driver)
