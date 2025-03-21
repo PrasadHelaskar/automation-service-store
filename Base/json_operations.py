@@ -23,7 +23,7 @@ def json_update(key,value):
     with open(__private_json_path, 'w', encoding='utf-8') as json_file:
         json.dump(data, json_file, indent=4)
 
-        log.info("Updated data: %s",str(data))
+        log.info("Updated data: %s",str(data[key]))
 
 
 def json_read_array():

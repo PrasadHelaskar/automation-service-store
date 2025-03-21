@@ -69,14 +69,15 @@ def driver():
         }
         
         chrome_options = webdriver.ChromeOptions()
-        chrome_options.binary_location = "/mnt/k/automation/Automation_scripts/chrome-linux64/chrome"
-        # chrome_options.binary_location = "/usr/bin/google-chrome"
+        # chrome_options.binary_location = "/mnt/k/automation/Automation_scripts/chrome-linux64/chrome"
+        chrome_options.binary_location = "/usr/bin/google-chrome"
         chrome_options.set_capability('goog:loggingPrefs', logging_prefs)
+        chrome_options.add_argument("--no-sandbox")
+        chrome_options.add_argument("--disable-dev-shm-usage")
         # chrome_options.add_argument("--auto-open-devtools-for-tabs")
         # chrome_options.add_argument("--headless")
-        service = Service("/mnt/k/automation/Automation_scripts/chrome-linux64/chromedriver")
         
-        driver = webdriver.Chrome(service=service, options=chrome_options)
+        driver = webdriver.Chrome(options=chrome_options)
         driver.execute_cdp_cmd('Network.enable', {})
         driver.execute_cdp_cmd("Debugger.setSkipAllPauses", {"skip": True})
         driver.execute_cdp_cmd("Page.setLifecycleEventsEnabled",{"enabled": True})

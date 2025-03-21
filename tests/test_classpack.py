@@ -103,8 +103,16 @@ class Test_classpack():
             service_index=select_random().random_number(10)
 
         pb.click_select_service(service_index)
-        pb.click_proceed()
         log.info("Service selected index: %s",str(service_index))
+
+        time.sleep(2)
+        script="""return document.getElementsByName("cp-radio-button").length;"""
+        recived_count=driver.execute_script(script)
+        index=select_random().random_number(recived_count)
+        log.info("Selected schedule index: %s",index)
+        pb.click_start_date(index)
+
+        pb.click_proceed()
         time.sleep(3)
         
         script="""return document.getElementsByClassName("w-checkbox-input waitlist-checkbox").length;"""

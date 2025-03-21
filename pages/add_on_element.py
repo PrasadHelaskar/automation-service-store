@@ -27,3 +27,13 @@ class add_on(BasePage):
 
     def click_addon_proceed(self):
         self.click(self.__private_Addon_proceed)
+
+    __private_mulit_option_box=(By.CSS_SELECTOR,"div[class='gs-modal bc3']")
+    __private_close_box=(By.ID,"message-us-close")
+
+    def visible_box(self):
+        value=self.is_visible(self.__private_mulit_option_box)
+        return value
+    
+    def click_close(self):
+        self.click(self.__private_close_box)
