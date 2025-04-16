@@ -7,11 +7,11 @@ import os
 class signup(BasePage):
     load_dotenv()
     __private_SIGNUP_BUTTON=(By.XPATH, "//button[@class=' button--ph1--bc4--bw1--oc4--fc1 w-button']")
-    __private_EMAIL_FIELD=(By.NAME, "email")
+    __private_EMAIL_FIELD=(By.ID, "login-email")
     __private_CONTINUE_BUTTON=(By.CSS_SELECTOR, "button[class='ss-auth-primary-button--bc4--fc1 w-button']")
     __private_FIRST_FIELD=(By.NAME, "firstname")
     __private_LAST_FIELD=(By.NAME, "lastname")
-    __private_SUBMIT=(By.CSS_SELECTOR, "input[value='Submit']") #3times
+    __private_SUBMIT=(By.CSS_SELECTOR, "input[value='Create Account']")
     __private_PASSWORD=(By.ID, "password")
     __private_CONFIRM_PASSWORD=(By.ID, "confirm_password")
     #custom fields

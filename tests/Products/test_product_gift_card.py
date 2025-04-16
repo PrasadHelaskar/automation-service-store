@@ -23,7 +23,7 @@ class Testgift_booking():
         count=driver.execute_script(script)
         log.info("Recived element count: "+str(count))
         gc.click_select_amount_type(count)
-        gc.enter_amount("5")
+        gc.enter_amount("100")
         gc.enter_name(select_random().first_name())
         gc.enter_email("prasad+giftcard@getomnify.com")
         gc.click_checkout_proceed()

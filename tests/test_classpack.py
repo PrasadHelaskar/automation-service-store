@@ -54,8 +54,6 @@ class Test_classpack():
     #         log.info("Attendee selected index: "+str(attendee))
     #         cpb.click_attendee_proceed()
 
-    #     # cpb.enter_couponcode("DSCNT123")
-    #     # cpb.click_applycoupon()
     #     time.sleep(2)
     #     # log.info("Addons page visible="+str(driver.title or "None"))
     #     if(driver.title=="Addons"):
@@ -97,10 +95,10 @@ class Test_classpack():
         i=driver.execute_script(script)
         log.info("Total services available: %s",str(i))
 
-        if i in range(1,10):
+        if i in range(1,20):
             service_index=select_random().random_number(i)
         else:
-            service_index=select_random().random_number(10)
+            service_index=select_random().random_number(20)
 
         pb.click_select_service(service_index)
         log.info("Service selected index: %s",str(service_index))
@@ -122,10 +120,8 @@ class Test_classpack():
         log.info("Attendee selected index: %s",str(attendee))
         pb.click_attendee_proceed()
         self.repeat_booking(driver)
-
-        # cpb.enter_couponcode("FIXRENEW")
-        # cpb.click_applycoupon()
         time.sleep(2)
+    
         # log.info("Addons page visible="+str(driver.title or "None"))
         if(driver.title=="Addons"):
             add_on_test().add_on_page(driver)
@@ -133,6 +129,7 @@ class Test_classpack():
         waiver_vima_action().waiver_vima(driver)
         # apply_discount().test_discount(driver)
         lg.order_invoice_cookies(driver)
+        time.sleep(10)
         pb.click_review_proceed()
         driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
         stripe_action().stripe_data_enty(driver)
