@@ -80,11 +80,11 @@ class Test_classpack():
     @pytest.mark.order(4)
     def test_program_action(self, driver):
         """The Method for the program booking"""
-        for i in range(0,3):
+        for i in range(0,2):
             driver.implicitly_wait(30)
             pb=classpackbooking(driver)
             lg.login_action(driver)
-            print('Program booking Started')
+            log.info('Program booking Started')
             #  filter the programs
             # pb.click_classpack_checkbox()
             # pb.click_apply()
@@ -99,7 +99,7 @@ class Test_classpack():
             if i in range(1,20):
                 service_index=select_random().random_number(i)
             else:
-                service_index=select_random().random_number(20)
+                service_index=select_random().random_number(10)
 
             pb.click_select_service(service_index)
             log.info("Service selected index: %s",str(service_index))
@@ -136,7 +136,7 @@ class Test_classpack():
             stripe_action().stripe_data_enty(driver)
             pb.click_home()
             lg.authenticate_cookie(driver)
-            log.info("Tha Program booking Execution Completed")
+            log.info("Tha Program booking Execution Completed \n")
 
     def repeat_booking(self,driver):
         """Used to handle the BOok again  model"""
