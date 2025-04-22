@@ -80,62 +80,63 @@ class Test_classpack():
     @pytest.mark.order(4)
     def test_program_action(self, driver):
         """The Method for the program booking"""
-        driver.implicitly_wait(30)
-        pb=classpackbooking(driver)
-        lg.login_action(driver)
-        print('Program booking Started')
-        #  filter the programs
-        # pb.click_classpack_checkbox()
-        # pb.click_apply()
-        time.sleep(5)
-        pb.click_program_page()
-        time.sleep(2) 
+        for i in range(0,3):
+            driver.implicitly_wait(30)
+            pb=classpackbooking(driver)
+            lg.login_action(driver)
+            print('Program booking Started')
+            #  filter the programs
+            # pb.click_classpack_checkbox()
+            # pb.click_apply()
+            time.sleep(5)
+            pb.click_program_page()
+            time.sleep(2) 
 
-        script="""return document.getElementsByClassName('primary-button-card bc4 fc1').length;"""
-        i=driver.execute_script(script)
-        log.info("Total services available: %s",str(i))
+            script="""return document.getElementsByClassName('primary-button-card bc4 fc1').length;"""
+            i=driver.execute_script(script)
+            log.info("Total services available: %s",str(i))
 
-        if i in range(1,20):
-            service_index=select_random().random_number(i)
-        else:
-            service_index=select_random().random_number(20)
+            if i in range(1,20):
+                service_index=select_random().random_number(i)
+            else:
+                service_index=select_random().random_number(20)
 
-        pb.click_select_service(service_index)
-        log.info("Service selected index: %s",str(service_index))
+            pb.click_select_service(service_index)
+            log.info("Service selected index: %s",str(service_index))
 
-        time.sleep(2)
-        script="""return document.getElementsByName("cp-radio-button").length;"""
-        recived_count=driver.execute_script(script)
-        index=select_random().random_number(recived_count)
-        log.info("Selected schedule index: %s",index)
-        pb.click_start_date(index)
+            time.sleep(2)
+            script="""return document.getElementsByName("cp-radio-button").length;"""
+            recived_count=driver.execute_script(script)
+            index=select_random().random_number(recived_count)
+            log.info("Selected schedule index: %s",index)
+            pb.click_start_date(index)
 
-        pb.click_proceed()
-        time.sleep(3)
+            pb.click_proceed()
+            time.sleep(3)
+            
+            script="""return document.getElementsByClassName("w-checkbox-input waitlist-checkbox").length;"""
+            recived_count=driver.execute_script(script)
+            attendee=select_random().random_number(recived_count)
+            pb.click_attendee_box(attendee)
+            log.info("Attendee selected index: %s",str(attendee))
+            pb.click_attendee_proceed()
+            self.repeat_booking(driver)
+            time.sleep(2)
         
-        script="""return document.getElementsByClassName("w-checkbox-input waitlist-checkbox").length;"""
-        recived_count=driver.execute_script(script)
-        attendee=select_random().random_number(recived_count)
-        pb.click_attendee_box(attendee)
-        log.info("Attendee selected index: %s",str(attendee))
-        pb.click_attendee_proceed()
-        self.repeat_booking(driver)
-        time.sleep(2)
-    
-        # log.info("Addons page visible="+str(driver.title or "None"))
-        if(driver.title=="Addons"):
-            add_on_test().add_on_page(driver)
+            # log.info("Addons page visible="+str(driver.title or "None"))
+            if(driver.title=="Addons"):
+                add_on_test().add_on_page(driver)
 
-        waiver_vima_action().waiver_vima(driver)
-        # apply_discount().test_discount(driver)
-        lg.order_invoice_cookies(driver)
-        time.sleep(10)
-        pb.click_review_proceed()
-        driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-        stripe_action().stripe_data_enty(driver)
-        pb.click_home()
-        lg.authenticate_cookie(driver)
-        log.info("Tha Program booking Execution Completed")
+            waiver_vima_action().waiver_vima(driver)
+            # apply_discount().test_discount(driver)
+            lg.order_invoice_cookies(driver)
+            time.sleep(10)
+            pb.click_review_proceed()
+            driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+            stripe_action().stripe_data_enty(driver)
+            pb.click_home()
+            lg.authenticate_cookie(driver)
+            log.info("Tha Program booking Execution Completed")
 
     def repeat_booking(self,driver):
         """Used to handle the BOok again  model"""
