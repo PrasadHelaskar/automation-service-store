@@ -4,9 +4,10 @@ from faker import Faker
 from selenium.webdriver.support.ui import Select
 from selenium.webdriver.common.by import By
 from base.logfile import Logger
+from base.random_select import select_random
 from pages.addfamily_Client_profile import addfamily
 from tests.login import loginAction
-from base.random_select import select_random
+
 
 log=Logger().get_logger()
 
@@ -14,7 +15,6 @@ class Test_add_family():
     """Adding family memebrs from the client profile"""
     # @pytest.mark.skip(reason="Not required for full run")
     @pytest.mark.sign_up
-    @pytest.mark.order(2)
     def test_add_family_client(self, driver):
         af=addfamily(driver)
         """Method to add the family member from the client profile"""
@@ -48,7 +48,7 @@ class Test_add_family():
             af.type_dob()
 
             af.click_submit_button()
-            time.sleep(10)
+            time.sleep(5)
             script = """return document.getElementsByClassName("product-listing bc3 bw1 width-100").length;"""
             i= driver.execute_script(script)
             log.info("element count: %s",str(i))
@@ -65,44 +65,44 @@ class Test_add_family():
             # else:
             #     log.info("failed in adding the family member")
 
+@staticmethod
+def add_family_checkout_flow(driver):
+    """Adding Famly members from the check out flow"""
+    afck=addfamily(driver)
+    start_time=time.time()
 
-    def add_family_checkout_flow(self, driver):
-        """Adding Famly members from the check out flow"""
-        afck=addfamily(driver)
-        start_time=time.time()
+    if(afck.is_attendee_model_visible()):
+        afck.click_add_family_btn_ck()
+        fn=Faker().first_name()
+        afck.type_first_name(fn)
+        ln=Faker().last_name()
+        afck.type_last_name(ln)
 
-        if(afck.is_attendee_model_visible()):
-            afck.click_add_family_btn_ck()
-            fn=Faker().first_name()
-            afck.type_first_name(fn)
-            ln=Faker().last_name()
-            afck.type_last_name(ln)
+        afck.click_dob()
+        time.sleep(5)
+        sr= select_random()
+        month_dropdown = driver.find_element(By.NAME, "months")
+        select_month = Select(month_dropdown)
+        month=sr.random_month()
+        select_month.select_by_visible_text(month)
+        year_dropdown = driver.find_element(By.NAME, "years")
+        select_year = Select(year_dropdown)
+        year=sr.random_year()
+        select_year.select_by_visible_text(str(year))
+        afck.click_date()
+        afck.click_dob()
 
-            afck.click_dob()
-            time.sleep(5)
-            sr= select_random()
-            month_dropdown = driver.find_element(By.NAME, "months")
-            select_month = Select(month_dropdown)
-            month=sr.random_month()
-            select_month.select_by_visible_text(month)
-            year_dropdown = driver.find_element(By.NAME, "years")
-            select_year = Select(year_dropdown)
-            year=sr.random_year()
-            select_year.select_by_visible_text(str(year))
-            afck.click_date()
-            afck.click_dob()
+        afck.click_submit()
+        time.sleep(10)
+        script="return document.getElementsByClassName('booking-content-list-item w-clearfix bc3 attendee-list-item-new').length;"
+        i= driver.execute_script(script)
+        log.info("element count: %s",str(i))
+        time.sleep(2)
+        div=afck.scroll_div_ck()
+        driver.execute_script("arguments[0].scrollTop = arguments[0].scrollHeight;",div)
 
-            afck.click_submit()
-            time.sleep(10)
-            script="return document.getElementsByClassName('booking-content-list-item w-clearfix bc3 attendee-list-item-new').length;"
-            i= driver.execute_script(script)
-            log.info("element count: %s",str(i))
-            time.sleep(2)
-            div=afck.scroll_div_ck()
-            driver.execute_script("arguments[0].scrollTop = arguments[0].scrollHeight;",div)
+        value=True if (afck.get_added_name_ck(i)==(fn+" "+ln)) else False
+        log.info("Completed the family addition Process")
 
-            value=True if (afck.get_added_name_ck(i)==(fn+" "+ln)) else False
-            log.info("Completed the family addition Process")
-
-        end_time=time.time()
-        log.info("Execution time: %s",str(end_time-start_time))
+    end_time=time.time()
+    log.info("Execution time: %s",str(end_time-start_time))

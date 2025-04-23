@@ -5,9 +5,10 @@ from base.random_select import select_random
 from base.stripe_popup import stripe_action
 from base.waiver_vima import waiver_vima_action
 from pages.classpackbookings import classpackbooking
+# from base.discount import apply_discount
 from tests.login import loginAction
-from base.discount import apply_discount
 from tests.add_on import add_on_test
+from tests.test_add_family import add_family_checkout_flow
 
 
 log = Logger().get_logger()
@@ -114,13 +115,15 @@ class Test_classpack():
             pb.click_proceed()
             time.sleep(3)
             
+            add_family_checkout_flow(driver)
+
             script="""return document.getElementsByClassName("w-checkbox-input waitlist-checkbox").length;"""
             recived_count=driver.execute_script(script)
             attendee=select_random().random_number(recived_count)
             pb.click_attendee_box(attendee)
             log.info("Attendee selected index: %s",str(attendee))
             pb.click_attendee_proceed()
-            self.repeat_booking(driver)
+            repeat_booking(driver)
             time.sleep(2)
         
             # log.info("Addons page visible="+str(driver.title or "None"))
@@ -138,9 +141,9 @@ class Test_classpack():
             lg.authenticate_cookie(driver)
             log.info("Tha Program booking Execution Completed \n")
 
-    def repeat_booking(self,driver):
-        """Used to handle the BOok again  model"""
-        rb=classpackbooking(driver)
-        if(rb.is_repeat_booking_visible()):
-            log.info("The Buy Again model visible?: %s",str(rb.is_repeat_booking_visible()))
-            rb.click_buy_again()
+def repeat_booking(driver):
+    """Used to handle the BOok again  model"""
+    rb=classpackbooking(driver)
+    if(rb.is_repeat_booking_visible()):
+        log.info("The Buy Again model visible?: %s",str(rb.is_repeat_booking_visible()))
+        rb.click_buy_again()
