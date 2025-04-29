@@ -19,21 +19,31 @@ class Testproduct_booking():
         time.sleep(5)
         pe.click_GI_filter()
         pe.click_submit()
-        pe.click_service()
         time.sleep(5)
-        script = """return document.querySelectorAll('.add-section.fc4.oc4.justify-centre').length;"""
+
+        script="""return document.getElementsByClassName('primary-button-card bc4 fc1').length;"""
+        i=driver.execute_script(script)
+        log.info("Total services available: %s",str(i))
+        selected_service=select_random().random_number(i)
+        pe.click_service(selected_service)
+        
+        time.sleep(5)
+        
+        script = """return document.getElementsByClassName('add-section fc4 oc4 justify-centre').length;"""
         i= driver.execute_script(script)
-        log.info("element count="+str(i))
+        log.info("element count: %s",str(i))
         count=select_random().random_number(i)
-        log.info("Loop limit="+str(count))
+        log.info("Loop limit: %s",str(count))
 
         for j in range(count):
-            try:
+            # try:
                 pe.click_pricing_option()
+                for i in range (4):
+                    pe.click_plus_button()
                 time.sleep(2)
-            except Exception as e:
-                log.info("the Count Exceeded Then Visible UI Elements")
-                break
+            # except Exception as e:
+            #     log.info("the Count Exceeded Then Visible UI Elements")
+            #     break
             
         pe.click_checkout_proceed()
         waiver_vima_action().waiver(driver)
