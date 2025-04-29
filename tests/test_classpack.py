@@ -86,7 +86,7 @@ class Test_classpack():
             pb=classpackbooking(driver)
             lg.login_action(driver)
             log.info('Program booking Started')
-            #  filter the programs
+            # filter the programs
             # pb.click_classpack_checkbox()
             # pb.click_apply()
             time.sleep(5)
@@ -115,7 +115,7 @@ class Test_classpack():
             pb.click_proceed()
             time.sleep(3)
             
-            add_family_checkout_flow(driver)
+            # add_family_checkout_flow(driver)
 
             script="""return document.getElementsByClassName("w-checkbox-input waitlist-checkbox").length;"""
             recived_count=driver.execute_script(script)
@@ -127,6 +127,7 @@ class Test_classpack():
             time.sleep(2)
         
             # log.info("Addons page visible="+str(driver.title or "None"))
+            
             if(driver.title=="Addons"):
                 add_on_test().add_on_page(driver)
 

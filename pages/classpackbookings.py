@@ -7,8 +7,8 @@ class classpackbooking(BasePage):
     __private_FILTER_CHECKBOX= (By.XPATH,"(//input[@type='checkbox'])[2]")
     __private_APPLY_BUTTON=(By.CSS_SELECTOR,"div[class='button--ph1--bc4--bw1--oc4--fc1 max-width w-button apply']") 
     __private_select_proceed= (By.ID, "classpack_proceed_btn")
-    __private_classpack_page=(By.CSS_SELECTOR,"a[href='/classpacks?b=t']")
-    __private_program_page=(By.CSS_SELECTOR,"a[href='/programs?b=t']")
+    __private_classpack_page=(By.CSS_SELECTOR,"a[href='/classpacks']")
+    __private_program_page=(By.CSS_SELECTOR,"a[href='/programs']")
 
     def select_service(self,i):
         xpath=f"(//a[@class='primary-button-card bc4 fc1'])[{i}]"
@@ -75,7 +75,8 @@ class classpackbooking(BasePage):
     def click_review_proceed(self):
         try:    
             value=self.is_visible(self.__private_Review_Proceed_cardno)
-        except:
+        except Exception as e:
+            log.error("Exception occurred: %s",e)
             value=False
         
         locator=(self.__private_Review_Proceed_cardno) if value else (self.__private_Review_Proceed_card)
@@ -94,7 +95,8 @@ class classpackbooking(BasePage):
         try:
             op=self.is_visible(self.__private_attendee_model)
             return op
-        except:
+        except Exception as e:
+            log.error("Exception occurred: %s",e)
             return False
     
     def click_attendee_box(self,i):
@@ -113,9 +115,9 @@ class classpackbooking(BasePage):
         try:
             value=self.is_visible(self.__repeat_booking_model)
             return value
-        except:
+        except Exception as e:
+            log.error("Exception occurred: %s",e)
             return False
 
-    
     def click_buy_again(self):
         self.click(self.__repeat_booking_model_confirm)
