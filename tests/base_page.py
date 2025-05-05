@@ -80,7 +80,7 @@ class BasePage:
             element = self.find_element_wait(locator)
             op = element.is_displayed()
             return str(op)
-        except:
+        except Exception:
             return False
 
     def clear_element(self, locator):

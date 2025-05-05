@@ -27,7 +27,7 @@ class productElements(BasePage):
     __private_HOME_BUTTON= (By.LINK_TEXT, "BOOK ANOTHER")
     
     def plus_button(self):
-        i=1
+        i=2
         xpath=f"(//div[@class='fc4 display-flex margin-top-0 w-embed'])[{i}]"
         __plus_button=(By.XPATH,xpath)
         return __plus_button
