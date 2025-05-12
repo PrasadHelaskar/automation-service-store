@@ -80,7 +80,7 @@ class BasePage:
             element = self.find_element_wait(locator)
             op = element.is_displayed()
             return str(op)
-        except:
+        except Exception:
             return False
 
     def clear_element(self, locator):
@@ -106,3 +106,13 @@ class BasePage:
         """
         pprint.pprint(data)
         sys.exit()
+
+    def get_url(self):
+        """
+        Retrieves the current URL of the active browser window.
+
+        Returns:
+            str: The current URL loaded in the browser.
+        """
+        url = self.driver.current_url
+        return url

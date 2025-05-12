@@ -36,14 +36,14 @@ class Testproduct_booking():
         log.info("Loop limit: %s",str(count))
 
         for j in range(count):
-            # try:
+            try:
                 pe.click_pricing_option()
                 for i in range (4):
                     pe.click_plus_button()
                 time.sleep(2)
-            # except Exception as e:
-            #     log.info("the Count Exceeded Then Visible UI Elements")
-            #     break
+            except Exception as e:
+                log.info("the Count Exceeded Then Visible UI Elements")
+                break
             
         pe.click_checkout_proceed()
         waiver_vima_action().waiver(driver)
