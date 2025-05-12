@@ -28,7 +28,6 @@ class APILOG:
         try:
             logs = self.driver.get_log('performance')
             for entry in logs:
-                BasePage(driver).dump_obj(entry)
                 log_entry = json.loads(entry['message'])
                 message = log_entry['message']
         

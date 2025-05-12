@@ -106,3 +106,13 @@ class BasePage:
         """
         pprint.pprint(data)
         sys.exit()
+
+    def get_url(self):
+        """
+        Retrieves the current URL of the active browser window.
+
+        Returns:
+            str: The current URL loaded in the browser.
+        """
+        url = self.driver.current_url
+        return url

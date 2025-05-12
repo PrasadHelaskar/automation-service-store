@@ -10,7 +10,7 @@ class addfamily(BasePage):
     """Service Store cilent profile"""
     __private__profile=(By.XPATH, "(//div[@class='profile-wrapper'])[1]")
     __private__profile_page=(By.XPATH, "(//a[@class='profile-dropdown-list-holder'])[1]")
-    __private_family_page=(By.XPATH, "(//a[@class='subtitle-2-medium profile-top-nav-links w-inline-block  d-flex '])[2]")
+    __private_family_page=(By.CSS_SELECTOR, "a[href='/profile/family']")
     __private_add_family_btn=(By.CSS_SELECTOR, "div[class='ss-auth-primary-button--bc4--fc1 padding-new horizontal']")
     __private__firstname=(By.NAME, "firstname")
     __private__lastname=(By.NAME, "lastname")

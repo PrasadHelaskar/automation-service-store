@@ -53,8 +53,6 @@ class loginAction():
             log.warning("Cookie not found! \n authenticated failed")
 
     def order_invoice_cookies(self,driver):
-        # cookie_order_number = driver.get_cookie('order_number')
-        # cookie_invoice_number = driver.get_cookie('invoice_number')
         cookies=json_read_array()
 
         for cookie_name in cookies:

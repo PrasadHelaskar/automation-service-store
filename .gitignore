@@ -31,3 +31,4 @@ chrome_driver_match.py
 google-chrome-stable_current_amd64.deb
 schedule.py
 time_convert.py
+pytest.ini
