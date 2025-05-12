@@ -14,6 +14,17 @@ log=Logger().get_logger()
 
 @pytest.fixture(autouse=True)
 def log_on_failure(request):
+    
+    """
+    Logs detailed information and captures a screenshot when a test fails.
+
+    Args:
+        request (Fixture): The pytest request object, providing context for the test.
+
+    This function is typically used as a pytest hook to capture logs and screenshots automatically
+    whenever a test case fails, aiding in debugging and test analysis.
+    """
+    
     sco=screenshot(driver)
     yield
     item = request.node
@@ -21,19 +32,49 @@ def log_on_failure(request):
     if item.rep_call.failed:
         sco.take_screenshot_fail(item.name)
 
+
 @pytest.hookimpl(hookwrapper=True, tryfirst=True)
 def pytest_runtest_makereport(item, call):    
+
+    """
+    Pytest hook to capture the result of each test execution and trigger log collection on failure.
+
+    Args:
+        item (TestCase): The test case item being executed.
+        call (CallInfo): Object representing the test execution outcome.
+
+    Returns:
+        TestReport: A report object containing the test result.
+
+    This function works in tandem with log_on_failure to ensure logs and screenshots are captured
+    only when a test fails.
+    """
+
     outcome = yield
     rep = outcome.get_result()
     setattr(item, "rep_" + rep.when, rep)
     return rep
 
+
 @pytest.fixture(scope="session")
 def driver():
+
+    """
+    Provides a Selenium WebDriver instance configured for test execution.
+
+    Returns:
+        WebDriver: A configured Selenium WebDriver instance.
+
+    The driver is pre-configured to handle common settings for test automation and should be properly
+    closed after use to prevent resource leaks.
+    """
+
     global driver
     load_dotenv()
     is_lambda_test = os.getenv("IS_REMOTE", "0") == "1"
     api_interception_enable=os.getenv("NETWORK_INTERCEPTION", "0") == "1"
+    mitmporxy_enable=os.getenv("ENABLE_MITMPROXY","0")== "1"
+    cert_path = "/home/prasad/.mitmproxy/mitmproxy-ca-cert.pem"
     
     if is_lambda_test:
         # LambdaTest setup
@@ -76,6 +117,12 @@ def driver():
         chrome_options.add_argument("--disable-dev-shm-usage")
         # chrome_options.add_argument("--auto-open-devtools-for-tabs")
         # chrome_options.add_argument("--headless")
+
+        if (mitmporxy_enable):
+            log.info("MITMPROXY Enabled")
+            chrome_options.add_argument("--proxy-server=http://localhost:8080")
+            chrome_options.add_argument("--ignore-certificate-errors")
+            chrome_options.add_argument(f"--cert-authority={cert_path}") 
         
         driver = webdriver.Chrome(options=chrome_options)
         driver.execute_cdp_cmd('Network.enable', {})
@@ -105,11 +152,33 @@ def driver():
 
 @pytest.fixture(autouse=True, scope="function")
 def track_url_and_screenshot(driver, request):
+
+    """
+    Tracks the current URL and captures a screenshot of the page for test analysis.
+
+    Args:
+        driver (WebDriver): The Selenium WebDriver instance controlling the browser.
+        request (Fixture): The pytest request object for context.
+
+    This function is useful for debugging by providing a visual and contextual representation of the
+    browser state when a test is executed.
+    """
+
     if os.getenv("RUNNING_SCREENSHOTS", "0") == "1":    
         sco = screenshot(driver)  # Initialize the screenshot object
         previous_url = driver.current_url  # Track the initial URL
 
         def monitor_url_change():
+    
+            """
+            Monitors URL changes in the active Selenium WebDriver session.
+
+            Returns:
+                bool: True if the URL changes successfully, False otherwise.
+
+            This function is useful for tests that depend on URL transitions, allowing for robust verification
+            of page navigations.
+            """
             nonlocal previous_url
             while True:
                 current_url = driver.current_url
