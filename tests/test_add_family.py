@@ -35,7 +35,7 @@ class Test_add_family():
             af.type_last_name(ln)
             
             af.type_dob()
-            time.sleep(5)
+            time.sleep(2)
             sr= select_random()
             month_dropdown = driver.find_element(By.NAME, "months")
             select_month = Select(month_dropdown)
@@ -49,7 +49,7 @@ class Test_add_family():
             af.type_dob()
 
             af.click_submit_button()
-            time.sleep(5)
+            time.sleep(7)
             script = """return document.getElementsByClassName("product-listing bc3 bw1 width-100").length;"""
             i= driver.execute_script(script)
             log.info("element count: %s",str(i))

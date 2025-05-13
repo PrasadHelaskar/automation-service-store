@@ -30,6 +30,19 @@ class BasePage:
         op = self.wait.until(EC.visibility_of_element_located(locator))
         return op
 
+    def find_elements_wait(self, locator):
+        """
+        Waits until all elements located by the given locator are visible and returns them.
+
+        Parameters:
+            locator (tuple): Locator strategy and locator value, e.g., (By.CLASS_NAME, "element_class").
+
+        Returns:
+            list[WebElement]: A list of visible web elements found.
+        """
+        elements = self.wait.until(EC.visibility_of_all_elements_located(locator))
+        return elements
+
     def click(self, locator):
         """
         Waits for visibility of the element and clicks on it.
