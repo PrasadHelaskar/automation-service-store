@@ -15,46 +15,55 @@ class Test_all_pages():
         
         ap.click_home()
         time.sleep(5)
+        driver.refresh()
         url=ap.get_url()
         log.info("Current URL: %s",url)
 
         ap.click_sunscription()
         time.sleep(5)
+        driver.refresh()
         url=ap.get_url()
         log.info("Current URL: %s",url)
 
         ap.click_classpacks()
         time.sleep(5)
+        driver.refresh()
         url=ap.get_url()
         log.info("Current URL: %s",url)
 
         ap.click_program()
         time.sleep(5)
+        driver.refresh()
         url=ap.get_url()
         log.info("Current URL: %s",url)
 
         ap.click_schedules()
         time.sleep(5)
+        driver.refresh()
         url=ap.get_url()
         log.info("Current URL: %s",url)
 
         ap.click_products()
         time.sleep(5)
+        driver.refresh()
         url=ap.get_url()
         log.info("Current URL: %s",url)
 
         ap.click_party()
         time.sleep(5)
+        driver.refresh()
         url=ap.get_url()
         log.info("Current URL: %s",url)
 
         ap.click_camps()
         time.sleep(5)
+        driver.refresh()
         url=ap.get_url()
         log.info("Current URL: %s",url)
 
         ap.click_giftcards()
         time.sleep(5)
+        driver.refresh()
         url=ap.get_url()
         log.info("Current URL: %s",url)
         

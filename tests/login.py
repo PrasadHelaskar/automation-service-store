@@ -18,6 +18,7 @@ class loginAction():
         # apilog=APILOG(driver)
         driver.get(os.getenv("URL"))
         login_page = LoginPage(driver)
+        sttime=time.time()
         time.sleep(3)
         if login_page.login_button_visible():
             login_page.click_login()
@@ -28,6 +29,8 @@ class loginAction():
             if login_page.is_visible_model():
                 login_page.click_skip()
             self.Store_cookie(driver)
+        entime=time.time()
+        log.info("Required time: %s",(entime-sttime))
 
     def Store_cookie(self, driver):
         global static_cookie

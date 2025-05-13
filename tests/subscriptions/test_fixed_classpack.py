@@ -15,9 +15,9 @@ from tests.add_on import add_on_test
 log = Logger().get_logger()
 lg=loginAction()
 
-class Test_classpack():
+class Test_fixed_classpack():
     @pytest.mark.order(12)
-    def test_classpackbooking_action(self, driver):     
+    def test_fixed_classpack(self, driver): 
         
         lg.login_action(driver)
         cpb=classpackbooking(driver)
