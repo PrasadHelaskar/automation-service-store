@@ -46,6 +46,8 @@ class classpackbooking(BasePage):
     __private_credit_booking_class=(By.NAME, "checkbox-13")
     __private_confirm_booking=(By.XPATH, "//button[@class='cta-sec-button pri bc4 fc1 w-button']")
 
+    __private_service_name=(By.XPATH,"//div[@class='ss-card-title--fc2--lc2 font-18']")
+
     def click_classpack_page(self):
         self.click(self.__private_classpack_page)
 
@@ -121,3 +123,12 @@ class classpackbooking(BasePage):
 
     def click_buy_again(self):
         self.click(self.__repeat_booking_model_confirm)
+
+    def get_service_name(self):
+        try:
+            elements=self.find_elements_wait(self.__private_service_name)
+        
+            return elements
+
+        except Exception as e:
+            log.error("Exception occurred: %s",e)
