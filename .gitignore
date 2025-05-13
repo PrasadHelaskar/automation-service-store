@@ -22,6 +22,7 @@ refrerance_json_obj
 pytest-ini
 export_py.sh
 __pycache__/test.cpython-310-pytest-8.3.3.pyc
+tests/subscriptions/__pycache__
 base/key_listener.py
 Automation_scripts/data.json
 tests/line_count.py

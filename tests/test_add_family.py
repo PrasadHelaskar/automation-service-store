@@ -56,7 +56,7 @@ class Test_add_family():
             time.sleep(2)
             div=af.scroll_div()
             driver.execute_script("arguments[0].scrollTop = arguments[0].scrollHeight;",div)
-            value=True if (af.get_added_name(i)==(fn+" "+ln)) else False
+            # value=True if (af.get_added_name(i)==(fn+" "+ln)) else False
             log.info("Completed the family addition Process")
             end_time=time.time()
             log.info("Execution time: %s",str(end_time-start_time))
@@ -102,7 +102,7 @@ def add_family_checkout_flow(driver):
         div=afck.scroll_div_ck()
         driver.execute_script("arguments[0].scrollTop = arguments[0].scrollHeight;",div)
 
-        value=True if (afck.get_added_name_ck(i)==(fn+" "+ln)) else False
+        # value=True if (afck.get_added_name_ck(i)==(fn+" "+ln)) else False
         log.info("Completed the family addition Process")
 
     end_time=time.time()

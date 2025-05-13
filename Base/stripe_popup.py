@@ -27,7 +27,7 @@ class stripe_action():
                     value=False
         
                 locator=(driver.find_element(By.XPATH,"//*[@id=\"email-form-2\"]/div[1]/div/iframe")) if value else (driver.find_element(By.XPATH,"//iframe[@title='Secure card payment input frame']"))
-                log.info("Is locator valid: %s",str(locator is not None))
+                # log.info("Is locator valid: %s",str(locator is not None))
                 
                 if locator:
                     driver.switch_to.frame(locator)

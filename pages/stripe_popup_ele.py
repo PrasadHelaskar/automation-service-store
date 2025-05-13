@@ -32,7 +32,7 @@ class stripepopup(BasePage):
             value=self.is_visible(self.__private__heading_new)
             # log.warning("Using new value: "+str(value))
             locator=(self.__private__heading_new) if value else (self.__private__heading)
-            log.warning("locator is none? : %s",str(locator is None))
+            # log.warning("locator is none? : %s",str(locator is None))
             op=self.is_visible(locator)
             return op
         
