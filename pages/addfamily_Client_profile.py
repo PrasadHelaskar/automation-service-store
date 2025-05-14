@@ -14,7 +14,7 @@ class addfamily(BasePage):
     __private_add_family_btn=(By.CSS_SELECTOR, "div[class='ss-auth-primary-button--bc4--fc1 padding-new horizontal']")
     __private__firstname=(By.NAME, "firstname")
     __private__lastname=(By.NAME, "lastname")
-    __private__DOB_old=(By.CSS_SELECTOR, "input[class='alt-changes cs-modal-form-field w-input custom-field-input']")
+    __private__DOB_old=(By.ID, "dateTextWrapper")
     __private__DOB=(By.CSS_SELECTOR, "input[class='display-flex ss-auth-input--bc3--fc2--oc2 font-size-16 w-input']")
     __private__submit_button=(By.CSS_SELECTOR, "input[class='ss-auth-primary-button--bc4--fc1 padding-new left-32 exp w-button']")
     

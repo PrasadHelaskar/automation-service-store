@@ -8,7 +8,7 @@ from pages.classpackbookings import classpackbooking
 # from base.discount import apply_discount
 from tests.login import loginAction
 from tests.add_on import add_on_test
-# from tests.test_add_family import add_family_checkout_flow
+from tests.test_add_family import add_family_checkout_flow
 
 
 log = Logger().get_logger()
@@ -42,7 +42,7 @@ class Test_program():
             pb.click_select_service(service_index)
             log.info("Service selected index: %s",str(service_index))
 
-            time.sleep(2)
+            time.sleep(5)
             script="""return document.getElementsByName("cp-radio-button").length;"""
             recived_count=driver.execute_script(script)
             index=select_random().random_number(recived_count)

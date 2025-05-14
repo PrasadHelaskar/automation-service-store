@@ -24,13 +24,9 @@ class Test_ongoing_classpack():
         # filter the classpacks
         # cpb.click_classpack_checkbox()
         # cpb.click_apply()
+        
         cpb.click_classpack_page()
-        time.sleep(2)
-        # filter the classpacks
-        # cpb.click_classpack_checkbox()
-        # cpb.click_apply()
-        cpb.click_classpack_page()
-        time.sleep(2)
+        time.sleep(5)
 
         script="""return document.getElementsByClassName('primary-button-card bc4 fc1').length;"""
         i=driver.execute_script(script)
