@@ -16,7 +16,7 @@ lg=loginAction()
 class Test_ongoing_classpack():
     @pytest.mark.order(3)
     def test_ongoing_classpack(self, driver):
-        driver.implicitly_wait(30)        
+        driver.implicitly_wait(30)
         lg.login_action(driver)
         cpb=classpackbooking(driver)
         print('classpack booking started')
@@ -49,6 +49,8 @@ class Test_ongoing_classpack():
             cpb.click_attendee_box(attendee)
             log.info("Attendee selected index: %s",str(attendee))
             cpb.click_attendee_proceed()
+        
+        repeat_booking(driver)
 
         time.sleep(2)
         # log.info("Addons page visible="+str(driver.title or "None"))
@@ -71,3 +73,11 @@ class Test_ongoing_classpack():
         lg.authenticate_cookie(driver)
         driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
         cpb.click_home()
+
+
+def repeat_booking(driver):
+    """Used to handle the Book again  model"""
+    rb=classpackbooking(driver)
+    if(rb.is_repeat_booking_visible()):
+        log.info("The Buy Again model visible?: %s",str(rb.is_repeat_booking_visible()))
+        rb.click_buy_again()

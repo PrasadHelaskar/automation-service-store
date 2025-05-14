@@ -9,9 +9,9 @@ from base.waiver_vima import *
 
 log = Logger().get_logger()
 
-class Testgift_booking():
+class Test_gift_card():
     @pytest.mark.order(8)
-    def test_gift_crad(self, driver):
+    def test_gift_card(self, driver):
         driver.implicitly_wait(30)
         gc=giftcardbooking(driver)
         loginAction().login_action(driver)
@@ -23,7 +23,10 @@ class Testgift_booking():
         count=driver.execute_script(script)
         log.info("Recived element count: "+str(count))
         gc.click_select_amount_type(count)
-        gc.enter_amount("100")
+        
+        if(gc.enter_amount_visible()):
+            gc.enter_amount("50")
+        
         gc.enter_name(select_random().first_name())
         gc.enter_email("prasad+giftcard@getomnify.com")
         gc.click_checkout_proceed()
