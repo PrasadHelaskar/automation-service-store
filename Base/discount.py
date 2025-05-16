@@ -44,7 +44,7 @@ class apply_discount():
         try:
             discount=discount_elemnts(driver)
             coupon_codes=self.fetch_discount()
-            # log.info("is coupon_codes empty? >"+str(coupon_codes is not None))
+            log.info("is coupon_codes empty? >"+str(coupon_codes is not None))
             # json_data=[
             #     {
             #         "Name":coupon_code[0], 

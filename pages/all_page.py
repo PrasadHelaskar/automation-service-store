@@ -1,3 +1,4 @@
+import json
 from tests.base_page import BasePage
 from selenium.webdriver.common.by import By
 from base.logfile import Logger
@@ -14,6 +15,7 @@ class page_check(BasePage):
     __private__party=(By.CSS_SELECTOR,'a[href="/party"]')
     __private__camps=(By.CSS_SELECTOR,'a[href="/camps"]')
     __private__giftcards=(By.CSS_SELECTOR,'a[href="/gift-cards"]')
+
 
     def click_home(self):
         self.click(self.__private__home)
@@ -32,7 +34,7 @@ class page_check(BasePage):
 
     def click_products(self):
         self.click(self.__private__products)
-
+ 
     def click_party(self):
         self.click(self.__private__party)
 
@@ -41,3 +43,11 @@ class page_check(BasePage):
     
     def click_giftcards(self):
         self.click(self.__private__giftcards)
+
+    def get_attribute(self):
+        
+        element=self.driver.find_element(By.XPATH,"//script[@id='seo-nap-details']")
+        json_data=element.get_attribute("innerHTML")
+        json_text=json.loads(json_data)
+
+        log.info(f"json_text: \n{json_text}\n")
