@@ -20,7 +20,7 @@ class page_check(BasePage):
     def click_home(self):
         self.click(self.__private__home)
 
-    def click_sunscription(self):
+    def click_subscription(self):
         self.click(self.__private__subscriptions)
 
     def click_program(self):
@@ -48,6 +48,5 @@ class page_check(BasePage):
         
         element=self.driver.find_element(By.XPATH,"//script[@id='seo-nap-details']")
         json_data=element.get_attribute("innerHTML")
-        json_text=json.loads(json_data)
-
-        log.info(f"json_text: \n{json_text}\n")
+        formated_json=json.dumps(json.loads(json_data), indent=2)
+        log.info("NAP schema json text: \n%s\n",formated_json)

@@ -36,17 +36,22 @@ class classpackbooking(BasePage):
     __private_waiver_checkbox=(By.ID, "waiverCheckbox")
     __private_Review_Proceed_cardno=(By.ID,"submitFinalReviewFormBtn")
     __private_Review_Proceed_card=(By.ID,"submitFinalReviewFormBtn")
-    __private_COUPONCODE= (By.NAME,"couponcode")
-    __private_COUPONCODE_APPLY= (By.ID, "couponApply")
     __private_HOME_BUTTON= (By.LINK_TEXT, "BOOK ANOTHER")
-
+    
+    # repeat booking model locatores
     __repeat_booking_model=(By.CSS_SELECTOR, "div[class='modal-wrapper']")
     __repeat_booking_model_confirm=(By.ID,"re-buy-classpack")
 
+    # Credit booking page locatores
     __private_credit_booking_class=(By.NAME, "checkbox-13")
     __private_confirm_booking=(By.XPATH, "//button[@class='cta-sec-button pri bc4 fc1 w-button']")
 
     __private_service_name=(By.XPATH,"//div[@class='ss-card-title--fc2--lc2 font-18']")
+
+    # age restriction model locators
+    __private_restriction_model=(By.XPATH, "(//div[@class='conflict-modal booking-restriction-modal'])[3]")
+    __private_age_restriction_message=(By.ID, "warning-title")
+    __private_redirect_home=(By.CSS_SELECTOR,"a[href='/']")
 
     def click_classpack_page(self):
         self.click(self.__private_classpack_page)
@@ -83,12 +88,6 @@ class classpackbooking(BasePage):
         
         locator=(self.__private_Review_Proceed_cardno) if value else (self.__private_Review_Proceed_card)
         self.click(locator)
-    
-    def enter_couponcode(self,code):
-        self.send_keys(self.__private_COUPONCODE,code)
-
-    def click_applycoupon(self):
-        self.click(self.__private_COUPONCODE_APPLY)
 
     def click_home(self):
         self.click(self.__private_HOME_BUTTON)
@@ -132,3 +131,14 @@ class classpackbooking(BasePage):
 
         except Exception as e:
             log.error("Exception occurred: %s",e)
+
+    def is_restriction_model_visible(self):
+        value=self.is_visible(self.__private_restriction_model)
+        return value
+    
+    def get_restriction_head_message(self):
+        text=self.get_text(self.__private_age_restriction_message)
+        return text
+    
+    def click_go_back(self):
+        self.click(self.__private_redirect_home)

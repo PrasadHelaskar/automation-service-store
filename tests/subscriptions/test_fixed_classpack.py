@@ -37,7 +37,8 @@ class Test_fixed_classpack():
             for index,service in enumerate(elements,start=1)
             if 'fixed' in service.text.lower()
         }
-        
+        if not sorted_dict:
+            raise ValueError("No service found containing 'fixed' in text.")
         # log.info("sorted_dict: %s",sorted_dict)
         selected = random.choice(list(sorted_dict.values()))
         selected_id = selected['id']
