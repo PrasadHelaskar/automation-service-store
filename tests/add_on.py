@@ -22,11 +22,11 @@ class add_on_test():
                     time.sleep(2)
                     if(aop.visible_box()):
                         aop.click_close()
-                except:
-                    log.info("General item not found")
+                except Exception as e:
+                    log.info("General item not found > %s",e)
                     break
         except Exception as e:
-            log.error("No General item found to add")
+            log.error("No General item found to add> %s",e)
 
         try:
             script_classpack="return document.querySelectorAll('#select_classpack').length;"
@@ -34,15 +34,15 @@ class add_on_test():
             log.info("Classpack count: %s",str(recived_classpack))
             selected_count=select_random().random_number(recived_classpack)
             log.info("classpack selected_count: %s",str(selected_count))
-            for i in range(1, selected_count):
+            for i in range(1, selected_count+1):
                 try:
                     aop.click_classpack(i)
                     time.sleep(2)
-                except:
-                    log.info("Classpack not found")
+                except Exception as e:
+                    log.info("Classpack not found > %s",e)
                     break
         except Exception as e:
-            log.error("No classpack found to add")
+            log.error("No classpack found to add > %s",e)
 
 
         aop.click_addon_proceed()
