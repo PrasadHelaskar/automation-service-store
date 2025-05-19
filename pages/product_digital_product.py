@@ -6,7 +6,7 @@ from selenium.webdriver.common.by import By
 log=Logger().get_logger()
 
 class digitalproductelement(BasePage):
-    __private_product_page=(By.CSS_SELECTOR, "a[href='/products?b=t']")
+    __private_product_page=(By.CSS_SELECTOR, "a[href='/products']")
     __private_digital_product_checkbox=(By.XPATH, "(//input[@type='checkbox'])[2]")
     __private_Submit_button=(By.CSS_SELECTOR, "div[class='button--ph1--bc4--bw1--oc4--fc1 max-width w-button apply']")
     service_number=1

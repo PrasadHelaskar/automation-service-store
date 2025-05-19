@@ -17,8 +17,7 @@ lg=loginAction()
 
 class Test_fixed_classpack():
     @pytest.mark.order(12)
-    def test_fixed_classpack(self, driver): 
-        
+    def test_fixed_classpack(self, driver):
         lg.login_action(driver)
         cpb=classpackbooking(driver)
         print('classpack booking started')
@@ -38,14 +37,15 @@ class Test_fixed_classpack():
             for index,service in enumerate(elements,start=1)
             if 'fixed' in service.text.lower()
         }
-        
+        if not sorted_dict:
+            raise ValueError("No service found containing 'fixed' in text.")
         # log.info("sorted_dict: %s",sorted_dict)
         selected = random.choice(list(sorted_dict.values()))
-        selected_id = selected['id']    
+        selected_id = selected['id']
 
         log.info("Selected service with id: %d, name: %s", selected_id, selected['name'])
 
-        cpb.click_select_service(selected_id)        
+        cpb.click_select_service(selected_id)      
         cpb.click_proceed()
 
         if (cpb.visible_attendee_moddel()):
@@ -56,6 +56,8 @@ class Test_fixed_classpack():
             cpb.click_attendee_box(attendee)
             log.info("Attendee selected index: %s",str(attendee))
             cpb.click_attendee_proceed()
+
+        repeat_booking(driver)
 
         time.sleep(2)
         # log.info("Addons page visible="+str(driver.title or "None"))
@@ -78,3 +80,10 @@ class Test_fixed_classpack():
         driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
         cpb.click_home()
         lg.authenticate_cookie(driver)
+
+def repeat_booking(driver):
+    """Used to handle the BOok again  model"""
+    rb=classpackbooking(driver)
+    if(rb.is_repeat_booking_visible()):
+        log.info("The Buy Again model visible?: %s",str(rb.is_repeat_booking_visible()))
+        rb.click_buy_again()

@@ -5,7 +5,7 @@ from selenium.webdriver.common.by import By
 log = Logger().get_logger()
 
 class giftcardbooking(BasePage):
-    __private__gift_card_page=(By.CSS_SELECTOR, "a[href='/gift-cards?b=t']")
+    __private__gift_card_page=(By.CSS_SELECTOR, "a[href='/gift-cards']")
     giftcadt_number=2
     __private__select_gift_card=(By.XPATH , f"(//a[@class='primary-button-card bc4 fc1'])[{giftcadt_number}]")
     def amount_select(self, count):
@@ -32,6 +32,10 @@ class giftcardbooking(BasePage):
     def click_select_amount_type(self, count):
         self.click(self.amount_select(count))
 
+    def enter_amount_visible(self):
+        visiable=self.is_visible(self.__private_enter_amount)
+        return visiable
+    
     def enter_amount(self, amount):
         self.send_keys(self.__private_enter_amount, amount)
 

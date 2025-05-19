@@ -1,5 +1,7 @@
 import time
 import pytest
+import random 
+import sys
 from base.logfile import Logger
 from base.random_select import select_random
 from base.stripe_popup import stripe_action
@@ -13,14 +15,18 @@ from tests.test_add_family import add_family_checkout_flow
 
 log = Logger().get_logger()
 lg=loginAction()
+iteration_count=0
 
-class Test_program():        
+class Test_program_age():        
     @pytest.mark.order(4)
-    def test_program(self, driver):
+    def test_program_age(self, driver):
         """The Method for the program booking"""
         driver.implicitly_wait(30)
         pb=classpackbooking(driver)
-        lg.login_action(driver)
+        
+        if (iteration_count==0):
+            lg.login_action(driver)
+        
         log.info('Program booking Started')
         # filter the programs
         # pb.click_classpack_checkbox()
@@ -28,18 +34,25 @@ class Test_program():
         time.sleep(5)
         pb.click_program_page()
         time.sleep(2) 
+        
+        elements=pb.get_service_name()
+        # log.info("sorted_dict: %s",elements)
+        
+        sorted_dict={
+            index:{'id':index,'name':service.text,'element':service}
+            for index,service in enumerate(elements,start=1)
+            if 'age' in service.text.lower()
+        }
+        
+        # log.info("sorted_dict: %s",sorted_dict)
+        if not sorted_dict:
+            raise ValueError("No service found containing 'age' in text.")
+        selected = random.choice(list(sorted_dict.values()))
+        selected_id = selected['id']
 
-        script="""return document.getElementsByClassName('primary-button-card bc4 fc1').length;"""
-        i=driver.execute_script(script)
-        log.info("Total services available: %s",str(i))
+        log.info("Selected service with id: %d, name: %s", selected_id, selected['name'])
 
-        if i in range(1,20):
-            service_index=select_random().random_number(i)
-        else:
-            service_index=select_random().random_number(10)
-
-        pb.click_select_service(service_index)
-        log.info("Service selected index: %s",str(service_index))
+        pb.click_select_service(selected_id)      
 
         time.sleep(5)
         script="""return document.getElementsByName("cp-radio-button").length;"""
@@ -51,17 +64,18 @@ class Test_program():
         pb.click_proceed()
         time.sleep(3)
         
-        # add_family_checkout_flow(driver)
-
+        add_family_checkout_flow(driver)
+ 
         script="""return document.getElementsByClassName("w-checkbox-input waitlist-checkbox").length;"""
         recived_count=driver.execute_script(script)
         attendee=select_random().random_number(recived_count)
         pb.click_attendee_box(attendee)
         log.info("Attendee selected index: %s",str(attendee))
         pb.click_attendee_proceed()
-        repeat_booking(driver)
         time.sleep(2)
-    
+        
+        age_model(driver)
+
         # log.info("Addons page visible="+str(driver.title or "None"))
         
         if(driver.title=="Addons"):
@@ -78,9 +92,22 @@ class Test_program():
         lg.authenticate_cookie(driver)
         log.info("Tha Program booking Execution Completed \n")
 
-def repeat_booking(driver):
-    """Used to handle the BOok again  model"""
-    rb=classpackbooking(driver)
-    if(rb.is_repeat_booking_visible()):
-        log.info("The Buy Again model visible?: %s",str(rb.is_repeat_booking_visible()))
-        rb.click_buy_again()
+def age_model(driver):
+    """Used to dael with the ade restrictions model"""
+    global iteration_count
+    arm=classpackbooking(driver)
+
+    time.sleep(5)
+    if(arm.is_restriction_model_visible()):
+        text=arm.get_restriction_head_message()
+        log.info("Warning text: %s\n",text)
+        time.sleep(2)
+        arm.click_go_back()
+        
+        if (iteration_count<2):
+            iteration_count +=1
+            Test_program_age().test_program_age(driver)
+        else:
+            raise Exception("The maximum number of tries has been reached.")
+    else:
+        log.info("The attendee's age falls within the restricted range.")
