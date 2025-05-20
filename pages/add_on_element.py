@@ -18,11 +18,11 @@ class add_on(BasePage):
     __private_Addon_proceed=(By.ID,"proceed-btn")
 
     def click_general_item(self, i):
-        log.info("Clicking on general item")
+        # log.info("Clicking on general item")
         self.click(self.geneal_item_selection(i))
 
     def click_classpack(self, i):
-        log.info("Clicking on classpack")
+        # log.info("Clicking on classpack")
         self.click(self.classpack_selection(i))
 
     def click_addon_proceed(self):

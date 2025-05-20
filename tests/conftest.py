@@ -9,6 +9,7 @@ from threading import Thread
 from base.Screenshot import screenshot
 from base.logfile import Logger
 from base.api_interception import *
+from base.mitmproxy_logs import SaveXHRRequests
 
 log=Logger().get_logger()
 
@@ -123,6 +124,7 @@ def driver():
             chrome_options.add_argument("--proxy-server=http://localhost:8080")
             chrome_options.add_argument("--ignore-certificate-errors")
             chrome_options.add_argument(f"--cert-authority={cert_path}") 
+            SaveXHRRequests()
         
         driver = webdriver.Chrome(options=chrome_options)
         driver.execute_cdp_cmd('Network.enable', {})
