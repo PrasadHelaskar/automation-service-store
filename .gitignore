@@ -33,3 +33,4 @@ google-chrome-stable_current_amd64.deb
 schedule.py
 time_convert.py
 pytest.ini
+mitmproxy_logs
