@@ -9,6 +9,7 @@ class classpackbooking(BasePage):
     __private_select_proceed= (By.ID, "classpack_proceed_btn")
     __private_classpack_page=(By.CSS_SELECTOR,"a[href='/classpacks']")
     __private_program_page=(By.CSS_SELECTOR,"a[href='/programs']")
+    __private_select_service_name=(By.XPATH,"//div[@class='ss-card-title--fc2--lc2 font-18']")
 
     def select_service(self,i):
         xpath=f"(//a[@class='primary-button-card bc4 fc1'])[{i}]"
@@ -45,8 +46,6 @@ class classpackbooking(BasePage):
     # Credit booking page locatores
     __private_credit_booking_class=(By.NAME, "checkbox-13")
     __private_confirm_booking=(By.XPATH, "//button[@class='cta-sec-button pri bc4 fc1 w-button']")
-
-    __private_service_name=(By.XPATH,"//div[@class='ss-card-title--fc2--lc2 font-18']")
 
     # age restriction model locators
     __private_restriction_model=(By.XPATH, "(//div[@class='conflict-modal booking-restriction-modal'])[3]")
@@ -125,7 +124,7 @@ class classpackbooking(BasePage):
 
     def get_service_name(self):
         try:
-            elements=self.find_elements_wait(self.__private_service_name)
+            elements=self.find_elements_wait(self.__private_select_service_name)
         
             return elements
 

@@ -70,12 +70,12 @@ class Test_fixed_classpack():
         cpb.click_review_proceed()
         loginAction().order_invoice_cookies(driver)
         stripe_action().stripe_data_enty(driver)
-        time.sleep(10)
+        time.sleep(7)
 
         if(driver.title=="Classpacks"):
             cpb.click_credit_booking_class()
             cpb.click_confirm_booking()
-            time.sleep(10)
+            time.sleep(5)
 
         driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
         cpb.click_home()
