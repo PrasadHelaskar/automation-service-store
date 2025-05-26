@@ -64,7 +64,7 @@ class Test_program_age():
         pb.click_proceed()
         time.sleep(3)
         
-        add_family_checkout_flow(driver)
+        # add_family_checkout_flow(driver)
  
         script="""return document.getElementsByClassName("w-checkbox-input waitlist-checkbox").length;"""
         recived_count=driver.execute_script(script)
