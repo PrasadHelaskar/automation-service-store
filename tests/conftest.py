@@ -9,7 +9,7 @@ from threading import Thread
 from base.Screenshot import screenshot
 from base.logfile import Logger
 from base.api_interception import *
-from base.mitmproxy_logs import SaveXHRRequests
+from base.mitmproxy_addons import SaveXHRRequests
 
 log=Logger().get_logger()
 

@@ -42,7 +42,7 @@ class Test_trialBooking():
 
         if (tb.visible_warning_model()):
             time.sleep(2)
-            for i in range(3):    
+            for i in range(3):   
                 tb.click_cross_button()
                 tb.click_proceed()
                 log.info("Warning model closed for attendee index: %s",str(attendee))

@@ -5,7 +5,7 @@ from selenium.webdriver.common.by import By
 log = Logger().get_logger()
 
 class giftcardbooking(BasePage):
-    __private__gift_card_page=(By.CSS_SELECTOR, "a[href='/gift-cards']")
+    __private__gift_card_page=(By.CSS_SELECTOR, "a[href^='/gift-cards']")
     giftcadt_number=2
     __private__select_gift_card=(By.XPATH , f"(//a[@class='primary-button-card bc4 fc1'])[{giftcadt_number}]")
     def amount_select(self, count):

@@ -3,6 +3,9 @@ from base.json_operations import json_read
 from tests.base_page import BasePage
 from selenium.webdriver.common.by import By
 import os
+from base.logfile import Logger
+
+log=Logger().get_logger()
 
 class signup(BasePage):
     load_dotenv()
@@ -52,6 +55,7 @@ class signup(BasePage):
             return False
     
     def click_dobfield(self):
+        log.info("clicked dob")
         self.click(self.__private_DOB_FIELD)
     
     def click_date(self):
