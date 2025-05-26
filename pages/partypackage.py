@@ -5,7 +5,7 @@ from selenium.webdriver.common.by import By
 log = Logger().get_logger()
 
 class partypackage(BasePage):
-    __private_party_page=(By.CSS_SELECTOR, "a[href='/party']")
+    __private_party_page=(By.CSS_SELECTOR, "a[href^='/party']")
     
     def select_party(self,index):
         xpath=f"(//div[@class='ss-card--bc3--br2-bw1--oc5 '])[{index}]"

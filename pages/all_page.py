@@ -6,15 +6,15 @@ from base.logfile import Logger
 log=Logger().get_logger()
 
 class page_check(BasePage):
-    __private__home=(By.CSS_SELECTOR,'a[href="/home"]')
-    __private__subscriptions=(By.CSS_SELECTOR,'a[href="/subscriptions"]')
-    __private__programs=(By.CSS_SELECTOR,'a[href="/programs"]')
-    __private__classpacks=(By.CSS_SELECTOR,'a[href="/classpacks"]')
+    __private__home=(By.CSS_SELECTOR,'a[href^="/home"]')
+    __private__subscriptions=(By.CSS_SELECTOR,'a[href^="/subscriptions"]')
+    __private__programs=(By.CSS_SELECTOR,'a[href^="/programs"]')
+    __private__classpacks=(By.CSS_SELECTOR,'a[href^="/classpacks"]')
     __private__schedules=(By.CSS_SELECTOR,'a[href^="/schedules/"]')
-    __private__products=(By.CSS_SELECTOR,'a[href="/products"]')
-    __private__party=(By.CSS_SELECTOR,'a[href="/party"]')
-    __private__camps=(By.CSS_SELECTOR,'a[href="/camps"]')
-    __private__giftcards=(By.CSS_SELECTOR,'a[href="/gift-cards"]')
+    __private__products=(By.CSS_SELECTOR,'a[href^="/products"]')
+    __private__party=(By.CSS_SELECTOR,'a[href^="/party"]')
+    __private__camps=(By.CSS_SELECTOR,'a[href^="/camps"]')
+    __private__giftcards=(By.CSS_SELECTOR,'a[href^="/gift-cards"]')
 
 
     def click_home(self):

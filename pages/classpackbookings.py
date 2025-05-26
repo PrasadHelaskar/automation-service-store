@@ -7,8 +7,8 @@ class classpackbooking(BasePage):
     __private_FILTER_CHECKBOX= (By.XPATH,"(//input[@type='checkbox'])[2]")
     __private_APPLY_BUTTON=(By.CSS_SELECTOR,"div[class='button--ph1--bc4--bw1--oc4--fc1 max-width w-button apply']") 
     __private_select_proceed= (By.ID, "classpack_proceed_btn")
-    __private_classpack_page=(By.CSS_SELECTOR,"a[href='/classpacks']")
-    __private_program_page=(By.CSS_SELECTOR,"a[href='/programs']")
+    __private_classpack_page=(By.CSS_SELECTOR,"a[href^='/classpacks']")
+    __private_program_page=(By.CSS_SELECTOR,"a[href^='/programs']")
     __private_select_service_name=(By.XPATH,"//div[@class='ss-card-title--fc2--lc2 font-18']")
 
     def select_service(self,i):

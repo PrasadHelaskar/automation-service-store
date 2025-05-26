@@ -7,7 +7,7 @@ log = Logger().get_logger()
 
 class productElements(BasePage):
     '''the ELemnets for the General item booking flow'''
-    __private_product_page=(By.CSS_SELECTOR, "a[href='/products']")
+    __private_product_page=(By.CSS_SELECTOR, "a[href^='/products']")
     __private_general_item_checkbox=(By.XPATH, "(//input[@type='checkbox'])[1]")
     __private_Submit_button=(By.CSS_SELECTOR, "div[class='button--ph1--bc4--bw1--oc4--fc1 max-width w-button apply']")
     def service_number(self,i):

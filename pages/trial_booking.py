@@ -5,7 +5,7 @@ from base.logfile import Logger
 log=Logger().get_logger()
 
 class trialkbooking(BasePage):
-    __private_program_page=(By.CSS_SELECTOR,"a[href='/programs']")
+    __private_program_page=(By.CSS_SELECTOR,"a[href^='/programs']")
     def select_service(self,i):
         xpath=f"(//a[@class='secondary-button-card bw1 oc4 fc4'])[{i}]"
         __private_select_service=(By.XPATH,xpath)
