@@ -35,7 +35,7 @@ class Omnify_connect():
                 cursor = connection.cursor()
                 cursor.execute(query)
                 record = cursor.fetchall()
-                log.info("Record fetched successfully ")
+                # log.info("Record fetched successfully")
                 return record
         
         except Exception as e:
@@ -44,7 +44,7 @@ class Omnify_connect():
         finally:
             if connection and (connection.is_connected()):
                 connection.close()
-                log.info("MySQL connection is closed")
+                # log.info("MySQL connection is closed")
 
     def update_data(self,query):
         try:
@@ -53,7 +53,7 @@ class Omnify_connect():
                 cursor = connection.cursor()
                 cursor.execute(query)
                 connection.commit()
-                log.info("Record Updated successfully ")
+                log.info("Record Updated successfully")
 
         except Exception as e:
             log.error("Error while connecting to MySQL"+str(e))
@@ -71,7 +71,7 @@ class Omnify_connect():
                 cursor = connection.cursor()
                 cursor.execute(query)
                 connection.commit()
-                log.info("Record Deleted successfully ")
+                log.info("Record Deleted successfully")
 
         except Exception as e:
             log.error("Error while connecting to MySQL"+str(e))
