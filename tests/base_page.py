@@ -42,6 +42,19 @@ class BasePage:
         """
         elements = self.wait.until(EC.visibility_of_all_elements_located(locator))
         return elements
+    
+    def find_elements_wait_presence(self, locator):
+        """
+        Waits until all elements located by the given locator are visible and returns them.
+
+        Parameters:
+            locator (tuple): Locator strategy and locator value, e.g., (By.CLASS_NAME, "element_class").
+
+        Returns:
+            list[WebElement]: A list of visible web elements found.
+        """
+        elements = self.wait.until(EC.presence_of_all_elements_located(locator))
+        return elements
 
     def click(self, locator):
         """
@@ -107,7 +120,37 @@ class BasePage:
         element.clear()
 
 
-    def DD(self, data):
+    def get_url(self):
+        """
+        Retrieves the current URL of the active browser window.
+
+        Returns:
+            str: The current URL loaded in the browser.
+        """
+        url = self.driver.current_url
+        return url
+    
+    def get_attribute(self,locator,attribute):
+        """
+        Retrieve the value of a specified attribute from a web element.
+
+        Args:
+            locator (tuple): A tuple containing the Selenium By strategy and the locator string.
+                            Example: (By.XPATH, "//input[@name='email']")
+            attribute (str): The name of the attribute whose value needs to be fetched.
+                            Example: "type", "name", "value"
+
+        Returns:
+            str: The value of the specified attribute, or None if the attribute is not present.
+
+        Raises:
+            TimeoutException: If the element is not found within the wait time defined in `find_element_wait`.
+        """
+        element = self.find_element_wait(locator)
+        value=element.get_attribute(attribute)
+        return value
+        
+    def DD(self, data=None):
         """
         Debug utility method to pretty-print the provided data and exit the program.
 
@@ -119,13 +162,3 @@ class BasePage:
         """
         pprint.pprint(data)
         sys.exit()
-
-    def get_url(self):
-        """
-        Retrieves the current URL of the active browser window.
-
-        Returns:
-            str: The current URL loaded in the browser.
-        """
-        url = self.driver.current_url
-        return url
