@@ -55,7 +55,7 @@ class signup(BasePage):
             return False
     
     def click_dobfield(self):
-        log.info("clicked dob")
+        # log.info("clicked dob")
         self.click(self.__private_DOB_FIELD)
     
     def click_date(self):

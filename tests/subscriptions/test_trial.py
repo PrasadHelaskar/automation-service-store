@@ -14,7 +14,7 @@ log = Logger().get_logger()
 class Test_trialBooking():
     @pytest.mark.order(10)
     def test_trial(self,driver):
-        driver.implicitly_wait(30)        
+        driver.implicitly_wait(30)
         loginAction().login_action(driver)
         tb=trialkbooking(driver)
         print('Trial booking started')
