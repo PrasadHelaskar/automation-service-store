@@ -41,7 +41,7 @@ class Test_Camp_booking():
 
         cmp.click_attendee_proceed()
 
-        schedule_count=int(json_read("SCHEDULE_COUNT"))
+        schedule_count=int(json_read("CAMP_SCHEDULE_COUNT"))
         log.info("schedule count: %s",str(schedule_count))
         for j in range(schedule_count, (schedule_count+5)):
             cmp.click_schedule(j)
@@ -60,5 +60,5 @@ class Test_Camp_booking():
         driver.execute_script("window.debugger = function() {};")
         cmp.click_home()
         loginAction().authenticate_cookie(driver)
-        json_update("SCHEDULE_COUNT",str(schedule_count+5))
+        json_update("CAMP_SCHEDULE_COUNT",str(schedule_count+5))
         log.info("Camp booking Compleated")        

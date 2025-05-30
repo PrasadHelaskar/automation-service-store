@@ -10,7 +10,7 @@ log = Logger().get_logger()
 
 class stripe_action():
     def stripe_data_enty(self, driver):
-        time.sleep(10)
+        time.sleep(5)
         sp=stripepopup(driver)
         # sp.get_payable()
         # log.warning("check_heading return :"+str(sp.check_heading()))
@@ -18,7 +18,7 @@ class stripe_action():
         
         if sp.check_heading():
             # try:
-                time.sleep(10)
+                time.sleep(5)
         
                 try:    
                     value=driver.find_element(By.XPATH,"//*[@id=\"email-form-2\"]/div[1]/div/iframe").is_displayed()

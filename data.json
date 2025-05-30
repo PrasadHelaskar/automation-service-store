@@ -1,6 +1,7 @@
 {
     "DATE": 20,
-    "SCHEDULE_COUNT": "11",
+    "CAMP_SCHEDULE_COUNT": "11",
+    "CLASS_SCHEDULE_COUNT": "1",
     "BUSINESS_ID": "25877",
     "COOKIES": [
         "order_number",

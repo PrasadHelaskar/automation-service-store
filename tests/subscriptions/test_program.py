@@ -22,7 +22,7 @@ class Test_program():
         driver.implicitly_wait(30)
         pb=classpackbooking(driver)
         lg.login_action(driver)
-        for i in range(0,5):
+        for i in range(0,20):
             log.info('Program booking Started')
             # filter the programs
             # pb.click_classpack_checkbox()
@@ -35,12 +35,12 @@ class Test_program():
             i=driver.execute_script(script)
             log.info("Total services available: %s",str(i))
 
-            if i in range(1,10):
+            if i in range(1,20):
                 service_index=select_random().random_number(i)
             else:
                 service_index=select_random().random_number(10)
 
-            pb.click_select_service(service_index)
+            pb.click_select_service(1)
             log.info("Service selected index: %s",str(service_index))
 
             time.sleep(5)
@@ -48,7 +48,7 @@ class Test_program():
             recived_count=driver.execute_script(script)
             index=select_random().random_number(recived_count)
             log.info("Selected schedule index: %s",index)
-            pb.click_start_date(index)
+            pb.click_start_date(1)
 
             pb.click_proceed()
             time.sleep(3)
