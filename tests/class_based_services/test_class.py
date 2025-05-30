@@ -11,8 +11,8 @@ from tests.add_on import add_on_test
 
 log=Logger().get_logger()
 
-class class_booking_action():
-    def class_booking_action(self,driver):
+class Test_class_booking_action():
+    def test_class_booking_action(self,driver):
         """CLass Booking"""
         driver.implicitly_wait(30)
         loginAction().login_action(driver)
@@ -22,17 +22,18 @@ class class_booking_action():
         time.sleep(5)
 
         service_type=cb.get_checkbox_text()
+        log.info("service_type: %s",service_type)
 
-        if service_type.lower=="class":
+        if service_type.lower()=="classes":
             cb.click_checkbox()
             cb.click_filter_submit()
         
         else:
             raise Exception("Unable to locate the class in filters")
         
-        time.sleep(2)
+        time.sleep(5)
         
-        script="document.getElementsByClassName('primary-button-card bc4 fc1').length;"
+        script="return document.getElementsByClassName('primary-button-card bc4 fc1').length;"
         i= driver.execute_script(script)
         log.info("element count: %s",str(i))
         selected_service=select_random().random_number(i)
@@ -52,6 +53,7 @@ class class_booking_action():
         script="""return document.getElementsByClassName("w-checkbox-input waitlist-checkbox").length;"""
         recived_count=driver.execute_script(script)
         attendee=select_random().random_number(recived_count)
+        log.info("seleccted attendee index: %s",attendee)
 
         for i in range(1, (attendee+1)):
             cb.click_attendee_box(i)

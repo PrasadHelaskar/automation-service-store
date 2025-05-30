@@ -40,7 +40,7 @@ class Test_program():
             else:
                 service_index=select_random().random_number(10)
 
-            pb.click_select_service(1)
+            pb.click_select_service(service_index)
             log.info("Service selected index: %s",str(service_index))
 
             time.sleep(5)
@@ -48,7 +48,7 @@ class Test_program():
             recived_count=driver.execute_script(script)
             index=select_random().random_number(recived_count)
             log.info("Selected schedule index: %s",index)
-            pb.click_start_date(1)
+            pb.click_start_date(index)
 
             pb.click_proceed()
             time.sleep(3)

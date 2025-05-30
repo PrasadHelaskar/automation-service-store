@@ -6,10 +6,10 @@ log=Logger().get_logger()
 
 class class_booking(BasePage):
     __private__home_page=(By.CSS_SELECTOR, "a[href='/home']")
-    __private__service_type=(By.XPATH, "//label[@class='w-checkbox form_main_checkbox-wrap--pb0-5']//span[@class='form_main_field-label-fs8-5 w-form-label']")
+    __private__service_type=(By.XPATH, "(//label[@class='w-checkbox form_main_checkbox-wrap--pb0-5']//span[@class='form_main_field-label-fs8-5 w-form-label'])[1]")
     __private_checkbox=(By.XPATH,"//input[@class='w-checkbox-input w-checkbox-input--inputType-custom form_main_button--bw1-oc2 filter-checkbox']")
     __private_filter_submit=(By.CSS_SELECTOR,"div[class='button--ph1--bc4--bw1--oc4--fc1 max-width w-button apply']")
-    __private_attendee_proceed=(By.ID, "class-pack-warning-others")
+    __private_attendee_proceed=(By.XPATH, "(//div[@class='fc3 booking-footer-button-text-left attendee-form-done button-text-medium-regular'])[1]")
     __private_addonpage=(By.XPATH,"//div[@class='add-on-section bc4_a bw1t bottom-120']")
 
     def attendee_xpath(self,count):
@@ -18,7 +18,7 @@ class class_booking(BasePage):
         return __private_attendee_select
 
     def book_button(self,i):
-        xpath=f"(//a[@data-w-id='bd14a762-7e6e-a4d0-06b1-dd4b2b8fe0da'])({i})"
+        xpath=f"(//a[@data-w-id='bd14a762-7e6e-a4d0-06b1-dd4b2b8fe0da'])[{i}]"
         __private_book_button=(By.XPATH,xpath)
         return __private_book_button
     
