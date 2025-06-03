@@ -1,7 +1,7 @@
 import time
 from base.logfile import Logger
 from base.stripe_popup import stripe_action
-from base.json_operations import json_read
+from base.json_operations import (json_read,json_update)
 from base.random_select import select_random
 from base.waiver_vima import waiver_vima_action
 from pages.class_booking import class_booking
@@ -39,6 +39,8 @@ class Test_class_booking_action():
         selected_service=select_random().random_number(i)
         cb.click_book_button(selected_service)
 
+        log.info("Service name: %s",cb.get_service_name())
+        
         schedule_count=int(json_read("CLASS_SCHEDULE_COUNT"))
         log.info("schedule count: %s",str(schedule_count))
         for j in range(schedule_count, (schedule_count+5)):
@@ -53,7 +55,7 @@ class Test_class_booking_action():
         script="""return document.getElementsByClassName("w-checkbox-input waitlist-checkbox").length;"""
         recived_count=driver.execute_script(script)
         attendee=select_random().random_number(recived_count)
-        log.info("seleccted attendee index: %s",attendee)
+        log.info("seleccted attendee count: %s",attendee)
 
         for i in range(1, (attendee+1)):
             cb.click_attendee_box(i)
@@ -69,6 +71,8 @@ class Test_class_booking_action():
 
         cb.click_review_proceed()
         stripe_action().stripe_data_enty(driver)
+        time.sleep(7)
         cb.click_back_to_home()
         loginAction().authenticate_cookie(driver)
+        json_update("CLASS_SCHEDULE_COUNT",str(schedule_count+5))
         
