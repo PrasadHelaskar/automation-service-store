@@ -33,6 +33,7 @@ class SaveXHRRequests:
                 "method": flow.request.method,
                 "status_code": flow.response.status_code,
                 "request_headers": dict(flow.request.headers),
+                "request_payload": flow.request.get_text(), 
                 "response_headers": dict(flow.response.headers),
                 "response_body": flow.response.get_text()
             }
@@ -40,7 +41,7 @@ class SaveXHRRequests:
             # Append to file (or create if not exists)
             with open(log_file_path, "a", encoding="utf-8") as f:
                 f.write(json.dumps(log_entry, indent=2))
-                f.write("\n" + "-" * 20 + "\n")
+                f.write("\n" + "- -" * 20 + "\n")
 
 addons = [
     SaveXHRRequests()

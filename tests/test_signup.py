@@ -42,7 +42,7 @@ class Test_sign_up():
             select_year.select_by_visible_text(str(year))
             sg.click_date()
             sg.click_dobfield()
-            
+        sg.click_vima_consent()
         sg.click_submit()
         time.sleep(5)
         loginAction().Store_cookie(driver)

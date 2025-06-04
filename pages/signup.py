@@ -22,6 +22,7 @@ class signup(BasePage):
     __private_DOB_FIELD=(By.CSS_SELECTOR, "input[class='display-flex ss-auth-input--bc3--fc2--oc2 font-size-16 w-input']")  #2times
     date=int(json_read("DATE"))
     __private_DATE=(By.XPATH, f"(//button[@class='rdp-button_reset rdp-button rdp-day'])[{date}]")
+    __private_VIMA_consent=(By.CSS_SELECTOR,"input[class='w-checkbox-input tos-checkbox']")
 
     def click_signup(self):
         self.click(self.__private_SIGNUP_BUTTON)
@@ -55,8 +56,11 @@ class signup(BasePage):
             return False
     
     def click_dobfield(self):
-        log.info("clicked dob")
+        # log.info("clicked dob")
         self.click(self.__private_DOB_FIELD)
     
     def click_date(self):
         self.click(self.__private_DATE) 
+
+    def click_vima_consent(self):
+        self.click(self.__private_VIMA_consent)

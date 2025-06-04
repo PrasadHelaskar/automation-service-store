@@ -60,9 +60,9 @@ class partypackage(BasePage):
     def visible_empty_state(self):
         try:
             op=self.is_visible(self.__private_Empty_state)
-            log.info("checkout page check:"+str(op))   
+            log.info("Is Schedule not available today: %s",str(op))   
             return op
-        except:
+        except Exception as e:
             return False
 
     def text_empty_state(self):

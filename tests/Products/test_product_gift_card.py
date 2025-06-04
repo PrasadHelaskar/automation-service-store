@@ -21,12 +21,12 @@ class Test_gift_card():
         time.sleep(10)
         script = """return document.getElementsByClassName('schedule-top-bar-date-selector--bc3--bw1--fc2 slot pading-18 semi-bold ').length;"""
         count=driver.execute_script(script)
-        log.info("Recived element count: "+str(count))
+        log.info("Recived element count: %s",str(count))
         gc.click_select_amount_type(count)
-        
+
         if(gc.enter_amount_visible()):
             gc.enter_amount("50")
-        
+
         gc.enter_name(select_random().first_name())
         gc.enter_email("prasad+giftcard@getomnify.com")
         gc.click_checkout_proceed()
