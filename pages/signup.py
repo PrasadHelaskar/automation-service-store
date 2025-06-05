@@ -14,6 +14,7 @@ class signup(BasePage):
     __private_CONTINUE_BUTTON=(By.CSS_SELECTOR, "button[class='ss-auth-primary-button--bc4--fc1 w-button']")
     __private_FIRST_FIELD=(By.NAME, "firstname")
     __private_LAST_FIELD=(By.NAME, "lastname")
+    __private_phone_number=(By.ID,"phone")
     __private_SUBMIT=(By.CSS_SELECTOR, "input[value='Create Account']")
     __private_PASSWORD=(By.ID, "password")
     __private_CONFIRM_PASSWORD=(By.ID, "confirm_password")
@@ -39,6 +40,9 @@ class signup(BasePage):
     def enter_lastname(self, lastname):
         self.send_keys(self.__private_LAST_FIELD , lastname)
         
+    def enter_phone_number(self, phone):
+        self.send_keys(self.__private_phone_number, phone)
+    
     def click_submit(self):
         self.click(self.__private_SUBMIT)
     

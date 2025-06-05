@@ -12,7 +12,7 @@ class stripepopup(BasePage):
     __private__expiry_date_field=(By.NAME,"exp-date")
     __private__cvv_field=(By.NAME,"cvc")
     __private__zip_field=(By.NAME,"postal")
-    __private__Confirm_button=(By.CSS_SELECTOR,"button[class='discount-button fc1 bc4 align-right _50 w-button']")
+    __private__Confirm_button=(By.CSS_SELECTOR,"button[class='discount-button fc1 bc4 align-right w-button']")
     __private__Confirm_button_new=(By.CSS_SELECTOR,"button[id='submitFinalReviewFormBtn']")
     __private__payable=(By.ID, "totalPriceHolder")
     __private__payable_new=(By.XPATH, "")
