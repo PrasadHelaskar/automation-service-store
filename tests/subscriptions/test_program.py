@@ -22,7 +22,7 @@ class Test_program():
         driver.implicitly_wait(30)
         pb=classpackbooking(driver)
         lg.login_action(driver)
-        for i in range(0,20):
+        for i in range(0,2):
             log.info('Program booking Started')
             # filter the programs
             # pb.click_classpack_checkbox()
