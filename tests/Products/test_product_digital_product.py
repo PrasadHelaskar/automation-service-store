@@ -12,7 +12,7 @@ log = Logger().get_logger()
 class Testproduct_booking():
     @pytest.mark.order(9)
     def test_digital_product(self,driver):
-        driver.implicitly_wait(30)
+        # driver.implicitly_wait(30)
         pd=digitalproductelement(driver)
         loginAction().login_action(driver)
         pd.click_product_page()

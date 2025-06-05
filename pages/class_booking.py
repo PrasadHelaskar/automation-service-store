@@ -11,6 +11,7 @@ class class_booking(BasePage):
     __private_filter_submit=(By.CSS_SELECTOR,"div[class='button--ph1--bc4--bw1--oc4--fc1 max-width w-button apply']")
     __private_attendee_proceed=(By.XPATH, "(//div[@class='fc3 booking-footer-button-text-left attendee-form-done button-text-medium-regular'])[1]")
     __private_addonpage=(By.XPATH,"//div[@class='add-on-section bc4_a bw1t bottom-120']")
+    __private_credit_booking=(By.ID,"select-credit-label")
 
     def attendee_xpath(self,count):
         xpath=f"(//input[@name='attendees-id-list'])[{count}]"
@@ -78,3 +79,7 @@ class class_booking(BasePage):
             return op
         except:
             return False
+        
+    def is_credit_booking(self):
+        text=self.get_text(self.__private_credit_booking)
+        return text

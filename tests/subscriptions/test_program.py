@@ -19,7 +19,7 @@ class Test_program():
     @pytest.mark.order(4)
     def test_program(self, driver):
         """The Method for the program booking"""
-        driver.implicitly_wait(30)
+        # driver.implicitly_wait(30)
         pb=classpackbooking(driver)
         lg.login_action(driver)
         for i in range(0,2):

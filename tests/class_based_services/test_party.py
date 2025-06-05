@@ -14,7 +14,7 @@ log = Logger().get_logger()
 class Test_party_bookings():
     @pytest.mark.order(5)
     def test_party(self, driver):
-        driver.implicitly_wait(30)
+        # driver.implicitly_wait(30)
         pb=partypackage(driver)
         lg=loginAction()
         lg.login_action(driver)

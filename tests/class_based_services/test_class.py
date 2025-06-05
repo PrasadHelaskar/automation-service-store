@@ -14,7 +14,7 @@ log=Logger().get_logger()
 class Test_class_booking_action():
     def test_class_booking_action(self,driver):
         """CLass Booking"""
-        driver.implicitly_wait(30)
+        # driver.implicitly_wait(30)
         loginAction().login_action(driver)
         cb=class_booking(driver)
         
@@ -69,6 +69,10 @@ class Test_class_booking_action():
 
         time.sleep(5)
 
+        text=cb.is_credit_booking()
+        if text=="Select Credits":
+            raise Exception("Triggering credit booking causes the system to exit the normal booking flow.")
+        
         cb.click_review_proceed()
         stripe_action().stripe_data_enty(driver)
         time.sleep(7)

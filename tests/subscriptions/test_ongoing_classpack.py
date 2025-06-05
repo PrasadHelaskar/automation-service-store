@@ -16,7 +16,7 @@ lg=loginAction()
 class Test_ongoing_classpack():
     @pytest.mark.order(3)
     def test_ongoing_classpack(self, driver):
-        driver.implicitly_wait(30)
+        # driver.implicitly_wait(30)
         lg.login_action(driver)
         cpb=classpackbooking(driver)
         print('classpack booking started')
