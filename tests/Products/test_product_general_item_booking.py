@@ -12,7 +12,7 @@ log = Logger().get_logger()
 class Testproduct_booking():
     @pytest.mark.order(7)
     def test_general_itam(self,driver):
-        driver.implicitly_wait(30)
+        # driver.implicitly_wait(30)
         pe=productElements(driver)
         loginAction().login_action(driver)
         pe.click_product_page()

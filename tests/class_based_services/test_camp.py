@@ -18,7 +18,7 @@ log=Logger().get_logger()
 class Test_Camp_booking():
     @pytest.mark.order(6)
     def test_camp_booking(self, driver):
-        driver.implicitly_wait(30)    
+        # driver.implicitly_wait(30)    
         cmp=camp_booking(driver)
         loginAction().login_action(driver)
         cmp.click_camp_page()

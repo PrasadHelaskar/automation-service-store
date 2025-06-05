@@ -21,7 +21,7 @@ class Test_program_age():
     @pytest.mark.order(4)
     def test_program_age(self, driver):
         """The Method for the program booking"""
-        driver.implicitly_wait(30)
+        # driver.implicitly_wait(30)
         pb=classpackbooking(driver)
         
         if (iteration_count==0):
