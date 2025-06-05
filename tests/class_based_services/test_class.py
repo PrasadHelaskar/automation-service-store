@@ -37,7 +37,7 @@ class Test_class_booking_action():
         i= driver.execute_script(script)
         log.info("element count: %s",str(i))
         selected_service=select_random().random_number(i)
-        cb.click_book_button(8)
+        cb.click_book_button(selected_service)
 
         log.info("Service name: %s",cb.get_service_name())
         
