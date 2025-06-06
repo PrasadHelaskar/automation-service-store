@@ -134,7 +134,7 @@ def driver():
         driver.maximize_window()
 
 
-        driver.implicitly_wait(30)
+        driver.implicitly_wait(15)
         
         if (api_interception_enable):
             log.info("API Interception Enabled")
