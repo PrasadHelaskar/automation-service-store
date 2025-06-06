@@ -77,9 +77,12 @@ class class_booking(BasePage):
             op=self.is_visible(self.__private_addonpage)
             log.info("add on page check:"+str(op))   
             return op
-        except:
+        except Exception as e:
             return False
         
-    def is_credit_booking(self):
-        text=self.get_text(self.__private_credit_booking)
-        return text
+    def is_credit_booking(self)->str:
+        try:
+            text=self.get_text(self.__private_credit_booking)
+            return text
+        except Exception as e:
+            return False
