@@ -4,6 +4,7 @@ from base.stripe_popup import stripe_action
 from base.json_operations import (json_read,json_update)
 from base.random_select import select_random
 from base.waiver_vima import waiver_vima_action
+from base.custom_field import custom_fields_actions
 from pages.class_booking import class_booking
 from tests.login import loginAction
 from tests.add_on import add_on_test
@@ -65,6 +66,7 @@ class Test_class_booking_action():
         if cb.visible_addon_page():
             add_on_test().add_on_page(driver)
 
+        custom_fields_actions().custom_field_action(driver)
         waiver_vima_action().waiver(driver)
 
         time.sleep(5)
