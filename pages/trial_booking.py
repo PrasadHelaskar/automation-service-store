@@ -12,7 +12,7 @@ class trialkbooking(BasePage):
         return __private_select_service
     
     __private_select_proceed= (By.ID, "classpack_proceed_btn")
-    __private_attendee_model=(By.CSS_SELECTOR, "div[class='booking-footer-button-text-right move-next fc3 button-text-medium-regular']")
+    __private_attendee_model=(By.CSS_SELECTOR, "div[class='cs-modal-hero-section select-family-members bc3']")
     
     def attendee_xpath(self,count):
         xpath=f"(//input[@name='attendees-id-list'])[{count}]"
@@ -42,6 +42,7 @@ class trialkbooking(BasePage):
     def visible_attendee_moddel(self):
         try:
             op=self.is_visible(self.__private_attendee_model)
+            log.info("is_visible: %s",op)
             return op
         except:
             return False
@@ -74,9 +75,9 @@ class trialkbooking(BasePage):
         except:
             value=False
         
-        log.info("click_review_proceed value: %s",value)
+        # log.info("click_review_proceed value: %s",value)
         locator=(self.__private_Review_Proceed_cardno) if value else (self.__private_Review_Proceed_card)
-        log.info("click_review_proceed locator: %s",locator)
+        # log.info("click_review_proceed locator: %s",locator)
         self.click(locator)
 
     def click_home(self):

@@ -38,7 +38,7 @@ class Test_non_renewing_classpack():
             if 'non-renewing' in service.text.lower()
         }
         if not sorted_dict:
-            raise ValueError("No service found containing 'fixed' in text.")
+            raise ValueError("No service found containing 'non-renewing' in text.")
         # log.info("sorted_dict: %s",sorted_dict)
         selected = random.choice(list(sorted_dict.values()))
         selected_id = selected['id']
