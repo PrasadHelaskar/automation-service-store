@@ -32,5 +32,11 @@ class custom_fields(BasePage):
         element=self.find_element_wait(self.__private__custom_field_div)
         return element
     
+    def date_selection(self,date,month,year):
+        xpath=f"//td[@data-date='{date}' and @data-month='{month}' and @data-year='{year}']"
+        __private_date=(By.XPATH,xpath)
+        self.click(__private_date)
+
+    
 
 

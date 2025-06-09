@@ -2,11 +2,13 @@ import time
 from base.logfile import Logger
 from base.random_select import select_random
 from pages.custom_fields_elements import custom_fields
+from pages.addfamily_Client_elements import addfamily
 
 log= Logger().get_logger()
 
 class custom_fields_actions():
     def custom_field_action(self,driver):
+        afck=addfamily(driver)
         cf=custom_fields(driver)
         sr=select_random()
         time.sleep(2)
@@ -28,7 +30,10 @@ class custom_fields_actions():
                 
                 if input_type=="text":
                     if is_date=="dateTextWrapper":
-                        pass
+                        date=sr.random_number(31)
+                        month=sr.random_number(12)
+                        year=sr.random_year()
+                        cf.date_selection(date,month,year)
                     else:
                         elem.clear()
                         elem.send_keys(name)
