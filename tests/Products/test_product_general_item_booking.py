@@ -4,7 +4,7 @@ from base.logfile import Logger
 from base.stripe_popup import stripe_action
 from base.random_select import select_random
 from base.waiver_vima import *
-from pages.product_General_item_booking import productElements
+from pages.product_General_item_booking_elements import productElements
 from tests.login import loginAction
 
 log = Logger().get_logger()

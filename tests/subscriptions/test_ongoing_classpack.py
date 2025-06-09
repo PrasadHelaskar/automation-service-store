@@ -4,7 +4,7 @@ from base.logfile import Logger
 from base.random_select import select_random
 from base.stripe_popup import stripe_action
 from base.waiver_vima import waiver_vima_action
-from pages.classpackbookings import classpackbooking
+from pages.classpack_bookings_elements import classpackbooking
 # from base.discount import apply_discount
 from tests.login import loginAction
 from tests.add_on import add_on_test

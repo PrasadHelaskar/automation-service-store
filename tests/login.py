@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 from base.logfile import Logger
 from base.revised_API_LOG import APILOG
 from base.json_operations import json_read_array
-from pages.login_page import LoginPage
+from pages.login_page_elements import LoginPage
 
 
 log = Logger().get_logger()

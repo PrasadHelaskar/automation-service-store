@@ -1,7 +1,7 @@
 import time
 import keyboard as key
 from base.logfile import Logger
-from pages.stripe_popup_ele import stripepopup
+from pages.stripe_popup_elements import stripepopup
 from selenium.webdriver.common.by import By
 from base.key_listener import *
 

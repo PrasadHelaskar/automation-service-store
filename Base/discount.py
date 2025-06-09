@@ -2,7 +2,7 @@ import time
 import json
 from base.logfile import Logger
 from pages.discount_element_elements import discount_elemnts
-from pages.toaster import * 
+from pages.toaster_elements import * 
 from base.db import Omnify_connect
 from base.random_select import select_random
 from base.json_operations import *

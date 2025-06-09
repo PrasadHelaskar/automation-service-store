@@ -2,7 +2,7 @@ import time
 import pytest
 from base.logfile import Logger
 from base.stripe_popup import stripe_action
-from pages.product_gift_card_booking import giftcardbooking
+from pages.product_gift_card_booking_elements import giftcardbooking
 from tests.login import loginAction
 from base.random_select import select_random
 from base.waiver_vima import *

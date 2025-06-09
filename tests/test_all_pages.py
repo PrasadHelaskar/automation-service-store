@@ -2,7 +2,7 @@ import time
 import pytest
 from base.logfile import Logger
 from tests.login import loginAction
-from pages.all_page import page_check
+from pages.all_page_elements import page_check
 
 log=Logger().get_logger()
 
