@@ -21,7 +21,7 @@ class custom_fields_actions():
 
                 input_type=elem.get_attribute("type")
                 is_date=elem.get_attribute("id")
-                log.info("Custom field: %s, Type: %s",index,input_type)
+                # log.info("Custom field: %s, Type: %s",index,input_type)
 
                 scroll_script="arguments[0].scrollIntoView({block: 'center'});"
                 driver.execute_script(scroll_script,elem)

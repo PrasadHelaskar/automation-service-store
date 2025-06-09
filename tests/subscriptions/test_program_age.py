@@ -6,6 +6,7 @@ from base.logfile import Logger
 from base.random_select import select_random
 from base.stripe_popup import stripe_action
 from base.waiver_vima import waiver_vima_action
+from base.custom_field import custom_fields_actions
 from pages.classpack_bookings_elements import classpackbooking
 # from base.discount import apply_discount
 from tests.login import loginAction
@@ -80,6 +81,8 @@ class Test_program_age():
         
         if(driver.title=="Addons"):
             add_on_test().add_on_page(driver)
+
+        custom_fields_actions().custom_field_action(driver)
 
         waiver_vima_action().waiver_vima(driver)
         # apply_discount().test_discount(driver)
