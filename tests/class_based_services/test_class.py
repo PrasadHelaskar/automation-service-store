@@ -5,7 +5,7 @@ from base.json_operations import (json_read,json_update)
 from base.random_select import select_random
 from base.waiver_vima import waiver_vima_action
 from base.custom_field import custom_fields_actions
-from pages.class_booking import class_booking
+from pages.class_booking_elements import class_booking
 from tests.login import loginAction
 from tests.add_on import add_on_test
 

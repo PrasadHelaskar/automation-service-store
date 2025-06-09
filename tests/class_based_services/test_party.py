@@ -6,7 +6,7 @@ from base.stripe_popup import stripe_action
 from base.random_select import select_random
 from base.discount import apply_discount
 from base.waiver_vima import *
-from pages.partypackage import partypackage
+from pages.party_package_elements import partypackage
 from tests.login import loginAction
 
 log = Logger().get_logger()
