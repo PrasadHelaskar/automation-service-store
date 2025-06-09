@@ -6,7 +6,7 @@ from base.stripe_popup import stripe_action
 from base.waiver_vima import waiver_vima_action
 # from base.discount import apply_discount
 from base.custom_field import custom_fields_actions
-from pages.classpackbookings import classpackbooking
+from pages.classpack_bookings_elements import classpackbooking
 from tests.login import loginAction
 from tests.add_on import add_on_test
 from tests.test_add_family import add_family_checkout_flow

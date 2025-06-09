@@ -1,7 +1,7 @@
 import time
 from base.logfile import Logger
 from base.random_select import select_random
-from pages.custom_fields import custom_fields
+from pages.custom_fields_elements import custom_fields
 
 log= Logger().get_logger()
 

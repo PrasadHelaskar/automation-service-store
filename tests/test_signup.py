@@ -7,7 +7,7 @@ from base.random_select import select_random
 from selenium.webdriver.support.ui import Select
 from selenium.webdriver.common.by import By
 from base.revised_API_LOG import APILOG
-from pages.signup import signup
+from pages.signup_elements import signup
 from tests.login import loginAction
 
 class Test_sign_up():

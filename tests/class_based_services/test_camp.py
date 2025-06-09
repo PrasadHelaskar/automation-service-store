@@ -9,7 +9,7 @@ from base.random_select import select_random
 from base.discount import apply_discount
 from base.json_operations import *
 from base.waiver_vima import *
-from pages.camp_booking import camp_booking
+from pages.camp_booking_elements import camp_booking
 from tests.login import loginAction
 from tests.add_on import add_on_test
 
