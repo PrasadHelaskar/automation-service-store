@@ -21,7 +21,7 @@ class Logger:
             console_handler = logging.StreamHandler()
             console_handler.setLevel(log_level)
 
-            formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+            formatter = logging.Formatter('%(asctime)s - %(classname)s - %(levelname)s - %(message)s')
             file_handler.setFormatter(formatter)
             console_handler.setFormatter(formatter)
 
@@ -29,8 +29,11 @@ class Logger:
             self.logger.addHandler(file_handler)
             self.logger.addHandler(console_handler)
 
-    def get_logger(self):
-        return self.logger
+    def get_logger(self, classname=None):
+        if classname:
+            return logging.LoggerAdapter(self.logger, {'classname': classname})
+        else:
+            return logging.LoggerAdapter(self.logger, {'classname': 'GLOBAL'})
 
 
 # Usage

@@ -30,10 +30,16 @@ class select_random():
         year=random.choice(years)
         return(year)
     
-    def random_number(self, i):
-        number=random.randint(1, i)
-        # log.info(number)
-        return number 
+    def random_number(self, i,j=None):
+    
+        if j is None:
+            number=random.randint(1, i)
+            # log.info(number)
+            return number
+        else:
+            number=random.randint(i, j)
+            # log.info(number)
+            return number
 
     def random_index_unique(self,i):
         number=random.sample(range(i),1)[0] 

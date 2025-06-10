@@ -30,10 +30,12 @@ class custom_fields_actions():
                 
                 if input_type=="text":
                     if is_date=="dateTextWrapper":
-                        date=sr.random_number(31)
-                        month=sr.random_number(12)
-                        year=sr.random_year()
-                        cf.date_selection(date,month,year)
+                        elem.click()
+                        date=sr.random_number(28)
+                        month=sr.random_number(11)
+                        year=sr.random_number(1990,2024)
+                        cf.date_selection(driver,date,month,year)
+                        cf.click_attendee_name()
                     else:
                         elem.clear()
                         elem.send_keys(name)
