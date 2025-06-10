@@ -2,7 +2,7 @@ import time
 from base.logfile import Logger
 from pages.waiver_and_vima_elements import waiver_vima
 
-log=Logger().get_logger()
+log=Logger().get_logger(__name__)
 
 class waiver_vima_action():
     def waiver_vima(self, driver):

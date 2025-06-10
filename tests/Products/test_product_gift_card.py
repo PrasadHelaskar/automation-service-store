@@ -7,7 +7,7 @@ from tests.login import loginAction
 from base.random_select import select_random
 from base.waiver_vima import *
 
-log = Logger().get_logger()
+log = Logger().get_logger(__name__)
 
 class Test_gift_card():
     @pytest.mark.order(8)

@@ -3,7 +3,7 @@ from tests.base_page import BasePage
 from selenium.webdriver.common.by import By
 
 
-log = Logger().get_logger()
+log = Logger().get_logger(__name__)
 
 class productElements(BasePage):
     '''the ELemnets for the General item booking flow'''

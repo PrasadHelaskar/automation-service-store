@@ -12,7 +12,7 @@ from tests.add_on import add_on_test
 from tests.test_add_family import add_family_checkout_flow
 
 
-log = Logger().get_logger()
+log = Logger().get_logger(__name__)
 lg=loginAction()
 
 class Test_program():        

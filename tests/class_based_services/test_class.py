@@ -10,7 +10,7 @@ from tests.login import loginAction
 from tests.add_on import add_on_test
 
 
-log=Logger().get_logger()
+log=Logger().get_logger(__name__)
 
 class Test_class_booking_action():
     def test_class_booking_action(self,driver):

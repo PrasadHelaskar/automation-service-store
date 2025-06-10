@@ -1,7 +1,7 @@
 from base.logfile import Logger
 import random
 
-log = Logger().get_logger()
+log = Logger().get_logger(__name__)
 class select_random():
     def first_name(self):
         first_names = ["John", "Alice", "Michael", "Emma", "David", "Sophia", "James", "Isabella", "Robert", "Mia", "William", "Olivia", "Thomas", "Ava", "Charles", "Emily", "Daniel", "Grace", "Matthew", "Lily", "Christopher", "Hannah", "Joseph", "Chloe", "Anthony", "Madison", "Andrew", "Ella", "Joshua", "Abigail", "Ethan", "Samantha", "Benjamin", "Natalie", "Alexander", "Zoe", "Jacob", "Elizabeth", "Ryan", "Victoria"]

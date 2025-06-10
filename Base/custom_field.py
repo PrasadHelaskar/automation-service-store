@@ -4,7 +4,7 @@ from base.random_select import select_random
 from pages.custom_fields_elements import custom_fields
 from pages.addfamily_Client_elements import addfamily
 
-log= Logger().get_logger()
+log= Logger().get_logger(__name__)
 
 class custom_fields_actions():
     def custom_field_action(self,driver):

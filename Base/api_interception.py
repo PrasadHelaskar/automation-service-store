@@ -1,7 +1,7 @@
 import json
 from base.logfile import *
 
-log=Logger().get_logger()
+log=Logger().get_logger(__name__)
 
 class intercepter():
     api_interception_enable=os.getenv("NETWORK_INTERCEPTION", "0") == "1"

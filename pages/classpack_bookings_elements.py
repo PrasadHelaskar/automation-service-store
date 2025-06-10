@@ -2,7 +2,7 @@ from tests.base_page import BasePage
 from selenium.webdriver.common.by import By
 from base.logfile import Logger
 
-log = Logger().get_logger()
+log = Logger().get_logger(__name__)
 class classpackbooking(BasePage):
     __private_FILTER_CHECKBOX= (By.XPATH,"(//input[@type='checkbox'])[2]")
     __private_APPLY_BUTTON=(By.CSS_SELECTOR,"div[class='button--ph1--bc4--bw1--oc4--fc1 max-width w-button apply']") 

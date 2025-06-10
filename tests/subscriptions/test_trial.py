@@ -10,7 +10,7 @@ from pages.trial_booking_elements import trialkbooking
 from tests.add_on import add_on_test
 from tests.login import loginAction
 
-log = Logger().get_logger()
+log = Logger().get_logger(__name__)
 
 class Test_trialBooking():
     @pytest.mark.order(10)

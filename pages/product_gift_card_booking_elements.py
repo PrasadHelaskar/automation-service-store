@@ -2,7 +2,7 @@ from base.logfile import Logger
 from tests.base_page import BasePage
 from selenium.webdriver.common.by import By
 
-log = Logger().get_logger()
+log = Logger().get_logger(__name__)
 
 class giftcardbooking(BasePage):
     __private__gift_card_page=(By.CSS_SELECTOR, "a[href^='/gift-cards']")

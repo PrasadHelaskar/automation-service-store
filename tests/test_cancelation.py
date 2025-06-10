@@ -6,7 +6,7 @@ from pages.cancelation_elements import cancelation_booking
 from tests.login import loginAction
 from base.random_select import select_random
 
-log=Logger().get_logger()
+log=Logger().get_logger(__name__)
 
 class Test_service_cancelation():
     @pytest.mark.order(11)

@@ -3,7 +3,7 @@ import mysql.connector
 from dotenv import load_dotenv
 from base.logfile import Logger
 
-log=Logger().get_logger()
+log=Logger().get_logger(__name__)
 
 load_dotenv()
 host=os.getenv("DB_HOST")

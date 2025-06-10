@@ -3,7 +3,7 @@ from base.logfile import Logger
 from pages.add_on_element import add_on
 from base.random_select import select_random
 
-log=Logger().get_logger()
+log=Logger().get_logger(__name__)
 
 class add_on_test():
     def add_on_page(self, driver):

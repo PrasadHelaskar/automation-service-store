@@ -5,7 +5,7 @@ from selenium.webdriver.support import expected_conditions as EC
 
 from base.logfile import Logger
 
-log = Logger().get_logger()
+log = Logger().get_logger(__name__)
 class BasePage:
     def __init__(self, driver):
         """

@@ -4,7 +4,7 @@ from selenium.webdriver.common.by import By
 from base.logfile import Logger
 from base.json_operations import json_read
 
-log=Logger().get_logger()
+log=Logger().get_logger(__name__)
 
 class addfamily(BasePage):
     """Service Store cilent profile"""

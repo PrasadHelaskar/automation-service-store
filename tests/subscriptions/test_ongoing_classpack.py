@@ -11,7 +11,7 @@ from tests.login import loginAction
 from tests.add_on import add_on_test
 
 
-log = Logger().get_logger()
+log = Logger().get_logger(__name__)
 lg=loginAction()
 
 class Test_ongoing_classpack():

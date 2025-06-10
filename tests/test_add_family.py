@@ -9,7 +9,7 @@ from pages.addfamily_Client_elements import addfamily
 from tests.login import loginAction
 
 
-log=Logger().get_logger()
+log=Logger().get_logger(__name__)
 
 class Test_add_family():
     """Adding family memebrs from the client profile"""

@@ -2,7 +2,7 @@ import json
 from base.db import *
 from base.logfile import *
 
-log=Logger().get_logger()
+log=Logger().get_logger(__name__)
 connect=Omnify_connect()
 
 class sql_quries():

@@ -2,10 +2,10 @@ from base.logfile import Logger
 from tests.base_page import BasePage
 from selenium.webdriver.common.by import By
 
-log = Logger().get_logger()
+log = Logger().get_logger(__name__)
 
 class partypackage(BasePage):
-    __private_party_page=(By.CSS_SELECTOR, "a[href^='/parties']")
+    __private_party_page=(By.CSS_SELECTOR, "a[href^='/party']")
     
     def select_party(self,index):
         xpath=f"(//div[@class='ss-card--bc3--br2-bw1--oc5 '])[{index}]"

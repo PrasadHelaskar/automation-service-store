@@ -11,7 +11,7 @@ from base.logfile import Logger
 from base.api_interception import *
 from base.mitmproxy_addons import SaveXHRRequests
 
-log=Logger().get_logger()
+log=Logger().get_logger(__name__)
 
 @pytest.fixture(autouse=True)
 def log_on_failure(request):

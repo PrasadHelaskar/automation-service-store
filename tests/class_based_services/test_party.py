@@ -9,7 +9,7 @@ from base.waiver_vima import *
 from pages.party_package_elements import partypackage
 from tests.login import loginAction
 
-log = Logger().get_logger()
+log = Logger().get_logger(__name__)
 
 class Test_party_bookings():
     @pytest.mark.order(5)

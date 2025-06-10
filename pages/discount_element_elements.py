@@ -2,7 +2,7 @@ from selenium.webdriver.common.by import By
 from tests.base_page import BasePage
 from base.logfile import Logger
 
-log=Logger().get_logger()
+log=Logger().get_logger(__name__)
 
 class discount_elemnts(BasePage):
     __private_COUPONCODE= (By.NAME,"couponcode")

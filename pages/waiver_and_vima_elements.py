@@ -4,7 +4,7 @@ from base.logfile import Logger
 from tests.base_page import BasePage
 from selenium.webdriver.common.by import By
 
-log=Logger().get_logger()
+log=Logger().get_logger(__name__)
 
 class waiver_vima(BasePage):
     __private_waiver_box=(By.XPATH, "(//div[@class='gs-modal bc3'])[1]")

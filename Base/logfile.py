@@ -38,7 +38,7 @@ class Logger:
 
 # Usage
 # if __name__ == "__main__":
-#     log = Logger().get_logger()
+#     log = Logger().get_logger(__name__)
 
 #     log.debug('This is a debug message')
 #     log.info('This is an info message')

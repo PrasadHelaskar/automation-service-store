@@ -6,7 +6,7 @@ from selenium.webdriver.common.by import By
 from base.key_listener import *
 
 
-log = Logger().get_logger()
+log = Logger().get_logger(__name__)
 
 class stripe_action():
     def stripe_data_enty(self, driver):

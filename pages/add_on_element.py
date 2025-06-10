@@ -2,7 +2,7 @@ from tests.base_page import BasePage
 from selenium.webdriver.common.by import By
 from base.logfile import Logger
 
-log=Logger().get_logger()
+log=Logger().get_logger(__name__)
 
 class add_on(BasePage):
     def geneal_item_selection(self, i):
