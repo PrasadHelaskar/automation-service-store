@@ -5,6 +5,7 @@ from base.random_select import select_random
 from base.stripe_popup import stripe_action
 from base.discount import apply_discount
 from base.waiver_vima import *
+from base.custom_field import custom_fields_actions
 from pages.trial_booking_elements import trialkbooking
 from tests.add_on import add_on_test
 from tests.login import loginAction
@@ -59,6 +60,8 @@ class Test_trialBooking():
 
         if(driver.title=="Addons"):
             add_on_test().add_on_page(driver)
+
+        custom_fields_actions().custom_field_action(driver)
 
         time.sleep(2)
         waiver_vima_action().waiver_vima(driver)

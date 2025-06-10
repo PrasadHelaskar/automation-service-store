@@ -2,11 +2,13 @@ import time
 from base.logfile import Logger
 from base.random_select import select_random
 from pages.custom_fields_elements import custom_fields
+from pages.addfamily_Client_elements import addfamily
 
 log= Logger().get_logger()
 
 class custom_fields_actions():
     def custom_field_action(self,driver):
+        afck=addfamily(driver)
         cf=custom_fields(driver)
         sr=select_random()
         time.sleep(2)
@@ -21,14 +23,19 @@ class custom_fields_actions():
 
                 input_type=elem.get_attribute("type")
                 is_date=elem.get_attribute("id")
-                log.info("Custom field: %s, Type: %s",index,input_type)
+                # log.info("Custom field: %s, Type: %s",index,input_type)
 
                 scroll_script="arguments[0].scrollIntoView({block: 'center'});"
                 driver.execute_script(scroll_script,elem)
                 
                 if input_type=="text":
                     if is_date=="dateTextWrapper":
-                        pass
+                        elem.click()
+                        date=sr.random_number(28)
+                        month=sr.random_number(11)
+                        year=sr.random_number(1990,2024)
+                        cf.date_selection(driver,date,month,year)
+                        cf.click_attendee_name()
                     else:
                         elem.clear()
                         elem.send_keys(name)

@@ -43,6 +43,19 @@ class BasePage:
         elements = self.wait.until(EC.visibility_of_all_elements_located(locator))
         return elements
     
+    def find_element_wait_presence(self, locator):
+        """
+        Waits until all elements located by the given locator are visible and returns them.
+
+        Parameters:
+            locator (tuple): Locator strategy and locator value, e.g., (By.CLASS_NAME, "element_class").
+
+        Returns:
+            list[WebElement]: A list of visible web elements found.
+        """
+        elements = self.wait.until(EC.presence_of_element_located(locator))
+        return elements
+
     def find_elements_wait_presence(self, locator):
         """
         Waits until all elements located by the given locator are visible and returns them.
@@ -55,7 +68,7 @@ class BasePage:
         """
         elements = self.wait.until(EC.presence_of_all_elements_located(locator))
         return elements
-
+    
     def click(self, locator):
         """
         Waits for visibility of the element and clicks on it.
@@ -64,6 +77,16 @@ class BasePage:
             locator (tuple): Locator strategy and locator value.
         """
         element = self.find_element_wait(locator)
+        element.click()
+    
+    def click_presence(self, locator):
+        """
+        Waits for presence of the element and clicks on it.
+
+        Parameters:
+            locator (tuple): Locator strategy and locator value.
+        """
+        element = self.find_element_wait_presence(locator)
         element.click()
 
     def send_keys(self, locator, text):

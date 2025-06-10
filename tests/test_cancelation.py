@@ -2,7 +2,7 @@ import os
 import time
 import pytest
 from base.logfile import Logger
-from pages.cancelation_element import cancelation_booking
+from pages.cancelation_elements import cancelation_booking
 from tests.login import loginAction
 from base.random_select import select_random
 

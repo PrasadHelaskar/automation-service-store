@@ -17,7 +17,7 @@ class waiver_vima(BasePage):
     __private_review_checkbox_new=(By.ID,"waiverCheckbox")
     
     def check_waiver_box(self):
-        log.info("In check_waiver_box method")
+        # log.info("In check_waiver_box method")
         try:
             try:        
                 value=self.is_visible(self.__private_waiver_box)
@@ -34,7 +34,7 @@ class waiver_vima(BasePage):
             return False
         
     def click_accept_waiver(self):
-        log.info("In click_accept_waiver method") 
+        # log.info("In click_accept_waiver method") 
         try:    
             value=self.is_visible(self.__private_accept_waiver)
         
@@ -64,7 +64,7 @@ class waiver_vima(BasePage):
         self.click(self.__private_vima_accept)
     
     def get_waiver_button_text(self):
-        log.info("In get_waiver_button_text method")
+        # log.info("In get_waiver_button_text method")
         
         try:    
             value=self.is_visible(self.__private_accept_waiver)
