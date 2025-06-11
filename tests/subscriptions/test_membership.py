@@ -9,7 +9,6 @@ from base.custom_field import custom_fields_actions
 from pages.membership_booking_elements import MembershipBooking
 from tests.login import loginAction
 from tests.add_on import add_on_test
-from tests.test_add_family import add_family_checkout_flow
 
 log=Logger().get_logger(__name__)
 
@@ -19,7 +18,6 @@ class Test_Membership_bookings_actions():
         mb=MembershipBooking(driver)
         sr=select_random()
         loginAction().login_action(driver)
-        log.info("Membership Booking Started")
         mb.click_subscriptions_page()
         time.sleep(2)
 

@@ -42,5 +42,9 @@ class select_random():
             return number
 
     def random_index_unique(self,i):
-        number=random.sample(range(i),1)[0] 
+        number=random.sample(range(i),1)[0]
         return number
+
+    def random_binary_output(self):
+        number=random.choice([1,0])
+        return number 
