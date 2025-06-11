@@ -9,7 +9,7 @@ from base.waiver_vima import *
 from pages.party_package_elements import partypackage
 from tests.login import loginAction
 
-log = Logger().get_logger()
+log = Logger().get_logger(__name__)
 
 class Test_party_bookings():
     @pytest.mark.order(5)
@@ -69,7 +69,7 @@ class Test_party_bookings():
                 if i==3:
                     pass
             pb.click_addon_proceed()
-            
+        
         waiver_vima_action().waiver(driver)
         # apply_discount().test_discount(driver)
         # lg.get_all_cookies(driver)

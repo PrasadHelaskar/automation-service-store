@@ -5,7 +5,7 @@ from selenium.webdriver.common.by import By
 import os
 from base.logfile import Logger
 
-log=Logger().get_logger()
+log=Logger().get_logger(__name__)
 
 class signup(BasePage):
     load_dotenv()

@@ -9,7 +9,7 @@ from base.json_operations import *
 
 
 
-log=Logger().get_logger()
+log=Logger().get_logger(__name__)
 
 class apply_discount():
     remove_count=1

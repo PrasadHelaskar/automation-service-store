@@ -8,7 +8,7 @@ from base.json_operations import json_read_array
 from pages.login_page_elements import LoginPage
 
 
-log = Logger().get_logger()
+log = Logger().get_logger(__name__)
 
 static_cookie= None
 class loginAction():

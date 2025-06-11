@@ -1,7 +1,6 @@
 import os
 import time
 import traceback
-from selenium import webdriver
 import pytest
 from base.logfile import Logger
 from base.stripe_popup import stripe_action
@@ -13,7 +12,7 @@ from pages.camp_booking_elements import camp_booking
 from tests.login import loginAction
 from tests.add_on import add_on_test
 
-log=Logger().get_logger()
+log=Logger().get_logger(__name__)
 
 class Test_Camp_booking():
     @pytest.mark.order(6)

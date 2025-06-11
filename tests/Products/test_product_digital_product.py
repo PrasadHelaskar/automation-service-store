@@ -7,7 +7,7 @@ from base.waiver_vima import *
 from pages.product_digital_product_elements import digitalproductelement
 from tests.login import loginAction
 
-log = Logger().get_logger()
+log = Logger().get_logger(__name__)
 
 class Testproduct_booking():
     @pytest.mark.order(9)

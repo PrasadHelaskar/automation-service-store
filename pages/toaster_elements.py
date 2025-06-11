@@ -2,7 +2,7 @@ from tests.base_page import BasePage
 from selenium.webdriver.common.by import By
 from base.logfile import Logger
 
-log=Logger().get_logger()
+log=Logger().get_logger(__name__)
 
 class toaster_message_elements(BasePage):
     __private_toaster=(By.CSS_SELECTOR, "div[class='Toastify__toast Toastify__toast-theme--light Toastify__toast--error Toastify__toast--close-on-click']")

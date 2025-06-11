@@ -4,7 +4,7 @@ from base.random_select import select_random
 from pages.custom_fields_elements import custom_fields
 from pages.addfamily_Client_elements import addfamily
 
-log= Logger().get_logger()
+log= Logger().get_logger(__name__)
 
 class custom_fields_actions():
     def custom_field_action(self,driver):
@@ -32,8 +32,8 @@ class custom_fields_actions():
                     if is_date=="dateTextWrapper":
                         elem.click()
                         date=sr.random_number(28)
-                        month=sr.random_number(11)
-                        year=sr.random_number(1990,2024)
+                        month=7
+                        year=sr.random_number(2020,20204)
                         cf.date_selection(driver,date,month,year)
                         cf.click_attendee_name()
                     else:

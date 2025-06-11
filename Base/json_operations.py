@@ -2,7 +2,7 @@ import json
 from base.logfile import Logger
 
 
-log=Logger().get_logger()
+log=Logger().get_logger(__name__)
 __private_json_path="data.json"
 
 def json_read(key):

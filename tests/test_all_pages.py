@@ -4,7 +4,7 @@ from base.logfile import Logger
 from tests.login import loginAction
 from pages.all_page_elements import page_check
 
-log=Logger().get_logger()
+log=Logger().get_logger(__name__)
 
 class Test_all_pages():
     """ 

@@ -2,7 +2,7 @@ from tests.base_page import BasePage
 from selenium.webdriver.common.by import By
 from base.logfile import Logger
 
-log=Logger().get_logger()
+log=Logger().get_logger(__name__)
 class LoginPage(BasePage):
     __private_LOGIN=(By.XPATH,"(//button[@class=' secondary-button--fc4--bw1 w-button'])[1]")
     __private_CONTINUE_BUTTON=(By.CSS_SELECTOR,"button[type='submit']")

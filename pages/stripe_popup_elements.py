@@ -3,7 +3,7 @@ from base.logfile import Logger
 from tests.base_page import BasePage
 from selenium.webdriver.common.by import By
 
-log = Logger().get_logger()
+log = Logger().get_logger(__name__)
 class stripepopup(BasePage):
     __private__heading_new=(By.XPATH,"//div[@class='credit-debit-header cc-heading']")
     __private__heading=(By.CSS_SELECTOR,"div[class='ss-modal-header--fc2 padding-16 gs bc3']")

@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 from base.logfile import Logger
 from tests.base_page import BasePage
 
-log = Logger().get_logger()
+log = Logger().get_logger(__name__)
 
 class APILOG:
     def __init__(self, driver):

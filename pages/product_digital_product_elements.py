@@ -3,7 +3,7 @@ from tests.base_page import BasePage
 from selenium.webdriver.common.by import By
 
 
-log=Logger().get_logger()
+log=Logger().get_logger(__name__)
 
 class digitalproductelement(BasePage):
     __private_product_page=(By.CSS_SELECTOR, "a[href^='/products']")
