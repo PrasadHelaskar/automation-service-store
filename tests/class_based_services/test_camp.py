@@ -1,7 +1,6 @@
 import os
 import time
 import traceback
-from selenium import webdriver
 import pytest
 from base.logfile import Logger
 from base.stripe_popup import stripe_action

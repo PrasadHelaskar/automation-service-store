@@ -32,8 +32,8 @@ class custom_fields_actions():
                     if is_date=="dateTextWrapper":
                         elem.click()
                         date=sr.random_number(28)
-                        month=sr.random_number(11)
-                        year=sr.random_number(1990,2024)
+                        month=7
+                        year=sr.random_number(2020,20204)
                         cf.date_selection(driver,date,month,year)
                         cf.click_attendee_name()
                     else:

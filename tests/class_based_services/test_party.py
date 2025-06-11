@@ -69,7 +69,7 @@ class Test_party_bookings():
                 if i==3:
                     pass
             pb.click_addon_proceed()
-            
+        
         waiver_vima_action().waiver(driver)
         # apply_discount().test_discount(driver)
         # lg.get_all_cookies(driver)
