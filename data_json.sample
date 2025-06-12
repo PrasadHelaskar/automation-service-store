@@ -1,0 +1,10 @@
+{
+    "DATE": 15,
+    "CLASS_SCHEDULE_COUNT": "1",
+    "CAMP_SCHEDULE_COUNT": "15",
+    "BUSINESS_ID": "25877",
+    "COOKIES": [
+        "order_number",
+        "invoice_number"
+    ]
+}

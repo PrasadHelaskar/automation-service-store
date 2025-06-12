@@ -57,7 +57,7 @@ class stripepopup(BasePage):
         try:
             value=self.is_visible(self.__private__Confirm_button_new)
             locator=(self.__private__Confirm_button_new) if value else (self.__private__Confirm_button)
-            log.warning("Using new value: %s",str(value))
+            # log.warning("Using new value: %s",str(value))
             self.click(locator)
         
         except Exception as e:

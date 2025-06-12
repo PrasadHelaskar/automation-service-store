@@ -25,7 +25,7 @@ class select_random():
         return(str(month))
     
     def random_year(self):
-        years = [2024, 2023, 2022, 2021, 2020, 2019, 2018, 2017, 2016, 2015, 2014, 2013, 2012, 2011, 2010, 2009, 2008, 2007, 2006, 2005]
+        years = [2024, 2023, 2022, 2021, 2020, 2019]
 
         year=random.choice(years)
         return(year)
@@ -42,5 +42,9 @@ class select_random():
             return number
 
     def random_index_unique(self,i):
-        number=random.sample(range(i),1)[0] 
+        number=random.sample(range(i),1)[0]
         return number
+
+    def random_binary_output(self):
+        number=random.choice([1,0])
+        return number 

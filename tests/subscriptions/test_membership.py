@@ -9,7 +9,6 @@ from base.custom_field import custom_fields_actions
 from pages.membership_booking_elements import MembershipBooking
 from tests.login import loginAction
 from tests.add_on import add_on_test
-from tests.test_add_family import add_family_checkout_flow
 
 log=Logger().get_logger(__name__)
 
@@ -19,7 +18,6 @@ class Test_Membership_bookings_actions():
         mb=MembershipBooking(driver)
         sr=select_random()
         loginAction().login_action(driver)
-        log.info("Membership Booking Started")
         mb.click_subscriptions_page()
         time.sleep(2)
 
@@ -37,8 +35,9 @@ class Test_Membership_bookings_actions():
 
         script="""return document.getElementsByClassName('ss-card-details top-align').length;"""
         service_count=driver.execute_script(script)
-        log.info("Total service count: %s",service_count)
+        # log.info("Total service count: %s",service_count)
         selected_service=sr.random_number(service_count)
+        log.info("Membership Name: %s",mb.get_service_name(selected_service))
         mb.click_service_selection(selected_service)
 
         mb.click_expand()
@@ -60,9 +59,13 @@ class Test_Membership_bookings_actions():
         recived_count=driver.execute_script(script)
         attendee=select_random().random_number(recived_count)
         
-        for i in range (attendee, (attendee+1)):
-            mb.click_attendee_box(i)
-            # log.info("Selected attendee index: %s",str(i))
+        for i in range (attendee, (attendee+3)):
+            try:
+                mb.click_attendee_box(i)
+                # log.info("Selected attendee index: %s",str(i))
+            except Exception:
+                log.info("The Count Exceeded the available limit: %s",i)
+
         mb.click_attendee_proceed()
         time.sleep(3)
         
