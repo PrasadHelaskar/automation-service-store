@@ -8,13 +8,20 @@ class MembershipBooking(BasePage):
     __private_subscriptions_page=(By.CSS_SELECTOR,"a[href^='/subscriptions']")
     __private__service_type=(By.XPATH, "(//label[@class='w-checkbox form_main_checkbox-wrap--pb0-5']//span[@class='form_main_field-label-fs8-5 w-form-label'])[2]")
     __private_checkbox=(By.XPATH,"(//input[@class='w-checkbox-input w-checkbox-input--inputType-custom form_main_button--bw1-oc2 filter-checkbox'])[2]")
-    __private__filter_apply=(By.CSS_SELECTOR,"div[class='button--ph1--bc4--bw1--oc4--fc1 max-width w-button apply']") 
+    __private_filter_apply=(By.CSS_SELECTOR,"div[class='button--ph1--bc4--bw1--oc4--fc1 max-width w-button apply']")
+    
     
     def service_selection(self,i):
         xpath=f"(//div[@class='ss-card-details top-align'])[{i}]"
         __private_service_selection=(By.XPATH,xpath)
 
         return __private_service_selection
+    
+    def service_selection_name(self,i):
+        xpath=f"(//div[@class='ss-card-title--fc2--lc2 font-18'])[{i}]"
+        __private_service_selection_name=(By.XPATH,xpath)
+
+        return __private_service_selection_name
     
     __private_expand_pop_up=(By.CSS_SELECTOR,"svg[class='cursor-pointer']")
     __private_book_button=(By.CSS_SELECTOR,"a[class='primary-button-card bc4 fc1']")
@@ -51,10 +58,14 @@ class MembershipBooking(BasePage):
         self.click(self.__private_checkbox)
 
     def click_apply_filter(self):
-        self.click(self.__private__filter_apply)
+        self.click(self.__private_filter_apply)
 
     def click_service_selection(self,i):
         self.click(self.service_selection(i))
+
+    def get_service_name(self,i):
+        name=self.get_text(self.service_selection_name(i))
+        return name
 
     def click_expand(self):
         self.click(self.__private_expand_pop_up)

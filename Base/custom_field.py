@@ -13,13 +13,13 @@ class custom_fields_actions():
         sr=select_random()
         time.sleep(2)
         if cf.is_visible_page():
-            name=cf.get_attendee_name()
-            log.info("Name: %s",name)
             recived_elements=cf.get_all_custom_fields()
+            name=cf.get_attendee_name()
 
             for index,elem in enumerate(recived_elements, start=1):
                 if not elem.is_displayed():
                     continue
+                
 
                 input_type=elem.get_attribute("type")
                 is_date=elem.get_attribute("id")
@@ -33,8 +33,8 @@ class custom_fields_actions():
                         elem.click()
                         date=sr.random_number(28)
                         month=7
-                        year=sr.random_number(2020,20204)
-                        cf.date_selection(driver,date,month,year)
+                        year=sr.random_year()
+                        cf.date_selection(driver,date,month,year,index)
                         cf.click_attendee_name()
                     else:
                         elem.clear()
