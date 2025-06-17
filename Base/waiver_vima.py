@@ -19,7 +19,9 @@ class waiver_vima_action():
 
             else:
                 waiver.click_waiver()
+        
         except Exception as e:
+            log.info("\n The checkbox might be hiddne")
             log.warning("Exception: "+str(e))
 
     def waiver(self, driver):
@@ -32,5 +34,7 @@ class waiver_vima_action():
                 waiver.click_accept_waiver()
             else:
                 waiver.click_waiver()
+        
         except Exception as e:
+            log.info("\n The checkbox might be hiddne")
             log.warning("Exception: "+str(e))

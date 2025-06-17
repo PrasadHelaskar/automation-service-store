@@ -74,7 +74,7 @@ class Test_Membership_bookings_actions():
 
         custom_fields_actions().custom_field_action(driver)
         
-        waiver_vima_action().waiver(driver)
+        waiver_vima_action().waiver_vima(driver)
         time.sleep(3)
 
         mb.click_review_proceed()

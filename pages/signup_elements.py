@@ -41,7 +41,8 @@ class signup(BasePage):
         self.send_keys(self.__private_LAST_FIELD , lastname)
         
     def enter_phone_number(self, phone):
-        self.send_keys(self.__private_phone_number, phone)
+        if self.is_visible(self.__private_phone_number):
+            self.send_keys(self.__private_phone_number, phone)
     
     def click_submit(self):
         self.click(self.__private_SUBMIT)
@@ -67,4 +68,5 @@ class signup(BasePage):
         self.click(self.__private_DATE) 
 
     def click_vima_consent(self):
-        self.click(self.__private_VIMA_consent)
+        if self.is_visible(self.__private_VIMA_consent):
+            self.click(self.__private_VIMA_consent)
