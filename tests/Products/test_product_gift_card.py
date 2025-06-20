@@ -25,7 +25,7 @@ class Test_gift_card():
         gc.click_select_amount_type(count)
 
         if(gc.enter_amount_visible()):
-            gc.enter_amount("50")
+            gc.enter_amount("2")
 
         gc.enter_name(select_random().first_name())
         gc.enter_email("prasad+giftcard@getomnify.com")

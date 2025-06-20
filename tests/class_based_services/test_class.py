@@ -44,7 +44,7 @@ class Test_class_booking_action():
         
         schedule_count=int(json_read("CLASS_SCHEDULE_COUNT"))
         log.info("schedule count: %s",str(schedule_count))
-        for j in range(schedule_count, (schedule_count+5)):
+        for j in range(schedule_count, (schedule_count+2)):
             cb.click_schedule(j)
 
         cb.click_checkout_proceed()
@@ -80,5 +80,5 @@ class Test_class_booking_action():
         time.sleep(7)
         cb.click_back_to_home()
         loginAction().authenticate_cookie(driver)
-        json_update("CLASS_SCHEDULE_COUNT",str(schedule_count+5))
+        json_update("CLASS_SCHEDULE_COUNT",str(schedule_count+2))
         

@@ -2,6 +2,7 @@ import time
 from base.logfile import Logger
 from pages.add_on_element import add_on
 from base.random_select import select_random
+from base.Screenshot import screenshot
 
 log=Logger().get_logger(__name__)
 
@@ -9,6 +10,7 @@ class add_on_test():
     def add_on_page(self, driver):
         time.sleep(5)
         aop=add_on(driver)
+        # screenshot(driver).take_screenshot_direct()
         log.info("Add_on page flow")
         try:
             script_general_item="return document.querySelectorAll('#select_general_service').length;"
@@ -26,7 +28,7 @@ class add_on_test():
                     log.info("General item not found > %s",e)
                     break
         except Exception as e:
-            log.error("No General item found to add> %s",e)
+            log.error("No General item found to add > %s",e)
 
         try:
             script_classpack="return document.querySelectorAll('#select_classpack').length;"

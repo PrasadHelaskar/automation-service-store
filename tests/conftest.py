@@ -132,7 +132,7 @@ def driver():
         driver.execute_cdp_cmd("Page.setLifecycleEventsEnabled",{"enabled": True})
         driver.execute_cdp_cmd("Page.enable", {})
         driver.maximize_window()
-
+        
 
         driver.implicitly_wait(15)
         

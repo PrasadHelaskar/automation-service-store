@@ -2,20 +2,18 @@ import time
 from base.logfile import Logger
 from base.random_select import select_random
 from pages.custom_fields_elements import custom_fields
-from pages.addfamily_Client_elements import addfamily
 
 log= Logger().get_logger(__name__)
 
 class custom_fields_actions():
     def custom_field_action(self,driver):
-        afck=addfamily(driver)
         cf=custom_fields(driver)
         sr=select_random()
         time.sleep(2)
         if cf.is_visible_page():
             recived_elements=cf.get_all_custom_fields()
             name=cf.get_attendee_name()
-
+            
             for index,elem in enumerate(recived_elements, start=1):
                 if not elem.is_displayed():
                     continue
@@ -34,7 +32,7 @@ class custom_fields_actions():
                         date=sr.random_number(28)
                         month=7
                         year=sr.random_year()
-                        cf.date_selection(driver,date,month,year,index)
+                        cf.date_selection(date,month,year,index)
                         cf.click_attendee_name()
                     else:
                         elem.clear()

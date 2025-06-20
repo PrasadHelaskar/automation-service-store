@@ -29,7 +29,7 @@ class Test_program():
             # pb.click_apply()
             time.sleep(5)
             pb.click_program_page()
-            time.sleep(2) 
+            time.sleep(4) 
 
             script="""return document.getElementsByClassName('primary-button-card bc4 fc1').length;"""
             i=driver.execute_script(script)

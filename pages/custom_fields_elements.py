@@ -7,16 +7,25 @@ log= Logger().get_logger(__name__)
 
 class custom_fields(BasePage):
     __private__custome_field_page=(By.ID, "prebookingfields")
-    __private__attendee=(By.XPATH,"//span[@class='text-capitalize']") #multi-attendee
-    __private__all_custome_fields=(By.XPATH, "//form[@id='before-booking-extra-f']//input[@name]")
+    __private__attendee=(By.XPATH,"//span[@class='text-capitalize']") 
+    __private__all_custome_fields=(By.XPATH, "//form[@id='before-booking-extra-f']//input[@name and not(@type='hidden')]")
     __private__proceed=(By.ID,"sub-btn")
     __private__custom_field_div=(By.CSS_SELECTOR,"div[class='custom-mob']")
-    __private__month_select=(By.CSS_SELECTOR,"div[class='xdsoft_label xdsoft_month']") #multi-attendee
-    __private__year_select=(By.CSS_SELECTOR,"div[class='xdsoft_label xdsoft_year']") #multi-attendee
     
-    def select_date(self,date):
-        css=f"td[data-date='{date}']"
-        __private_selected_date=(By.CSS_SELECTOR,css)
+    def month_select(self,i):
+        xpath=f"(//div[@class='xdsoft_label xdsoft_month'])[{i}]"
+        __private__month_select=(By.XPATH,xpath)
+        return __private__month_select
+    
+    def year_select(self,i):
+        xpath=f"(//div[@class='xdsoft_label xdsoft_year'])[{i}]"
+        __private__year_select=(By.XPATH,xpath)
+        return __private__year_select
+    
+    def select_date(self,date,i):
+        xpath=f"(//td[@data-date='{date}'])[{i}]"
+        # log.info("xpath: %s",xpath)
+        __private_selected_date=(By.XPATH,xpath)
         return __private_selected_date
     
     def select_month(self,month,i): 
@@ -50,16 +59,14 @@ class custom_fields(BasePage):
         element=self.find_element_wait(self.__private__custom_field_div)
         return element
     
-    def date_selection(self,driver,date,month,year,i):
-        self.click(self.__private__month_select)
-        month=self.find_element_wait_presence(self.select_month(month,i))
+    def date_selection(self,date,month,year,i):
+        self.click(self.month_select(i))
+        self.click_presence(self.select_month(month,i))
         time.sleep(1)
-        driver.execute_script("arguments[0].click();", month)
-        self.click(self.__private__year_select)
-        year=self.find_element_wait_presence(self.select_year(year,i))
+        self.click(self.year_select(i))
+        self.click_presence(self.select_year(year,i))
         time.sleep(1)
-        driver.execute_script("arguments[0].click();", year)
-        self.click(self.select_date(date))
+        self.click(self.select_date(date,i))
     
     def click_attendee_name(self):
         self.click(self.__private__attendee)
