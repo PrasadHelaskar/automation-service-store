@@ -10,7 +10,7 @@ class add_on_test():
     def add_on_page(self, driver):
         time.sleep(5)
         aop=add_on(driver)
-        screenshot(driver).take_screenshot_direct()
+        # screenshot(driver).take_screenshot_direct()
         log.info("Add_on page flow")
         try:
             script_general_item="return document.querySelectorAll('#select_general_service').length;"

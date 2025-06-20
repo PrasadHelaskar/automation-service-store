@@ -37,3 +37,4 @@ pytest.ini
 mitmproxy_logs
 Base/db_test/
 data.json
+requested_Screenshots
