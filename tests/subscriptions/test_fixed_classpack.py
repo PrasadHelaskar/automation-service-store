@@ -76,8 +76,10 @@ class Test_fixed_classpack():
         time.sleep(7)
 
         if(driver.title=="Classpacks"):
-            cpb.click_credit_booking_class()
-            cpb.click_confirm_booking()
+            if cpb.click_credit_booking_class():
+                cpb.click_confirm_booking()
+            else:
+                cpb.click_skip_button()
             time.sleep(5)
 
         driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")

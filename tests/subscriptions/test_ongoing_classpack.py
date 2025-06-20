@@ -69,9 +69,11 @@ class Test_ongoing_classpack():
         time.sleep(10)
 
         if(driver.title=="Classpacks"):
-            cpb.click_credit_booking_class()
-            cpb.click_confirm_booking()
-            time.sleep(10)
+            if cpb.click_credit_booking_class():
+                cpb.click_confirm_booking()
+            else:
+                cpb.click_skip_button()
+            time.sleep(5)
 
         lg.authenticate_cookie(driver)
         driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")

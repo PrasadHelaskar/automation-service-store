@@ -28,7 +28,7 @@ class Test_trialBooking():
         log.info("Total services available: %s",str(i))
         service_index=select_random().random_number(i)
         log.info("Service selected index: %s",str(service_index))
-        tb.click_select_service(service_index)        
+        tb.click_select_service(2)
         tb.click_proceed()
 
         if (tb.visible_attendee_moddel()):
@@ -43,7 +43,7 @@ class Test_trialBooking():
 
         if (tb.visible_warning_model()):
             time.sleep(2)
-            for i in range(3):   
+            for i in range(5):   
                 tb.click_cross_button()
                 tb.click_proceed()
                 log.info("Warning model closed for attendee index: %s",str(attendee))
