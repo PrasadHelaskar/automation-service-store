@@ -19,7 +19,7 @@ class loginAction():
         driver.get(os.getenv("URL"))
         login_page = LoginPage(driver)
         sttime=time.time()
-        time.sleep(3)
+        login_page.page_wait()
         if login_page.login_button_visible():
             login_page.click_login()
             login_page.enter_username(os.getenv("EMAIL"))
@@ -34,7 +34,6 @@ class loginAction():
 
     def Store_cookie(self, driver):
         global static_cookie
-        time.sleep(2)
         cookie = driver.get_cookie('omnify-token')
         # log.info(cookie)
 

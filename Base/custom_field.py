@@ -9,7 +9,7 @@ class custom_fields_actions():
     def custom_field_action(self,driver):
         cf=custom_fields(driver)
         sr=select_random()
-        time.sleep(2)
+        cf.page_wait()
         if cf.is_visible_page():
             recived_elements=cf.get_all_custom_fields()
             name=cf.get_attendee_name()
