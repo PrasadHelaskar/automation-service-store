@@ -39,6 +39,14 @@ class trialkbooking(BasePage):
     def click_proceed(self):
         self.click(self.__private_select_proceed)
     
+    def visible_attendee_model(self):
+        try:
+            op=self.is_visible(self.__private_attendee_model)
+            return op
+        except Exception as e:
+            log.error("Exception occurred: %s",e)
+            return False
+    
     def click_attendee_box(self,i):
         self.click(self.attendee_xpath(i))
 

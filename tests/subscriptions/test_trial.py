@@ -31,7 +31,7 @@ class Test_trialBooking():
         tb.click_select_service(2)
         tb.click_proceed()
 
-        if (tb.visible_attendee_moddel()):
+        if (tb.visible_attendee_model()):
             time.sleep(2)
             script="""return document.getElementsByName('attendees-id-list').length"""
             received_count=driver.execute_script(script)

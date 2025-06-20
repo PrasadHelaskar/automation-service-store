@@ -1,6 +1,7 @@
 import time
 import pytest
 import random
+from selenium.webdriver.support.ui import WebDriverWait
 from base.logfile import Logger
 from base.random_select import select_random
 from base.stripe_popup import stripe_action
@@ -28,7 +29,7 @@ class Test_fixed_classpack():
         # cpb.click_apply()
 
         cpb.click_classpack_page()
-        time.sleep(2)
+        cpb.page_wait()
 
         elements=cpb.get_service_name()
         # log.info("sorted_dict: %s",elements)
@@ -60,7 +61,7 @@ class Test_fixed_classpack():
 
         repeat_booking(driver)
 
-        time.sleep(2)
+        cpb.page_wait()
         # log.info("Addons page visible="+str(driver.title or "None"))
         if(driver.title=="Addons"):
             add_on_test().add_on_page(driver)
@@ -73,7 +74,7 @@ class Test_fixed_classpack():
         cpb.click_review_proceed()
         loginAction().order_invoice_cookies(driver)
         stripe_action().stripe_data_enty(driver)
-        time.sleep(7)
+        cpb.page_wait()
 
         if(driver.title=="Classpacks"):
             if cpb.click_credit_booking_class():
@@ -88,7 +89,7 @@ class Test_fixed_classpack():
                 lg.authenticate_cookie(driver)
 
         lg.authenticate_cookie(driver)
-        driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+        cpb.custom_lambda('lambda d: "success" in d.current_url and d.execute_script("return document.readyState") == "complete"')
         cpb.click_home()
 
 

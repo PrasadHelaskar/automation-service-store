@@ -185,3 +185,32 @@ class BasePage:
         """
         pprint.pprint(data)
         sys.exit()
+    
+    def page_wait(self):
+        """
+        Waits until the page's document.readyState is 'complete'.
+
+        This ensures that the entire page, including all dependent resources,
+        has finished loading before proceeding.
+        """
+        WebDriverWait(self.driver, 10).until(
+            lambda d: d.execute_script("return document.readyState") == "complete"
+        )
+
+    def custom_lambda(self, condition):
+        """
+        Waits until a custom condition is met.
+
+        Args:
+            condition (Union[str, Callable]): A callable (usually a lambda function)
+                or a string representing a lambda that returns a boolean indicating
+                whether the condition is met.
+
+        Notes:
+            - If the condition is provided as a string, it is evaluated using eval().
+            Ensure the input string is safe and trusted.
+            - Used for flexible wait conditions with WebDriverWait.
+        """
+        if isinstance(condition, str):
+            condition = eval(condition)
+        WebDriverWait(self.driver, 10).until(condition)
