@@ -71,13 +71,15 @@ class Test_ongoing_classpack():
         if(driver.title=="Classpacks"):
             if cpb.click_credit_booking_class():
                 cpb.click_confirm_booking()
+                time.sleep(5)
+                lg.authenticate_cookie(driver)
+                driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+                cpb.click_home()
             else:
                 cpb.click_skip_button()
-            time.sleep(5)
+                cpb.click_back_client_profile()
+                lg.authenticate_cookie(driver)
 
-        lg.authenticate_cookie(driver)
-        driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-        cpb.click_home()
 
 
 def repeat_booking(driver):

@@ -47,6 +47,7 @@ class classpackbooking(BasePage):
     __private_credit_booking_class=(By.NAME, "checkbox-13")
     __private_confirm_booking=(By.XPATH, "//button[@class='cta-sec-button pri bc4 fc1 w-button']")
     __private_skip_button=(By.ID,"skipButton")
+    __private_client_profile_back=(By.CSS_SELECTOR,"div[class='back-text normal cursor-pointer']")
 
     # age restriction model locators
     __private_restriction_model=(By.XPATH, "(//div[@class='conflict-modal booking-restriction-modal'])[3]")
@@ -118,6 +119,9 @@ class classpackbooking(BasePage):
 
     def click_skip_button(self):
         self.click(self.__private_skip_button)
+
+    def click_back_client_profile(self):
+        self.click(self.__private_client_profile_back)
 
     def is_repeat_booking_visible(self):
         try:

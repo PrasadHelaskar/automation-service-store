@@ -78,13 +78,14 @@ class Test_non_renewing_classpack():
         if(driver.title=="Classpacks"):
             if cpb.click_credit_booking_class():
                 cpb.click_confirm_booking()
+                time.sleep(5)
+                lg.authenticate_cookie(driver)
+                driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+                cpb.click_home()
             else:
                 cpb.click_skip_button()
-            time.sleep(5)
-
-        driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-        cpb.click_home()
-        lg.authenticate_cookie(driver)
+                cpb.click_back_client_profile()
+                lg.authenticate_cookie(driver)
 
 def repeat_booking(driver):
     """Used to handle the BOok again  model"""
