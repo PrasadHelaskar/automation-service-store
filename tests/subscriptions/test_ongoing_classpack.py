@@ -42,11 +42,11 @@ class Test_ongoing_classpack():
         cpb.click_select_service(service_index)        
         cpb.click_proceed()
 
-        if (cpb.visible_attendee_moddel()):
+        if (cpb.visible_attendee_model()):
             time.sleep(2)
             script="""return document.getElementsByName('attendees-id-list').length"""
-            recived_count=driver.execute_script(script)
-            attendee=select_random().random_number(recived_count)
+            received_count=driver.execute_script(script)
+            attendee=select_random().random_number(received_count)
             cpb.click_attendee_box(attendee)
             log.info("Attendee selected index: %s",str(attendee))
             cpb.click_attendee_proceed()
@@ -75,11 +75,16 @@ class Test_ongoing_classpack():
                 lg.authenticate_cookie(driver)
                 driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
                 cpb.click_home()
+                return
             else:
                 cpb.click_skip_button()
                 cpb.click_back_client_profile()
                 lg.authenticate_cookie(driver)
+                return
 
+        lg.authenticate_cookie(driver)
+        driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+        cpb.click_home()
 
 
 def repeat_booking(driver):

@@ -93,7 +93,7 @@ class classpackbooking(BasePage):
     def click_home(self):
         self.click(self.__private_HOME_BUTTON)
 
-    def visible_attendee_moddel(self):
+    def visible_attendee_model(self):
         try:
             op=self.is_visible(self.__private_attendee_model)
             return op
@@ -112,6 +112,7 @@ class classpackbooking(BasePage):
             self.click(self.__private_credit_booking_class)
             return True
         else:
+            log.info("Success page loaded, but no schedules were found to display.")
             return False
 
     def click_confirm_booking(self):

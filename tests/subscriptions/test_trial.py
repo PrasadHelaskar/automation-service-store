@@ -34,9 +34,9 @@ class Test_trialBooking():
         if (tb.visible_attendee_moddel()):
             time.sleep(2)
             script="""return document.getElementsByName('attendees-id-list').length"""
-            recived_count=driver.execute_script(script)
-            log.info("Attendee count: %s",str(recived_count))
-            attendee=select_random().random_number(recived_count)
+            received_count=driver.execute_script(script)
+            log.info("Attendee count: %s",str(received_count))
+            attendee=select_random().random_number(received_count)
             tb.click_attendee_box(attendee)
             log.info("Attendee selected index: %s",str(attendee))
             tb.click_attendee_proceed()
@@ -47,7 +47,7 @@ class Test_trialBooking():
                 tb.click_cross_button()
                 tb.click_proceed()
                 log.info("Warning model closed for attendee index: %s",str(attendee))
-                attendee=select_random().random_number(recived_count)
+                attendee=select_random().random_number(received_count)
                 tb.click_attendee_box(attendee)
                 log.info("Next attendee selected index: %s",str(attendee))
                 tb.click_attendee_proceed()

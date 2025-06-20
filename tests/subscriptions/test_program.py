@@ -45,8 +45,8 @@ class Test_program():
 
             time.sleep(5)
             script="""return document.getElementsByName("cp-radio-button").length;"""
-            recived_count=driver.execute_script(script)
-            index=select_random().random_number(recived_count)
+            received_count=driver.execute_script(script)
+            index=select_random().random_number(received_count)
             log.info("Selected schedule index: %s",index)
             pb.click_start_date(index)
 
@@ -56,8 +56,8 @@ class Test_program():
             # add_family_checkout_flow(driver)
 
             script="""return document.getElementsByClassName("w-checkbox-input waitlist-checkbox").length;"""
-            recived_count=driver.execute_script(script)
-            attendee=select_random().random_number(recived_count)
+            received_count=driver.execute_script(script)
+            attendee=select_random().random_number(received_count)
             pb.click_attendee_box(attendee)
             log.info("Attendee selected index: %s",str(attendee))
             pb.click_attendee_proceed()
