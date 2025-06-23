@@ -28,7 +28,7 @@ class Test_trialBooking():
         log.info("Total services available: %s",str(i))
         service_index=select_random().random_number(i)
         log.info("Service selected index: %s",str(service_index))
-        tb.click_select_service(2)
+        tb.click_select_service(service_index)
         tb.click_proceed()
 
         if (tb.visible_attendee_model()):

@@ -29,7 +29,7 @@ class Test_program():
             # pb.click_apply()
             time.sleep(5)
             pb.click_program_page()
-            time.sleep(4) 
+            time.sleep(4)
 
             script="""return document.getElementsByClassName('primary-button-card bc4 fc1').length;"""
             i=driver.execute_script(script)
@@ -43,7 +43,7 @@ class Test_program():
             pb.click_select_service(2)
             log.info("Service selected index: %s",str(service_index))
 
-            time.sleep(5)
+            time.sleep(2)
             script="""return document.getElementsByName("cp-radio-button").length;"""
             received_count=driver.execute_script(script)
             index=select_random().random_number(received_count)
@@ -51,7 +51,7 @@ class Test_program():
             pb.click_start_date(index)
 
             pb.click_proceed()
-            time.sleep(3)
+            time.sleep(2)
             
             # add_family_checkout_flow(driver)
 
