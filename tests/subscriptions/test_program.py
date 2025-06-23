@@ -22,12 +22,11 @@ class Test_program():
         # driver.implicitly_wait(30)
         pb=classpackbooking(driver)
         lg.login_action(driver)
-        for i in range(0,1):
+        for i in range(0,4):
             log.info('Program booking Started')
             # filter the programs
             # pb.click_classpack_checkbox()
             # pb.click_apply()
-            time.sleep(5)
             pb.click_program_page()
             time.sleep(4)
 
@@ -61,8 +60,9 @@ class Test_program():
             pb.click_attendee_box(attendee)
             log.info("Attendee selected index: %s",str(attendee))
             pb.click_attendee_proceed()
-            repeat_booking(driver)
             time.sleep(2)
+            repeat_booking(driver)
+            pb.page_wait()
         
             # log.info("Addons page visible="+str(driver.title or "None"))
             
@@ -74,7 +74,6 @@ class Test_program():
             waiver_vima_action().waiver_vima(driver)
             # apply_discount().test_discount(driver)
             lg.order_invoice_cookies(driver)
-            time.sleep(10)
             pb.click_review_proceed()
             driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
             stripe_action().stripe_data_enty(driver)
