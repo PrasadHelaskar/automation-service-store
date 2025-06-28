@@ -22,7 +22,7 @@ class Test_program():
         # driver.implicitly_wait(30)
         pb=classpackbooking(driver)
         lg.login_action(driver)
-        for i in range(0,4):
+        for i in range(0,1):
             log.info('Program booking Started')
             # filter the programs
             # pb.click_classpack_checkbox()
@@ -39,7 +39,7 @@ class Test_program():
             else:
                 service_index=select_random().random_number(10)
 
-            pb.click_select_service(2)
+            pb.click_select_service(service_index)
             log.info("Service selected index: %s",str(service_index))
 
             time.sleep(2)
@@ -77,6 +77,7 @@ class Test_program():
             pb.click_review_proceed()
             driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
             stripe_action().stripe_data_enty(driver)
+            pb.page_wait()
             pb.click_home()
             lg.authenticate_cookie(driver)
             log.info("Tha Program booking Execution Completed \n")

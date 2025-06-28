@@ -8,7 +8,7 @@ class partypackage(BasePage):
     __private_party_page=(By.CSS_SELECTOR, "a[href^='/party']")
     
     def select_party(self,index):
-        xpath=f"(//div[@class='ss-card--bc3--br2-bw1--oc5 '])[{index}]"
+        xpath=f"(//div[@class='ss-card-details top-align'])[{index}]"
         __praivte_party_selection=(By.XPATH, xpath)
         return __praivte_party_selection
     

@@ -36,7 +36,7 @@ class Test_ongoing_classpack():
         if i in range(1,10):
             service_index=select_random().random_number(i)
         else:
-            service_index=select_random().random_number(10)
+            service_index=select_random().random_number(5)
         
         log.info("Service selected index: %s",str(service_index))
         cpb.click_select_service(service_index)        
