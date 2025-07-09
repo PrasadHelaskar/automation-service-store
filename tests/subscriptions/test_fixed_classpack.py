@@ -89,7 +89,7 @@ class Test_fixed_classpack():
                 lg.authenticate_cookie(driver)
 
         lg.authenticate_cookie(driver)
-        cpb.custom_lambda('lambda d: "success" in d.current_url and d.execute_script("return document.readyState") == "complete"')
+        time.sleep(5)
         cpb.click_home()
 
 

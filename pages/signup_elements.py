@@ -19,7 +19,7 @@ class signup(BasePage):
     __private_PASSWORD=(By.ID, "password")
     __private_CONFIRM_PASSWORD=(By.ID, "confirm_password")
     #custom fields
-    __private_CUSTOM_FIELD=(By.CSS_SELECTOR, "label[for='Date of Birth']")
+    __private_CUSTOM_FIELD=(By.CSS_SELECTOR, "input[class='display-flex ss-auth-input--bc3--fc2--oc2 font-size-16 w-input']")
     __private_DOB_FIELD=(By.CSS_SELECTOR, "input[class='display-flex ss-auth-input--bc3--fc2--oc2 font-size-16 w-input']")  #2times
     date=int(json_read("DATE"))
     __private_DATE=(By.XPATH, f"(//button[@class='rdp-button_reset rdp-button rdp-day'])[{date}]")

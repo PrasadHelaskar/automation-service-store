@@ -6,9 +6,11 @@ from dotenv import load_dotenv
 from base.random_select import select_random
 from selenium.webdriver.support.ui import Select
 from selenium.webdriver.common.by import By
-from base.revised_API_LOG import APILOG
+from base.logfile import Logger
 from pages.signup_elements import signup
 from tests.login import loginAction
+
+log=Logger().get_logger(__name__)
 
 class Test_sign_up():
     # @pytest.mark.skip(reason="Not required for full run")

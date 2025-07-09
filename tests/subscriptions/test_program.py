@@ -21,21 +21,21 @@ class Test_program():
         """The Method for the program booking"""
         # driver.implicitly_wait(30)
         pb=classpackbooking(driver)
-        lg.login_action(driver)
         for i in range(0,1):
+            lg.login_action(driver)
             log.info('Program booking Started')
             # filter the programs
             # pb.click_classpack_checkbox()
             # pb.click_apply()
             pb.click_program_page()
-            time.sleep(4)
+            time.sleep(9)
 
             script="""return document.getElementsByClassName('primary-button-card bc4 fc1').length;"""
-            i=driver.execute_script(script)
-            log.info("Total services available: %s",str(i))
+            service_count=driver.execute_script(script)
+            log.info("Total services available: %s",service_count)
 
-            if i in range(1,20):
-                service_index=select_random().random_number(i)
+            if service_count in range(1,20):
+                service_index=select_random().random_number(service_count)
             else:
                 service_index=select_random().random_number(10)
 

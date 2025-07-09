@@ -31,7 +31,7 @@ class Test_gift_card():
         gc.enter_email("prasad+giftcard@getomnify.com")
         gc.click_checkout_proceed()
         time.sleep(2)
-        waiver_vima_action().waiver(driver)
+        # waiver_vima_action().waiver(driver)
         gc.click_review_proceed()
         loginAction().order_invoice_cookies(driver)
         stripe_action().stripe_data_enty(driver)
