@@ -38,13 +38,13 @@ class trialkbooking(BasePage):
 
     def click_proceed(self):
         self.click(self.__private_select_proceed)
-
-    def visible_attendee_moddel(self):
+    
+    def visible_attendee_model(self):
         try:
             op=self.is_visible(self.__private_attendee_model)
-            log.info("is_visible: %s",op)
             return op
-        except:
+        except Exception as e:
+            log.error("Exception occurred: %s",e)
             return False
     
     def click_attendee_box(self,i):

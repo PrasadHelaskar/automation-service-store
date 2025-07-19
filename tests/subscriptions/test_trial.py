@@ -21,33 +21,33 @@ class Test_trialBooking():
         print('Trial booking started')
 
         tb.click_program_page()
-        time.sleep(5)
-
+        tb.page_wait()
+        
         script="""return document.getElementsByClassName('secondary-button-card bw1 oc4 fc4').length;"""
         i=driver.execute_script(script)
         log.info("Total services available: %s",str(i))
         service_index=select_random().random_number(i)
         log.info("Service selected index: %s",str(service_index))
-        tb.click_select_service(service_index)        
+        tb.click_select_service(service_index)
         tb.click_proceed()
 
-        if (tb.visible_attendee_moddel()):
+        if (tb.visible_attendee_model()):
             time.sleep(2)
             script="""return document.getElementsByName('attendees-id-list').length"""
-            recived_count=driver.execute_script(script)
-            log.info("Attendee count: %s",str(recived_count))
-            attendee=select_random().random_number(recived_count)
+            received_count=driver.execute_script(script)
+            log.info("Attendee count: %s",str(received_count))
+            attendee=select_random().random_number(received_count)
             tb.click_attendee_box(attendee)
             log.info("Attendee selected index: %s",str(attendee))
             tb.click_attendee_proceed()
 
         if (tb.visible_warning_model()):
             time.sleep(2)
-            for i in range(3):   
+            for i in range(5):   
                 tb.click_cross_button()
                 tb.click_proceed()
                 log.info("Warning model closed for attendee index: %s",str(attendee))
-                attendee=select_random().random_number(recived_count)
+                attendee=select_random().random_number(received_count)
                 tb.click_attendee_box(attendee)
                 log.info("Next attendee selected index: %s",str(attendee))
                 tb.click_attendee_proceed()

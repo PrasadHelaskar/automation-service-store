@@ -6,8 +6,8 @@ log = Logger().get_logger(__name__)
 
 class giftcardbooking(BasePage):
     __private__gift_card_page=(By.CSS_SELECTOR, "a[href^='/gift-cards']")
-    giftcadt_number=2
-    __private__select_gift_card=(By.XPATH , f"(//a[@class='primary-button-card bc4 fc1'])[{giftcadt_number}]")
+    giftcard_number=2
+    __private__select_gift_card=(By.XPATH , f"(//a[@class='primary-button-card bc4 fc1'])[{giftcard_number}]")
     def amount_select(self, count):
             log.info("amount select option: "+str(count))
             selector=f"(//div[@class='schedule-top-bar-date-selector--bc3--bw1--fc2 slot pading-18 semi-bold '])[{count}]"

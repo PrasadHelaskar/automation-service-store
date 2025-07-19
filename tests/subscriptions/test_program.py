@@ -21,48 +21,48 @@ class Test_program():
         """The Method for the program booking"""
         # driver.implicitly_wait(30)
         pb=classpackbooking(driver)
-        lg.login_action(driver)
         for i in range(0,1):
+            lg.login_action(driver)
             log.info('Program booking Started')
             # filter the programs
             # pb.click_classpack_checkbox()
             # pb.click_apply()
-            time.sleep(5)
             pb.click_program_page()
-            time.sleep(4) 
+            time.sleep(9)
 
             script="""return document.getElementsByClassName('primary-button-card bc4 fc1').length;"""
-            i=driver.execute_script(script)
-            log.info("Total services available: %s",str(i))
+            service_count=driver.execute_script(script)
+            log.info("Total services available: %s",service_count)
 
-            if i in range(1,20):
-                service_index=select_random().random_number(i)
+            if service_count in range(1,20):
+                service_index=select_random().random_number(service_count)
             else:
                 service_index=select_random().random_number(10)
 
             pb.click_select_service(service_index)
             log.info("Service selected index: %s",str(service_index))
 
-            time.sleep(5)
+            time.sleep(2)
             script="""return document.getElementsByName("cp-radio-button").length;"""
-            recived_count=driver.execute_script(script)
-            index=select_random().random_number(recived_count)
+            received_count=driver.execute_script(script)
+            index=select_random().random_number(received_count)
             log.info("Selected schedule index: %s",index)
             pb.click_start_date(index)
 
             pb.click_proceed()
-            time.sleep(3)
+            time.sleep(2)
             
             # add_family_checkout_flow(driver)
 
             script="""return document.getElementsByClassName("w-checkbox-input waitlist-checkbox").length;"""
-            recived_count=driver.execute_script(script)
-            attendee=select_random().random_number(recived_count)
+            received_count=driver.execute_script(script)
+            attendee=select_random().random_number(received_count)
             pb.click_attendee_box(attendee)
             log.info("Attendee selected index: %s",str(attendee))
             pb.click_attendee_proceed()
-            repeat_booking(driver)
             time.sleep(2)
+            repeat_booking(driver)
+            pb.page_wait()
         
             # log.info("Addons page visible="+str(driver.title or "None"))
             
@@ -74,10 +74,10 @@ class Test_program():
             waiver_vima_action().waiver_vima(driver)
             # apply_discount().test_discount(driver)
             lg.order_invoice_cookies(driver)
-            time.sleep(10)
             pb.click_review_proceed()
             driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
             stripe_action().stripe_data_enty(driver)
+            pb.page_wait()
             pb.click_home()
             lg.authenticate_cookie(driver)
             log.info("Tha Program booking Execution Completed \n")

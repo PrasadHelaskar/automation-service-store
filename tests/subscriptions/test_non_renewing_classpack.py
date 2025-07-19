@@ -49,11 +49,11 @@ class Test_non_renewing_classpack():
         cpb.click_select_service(selected_id)      
         cpb.click_proceed()
 
-        if (cpb.visible_attendee_moddel()):
+        if (cpb.visible_attendee_model()):
             time.sleep(2)
             script="""return document.getElementsByName('attendees-id-list').length"""
-            recived_count=driver.execute_script(script)
-            attendee=select_random().random_number(recived_count)
+            received_count=driver.execute_script(script)
+            attendee=select_random().random_number(received_count)
             cpb.click_attendee_box(attendee)
             log.info("Attendee selected index: %s",str(attendee))
             cpb.click_attendee_proceed()
@@ -76,13 +76,21 @@ class Test_non_renewing_classpack():
         time.sleep(7)
 
         if(driver.title=="Classpacks"):
-            cpb.click_credit_booking_class()
-            cpb.click_confirm_booking()
-            time.sleep(5)
+            if cpb.click_credit_booking_class():
+                cpb.click_confirm_booking()
+                time.sleep(5)
+                lg.authenticate_cookie(driver)
+                driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+                cpb.click_home()
+            else:
+                cpb.click_skip_button()
+                cpb.click_back_client_profile()
+                lg.authenticate_cookie(driver)
 
+        lg.authenticate_cookie(driver)
         driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
         cpb.click_home()
-        lg.authenticate_cookie(driver)
+
 
 def repeat_booking(driver):
     """Used to handle the BOok again  model"""

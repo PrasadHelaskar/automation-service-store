@@ -54,8 +54,8 @@ class Test_class_booking_action():
         # add_family_checkout_flow(driver)
 
         script="""return document.getElementsByClassName("w-checkbox-input waitlist-checkbox").length;"""
-        recived_count=driver.execute_script(script)
-        attendee=select_random().random_number(recived_count)
+        received_count=driver.execute_script(script)
+        attendee=select_random().random_number(received_count)
         log.info("seleccted attendee count: %s",attendee)
 
         for i in range(1, (attendee+1)):

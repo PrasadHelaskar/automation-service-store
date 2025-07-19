@@ -1,6 +1,7 @@
 import time
 import pytest
 import random
+from selenium.webdriver.support.ui import WebDriverWait
 from base.logfile import Logger
 from base.random_select import select_random
 from base.stripe_popup import stripe_action
@@ -28,7 +29,7 @@ class Test_fixed_classpack():
         # cpb.click_apply()
 
         cpb.click_classpack_page()
-        time.sleep(2)
+        cpb.page_wait()
 
         elements=cpb.get_service_name()
         # log.info("sorted_dict: %s",elements)
@@ -49,18 +50,18 @@ class Test_fixed_classpack():
         cpb.click_select_service(selected_id)      
         cpb.click_proceed()
 
-        if (cpb.visible_attendee_moddel()):
+        if (cpb.visible_attendee_model()):
             time.sleep(2)
             script="""return document.getElementsByName('attendees-id-list').length"""
-            recived_count=driver.execute_script(script)
-            attendee=select_random().random_number(recived_count)
+            received_count=driver.execute_script(script)
+            attendee=select_random().random_number(received_count)
             cpb.click_attendee_box(attendee)
             log.info("Attendee selected index: %s",str(attendee))
             cpb.click_attendee_proceed()
 
         repeat_booking(driver)
 
-        time.sleep(2)
+        cpb.page_wait()
         # log.info("Addons page visible="+str(driver.title or "None"))
         if(driver.title=="Addons"):
             add_on_test().add_on_page(driver)
@@ -73,16 +74,24 @@ class Test_fixed_classpack():
         cpb.click_review_proceed()
         loginAction().order_invoice_cookies(driver)
         stripe_action().stripe_data_enty(driver)
-        time.sleep(7)
+        cpb.page_wait()
 
         if(driver.title=="Classpacks"):
-            cpb.click_credit_booking_class()
-            cpb.click_confirm_booking()
-            time.sleep(5)
+            if cpb.click_credit_booking_class():
+                cpb.click_confirm_booking()
+                time.sleep(5)
+                lg.authenticate_cookie(driver)
+                driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+                cpb.click_home()
+            else:
+                cpb.click_skip_button()
+                cpb.click_back_client_profile()
+                lg.authenticate_cookie(driver)
 
-        driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-        cpb.click_home()
         lg.authenticate_cookie(driver)
+        time.sleep(5)
+        cpb.click_home()
+
 
 def repeat_booking(driver):
     """Used to handle the BOok again  model"""

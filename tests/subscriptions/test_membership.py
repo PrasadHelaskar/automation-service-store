@@ -56,8 +56,8 @@ class Test_Membership_bookings_actions():
         time.sleep(3)
         
         script="""return document.getElementsByClassName("w-checkbox-input waitlist-checkbox").length;"""
-        recived_count=driver.execute_script(script)
-        attendee=select_random().random_number(recived_count)
+        received_count=driver.execute_script(script)
+        attendee=select_random().random_number(received_count)
         
         for i in range (attendee, (attendee+3)):
             try:

@@ -20,7 +20,7 @@ class Test_add_family():
         af=addfamily(driver)
         loginAction().login_action(driver)
         time.sleep(10)
-        count=4
+        count=6 
         af.click_profile()
         af.click_profile_page()
         time.sleep(5)
@@ -57,7 +57,7 @@ class Test_add_family():
             div=af.scroll_div()
             driver.execute_script("arguments[0].scrollTop = arguments[0].scrollHeight;",div)
             value=True if (af.get_added_name(i)==(fn+" "+ln)) else False
-            log.info("Completed the family addition Process")
+            log.info("Verification of the family addition Process for %s: %s",fn,value)
             end_time=time.time()
             log.info("Execution time: %s",str(end_time-start_time))
 

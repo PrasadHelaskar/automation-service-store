@@ -24,7 +24,7 @@ class custom_fields(BasePage):
     
     def select_date(self,date,i):
         xpath=f"(//td[@data-date='{date}'])[{i}]"
-        # log.info("xpath: %s",xpath)
+        # log.info("data: %s",date)
         __private_selected_date=(By.XPATH,xpath)
         return __private_selected_date
     
@@ -62,10 +62,10 @@ class custom_fields(BasePage):
     def date_selection(self,date,month,year,i):
         self.click(self.month_select(i))
         self.click_presence(self.select_month(month,i))
-        time.sleep(1)
+        time.sleep(2)
         self.click(self.year_select(i))
         self.click_presence(self.select_year(year,i))
-        time.sleep(1)
+        time.sleep(2)
         self.click(self.select_date(date,i))
     
     def click_attendee_name(self):
