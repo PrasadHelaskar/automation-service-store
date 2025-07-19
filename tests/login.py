@@ -30,6 +30,7 @@ class loginAction():
                 login_page.click_skip()
             self.Store_cookie(driver)
         entime=time.time()
+        time.sleep(2)
         log.info("Required time: %s",(entime-sttime))
 
     def Store_cookie(self, driver):
