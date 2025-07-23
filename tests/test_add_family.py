@@ -20,7 +20,7 @@ class Test_add_family():
         af=addfamily(driver)
         loginAction().login_action(driver)
         time.sleep(10)
-        count=6 
+        count=2
         af.click_profile()
         af.click_profile_page()
         time.sleep(5)

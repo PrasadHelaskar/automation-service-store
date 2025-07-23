@@ -18,11 +18,9 @@ class SaveXHRRequests:
             month = now.strftime("%m")
             day = now.strftime("%d")
 
-            # Folder: logs/yyyy/mm/
             folder_path = os.path.join(self.base_log_dir, year, month)
             os.makedirs(folder_path, exist_ok=True)
 
-            # File: mitmproxy_dd.log
             log_filename = f"mitmproxy_{day}.log"
             log_file_path = os.path.join(folder_path, log_filename)
 
@@ -38,7 +36,6 @@ class SaveXHRRequests:
                 "response_body": flow.response.get_text()
             }
 
-            # Append to file (or create if not exists)
             with open(log_file_path, "a", encoding="utf-8") as f:
                 f.write(json.dumps(log_entry, indent=2))
                 f.write("\n" + "- -" * 20 + "\n")
