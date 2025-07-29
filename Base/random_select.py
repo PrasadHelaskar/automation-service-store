@@ -34,11 +34,9 @@ class select_random():
     
         if j is None:
             number=random.randint(1, i)
-            # log.info(number)
             return number
         else:
             number=random.randint(i, j)
-            # log.info(number)
             return number
 
     def random_index_unique(self,i):

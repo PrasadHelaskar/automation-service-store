@@ -18,17 +18,31 @@ class partypackage(BasePage):
         xpath=f"(//div/..//div/..//div/..//a[@class='ss-primary-button--bc4--bw1--oc4--fc1 width-100 padding-8 bottom-20 w-button'])[{index}]"
         __private_package_selection=(By.XPATH, xpath)
         return __private_package_selection
-    # for the if seen Emty state
+    
+    __private_monthSelection=(By.XPATH,"(//button[@class='schedule-top-bar-date-selector--bc3--bw1--fc2 slot width-196 left-align schedule-top-bar-date-selector--bc3--bw1--fc2 slot width-196 left-align'])[1]")
 
+    def selectedMonth(self, index):
+        xpath=f"(//button[contains(@class, 'rdp-button') and contains(@class, 'custom-month-picker-button') and not(@disabled)])[{index}]"
+        __private_selectedMonth=(By.XPATH,xpath)
+        return __private_selectedMonth
+
+    __private_dateSelection=(By.XPATH,"(//button[@class='schedule-top-bar-date-selector--bc3--bw1--fc2 slot width-196 left-align schedule-top-bar-date-selector--bc3--bw1--fc2 slot width-196 left-align'])[2]")
+
+    def selectedDate(self, index):
+        xpath=f"(//button[@name='day'])[{index}]"
+        __private_selectedDate=(By.XPATH,xpath)
+        return __private_selectedDate
+
+    # for the if seen Emty state
     __private_Empty_state=(By.XPATH, "//div[@class='empty-state-text-holder']")
-    __priavte_Next_schedule=(By.XPATH, "//button[@class='discount-button bc4 fc1 w-button']")
+    __priavte_Next_schedule=(By.CSS_SELECTOR, "a[class='discount-button bc4 fc1 w-button']")
     
     def select_schedule(self, index):
-        xpath=f"(//div[@class='schedule-top-bar-date-selector--bc3--bw1--fc2 slot width-196 centre '])[{index}]"
+        xpath=f"(//div[@class='slot-selection-header padding-t-b-16 bw1 radius-4 padding-16 '])[{index}]"
         __praivte_Schedule=(By.XPATH, xpath)
         return __praivte_Schedule
     
-    __praivte_Select_proceed=(By.XPATH, "//div[@class='discount-button fc1 bc4 w-button']")
+    __praivte_Select_proceed=(By.CSS_SELECTOR, "div[class='discount-button bc4 fc1 w-button']")
     __private_attendee_model=(By.CSS_SELECTOR, "div[class='gs-modal bc3']")
     
     def select_attendee(self,index):
@@ -44,6 +58,8 @@ class partypackage(BasePage):
     __private_Review_Proceed_cardno=(By.CSS_SELECTOR,"div[class='stripeModal']")
     __private_Review_Proceed_card=(By.CSS_SELECTOR,"div[class='discount-button fc1 bc4 w-button one']")
     __private_HOME_BUTTON= (By.LINK_TEXT, "BOOK ANOTHER")
+    
+    #Actions Methods
 
     def click_party_tab(self):
         self.click(self.__private_party_page)
@@ -60,10 +76,22 @@ class partypackage(BasePage):
     def visible_empty_state(self):
         try:
             op=self.is_visible(self.__private_Empty_state)
-            log.info("Is Schedule not available today: %s",str(op))   
+            log.info("Is Schedule available in month?:%s",str(not(op)))
             return op
         except Exception as e:
             return False
+
+    def click_monthSelection(self):
+        self.click(self.__private_monthSelection)
+
+    def click_selectedMonth(self,index):
+        self.click(self.selectedMonth(index))
+
+    def click_dateSelection(self):
+        self.click(self.__private_dateSelection)
+
+    def click_selectedDate(self,index):
+        self.click(self.selectedDate(index))
 
     def text_empty_state(self):
         self.get_text(self.__private_Empty_state)

@@ -16,6 +16,7 @@ class Test_party_bookings():
     def test_party(self, driver):
         # driver.implicitly_wait(30)
         pb=partypackage(driver)
+        sr=select_random()
         lg=loginAction()
         lg.login_action(driver)
         pb.click_party_tab()
@@ -23,7 +24,7 @@ class Test_party_bookings():
 
         script="return document.getElementsByClassName('primary-button-card bc4 fc1').length"
         service_count=driver.execute_script(script)
-        selected_service_index=select_random().random_number(service_count)
+        selected_service_index=sr.random_number(service_count)
         log.info("Selected Service Index: %s",str(selected_service_index))
         pb.click_party_select(selected_service_index)
         pb.click_expand()
@@ -33,18 +34,33 @@ class Test_party_bookings():
         
         script="return document.getElementsByClassName('ss-primary-button--bc4--bw1--oc4--fc1 width-100 padding-8 bottom-20 w-button').length"
         package_count=driver.execute_script(script)
-        selected_package_index=select_random().random_number(package_count)
+        
+        
+        selected_package_index=sr.random_number(package_count)
         log.info("Selected Package Index: %s",str(selected_package_index))
         pb.click_package(selected_package_index)
         time.sleep(5)    
 
+        pb.click_monthSelection()
+        script="return (Array.from(document.querySelectorAll('button.rdp-button.custom-month-picker-button')).filter(btn => !btn.disabled)).length"
+        monthCount=driver.execute_script(script)
+        selectedMonthIndex=sr.random_number(1,monthCount)
+        pb.click_selectedMonth(selectedMonthIndex)
+
+        # pb.click_dateSelection()
+        # script="return document.getElementsByClassName('rdp-button_reset rdp-button rdp-day').length"
+        # dateCount=driver.execute_script(script)
+        # selectedDateIndex=sr.random_number(dateCount)
+        # pb.click_selectedDate(selectedDateIndex)
+
         if pb.visible_empty_state():
-            log.info('test_party > Empty State > If block')
+            # log.info('test_party > Empty State > If block')
             pb.click_next_schedule()
-        time.sleep(10)
-        script="return document.getElementsByClassName('schedule-top-bar-date-selector--bc3--bw1--fc2 slot width-196 centre ').length"
+        
+        time.sleep(5)
+        script="return document.getElementsByClassName('slot-selection-header padding-t-b-16 bw1 radius-4 padding-16 ').length"
         schedule_count=driver.execute_script(script)
-        selected_schedule_index=select_random().random_number(schedule_count)
+        selected_schedule_index=sr.random_number(schedule_count)
         log.info("Selected Schedule Index: %s",str(selected_schedule_index))
         pb.click_schedule_selection(selected_schedule_index)
 
@@ -54,9 +70,15 @@ class Test_party_bookings():
             time.sleep(5)            
             script="return document.getElementsByClassName('w-checkbox-input attendee-checkbox').length"
             attendee_count=driver.execute_script(script)
-            selected_attendee=select_random().random_number(attendee_count)
+            selected_attendee=sr.random_number(attendee_count)
             log.info("Selected Attendee: %s",str(selected_attendee))
-            pb.click_attendee_seletion(selected_attendee)
+            
+            try:
+                for i in range(selected_attendee,(selected_attendee+2)):
+                    pb.click_attendee_seletion(i)
+            except Exception as e:
+                log.info("Attendee Index is more the available count")
+
             pb.click_attendee_proceed()
 
         if pb.visible_addon_page():
@@ -72,9 +94,10 @@ class Test_party_bookings():
         
         waiver_vima_action().waiver(driver)
         # apply_discount().test_discount(driver)
+        time.sleep(4)
         # lg.get_all_cookies(driver)
         pb.click_review_proceed()
-        loginAction().order_invoice_cookies(driver)
+        lg.order_invoice_cookies(driver)
         stripe_action().stripe_data_enty(driver)
         pb.click_home()
         lg.authenticate_cookie(driver)

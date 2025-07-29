@@ -27,7 +27,7 @@ class Test_ongoing_classpack():
         # cpb.click_apply()
         
         cpb.click_classpack_page()
-        time.sleep(5)
+        time.sleep(10)
 
         script="""return document.getElementsByClassName('primary-button-card bc4 fc1').length;"""
         i=driver.execute_script(script)
