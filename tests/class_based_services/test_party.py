@@ -44,7 +44,7 @@ class Test_party_bookings():
         pb.click_monthSelection()
         script="return (Array.from(document.querySelectorAll('button.rdp-button.custom-month-picker-button')).filter(btn => !btn.disabled)).length"
         monthCount=driver.execute_script(script)
-        selectedMonthIndex=sr.random_number(2,monthCount)
+        selectedMonthIndex=sr.random_number(1,monthCount)
         pb.click_selectedMonth(selectedMonthIndex)
 
         # pb.click_dateSelection()
@@ -57,7 +57,7 @@ class Test_party_bookings():
             # log.info('test_party > Empty State > If block')
             pb.click_next_schedule()
         
-        time.sleep(10)
+        time.sleep(5)
         script="return document.getElementsByClassName('slot-selection-header padding-t-b-16 bw1 radius-4 padding-16 ').length"
         schedule_count=driver.execute_script(script)
         selected_schedule_index=sr.random_number(schedule_count)
@@ -94,6 +94,7 @@ class Test_party_bookings():
         
         waiver_vima_action().waiver(driver)
         # apply_discount().test_discount(driver)
+        time.sleep(4)
         # lg.get_all_cookies(driver)
         pb.click_review_proceed()
         lg.order_invoice_cookies(driver)

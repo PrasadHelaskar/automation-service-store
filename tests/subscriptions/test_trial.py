@@ -21,7 +21,7 @@ class Test_trialBooking():
         print('Trial booking started')
 
         tb.click_program_page()
-        tb.page_wait()
+        time.sleep(10)
         
         script="""return document.getElementsByClassName('secondary-button-card bw1 oc4 fc4').length;"""
         i=driver.execute_script(script)

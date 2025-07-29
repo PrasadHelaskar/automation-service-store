@@ -76,7 +76,7 @@ class partypackage(BasePage):
     def visible_empty_state(self):
         try:
             op=self.is_visible(self.__private_Empty_state)
-            log.info("Is Schedule available on date?:%s",str(not(op)))
+            log.info("Is Schedule available in month?:%s",str(not(op)))
             return op
         except Exception as e:
             return False
