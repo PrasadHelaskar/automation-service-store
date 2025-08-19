@@ -50,8 +50,7 @@ class loginAction():
 
         if cookie:
             cookie_value = cookie['value']
-            if(cookie_value==static_cookie):
-                log.info("Cookie authenticated")        
+            assert cookie_value == static_cookie, "Cookie value does not match"
         else:
             log.warning("Cookie not found! \n authenticated failed")
 

@@ -4,7 +4,6 @@ import pytest
 from selenium import webdriver
 import os
 from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.chrome.service import Service
 from threading import Thread
 from base.Screenshot import screenshot
 from base.logfile import Logger
@@ -14,7 +13,7 @@ from base.mitmproxy_addons import SaveXHRRequests
 log=Logger().get_logger(__name__)
 
 @pytest.fixture(autouse=True)
-def log_on_failure(request):
+def log_on_failure(request,driver):
     
     """
     Logs detailed information and captures a screenshot when a test fails.
@@ -35,7 +34,7 @@ def log_on_failure(request):
 
 
 @pytest.hookimpl(hookwrapper=True, tryfirst=True)
-def pytest_runtest_makereport(item, call):    
+def pytest_runtest_makereport(item, call):
 
     """
     Pytest hook to capture the result of each test execution and trigger log collection on failure.
@@ -70,7 +69,6 @@ def driver():
     closed after use to prevent resource leaks.
     """
 
-    global driver
     load_dotenv()
     is_lambda_test = os.getenv("IS_REMOTE", "0") == "1"
     api_interception_enable=os.getenv("NETWORK_INTERCEPTION", "0") == "1"
@@ -99,7 +97,7 @@ def driver():
             "plugin": "python-pytest"
         })
         
-        driver = webdriver.Remote(
+        driver = webdriver.Remote( # pylint: disable=redefined-outer-name
             command_executor=remote_url,
             options=chrome_options
         )

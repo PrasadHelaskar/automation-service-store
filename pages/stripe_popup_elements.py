@@ -27,7 +27,7 @@ class stripepopup(BasePage):
     #         return False
 
     def check_heading(self):
-        log.info("Check Heading Method")
+        # log.info("Check Heading Method")
         try:
             value=self.is_visible(self.__private__heading_new)
             # log.warning("Using new value: "+str(value))
@@ -53,7 +53,7 @@ class stripepopup(BasePage):
         self.send_keys(self.__private__zip_field, os.getenv("ZIP_CODE"))
 
     def click_confirm(self):
-        log.info("Click Confirm Method")
+        # log.info("Click Confirm Method")
         try:
             value=self.is_visible(self.__private__Confirm_button_new)
             locator=(self.__private__Confirm_button_new) if value else (self.__private__Confirm_button)
@@ -64,7 +64,7 @@ class stripepopup(BasePage):
             log.warning("Unable to locate both values: %s",e)
 
     def get_payable(self):
-        log.info("Get Payable Method")
+        # log.info("Get Payable Method")
         try:
             value=self.is_visible(self.__private__payable_new)
             log.warning("Using new value: %s",str(value))
