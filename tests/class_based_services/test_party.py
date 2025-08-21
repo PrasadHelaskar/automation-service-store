@@ -88,8 +88,6 @@ class Test_party_bookings():
             for i in range(1,(count+1)):
                 time.sleep(5)
                 pb.click_additiona_attendee()
-                if i==3:
-                    pass
             pb.click_addon_proceed()
         
         waiver_vima_action().waiver(driver)

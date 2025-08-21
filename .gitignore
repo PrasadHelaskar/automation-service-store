@@ -17,7 +17,7 @@ compose.yaml
 Dockerfile
 README.Docker.md
 test.py
-report.html
+reports
 refrerance_json_obj
 pytest-ini
 export_py.sh

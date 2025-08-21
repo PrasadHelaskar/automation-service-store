@@ -21,7 +21,7 @@ class Test_program():
         """The Method for the program booking"""
         # driver.implicitly_wait(30)
         pb=classpackbooking(driver)
-        for i in range(0,1):
+        for i in range(0,3):
             lg.login_action(driver)
             log.info('Program booking Started')
             # filter the programs
@@ -39,7 +39,7 @@ class Test_program():
             else:
                 service_index=select_random().random_number(10)
 
-            pb.click_select_service(service_index)
+            pb.click_select_service(1)
             log.info("Service selected index: %s",str(service_index))
 
             time.sleep(2)
@@ -47,7 +47,7 @@ class Test_program():
             received_count=driver.execute_script(script)
             index=select_random().random_number(received_count)
             log.info("Selected schedule index: %s",index)
-            pb.click_start_date(index)
+            pb.click_start_date(1)
 
             pb.click_proceed()
             time.sleep(2)
@@ -68,6 +68,7 @@ class Test_program():
             
             if(driver.title=="Addons"):
                 add_on_test().add_on_page(driver)
+                
 
             custom_fields_actions().custom_field_action(driver)
             
