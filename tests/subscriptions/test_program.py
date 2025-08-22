@@ -21,7 +21,7 @@ class Test_program():
         """The Method for the program booking"""
         # driver.implicitly_wait(30)
         pb=classpackbooking(driver)
-        for i in range(0,3):
+        for i in range(0,2):
             lg.login_action(driver)
             log.info('Program booking Started')
             # filter the programs
@@ -75,6 +75,10 @@ class Test_program():
             waiver_vima_action().waiver_vima(driver)
             # apply_discount().test_discount(driver)
             lg.order_invoice_cookies(driver)
+
+            # date aiteration
+            dateAlteration(driver)
+
             pb.click_review_proceed()
             driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
             stripe_action().stripe_data_enty(driver)
@@ -89,3 +93,9 @@ def repeat_booking(driver):
     if(rb.is_repeat_booking_visible()):
         log.info("The Buy Again model visible?: %s",str(rb.is_repeat_booking_visible()))
         rb.click_buy_again()
+        Test_program().test_program(driver)
+
+def dateAlteration(driver):
+    from selenium.webdriver.common.by import By
+    hidden_date = driver.find_element(By.NAME, "start_date")
+    driver.execute_script("arguments[0].value = '21 Jul 2025';", hidden_date)

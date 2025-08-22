@@ -15,7 +15,7 @@ class BasePage:
             driver (WebDriver): Selenium WebDriver instance.
         """
         self.driver = driver
-        self.wait = WebDriverWait(driver, timeout=10)
+        self.wait = WebDriverWait(driver, timeout=5)
 
     def find_element_wait(self, locator):
         """
