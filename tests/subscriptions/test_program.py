@@ -21,8 +21,8 @@ class Test_program():
         """The Method for the program booking"""
         # driver.implicitly_wait(30)
         pb=classpackbooking(driver)
+        lg.login_action(driver)
         for i in range(0,2):
-            lg.login_action(driver)
             log.info('Program booking Started')
             # filter the programs
             # pb.click_classpack_checkbox()
@@ -39,7 +39,7 @@ class Test_program():
             else:
                 service_index=select_random().random_number(10)
 
-            pb.click_select_service(1)
+            pb.click_select_service(service_index)
             log.info("Service selected index: %s",str(service_index))
 
             time.sleep(2)
@@ -47,11 +47,10 @@ class Test_program():
             received_count=driver.execute_script(script)
             index=select_random().random_number(received_count)
             log.info("Selected schedule index: %s",index)
-            pb.click_start_date(1)
+            pb.click_start_date(index)
 
             pb.click_proceed()
             time.sleep(2)
-            
             # add_family_checkout_flow(driver)
 
             script="""return document.getElementsByClassName("w-checkbox-input waitlist-checkbox").length;"""
@@ -69,15 +68,14 @@ class Test_program():
             if(driver.title=="Addons"):
                 add_on_test().add_on_page(driver)
                 
-
             custom_fields_actions().custom_field_action(driver)
             
             waiver_vima_action().waiver_vima(driver)
             # apply_discount().test_discount(driver)
             lg.order_invoice_cookies(driver)
 
-            # date aiteration
-            dateAlteration(driver)
+            # date aiteration method
+            # dateAlteration(driver)
 
             pb.click_review_proceed()
             driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
@@ -98,4 +96,4 @@ def repeat_booking(driver):
 def dateAlteration(driver):
     from selenium.webdriver.common.by import By
     hidden_date = driver.find_element(By.NAME, "start_date")
-    driver.execute_script("arguments[0].value = '21 Jul 2025';", hidden_date)
+    driver.execute_script("arguments[0].value = '25 Jul 2025';", hidden_date)
