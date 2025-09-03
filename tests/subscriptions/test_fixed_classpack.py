@@ -89,7 +89,7 @@ class Test_fixed_classpack():
                 lg.authenticate_cookie(driver)
 
         lg.authenticate_cookie(driver)
-        time.sleep(5)
+        time.sleep(10)
         cpb.click_home()
 
 

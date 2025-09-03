@@ -57,5 +57,5 @@ class add_on_test():
         except Exception as e:
             log.error("No classpack found to add > %s",e)
 
-
+        time.sleep(2)
         aop.click_addon_proceed()

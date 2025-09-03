@@ -15,7 +15,7 @@ class add_on(BasePage):
         __private_classpack=(By.XPATH, xpath)
         return __private_classpack
     
-    __private_Addon_proceed=(By.ID,"proceed-btn")
+    __private_Addon_proceed=(By.CSS_SELECTOR,"button[class='discount-button bc4 shrink w-button']")
 
     def click_general_item(self, i):
         # log.info("Clicking on general item")

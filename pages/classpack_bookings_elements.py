@@ -41,7 +41,7 @@ class classpackbooking(BasePage):
     
     # repeat booking model locatores
     __repeat_booking_model=(By.CSS_SELECTOR, "div[class='modal-wrapper']")
-    __repeat_booking_model_confirm=(By.ID,"re-buy-classpack")
+    __repeat_buyAgainModelBackToHome=(By.ID,"redirect_to_home_page")
 
     # Credit booking page locatores
     __private_credit_booking_class=(By.NAME, "checkbox-13")
@@ -133,7 +133,7 @@ class classpackbooking(BasePage):
             return False
 
     def click_buy_again(self):
-        self.click(self.__repeat_booking_model_confirm)
+        self.click(self.__repeat_buyAgainModelBackToHome)
 
     def get_service_name(self):
         try:
