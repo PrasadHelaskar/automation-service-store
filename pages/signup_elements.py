@@ -45,6 +45,7 @@ class signup(BasePage):
             self.send_keys(self.__private_phone_number, phone)
     
     def click_submit(self):
+        log.info("click_submit")
         self.click(self.__private_SUBMIT)
     
     def enter_password(self, password):

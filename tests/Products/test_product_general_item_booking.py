@@ -46,11 +46,12 @@ class Testproduct_booking():
                 break
             
         pe.click_checkout_proceed()
+        pe.page_wait()
         waiver_vima_action().waiver(driver)
         pe.click_review_proceed()
         loginAction().order_invoice_cookies(driver)
         stripe_action().stripe_data_enty(driver)
-        time.sleep(5)
+        time.sleep(10)
         pe.click_home()
         loginAction().authenticate_cookie(driver)
         
