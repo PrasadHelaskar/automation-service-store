@@ -15,6 +15,7 @@ from tests.test_add_family import add_family_checkout_flow
 
 log = Logger().get_logger(__name__)
 lg=loginAction()
+selectedAttendees=[]
 
 class Test_program():        
     @pytest.mark.order(4)
@@ -22,8 +23,7 @@ class Test_program():
         """The Method for the program booking"""
         pb=classpackbooking(driver)
         lg.login_action(driver)
-        selectedAttendees=[]
-        for i in range(0,2):
+        for i in range(0,4):
             log.info('Program booking Started')
             # filter the programs
             # pb.click_classpack_checkbox()
@@ -35,12 +35,12 @@ class Test_program():
             service_count=driver.execute_script(script)
             log.info("Total services available: %s",service_count)
 
-            if service_count in range(1,20):
+            if service_count in range(1,9):
                 service_index=select_random().random_number(service_count)
             else:
-                service_index=select_random().random_number(10)
+                service_index=select_random().random_number(5)
 
-            pb.click_select_service(service_index)
+            pb.click_select_service(1)
             log.info("Service selected index: %s",str(service_index))
 
             time.sleep(2)
@@ -52,7 +52,7 @@ class Test_program():
 
             pb.click_proceed()
             time.sleep(2)
-            add_family_checkout_flow(driver)
+            # add_family_checkout_flow(driver)
 
             # add_family_checkout_flow(driver)
             script="""return document.getElementsByClassName("w-checkbox-input waitlist-checkbox").length;"""
@@ -74,7 +74,7 @@ class Test_program():
             time.sleep(2)
             
             if(driver.title=="Addons"):
-                log.info("Addons page visible="+str(driver.title or "None"))
+                # log.info("Addons page visible="+str(driver.title or "None"))
                 add_on_test().add_on_page(driver)
                 
             custom_fields_actions().custom_field_action(driver)
@@ -89,7 +89,7 @@ class Test_program():
             pb.click_review_proceed()
             driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
             stripe_action().stripe_data_enty(driver)
-            time.sleep(10)
+            time.sleep(15)
             pb.click_home()
             lg.authenticate_cookie(driver)
             log.info("Tha Program booking Execution Completed \n")

@@ -43,6 +43,7 @@ class stripe_action():
                 driver.switch_to.default_content()
                 log.info("Switched")
                 sp.click_confirm()
+                time.sleep(5)
             
             # except Exception as e:
             #     log.info("Card frame not found please check")

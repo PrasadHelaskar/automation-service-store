@@ -33,7 +33,7 @@ class Test_add_family():
             af.type_first_name(fn)
             ln=Faker().last_name()
             af.type_last_name(ln)
-            
+
             af.type_dob()
             time.sleep(2)
             sr= select_random()
