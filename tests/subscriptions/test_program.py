@@ -1,6 +1,9 @@
 import sys
 import time
+import json
+from datetime import datetime, timedelta
 import pytest
+from selenium.webdriver.common.by import By
 from base.logfile import Logger
 from base.random_select import select_random
 from base.stripe_popup import stripe_action
@@ -22,8 +25,9 @@ class Test_program():
     def test_program(self, driver):
         """The Method for the program booking"""
         pb=classpackbooking(driver)
+        driver.implicitly_wait(10)
         lg.login_action(driver)
-        for i in range(0,4):
+        for i in range(0,1):
             log.info('Program booking Started')
             # filter the programs
             # pb.click_classpack_checkbox()
@@ -35,7 +39,7 @@ class Test_program():
             service_count=driver.execute_script(script)
             log.info("Total services available: %s",service_count)
 
-            if service_count in range(1,9):
+            if service_count in range(1,10):
                 service_index=select_random().random_number(service_count)
             else:
                 service_index=select_random().random_number(5)
@@ -51,7 +55,7 @@ class Test_program():
             pb.click_start_date(index)
 
             pb.click_proceed()
-            time.sleep(2)
+            time.sleep(5)
             # add_family_checkout_flow(driver)
 
             # add_family_checkout_flow(driver)
@@ -66,6 +70,7 @@ class Test_program():
                 pb.click_attendee_proceed()
                 selectedAttendees.append(attendee)
             else:
+                log.info("Repeat Booking Attendee selected index: %s",str(attendee))
                 pb.click_attendee_box(attendee)
                 pb.click_attendee_proceed()
                 time.sleep(2)
@@ -84,12 +89,12 @@ class Test_program():
             lg.order_invoice_cookies(driver)
 
             # date aiteration method
-            # dateAlteration(driver)
+            dateAlteration(driver)
 
             pb.click_review_proceed()
             driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
             stripe_action().stripe_data_enty(driver)
-            time.sleep(15)
+            time.sleep(20)
             pb.click_home()
             lg.authenticate_cookie(driver)
             log.info("Tha Program booking Execution Completed \n")
@@ -104,6 +109,24 @@ def repeat_booking(driver):
         sys.exit()
 
 def dateAlteration(driver):
-    from selenium.webdriver.common.by import By
-    hidden_date = driver.find_element(By.NAME, "start_date")
-    driver.execute_script("arguments[0].value = '30 Jul 2025';", hidden_date)
+    
+    start_date_str = "15 Sep 2025"
+    start_date = datetime.strptime(start_date_str, "%d %b %Y")
+    end_date = start_date + timedelta(weeks=4)
+    end_date_str = end_date.strftime("%d %b %Y")
+
+    # Start date
+    hidden_date_start = driver.find_element(By.NAME, "start_date")
+    driver.execute_script("arguments[0].value = arguments[1];", hidden_date_start, start_date_str)
+
+    # End date
+    hidden_date_end = driver.find_element(By.ID, "end_date")
+    driver.execute_script("arguments[0].value = arguments[1];", hidden_date_end, end_date_str)
+
+    # Update hidden input JSON
+    hidden_input = driver.find_element(By.NAME, "classpacks")
+    json_str = hidden_input.get_attribute("value")
+    data = json.loads(json_str)
+    data[0]["classpack_start_date"] = start_date_str
+    new_json_str = json.dumps(data)
+    driver.execute_script("arguments[0].value = arguments[1];", hidden_input, new_json_str)
