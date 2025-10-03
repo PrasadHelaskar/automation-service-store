@@ -132,9 +132,6 @@ def driver():
         driver.execute_cdp_cmd("Page.enable", {})
         driver.maximize_window()
         
-
-        driver.implicitly_wait(15)
-        
         if (api_interception_enable):
             log.info("API Interception Enabled")
             driver.execute_cdp_cmd("Fetch.enable", {

@@ -4,6 +4,8 @@ tests/Products/__pycache__
 Base/__pycache__
 tests/.pytest_cache
 .env
+.config
+shellFiles
 assets
 log
 Screenshots
@@ -17,7 +19,7 @@ compose.yaml
 Dockerfile
 README.Docker.md
 test.py
-report.html
+reports
 refrerance_json_obj
 pytest-ini
 export_py.sh

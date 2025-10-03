@@ -17,11 +17,11 @@ class giftcardbooking(BasePage):
     __private_enter_amount=(By.ID, "customAmount")
     __private_enter_recipient_name=(By.CSS_SELECTOR, "input[placeholder='Enter recipient’s name']")
     __private_enter_recipient_email=(By.CSS_SELECTOR, "input[placeholder='Enter recipient’s email']")
-    __private_giftcard_checkout=(By.CSS_SELECTOR, "button[class='discount-button fc1 bc4 w-button step1']")
+    __private_giftcard_checkout=(By.XPATH, "//div[@class='review-cta-section justify-left bc3 ']/..//button")
 
     __private_Review_Proceed_cardno=(By.CSS_SELECTOR,"div[class='stripeModal']")
     __private_Review_Proceed_card=(By.CSS_SELECTOR,"div[class='discount-button fc1 bc4 w-button one']")
-    __private_HOME_BUTTON= (By.LINK_TEXT, "BOOK ANOTHER") 
+    __private_HOME_BUTTON= (By.LINK_TEXT, "BOOK ANOTHER")
 
     def click_gift_card_page(self):
         self.click(self.__private__gift_card_page)
@@ -53,7 +53,6 @@ class giftcardbooking(BasePage):
             value=self.is_visible(self.__private_Review_Proceed_cardno)
         except:
             value=False
-        log.info(value)
         locator=(self.__private_Review_Proceed_cardno) if value else (self.__private_Review_Proceed_card)
         self.click(locator)
 

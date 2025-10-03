@@ -53,7 +53,7 @@ class partypackage(BasePage):
     __private_Attendee_Proceed=(By.XPATH, "//div[@class='discount-button bc4 align-right _50 w-button']")
     __private_addonpage=(By.XPATH,"//div[@class='add-on-section bc4_a bw1t bottom-120']") 
     __private_additional_attendee=(By.XPATH, "(//button[@class='add-section fc4 oc4 justify-centre'])[1]") 
-    __private_Addon_Proceed=(By.XPATH, "//button[@class='discount-button fc1 bc4 w-button shrink']")
+    __private_Addon_Proceed=(By.XPATH, "//div[@class='review-cta-section  justify-left bc3 space-between']/button")
     __private_Waiver_Checkbox=(By.ID, "checkbox-3")
     __private_Review_Proceed_cardno=(By.CSS_SELECTOR,"div[class='stripeModal']")
     __private_Review_Proceed_card=(By.CSS_SELECTOR,"div[class='discount-button fc1 bc4 w-button one']")

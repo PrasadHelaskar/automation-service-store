@@ -43,10 +43,12 @@ class add_on_test():
             log.info("classpack selected count: %s",str(selected_count))
         
             for i in range(1, selected_count+1):
-        
                 try:
-                    aop.click_classpack(i)
-                    time.sleep(2)
+                    j=0
+                    while j<1:
+                        aop.click_classpack(i)
+                        time.sleep(1)
+                        j+=1
         
                 except Exception as e:
                     log.info("Classpack not found > %s",e)
@@ -55,5 +57,5 @@ class add_on_test():
         except Exception as e:
             log.error("No classpack found to add > %s",e)
 
-
+        time.sleep(2)
         aop.click_addon_proceed()

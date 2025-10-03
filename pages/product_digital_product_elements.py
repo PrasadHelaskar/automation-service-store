@@ -15,7 +15,7 @@ class digitalproductelement(BasePage):
         __private_pricing_option=(By.XPATH ,f"(//button[@class='add-section fc4 oc4 justify-centre'])[{i}]")
         return __private_pricing_option
     
-    __private_proceed_button_checkout=(By.CSS_SELECTOR, "button[class='discount-button fc1 bc4 w-button step1']")
+    __private_proceed_button_checkout=(By.XPATH, "//div[@class='review-cta-section justify-left bc3 ']/..//button")
     __private_review_checkbox=(By.NAME, "checkbox-3")
     __private_Review_Proceed_cardno=(By.CSS_SELECTOR,"div[class='stripeModal']")
     __private_Review_Proceed_card=(By.CSS_SELECTOR,"div[class='discount-button fc1 bc4 w-button one']")

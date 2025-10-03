@@ -1,8 +1,8 @@
+import time
 from dotenv import load_dotenv
 from base.json_operations import json_read
 from tests.base_page import BasePage
 from selenium.webdriver.common.by import By
-import os
 from base.logfile import Logger
 
 log=Logger().get_logger(__name__)
@@ -45,6 +45,7 @@ class signup(BasePage):
             self.send_keys(self.__private_phone_number, phone)
     
     def click_submit(self):
+        time.sleep(2)
         self.click(self.__private_SUBMIT)
     
     def enter_password(self, password):

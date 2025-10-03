@@ -15,7 +15,7 @@ class BasePage:
             driver (WebDriver): Selenium WebDriver instance.
         """
         self.driver = driver
-        self.wait = WebDriverWait(driver, timeout=10)
+        self.wait = WebDriverWait(driver, timeout=5)
 
     def find_element_wait(self, locator):
         """
@@ -193,7 +193,7 @@ class BasePage:
         This ensures that the entire page, including all dependent resources,
         has finished loading before proceeding.
         """
-        WebDriverWait(self.driver, 10).until(
+        WebDriverWait(self.driver, timeout=20, poll_frequency=1).until(
             lambda d: d.execute_script("return document.readyState") == "complete"
         )
 
