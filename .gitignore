@@ -4,6 +4,8 @@ tests/Products/__pycache__
 Base/__pycache__
 tests/.pytest_cache
 .env
+.config
+shellFiles
 assets
 log
 Screenshots

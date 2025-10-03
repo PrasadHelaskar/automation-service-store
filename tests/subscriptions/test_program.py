@@ -62,7 +62,7 @@ class Test_program():
             script="""return document.getElementsByClassName("w-checkbox-input waitlist-checkbox").length;"""
             received_count=driver.execute_script(script)
             attendee=select_random().random_number(received_count)
-            log.info(selectedAttendees)
+            log.info("Selected Attendees Arrey:%s",selectedAttendees)
             
             if attendee not in selectedAttendees:
                 pb.click_attendee_box(attendee)
@@ -89,7 +89,7 @@ class Test_program():
             lg.order_invoice_cookies(driver)
 
             # date aiteration method
-            dateAlteration(driver)
+            # dateAlteration(driver)
 
             pb.click_review_proceed()
             driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
@@ -110,7 +110,7 @@ def repeat_booking(driver):
 
 def dateAlteration(driver):
     
-    start_date_str = "15 Sep 2025"
+    start_date_str = "20 Sep 2025"
     start_date = datetime.strptime(start_date_str, "%d %b %Y")
     end_date = start_date + timedelta(weeks=4)
     end_date_str = end_date.strftime("%d %b %Y")
@@ -118,10 +118,12 @@ def dateAlteration(driver):
     # Start date
     hidden_date_start = driver.find_element(By.NAME, "start_date")
     driver.execute_script("arguments[0].value = arguments[1];", hidden_date_start, start_date_str)
-
+    log.info("Start Date: %s",start_date_str)
+    
     # End date
     hidden_date_end = driver.find_element(By.ID, "end_date")
     driver.execute_script("arguments[0].value = arguments[1];", hidden_date_end, end_date_str)
+    log.info("End Date: %s",end_date_str)
 
     # Update hidden input JSON
     hidden_input = driver.find_element(By.NAME, "classpacks")
