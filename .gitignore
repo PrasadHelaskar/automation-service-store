@@ -18,7 +18,6 @@ On_Fail_Screenshots
 compose.yaml
 Dockerfile
 README.Docker.md
-test.py
 reports
 refrerance_json_obj
 pytest-ini
@@ -33,10 +32,9 @@ chrome-linux64.zip
 chrome-linux64
 chrome_driver_match.py
 google-chrome-stable_current_amd64.deb
-schedule.py
-time_convert.py
 pytest.ini
 mitmproxy_logs
 Base/db_test/
 data.json
 requested_Screenshots
+extra

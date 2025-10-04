@@ -35,7 +35,7 @@ class Test_program():
             pb.click_program_page()
             time.sleep(5)
 
-            script="""return document.getElementsByClassName('primary-button-card bc4 fc1').length;"""
+            script="""return document.getElementsByClassName('primary-button-card  bc4 fc1').length;"""
             service_count=driver.execute_script(script)
             log.info("Total services available: %s",service_count)
 
@@ -44,7 +44,7 @@ class Test_program():
             else:
                 service_index=select_random().random_number(5)
 
-            pb.click_select_service(1)
+            pb.click_select_service(service_index)
             log.info("Service selected index: %s",str(service_index))
 
             time.sleep(2)

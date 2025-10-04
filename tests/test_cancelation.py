@@ -1,4 +1,3 @@
-import os
 import time
 import pytest
 from base.logfile import Logger
@@ -13,58 +12,27 @@ class Test_service_cancelation():
     def test_cancelation(self, driver):
         loginAction().login_action(driver)
         cb=cancelation_booking(driver)
+        random=select_random()
         cb.click_profile()
         cb.click_profile_page()
-        is_schedule_present=None
-        time.sleep(2)
-        for i in range(1,5):
-            if (cb.is_visible_empty_state()):
-                log.info("Iteration Count: %s",str(i))
-                cb.click_drop_down()
-                script="return document.getElementsByClassName('d-flex schedule-dropdown').length;"
-                reviced_count=driver.execute_script(script)
-                select_attendee=select_random().random_number(reviced_count)
-                # cb.click_familty_members(select_attendee)
-                cb.click_familty_members(7)
-                is_schedule_present=cb.is_visible_empty_state()
-                if(is_schedule_present==False):
-                    log.info("Schedules are seen for: %s",str(select_attendee))
-                    break
-                
-        if(is_schedule_present is True):
-            assert False, "Selected 5 attendees doesn't have schedule so try again"
-        
+        cb.clickSubscriptionsPage()
         time.sleep(5)
-        script="return document.getElementsByClassName('view-details-button schedule_details').length;"
-        reviced_count=driver.execute_script(script)
-        seleted_service=select_random().random_number(reviced_count)
-        log.info("Seleted Service Count: %s",str(seleted_service))
+        if not cb.getTextForEmptySubscriptionPage():
+            script="return document.getElementsByClassName('trial-tag red strech relative').length"
+            index_service=driver.execute_script(script)
+            serviec_index_cancelations=random.random_number(index_service)
+            log.info("Primary Service Index For Cancelations:%s",serviec_index_cancelations)
+            cb.clickCancelationButton(serviec_index_cancelations)
 
-        script_label="return document.getElementsByClassName('label label-danger').length;"
-        recived_lebel_count=driver.execute_script(script_label)
-        log.info("Recived Lebel Count: %s",str(recived_lebel_count))
+            script="return document.querySelectorAll(\"input[type='radio']\").length"
+            index=driver.execute_script(script)
+            cancelation_index=random.random_number(index)
+            log.info("Index For Cancelations Option:%s",cancelation_index)
+            cb.clickCancelationPolicySelection(cancelation_index)
 
-        service=cb.view_details(seleted_service)
-        service_name=str(service.get_attribute("data-service_name"))
-        log.info("Selected Service Name: %s",service_name)
-        service_type=str(service.get_attribute("data-service_type"))
-        log.info("Selected Service type: %s",service_type)
-        cb.click_view_details(seleted_service)  
-
-        cb.click_cancel_button()
-        cb.click_cancel_everyone()
-        time.sleep(5)
-
-        recived_lebel_count_update=driver.execute_script(script_label)
-        log.info("Recived Lebel Count Update: %s",str(recived_lebel_count_update))
-
-        if(recived_lebel_count!=recived_lebel_count_update):
-            service=cb.view_card(seleted_service)
-            save_folder = "cancelled_screenshots"
-            os.makedirs(save_folder, exist_ok=True) 
-            save_path = os.path.join(save_folder, "Cancelled_element.png")
-            service.screenshot(save_path)
-            log.info("Cancelation Successful and Cancelled_element.png this is service card screenshot")
-        else:
-            log.error("Cancelation Faild")
-            assert False
+            cb.confiremCancelation()
+            time.sleep(10)
+            if cb.pageTitleAssertion().lower()=="Subscriptions".lower():
+                log.info("Cancelation Completed")
+            else:
+                log.info("API took more time then expected")
