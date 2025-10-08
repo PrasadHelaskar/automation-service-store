@@ -48,5 +48,5 @@ class Test_sign_up():
             sg.click_dobfield()
         # sg.click_vima_consent()
         sg.click_submit()
-        time.sleep(15)
+        sg.page_wait()
         loginAction().Store_cookie(driver)

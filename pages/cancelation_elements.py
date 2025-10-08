@@ -33,6 +33,8 @@ class cancelation_booking(BasePage):
 
     __private_page_title=(By.CSS_SELECTOR,"h1[class='ss-heading semi-bold fc2 bottom-32']")
     
+    __private_selected_date=(By.CSS_SELECTOR, "input[class='ss-auth-input--bc3--fc2--oc2 width-180 w-input']")
+
     # Action Methods 
     def click_profile(self):
         self.click(self.__private_profile)
@@ -75,8 +77,8 @@ class cancelation_booking(BasePage):
             select_year.select_by_visible_text(str(2025))
             self.driver.find_element(By.XPATH, "(//button[@name='day'])[20]").click()
             self.click(self.__private_datepicker)
-            # date=self.get_attribute(self.__private_datepicker,"value")
-            # log.info("Selected Date: %s",date)
+            date=self.get_attribute(self.__private_selected_date,"value")
+            log.info("Selected Date: %s",date)
 
     def confiremCancelation(self):
         self.click(self.__private_confirem_cancelation)

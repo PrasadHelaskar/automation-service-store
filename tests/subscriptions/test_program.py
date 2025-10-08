@@ -44,7 +44,7 @@ class Test_program():
             else:
                 service_index=select_random().random_number(5)
 
-            pb.click_select_service(service_index)
+            pb.click_select_service(1)
             log.info("Service selected index: %s",str(service_index))
 
             time.sleep(2)
@@ -100,7 +100,7 @@ class Test_program():
             log.info("Tha Program booking Execution Completed \n")
 
 def repeat_booking(driver):
-    """Used to handle the BOok again  model"""
+    """Used to handle the Book again model"""
     rb=classpackbooking(driver)
     if(rb.is_repeat_booking_visible()):
         log.info("The Buy Again model visible?: %s",str(rb.is_repeat_booking_visible()))
@@ -109,8 +109,8 @@ def repeat_booking(driver):
         sys.exit()
 
 def dateAlteration(driver):
-    
-    start_date_str = "20 Sep 2025"
+    """ Used to handle the past dated bookings in the subscriptions booking"""
+    start_date_str = "04 Sep 2025"
     start_date = datetime.strptime(start_date_str, "%d %b %Y")
     end_date = start_date + timedelta(weeks=4)
     end_date_str = end_date.strftime("%d %b %Y")
@@ -129,6 +129,13 @@ def dateAlteration(driver):
     hidden_input = driver.find_element(By.NAME, "classpacks")
     json_str = hidden_input.get_attribute("value")
     data = json.loads(json_str)
-    data[0]["classpack_start_date"] = start_date_str
+
+    for i,item in enumerate(data):
+        if i==1:
+            two_week_start_date=start_date + timedelta(weeks=2)
+            item["classpack_start_date"] = two_week_start_date.strftime("%d %b %Y")
+        else:
+            item["classpack_start_date"] = start_date_str
+
     new_json_str = json.dumps(data)
     driver.execute_script("arguments[0].value = arguments[1];", hidden_input, new_json_str)

@@ -20,7 +20,7 @@ class Test_party_bookings():
         lg=loginAction()
         lg.login_action(driver)
         pb.click_party_tab()
-        time.sleep(5)
+        time.sleep(8)
 
         script="return document.getElementsByClassName('primary-button-card bc4 fc1').length"
         service_count=driver.execute_script(script)
@@ -39,7 +39,7 @@ class Test_party_bookings():
         selected_package_index=sr.random_number(package_count)
         log.info("Selected Package Index: %s",str(selected_package_index))
         pb.click_package(selected_package_index)
-        time.sleep(5)    
+        time.sleep(8)
 
         pb.click_monthSelection()
         script="return (Array.from(document.querySelectorAll('button.rdp-button.custom-month-picker-button')).filter(btn => !btn.disabled)).length"
@@ -57,7 +57,7 @@ class Test_party_bookings():
             # log.info('test_party > Empty State > If block')
             pb.click_next_schedule()
         
-        time.sleep(5)
+        time.sleep(8)
         script="return document.getElementsByClassName('slot-selection-header padding-t-b-16 bw1 radius-4 padding-16 ').length"
         schedule_count=driver.execute_script(script)
         selected_schedule_index=sr.random_number(schedule_count)
@@ -67,7 +67,7 @@ class Test_party_bookings():
         pb.click_schedule_proceed()
 
         if (pb.visible_attendee_model()):
-            time.sleep(5)            
+            time.sleep(8)
             script="return document.getElementsByClassName('w-checkbox-input attendee-checkbox').length"
             attendee_count=driver.execute_script(script)
             selected_attendee=sr.random_number(attendee_count)
@@ -86,13 +86,13 @@ class Test_party_bookings():
             count=driver.execute_script(script)
             log.info("Recived Count: %s",str(count))
             for i in range(1,(count+1)):
-                time.sleep(5)
+                time.sleep(8)
                 pb.click_additiona_attendee()
             pb.click_addon_proceed()
         
         waiver_vima_action().waiver(driver)
         # apply_discount().test_discount(driver)
-        time.sleep(4)
+        time.sleep(5)
         # lg.get_all_cookies(driver)
         pb.click_review_proceed()
         lg.order_invoice_cookies(driver)

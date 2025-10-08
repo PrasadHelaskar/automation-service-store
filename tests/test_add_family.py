@@ -53,7 +53,7 @@ class Test_add_family():
             script = """return document.getElementsByClassName("product-listing bc3 bw1 width-100").length;"""
             i= driver.execute_script(script)
             log.info("element count: %s",str(i))
-            time.sleep(5)
+            time.sleep(8)
             div=af.scroll_div()
             driver.execute_script("arguments[0].scrollTop = arguments[0].scrollHeight;",div)
             value=True if (af.get_added_name(i)==(fn+" "+ln)) else False

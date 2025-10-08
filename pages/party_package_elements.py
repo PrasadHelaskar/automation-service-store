@@ -140,7 +140,7 @@ class partypackage(BasePage):
             value=self.is_visible(self.__private_Review_Proceed_cardno)
         except:
             value=False
-        log.info("click_review_proceed > "+str(value))
+        # log.info("click_review_proceed > "+str(value))
         locator=(self.__private_Review_Proceed_cardno) if value else (self.__private_Review_Proceed_card)
         self.click(locator)
 
