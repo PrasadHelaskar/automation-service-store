@@ -89,7 +89,7 @@ class Test_program():
             lg.order_invoice_cookies(driver)
 
             # date aiteration method
-            # dateAlteration(driver)
+            dateAlteration(driver)
 
             pb.click_review_proceed()
             driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
@@ -110,7 +110,7 @@ def repeat_booking(driver):
 
 def dateAlteration(driver):
     """ Used to handle the past dated bookings in the subscriptions booking"""
-    start_date_str = "04 Sep 2025"
+    start_date_str = "10 Sep 2025"
     start_date = datetime.strptime(start_date_str, "%d %b %Y")
     end_date = start_date + timedelta(weeks=4)
     end_date_str = end_date.strftime("%d %b %Y")

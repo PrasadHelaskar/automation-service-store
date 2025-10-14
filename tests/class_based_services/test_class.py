@@ -58,7 +58,7 @@ class Test_class_booking_action():
         attendee=select_random().random_number(received_count)
         log.info("seleccted attendee count: %s",attendee)
 
-        for i in range(attendee, (attendee+1)):
+        for i in range(attendee, (attendee+2)):
             cb.click_attendee_box(i)
 
         cb.click_attendee_proceed()

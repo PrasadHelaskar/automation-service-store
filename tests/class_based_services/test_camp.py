@@ -37,7 +37,7 @@ class Test_Camp_booking():
         attendee_count=select_random().random_number(i)
         log.info("Selected Attendee Count: %s",str(attendee_count))
 
-        for j in range (1, (attendee_count+1)):
+        for j in range (attendee_count, (attendee_count+2)):
             cmp.click_attendee(j)
 
         cmp.click_attendee_proceed()

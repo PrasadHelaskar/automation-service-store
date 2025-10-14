@@ -14,6 +14,7 @@ static_cookie= None
 class loginAction():
     @pytest.mark.order()
     def login_action(self,driver):
+        """Helper method used for Login"""
         load_dotenv()
         # apilog=APILOG(driver)
         driver.get(os.getenv("URL"))
@@ -31,6 +32,7 @@ class loginAction():
             self.Store_cookie(driver)
         entime=time.time()
         time.sleep(8)
+        self.Store_cookie(driver)
         log.info("Required time: %s",(entime-sttime))
 
     def Store_cookie(self, driver):
