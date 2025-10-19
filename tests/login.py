@@ -15,7 +15,7 @@ class loginAction():
     @pytest.mark.order()
     def login_action(self,driver):
         """Helper method used for Login"""
-        load_dotenv()
+        load_dotenv() 
         # apilog=APILOG(driver)
         driver.get(os.getenv("URL"))
         login_page = LoginPage(driver)

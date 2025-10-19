@@ -89,7 +89,7 @@ class Test_program():
             lg.order_invoice_cookies(driver)
 
             # date aiteration method
-            dateAlteration(driver)
+            # dateAlteration(driver)
 
             pb.click_review_proceed()
             driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")

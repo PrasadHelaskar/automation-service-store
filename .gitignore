@@ -5,14 +5,12 @@ Base/__pycache__
 tests/.pytest_cache
 .env
 .config
-shellFiles
 assets
 log
 Screenshots
 extra
 tunnal
 tests/claude.py
-pytest_run.sh
 On_Fail_Screenshots
 .dockerignore
 compose.yaml
@@ -21,7 +19,6 @@ README.Docker.md
 reports
 refrerance_json_obj
 pytest-ini
-export_py.sh
 __pycache__/test.cpython-310-pytest-8.3.3.pyc
 tests/subscriptions/__pycache__
 tests/class_based_services/__pycache__

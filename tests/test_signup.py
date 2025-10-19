@@ -19,7 +19,6 @@ class Test_sign_up():
     def test_sign_up(self, driver):
         load_dotenv()
         # apilogger = APILOG(driver)
-        log.info(os.getenv('URL'))
         driver.get(os.getenv('URL'))
         sg=signup(driver)
         faker=Faker('en_US')
