@@ -126,9 +126,9 @@ Run with HTML report
 
     LoginPage — handles login flow and validations
 
-    DashboardPage — handles navigation and dashboard actions
+    DashboardPage — handles service creation, update, and delete
 
-    ServiceStorePage — handles service creation, update, and delete
+    ServiceStorePage — handles navigation and bookings actions
 
     This improves test readability and reduces duplication.
 
