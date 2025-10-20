@@ -111,8 +111,6 @@ Run with HTML report
 ## ⚙️ Configuration Example
 
 ``BASE_URL``=https://service-store.example.com </br>
-``BROWSER``=chrome  </br>
-``HEADLESS``=true  </br>
 ``USERNAME``=test_user  </br>
 ``PASSWORD``=test_password  </br>
 ``ENVIRONMENT``=staging  </br>
