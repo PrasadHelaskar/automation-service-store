@@ -17,6 +17,16 @@ Fully configurable for multiple environments (test, staging, production).
 
 ---
 
+## 🔰 Tech Stack & Badges
+
+![Python](https://img.shields.io/badge/Python-3.x-blue?logo=python)
+![Pytest](https://img.shields.io/badge/Pytest-Framework-green?logo=pytest)
+![Selenium](https://img.shields.io/badge/Selenium-WebAutomation-brightgreen?logo=selenium)
+![API Testing](https://img.shields.io/badge/API-Testing-yellow)
+![Allure Report](https://img.shields.io/badge/Allure-Report-ff69b4?logo=allure)
+![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-CI%2FCD-blue?logo=githubactions)
+
+
 ## 🗂 Project Structure
 
 automation-service-store/
